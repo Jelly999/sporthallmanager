@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/bJoinEvent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/bManageUsers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
@@ -47,7 +47,7 @@
         android:layout_marginTop="12dp"
         android:text="Manage sporthalls"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/bManageUsers" />
 
     <TextView
         android:id="@+id/textStaticMain2"
