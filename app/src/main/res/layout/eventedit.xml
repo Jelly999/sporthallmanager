@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editLoginName"
         android:layout_width="256dp"
         android:layout_height="43dp"
         android:layout_marginStart="17dp"
@@ -102,7 +102,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/button14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/editLoginName" />
 
     <Button
         android:id="@+id/button11"
