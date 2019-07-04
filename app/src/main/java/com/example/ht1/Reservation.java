@@ -3,20 +3,27 @@ package com.example.ht1;
 //TODO Varaus-luokka, joka pitää sisällään varauksen tiedot
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Reservation {
     private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
     private int UUID;                       // Reservation's UUID
     private String title;                   // Title of the reservation
     private String describtion;             // Describtion of the reservation
-    private User reservationOwner;          // Owner user of the reservation
+    private User Owner;                     // Owner user of the reservation
+    private Date startDate;                 // Date at which the reservation starts
+    private Date endDate;                   // Date at which the reservation starts
     private ArrayList<User> attenderList;   // List of users attending the reservation
 
-    Reservation(User owner, String newTitle) {
+    Reservation(User owner, String newTitle, Date reservStartDate, Date reservEndDate) {
         UUID = getSequentialUUID();
         title = newTitle;
-        reservationOwner = owner;
+        Owner = owner;
+        startDate = reservStartDate;
+        endDate = reservEndDate;
         attenderList = new ArrayList<>();
+
+        //TODO: Pitäisikö reservation ownerin olla samalla attender??
     }
 
     // ======= PUBLIC GETTERS =======
@@ -24,8 +31,10 @@ public class Reservation {
     int getUUID() {return UUID;}
     String getTitle() {return title;}
     String getDescribtion() {return describtion;}
-    User getReservationOwner() {return reservationOwner;}
-    ArrayList<User> getAttenderList() {return attenderList;}
+    User getOwner() {return Owner;}
+    Date getStartDate() {return startDate;}
+    Date getEndDate() {return endDate;}
+    ArrayList<User> getAttenderList() {return attenderList;} //TODO: Poista! Ja korvaa jollain
 
     int getAttenderAmount() {
         return attenderList.size();
@@ -72,9 +81,13 @@ public class Reservation {
         return false;   // Returns false if not possible due to conditions above
     }
 
+    public boolean hasUserAsAttendant(User user) {
+        return doesUserExistAsAttender(user);
+    }
+
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (sequentialUUID + " " + UUID + " " + title + " " + describtion + " " + reservationOwner.getUserName() + " " + getAttenderAmount());
+        return (sequentialUUID + " " + UUID + " " + title + " " + describtion + " " + Owner.getUserName() + " " + getAttenderAmount());
     }
 
     // ======= PRIVATE METHODS =======
