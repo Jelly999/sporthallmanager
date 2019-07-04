@@ -3,14 +3,14 @@ package com.example.ht1;
 public class User {
 
     private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
-    private int UUID;
-    private String userName;
-    private boolean admin;
+    private int UUID;                       // User's UUID
+    private String userName;                // Username
+    private boolean admin;                  // Is the user admin (True = yes, False = no)
 
     User(String name) {
         UUID = getSequentialUUID();
         userName = name;
-        admin = false;
+        admin = false;  // User is not admin by default
     }
 
     // ======= PUBLIC GETTERS =======
@@ -28,6 +28,13 @@ public class User {
 
     public void setAdminPrivilege(boolean isAdmin) {
         admin = isAdmin;
+    }
+
+    // ======= PUBLIC OTHER METHODS =======
+
+    // USED ONLY FOR DEBUGGIN PURPOSES
+    public String toString() {
+        return (sequentialUUID + " " + UUID + " " + userName + " " + admin);
     }
 
     // ======= PRIVATE METHODS =======

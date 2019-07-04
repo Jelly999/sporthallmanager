@@ -6,11 +6,11 @@ import android.net.wifi.aware.PublishConfig;
 
 public class Sporthall {
     private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
-    private int UUID;               // Sporthall's own UUID
-    private String name;            // Name
-    private int maximumCapacity;    // Maximum capacity
-    private boolean disabled;       // If sporthall is disabled for repair etc.
-    private String universityName;      // Name of the university the sporthall is located in
+    private int UUID;                       // Sporthall's own UUID
+    private String name;                    // Name
+    private int maximumCapacity;            // Maximum capacity
+    private boolean disabled;               // If sporthall is disabled for repair etc.
+    private String universityName;          // Name of the university the sporthall is located in
 
     Sporthall(String hallName, String university, int maxCapacity) {
         UUID = getSequentialUUID();
@@ -48,11 +48,15 @@ public class Sporthall {
     }
 
 
-    // TODO: Voisi olla ehto Disablelle jossa palauttaa false,
-    // TODO: kun asettaa samaa ehtoa True = True tyyliin
-
     public void setDisabled(boolean isDisabled) {
         disabled = isDisabled;
+    }
+
+    // ======= PUBLIC OTHER METHODS =======
+
+    // USED ONLY FOR DEBUGGIN PURPOSES
+    public String toString() {
+        return (sequentialUUID + " " + UUID + " " + name + " " + universityName + " " + maximumCapacity + " " + disabled);
     }
 
     // ======= PRIVATE METHODS =======
