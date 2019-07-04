@@ -59,12 +59,32 @@ public class Reservation {
         return false;
     }
 
+    // No internal error handling or integrity check, so the check that
+    // start is before end etc. must be done in Reservation Manager
+    public boolean setStartDate(Date newStartDate) {
+        if (newStartDate != null) {
+            startDate = newStartDate;
+            return true;
+        }
+        return false;
+    }
+
+    // No internal error handling or integrity check, so the check that
+    // start is before end etc. must be done in Reservation Manager
+    public boolean setEndDate(Date newEndDate) {
+        if (newEndDate != null) {
+            endDate = newEndDate;
+            return true;
+        }
+        return false;
+    }
+
     // ======= PUBLIC OTHER METHODS =======
 
     public boolean addAsAttender(User user) {
         if (user != null) {   // User is not null
-            if (!doesUserExistAsAttender(user)) {   // User CANNOT be found from attenderList
-                addUser(user);
+            if (!isUserAttender(user)) {   // User CANNOT be found from attenderList
+                addUserTo(user);
                 return true;
             }
         }
@@ -73,8 +93,8 @@ public class Reservation {
 
     public boolean removeAttender(User user) {
         if (user != null) {   // User is not null
-            if (doesUserExistAsAttender(user)) {   // User CAN be found from attenderList
-                removeUser(user);
+            if (isUserAttender(user)) {   // User CAN be found from attenderList
+                removeUserFrom(user);
                 return true;
             }
         }
@@ -82,7 +102,7 @@ public class Reservation {
     }
 
     public boolean hasUserAsAttendant(User user) {
-        return doesUserExistAsAttender(user);
+        return isUserAttender(user);
     }
 
     // USED ONLY FOR DEBUGGIN PURPOSES
@@ -93,12 +113,12 @@ public class Reservation {
     // ======= PRIVATE METHODS =======
 
     // TODO: Turha jos kutsutaan vain addAsAttenderista
-    private void addUser(User user) {
+    private void addUserTo(User user) {
         attenderList.add(user);
     }
 
     // TODO: Turha jos kutsutaan vain removeAttenderista
-    private void removeUser(User user) {
+    private void removeUserFrom(User user) {
         attenderList.remove(user);
     }
 
@@ -110,7 +130,7 @@ public class Reservation {
 
 
     // Checks the attenderList for given User
-    private boolean doesUserExistAsAttender(User testUser) {
+    private boolean isUserAttender(User testUser) {
         if (testUser != null) {
             for (User user : attenderList) {
                 if (user.equals(testUser)) {
