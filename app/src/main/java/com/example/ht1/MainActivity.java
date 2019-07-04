@@ -11,6 +11,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("Help!");
-        System.out.print("Kuinka committaan ja mergeän?\nJoko tämä toimii?");
     }
 }
