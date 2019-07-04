@@ -192,4 +192,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Export all events to file"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="480dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
