@@ -60,6 +60,7 @@ public class Sporthall {
 
     // ======= PRIVATE METHODS =======
 
+    // Only used in the builder as a initializer, DO NOT USE ANYWHERE ELSE!
     private int getSequentialUUID() {
         sequentialUUID++; // Rises the latest UUID by one
         return sequentialUUID; // Returns the latest raised UUID
