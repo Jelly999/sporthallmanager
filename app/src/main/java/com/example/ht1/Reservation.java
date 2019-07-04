@@ -5,18 +5,16 @@ package com.example.ht1;
 import java.util.ArrayList;
 
 public class Reservation {
-    static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
-    int UUID;   // Reservation ID
-    String title; // Title of the reservation
-    String describtion; // Describtion of the reservation
-    int attenderAmount;
-    User reservationOwner;
-    ArrayList<User> attenderList;
+    private static int sequentialUUID = 0;          // Sequential number to keep track of latest UUID
+    private int UUID;                       // Reservation ID
+    private String title;                   // Title of the reservation
+    private String describtion;             // Describtion of the reservation
+    private User reservationOwner;          // Owner user of the reservation
+    private ArrayList<User> attenderList;   // List of users attending the reservation
 
     Reservation(User owner, String newTitle) {
-        sequentialUUID = getSequentialUUID();
+        UUID = getSequentialUUID();
         title = newTitle;
-        attenderAmount = 0;
         reservationOwner = owner;
         attenderList = new ArrayList<>();
     }
@@ -26,9 +24,12 @@ public class Reservation {
     int getUUID() {return UUID;}
     String getTitle() {return title;}
     String getDescribtion() {return describtion;}
-    int getAttenderAmount() {return attenderAmount;}
     User getReservationOwner() {return reservationOwner;}
     ArrayList<User> getAttenderList() {return attenderList;}
+
+    int getAttenderAmount() {
+        return attenderList.size();
+    }
 
 
     // ======= PUBLIC SETTERS =======
@@ -73,14 +74,14 @@ public class Reservation {
 
     // ======= PRIVATE METHODS =======
 
+    // TODO: Turha jos kutsutaan vain addAsAttenderista
     private void addUser(User user) {
         attenderList.add(user);
-        attenderAmount = attenderList.size();
     }
 
+    // TODO: Turha jos kutsutaan vain removeAttenderista
     private void removeUser(User user) {
         attenderList.remove(user);
-        attenderAmount = attenderList.size();
     }
 
     // Only used in the builder as a initializer, DO NOT USE ANYWHERE ELSE!

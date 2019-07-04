@@ -5,18 +5,18 @@ package com.example.ht1;
 import android.net.wifi.aware.PublishConfig;
 
 public class Sporthall {
-    static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
-    int UUID;   // Sporthall's own UUID
-    String name; // Sporthall's own name
-    int maximumCapacity; // Sporthall's maximum capacity
-    boolean reserved;
-    boolean disabled;
+    private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
+    private int UUID;               // Sporthall's own UUID
+    private String name;            // Name
+    private int maximumCapacity;    // Maximum capacity
+    private boolean disabled;       // If sporthall is disabled for repair etc.
+    private String universityName;      // Name of the university the sporthall is located in
 
-    Sporthall() {
+    Sporthall(String hallName, String university, int maxCapacity) {
         UUID = getSequentialUUID();
-
-        // Initializing basic conditions
-        reserved = false;
+        name = hallName;
+        universityName = university;
+        maximumCapacity = maxCapacity;
         disabled = false;
     }
 
@@ -25,8 +25,8 @@ public class Sporthall {
     public int getUUID() {return UUID;}
     public String getName() {return name;}
     public int getMaximumCapacity() {return maximumCapacity;}
-    public boolean getReserved() {return reserved;}
     public boolean getDisabled() {return disabled;}
+    public String getUniversityName() {return universityName;}
 
     // ======= PUBLIC SETTERS =======
 
@@ -48,11 +48,8 @@ public class Sporthall {
     }
 
 
-    // TODO: Voisi olla ehto reservedille ja disablelle jossa palauttaa false,
+    // TODO: Voisi olla ehto Disablelle jossa palauttaa false,
     // TODO: kun asettaa samaa ehtoa True = True tyyliin
-    public void setReserved(boolean isReserved) {
-        reserved = isReserved;
-    }
 
     public void setDisabled(boolean isDisabled) {
         disabled = isDisabled;
