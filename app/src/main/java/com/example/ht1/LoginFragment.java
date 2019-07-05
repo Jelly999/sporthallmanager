@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
 
 public class LoginFragment extends Fragment {
@@ -24,23 +25,27 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         //Get values from edit fields
-        EditText usrname = (EditText) view.findViewById(R.id.editLoginName);
+        EditText usrname = view.findViewById(R.id.editLoginName);
         String username = usrname.getText().toString();
-        EditText pwd = (EditText) view.findViewById(R.id.editLoginPwd);
+        EditText pwd = view.findViewById(R.id.editLoginPwd);
         String password = pwd.getText().toString();
         //check if login is successful
-        loginSuccess();
+        try {
+            loginSuccess(username, password);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
     //              Public
 
-    public boolean loginSuccess() {
+    public boolean loginSuccess(String username, String password) throws NoSuchAlgorithmException {
 
         String algorithm = "SHA-512";
-        byte[] salt; // get salt from db
-        String usernamedb = ""; // Get username from db
-        String pwdhashdb = ""; //Get password hash from db
-        String pwdhash = generateHash(password); // Create hash for comparison
+        byte[] salt = createSalt(); //TODO get salt from db
+        String usernamedb = ""; //TODO Get username from db
+        String pwdhashdb = ""; //TODO Get password hash from db
+        String pwdhash = generateHash(password, algorithm, salt); // Create hash for comparison
 
         // is username in db
         if (username == usernamedb) {
@@ -60,7 +65,7 @@ public class LoginFragment extends Fragment {
             hexChars[j * 2] = hexArray[v >>> 4];
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];
         }
-        return new String(hexChars)
+        return new String(hexChars);
     }
 
     //                Private
@@ -73,5 +78,10 @@ public class LoginFragment extends Fragment {
     }
     private final static char[] hexArray = "01234656789ABCDEF".toCharArray();
 
-
+    public static byte[] createSalt(){
+        byte[] bytes = new byte[16];
+        SecureRandom random = new SecureRandom();
+        random.nextBytes(bytes);
+        return bytes;
+    }
 }
