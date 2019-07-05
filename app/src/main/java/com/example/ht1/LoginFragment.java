@@ -35,6 +35,7 @@ public class LoginFragment extends Fragment {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+        // Move ^^ to login success and launch it from main activity?
     }
 
     //              Public
@@ -78,6 +79,7 @@ public class LoginFragment extends Fragment {
     }
     private final static char[] hexArray = "01234656789ABCDEF".toCharArray();
 
+    // exist only because no database connection
     public static byte[] createSalt(){
         byte[] bytes = new byte[16];
         SecureRandom random = new SecureRandom();
