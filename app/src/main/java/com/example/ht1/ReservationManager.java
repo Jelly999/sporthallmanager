@@ -54,8 +54,10 @@ public class ReservationManager {
 
         //TODO: Lisää eheys-vaatimukset
         if (isDateFaulty(startDate, endDate)) { // Is date faulty (ends before starts)
-            Reservation reservation = new Reservation(owner, sporthall, title, startDate, endDate);
-            sporthall.addReservation(reservation);
+            if (isTimeSlotReserved(sporthall, startDate, endDate)) {
+                Reservation reservation = new Reservation(owner, sporthall, title, startDate, endDate);
+                sporthall.addReservation(reservation);
+            }
         }
     }
 
@@ -74,17 +76,30 @@ public class ReservationManager {
 
     public boolean isTimeSlotReserved(Sporthall sporthall, Date startDate, Date endDate) {
 
+        // Gets all the existing reservations for the specified sporthall
         for (Reservation reser : sporthall.getReservations()) {
-            if (false) {
-                //asd
+
+            // If the end and/or start is NOT before the start of any other event
+            if (!(isDateBeforeEqual(startDate, reser.getStartDate()) && isDateBeforeEqual(endDate, reser.getStartDate()))) {
+
+                // As start and/or end are NOT before, check if neither of them is NOT fully aftert the event
+                if (!(isDateAfterEqual(startDate, reser.getEndDate()) && isDateAfterEqual(endDate, reser.getEndDate()))) {
+
+                    // So if both is not fully before nor is it fully after any event, it must
+                    // overlap with pre-existing event
+                    return false;
+                }
             }
         }
-        return  false;
+        // Return true if the whole list can be iterated without any conflicts (falses)
+        return  true;
     }
 
 
     // ======= PRIVATE OTHER METHODS =======
 
+
+    // Checks if both dates are not null, and if the startDate is before or equal to endDate
     private boolean isDateFaulty(Date startDate, Date endDate) {
         if (startDate != null && endDate != null) {
             return isDateBefore(startDate, endDate);
@@ -93,15 +108,15 @@ public class ReservationManager {
     }
 
     private boolean isDateBefore(Date date, Date compareTo) {
-        // Return true if first date is before the second
         return date.before(compareTo);
     }
 
+    // Return true if first date is after or equal the second
     private boolean isDateBeforeEqual(Date date1, Date date2) {
-        // Return true if first date is after the second
         return ((date1.compareTo(date2)) <= 0); // is before or equal
     }
 
+    // Return true if first date is before or equal the second
     private boolean isDateAfterEqual(Date date1, Date date2) {
         return ((date1.compareTo(date2)) >= 0); // is after or equal
     }

@@ -32,7 +32,9 @@ public class Sporthall {
     public boolean getDisabled() {return disabled;}
     public String getUniversityName() {return universityName;}
 
-    public Reservation[] getReservations() {return reservationsList.toArray(new Reservation[0]);}
+    Reservation[] getReservations() {
+        return reservationsList.toArray(new Reservation[0]);
+    }
 
     // ======= PUBLIC SETTERS =======
 
