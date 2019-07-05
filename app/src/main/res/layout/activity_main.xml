@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
         android:layout_marginTop="12dp"
+        android:onClick="login"
         android:text="Manage users"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textStaticMain2" />
@@ -71,6 +72,7 @@
         android:layout_marginStart="260dp"
         android:layout_marginTop="164dp"
         android:clickable="true"
+        android:onClick="login"
         android:src="@drawable/ic_boss"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
