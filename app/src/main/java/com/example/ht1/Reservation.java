@@ -3,6 +3,7 @@ package com.example.ht1;
 //TODO Varaus-luokka, joka pitää sisällään varauksen tiedot
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Reservation {
@@ -12,11 +13,11 @@ public class Reservation {
     private Sporthall sporthall;            // The sporthall that is being reserved
     private String describtion;             // Describtion of the reservation
     private User Owner;                     // Owner user of the reservation
-    private Date startDate;                 // Date at which the reservation starts
-    private Date endDate;                   // Date at which the reservation starts
+    private Calendar startDate;                 // Date at which the reservation starts
+    private Calendar endDate;                   // Date at which the reservation starts
     private ArrayList<User> attenderList;   // List of users attending the reservation
 
-    Reservation(User owner, Sporthall hall, String newTitle, Date reservStartDate, Date reservEndDate) {
+    Reservation(User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate) {
         UUID = getSequentialUUID();
         title = newTitle;
         sporthall = hall;
@@ -34,14 +35,18 @@ public class Reservation {
     String getTitle() {return title;}
     String getDescribtion() {return describtion;}
     User getOwner() {return Owner;}
-    Date getStartDate() {return startDate;}
-    Date getEndDate() {return endDate;}
+    Calendar getStartDate() {return startDate;}
+    Calendar getEndDate() {return endDate;}
     Sporthall getSporthall() {return sporthall;}
     ArrayList<User> getAttenderList() {return attenderList;}
 
     int getAttenderAmount() {
         return attenderList.size();
     }
+
+
+
+
 
 
     // ======= PUBLIC SETTERS =======
@@ -64,7 +69,7 @@ public class Reservation {
 
     // No internal error handling or integrity check, so the check that
     // start is before end etc. must be done in Reservation Manager
-    public boolean setStartDate(Date newStartDate) {
+    public boolean setStartDate(Calendar newStartDate) {
         if (newStartDate != null) {
             startDate = newStartDate;
             return true;
@@ -74,13 +79,18 @@ public class Reservation {
 
     // No internal error handling or integrity check, so the check that
     // start is before end etc. must be done in Reservation Manager
-    public boolean setEndDate(Date newEndDate) {
+    public boolean setEndDate(Calendar newEndDate) {
         if (newEndDate != null) {
             endDate = newEndDate;
             return true;
         }
         return false;
     }
+
+
+
+
+
 
     // ======= PUBLIC OTHER METHODS =======
 
@@ -113,6 +123,10 @@ public class Reservation {
         return (sequentialUUID + " " + UUID + " " + title + " " + describtion + " " + Owner.getUserName() + " " + getAttenderAmount());
     }
 
+
+
+
+
     // ======= PRIVATE METHODS =======
 
     // TODO: Turha jos kutsutaan vain addAsAttenderista
@@ -130,7 +144,6 @@ public class Reservation {
         sequentialUUID++; // Rises the latest UUID by one
         return sequentialUUID; // Returns the latest raised UUID
     }
-
 
     // Checks the attenderList for given User
     private boolean isUserAttender(User testUser) {

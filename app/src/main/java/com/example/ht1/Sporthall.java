@@ -5,6 +5,7 @@ package com.example.ht1;
 import android.net.wifi.aware.PublishConfig;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Sporthall {
     private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
@@ -13,6 +14,7 @@ public class Sporthall {
     private int maximumCapacity;            // Maximum capacity
     private boolean disabled;               // If sporthall is disabled for repair etc.
     private String universityName;          // Name of the university the sporthall is located in
+    private String streetAdress;            // Location of the sporthall
     private ArrayList<Reservation> reservationsList;
 
     Sporthall(String hallName, String university, int maxCapacity) {
@@ -24,6 +26,9 @@ public class Sporthall {
         reservationsList = new ArrayList<>();
     }
 
+
+
+
     // ======= PUBLIC GETTERS =======
 
     public int getUUID() {return UUID;}
@@ -31,10 +36,14 @@ public class Sporthall {
     public int getMaximumCapacity() {return maximumCapacity;}
     public boolean getDisabled() {return disabled;}
     public String getUniversityName() {return universityName;}
+    public String getStreetAdress() {return streetAdress;}
+    public int getReservationAmount() {return reservationsList.size();}
 
-    Reservation[] getReservations() {
-        return reservationsList.toArray(new Reservation[0]);
-    }
+    public ArrayList<Reservation> getReservations() {return reservationsList;}
+
+
+
+
 
     // ======= PUBLIC SETTERS =======
 
@@ -55,10 +64,19 @@ public class Sporthall {
         return true;
     }
 
-
     public void setDisabled(boolean isDisabled) {
         disabled = isDisabled;
     }
+
+    // Make into boolean?
+    public void setStreetAdress(String newAdress) {
+        if (newAdress != null) {
+            streetAdress = newAdress;
+        }
+    }
+
+
+
 
     // ======= PUBLIC OTHER METHODS =======
 
@@ -79,10 +97,22 @@ public class Sporthall {
         return false;
     }
 
+    public void removeAllUserReservations(User owner) { // Removes all reservations by owner iterating
+        Iterator iterator = reservationsList.iterator();
+        while (iterator.hasNext()) {
+            if (((Reservation)iterator.next()).getOwner().equals(owner)) {
+                iterator.remove();
+            }
+        }
+    }
+
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
         return (sequentialUUID + " " + UUID + " " + name + " " + universityName + " " + maximumCapacity + " " + disabled);
     }
+
+
+
 
     // ======= PRIVATE METHODS =======
 
