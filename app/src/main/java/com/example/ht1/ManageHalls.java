@@ -1,5 +1,5 @@
 package com.example.ht1;
 
-// TODO: Vaihda nimeki SporthallManager
+// TODO Fragment
 public class ManageHalls {
 }

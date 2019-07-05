@@ -4,6 +4,8 @@ package com.example.ht1;
 
 import android.net.wifi.aware.PublishConfig;
 
+import java.util.ArrayList;
+
 public class Sporthall {
     private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
     private int UUID;                       // Sporthall's own UUID
@@ -11,6 +13,7 @@ public class Sporthall {
     private int maximumCapacity;            // Maximum capacity
     private boolean disabled;               // If sporthall is disabled for repair etc.
     private String universityName;          // Name of the university the sporthall is located in
+    private ArrayList<Reservation> reservationsList;
 
     Sporthall(String hallName, String university, int maxCapacity) {
         UUID = getSequentialUUID();
@@ -18,6 +21,7 @@ public class Sporthall {
         universityName = university;
         maximumCapacity = maxCapacity;
         disabled = false;
+        reservationsList = new ArrayList<>();
     }
 
     // ======= PUBLIC GETTERS =======
@@ -27,6 +31,8 @@ public class Sporthall {
     public int getMaximumCapacity() {return maximumCapacity;}
     public boolean getDisabled() {return disabled;}
     public String getUniversityName() {return universityName;}
+
+    public Reservation[] getReservations() {return reservationsList.toArray(new Reservation[0]);}
 
     // ======= PUBLIC SETTERS =======
 
@@ -54,6 +60,23 @@ public class Sporthall {
 
     // ======= PUBLIC OTHER METHODS =======
 
+    public boolean addReservation(Reservation reservation) {
+        if (reservation != null) {
+            reservationsList.add(reservation);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeReservation(Reservation reservation) {
+        if (doesReservationExist(reservation)) {
+            reservationsList.remove(reservation);
+            reservation = null; //TODO onko tarpeellinen rivi?
+            return true;
+        }
+        return false;
+    }
+
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
         return (sequentialUUID + " " + UUID + " " + name + " " + universityName + " " + maximumCapacity + " " + disabled);
@@ -65,6 +88,15 @@ public class Sporthall {
     private int getSequentialUUID() {
         sequentialUUID++; // Rises the latest UUID by one
         return sequentialUUID; // Returns the latest raised UUID
+    }
+
+    private boolean doesReservationExist(Reservation reservation) {
+        for (Reservation reserv : reservationsList) {
+            if (reserv.equals(reservation)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

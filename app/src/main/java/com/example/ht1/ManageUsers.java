@@ -1,5 +1,5 @@
 package com.example.ht1;
 
-//TODO: Vaihda nimeksi UserManager
+//TODO: Fragment
 public class ManageUsers {
 }

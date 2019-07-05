@@ -9,21 +9,23 @@ public class Reservation {
     private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
     private int UUID;                       // Reservation's UUID
     private String title;                   // Title of the reservation
+    private Sporthall sporthall;            // The sporthall that is being reserved
     private String describtion;             // Describtion of the reservation
     private User Owner;                     // Owner user of the reservation
     private Date startDate;                 // Date at which the reservation starts
     private Date endDate;                   // Date at which the reservation starts
     private ArrayList<User> attenderList;   // List of users attending the reservation
 
-    Reservation(User owner, String newTitle, Date reservStartDate, Date reservEndDate) {
+    Reservation(User owner, Sporthall hall, String newTitle, Date reservStartDate, Date reservEndDate) {
         UUID = getSequentialUUID();
         title = newTitle;
+        sporthall = hall;
         Owner = owner;
         startDate = reservStartDate;
         endDate = reservEndDate;
         attenderList = new ArrayList<>();
 
-        //TODO: Pitäisikö reservation ownerin olla samalla attender??
+        //TODO: Pitäisikö reservation ownerin olla samalla varauksensa attender??
     }
 
     // ======= PUBLIC GETTERS =======
@@ -34,7 +36,8 @@ public class Reservation {
     User getOwner() {return Owner;}
     Date getStartDate() {return startDate;}
     Date getEndDate() {return endDate;}
-    ArrayList<User> getAttenderList() {return attenderList;} //TODO: Poista! Ja korvaa jollain
+    Sporthall getSporthall() {return sporthall;}
+    ArrayList<User> getAttenderList() {return attenderList;}
 
     int getAttenderAmount() {
         return attenderList.size();
