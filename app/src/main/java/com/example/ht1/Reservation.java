@@ -11,7 +11,7 @@ public class Reservation {
     private String title;                   // Title of the reservation
     private Sporthall sporthall;            // The sporthall that is being reserved
     private String describtion;             // Describtion of the reservation
-    private User Owner;                     // Owner user of the reservation
+    private User owner;                     // owner user of the reservation
     private Calendar startCalendar;             // Date at which the reservation starts
     private Calendar endCalendar;               // Date at which the reservation starts
     private ArrayList<User> attenderList;   // List of users attending the reservation
@@ -20,7 +20,7 @@ public class Reservation {
         UUID = getSequentialUUID();
         title = newTitle;
         sporthall = hall;
-        Owner = owner;
+        this.owner = owner;
         startCalendar = reservStartDate;
         endCalendar = reservEndDate;
         attenderList = new ArrayList<>();
@@ -33,7 +33,7 @@ public class Reservation {
     int getUUID() {return UUID;}
     String getTitle() {return title;}
     String getDescribtion() {return describtion;}
-    User getOwner() {return Owner;}
+    User getOwner() {return owner;}
     Calendar getStartDate() {return startCalendar;}
     Calendar getEndDate() {return endCalendar;}
     Sporthall getSporthall() {return sporthall;}
@@ -106,7 +106,7 @@ public class Reservation {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (sequentialUUID + " " + UUID + " " + title + " " + describtion + " " + Owner.getUserName() + " " + getAttenderAmount());
+        return (sequentialUUID + " " + UUID + " " + title + " " + describtion + " " + owner.getUserName() + " " + getAttenderAmount());
     }
 
 
