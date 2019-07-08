@@ -4,7 +4,6 @@ package com.example.ht1;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Reservation {
     private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
@@ -13,8 +12,8 @@ public class Reservation {
     private Sporthall sporthall;            // The sporthall that is being reserved
     private String describtion;             // Describtion of the reservation
     private User Owner;                     // Owner user of the reservation
-    private Calendar startDate;                 // Date at which the reservation starts
-    private Calendar endDate;                   // Date at which the reservation starts
+    private Calendar startCalendar;             // Date at which the reservation starts
+    private Calendar endCalendar;               // Date at which the reservation starts
     private ArrayList<User> attenderList;   // List of users attending the reservation
 
     Reservation(User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate) {
@@ -22,8 +21,8 @@ public class Reservation {
         title = newTitle;
         sporthall = hall;
         Owner = owner;
-        startDate = reservStartDate;
-        endDate = reservEndDate;
+        startCalendar = reservStartDate;
+        endCalendar = reservEndDate;
         attenderList = new ArrayList<>();
 
         //TODO: Pitäisikö reservation ownerin olla samalla varauksensa attender??
@@ -35,8 +34,8 @@ public class Reservation {
     String getTitle() {return title;}
     String getDescribtion() {return describtion;}
     User getOwner() {return Owner;}
-    Calendar getStartDate() {return startDate;}
-    Calendar getEndDate() {return endDate;}
+    Calendar getStartDate() {return startCalendar;}
+    Calendar getEndDate() {return endCalendar;}
     Sporthall getSporthall() {return sporthall;}
     ArrayList<User> getAttenderList() {return attenderList;}
 
@@ -69,22 +68,9 @@ public class Reservation {
 
     // No internal error handling or integrity check, so the check that
     // start is before end etc. must be done in Reservation Manager
-    public boolean setStartDate(Calendar newStartDate) {
-        if (newStartDate != null) {
-            startDate = newStartDate;
-            return true;
-        }
-        return false;
-    }
-
-    // No internal error handling or integrity check, so the check that
-    // start is before end etc. must be done in Reservation Manager
-    public boolean setEndDate(Calendar newEndDate) {
-        if (newEndDate != null) {
-            endDate = newEndDate;
-            return true;
-        }
-        return false;
+    public void setDate(Calendar startDate, Calendar endDate) {
+        setStartDate(startDate);
+        setEndDate(endDate);
     }
 
 
@@ -143,6 +129,22 @@ public class Reservation {
     private int getSequentialUUID() {
         sequentialUUID++; // Rises the latest UUID by one
         return sequentialUUID; // Returns the latest raised UUID
+    }
+
+    private boolean setStartDate(Calendar newStartDate) {
+        if (newStartDate != null) {
+            startCalendar = newStartDate;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean setEndDate(Calendar newEndDate) {
+        if (newEndDate != null) {
+            endCalendar = newEndDate;
+            return true;
+        }
+        return false;
     }
 
     // Checks the attenderList for given User

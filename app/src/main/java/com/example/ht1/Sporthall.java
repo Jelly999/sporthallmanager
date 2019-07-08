@@ -15,7 +15,7 @@ public class Sporthall {
     private boolean disabled;               // If sporthall is disabled for repair etc.
     private String universityName;          // Name of the university the sporthall is located in
     private String streetAdress;            // Location of the sporthall
-    private ArrayList<Reservation> reservationsList;
+    private ArrayList<Reservation> reservationsList; // List of all the reservations for this sporthall
 
     Sporthall(String hallName, String university, int maxCapacity) {
         UUID = getSequentialUUID();
