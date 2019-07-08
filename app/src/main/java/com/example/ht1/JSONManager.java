@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
 
 public class JSONManager {
 
@@ -24,15 +25,38 @@ public class JSONManager {
     public void JSONTEST() {
         try {
             JSONObject object = JSONEndocing();
-            writeJSONToStorage(object);
+            writeJSONToStorage(object, "json_test");
         } catch (Exception e) { //TODO Oisko parempi virheen hallinta?
             e.printStackTrace();
         }
 
     }
 
+    public void saveReservationJSON(Reservation reservation, String fileName) {
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
+
+        JSONObject reservObj = new JSONObject();
+        try {
+            reservObj.put("UUID", reservation.getUUID());
+            reservObj.put("title", reservation.getTitle());
+            reservObj.put("sporthall", reservation.getSporthall().getName());
+            reservObj.put("describtion", reservation.getDescribtion());
+            reservObj.put("owner", reservation.getOwner());
+            String startDate = format.format(reservation.getStartDate());
+            String endDate = format.format(reservation.getEndDate());
+            reservObj.put("start_date", startDate);
+            reservObj.put("end_date", endDate);
+            reservObj.put("attenders", attendersJSON(reservation));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        writeJSONToStorage(reservObj, "json_reservation_test.txt");
+
+    }
+
     // TODO Toistaiseksi vain testi-tilanteen tallennus
-    public JSONObject JSONEndocing() throws JSONException {
+    private JSONObject JSONEndocing() throws JSONException {
         JSONObject user_1 = new JSONObject();
         user_1.put("UUID", Integer.valueOf(1));
         user_1.put("userName", "Jussi Mäkelä");
@@ -102,13 +126,40 @@ public class JSONManager {
     }
 
 
-    // ======= PRIVATE METHODS =======
 
-    private boolean writeJSONToStorage(JSONObject object) {
+    // ======= PRIVATE METHODS OBJECTS =======
+
+    private JSONObject attendersJSON(Reservation reservation) {
+        JSONArray attenders = new JSONArray();
+        for (User user : reservation.getAttenderList()) {
+            try {
+                JSONObject attender = new JSONObject();
+                attender.put("name", user.getUserName());
+                attender.put("UUID", user.getUUID());
+                attenders.put(attender);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        JSONObject main = new JSONObject();
+        try {
+            main.put("attenders", attenders);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return main;
+    }
+
+
+    // ======= METHODS FILE MANAGEMENT =======
+
+    protected boolean writeJSONToStorage(JSONObject object, String fileName) {
         if (isExternalStorageWritable()) {
             Log.d("JSON", context.getExternalFilesDir(null).toString());
             try {
-                writeToFile(object.toString(4), "JSON_testi.txt");
+                writeToFile(object.toString(4), fileName);
             } catch (JSONException e) { //TODO Oisko parempi virheen hallinta?
                 e.printStackTrace();
             }
