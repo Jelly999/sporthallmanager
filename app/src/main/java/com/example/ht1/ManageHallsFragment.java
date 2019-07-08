@@ -1,5 +1,5 @@
 package com.example.ht1;
 
 // TODO Fragment
-public class ManageHalls {
+public class ManageHallsFragment {
 }
