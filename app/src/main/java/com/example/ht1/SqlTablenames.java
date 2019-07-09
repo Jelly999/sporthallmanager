@@ -22,6 +22,8 @@ public final class SqlTablenames {
         public static final String COLUMN_NAME_USERNAME = "username";
         public static final String COLUMN_NAME_FIRSTNAME = "firstname";
         public static final String COLUMN_NAME_SURNAME = "surname";
+        public static final String COLUMN_NAME_EMAIL = "email";
+        public static final String COLUMN_NAME_PHONE_NUMBER = "phone number";
         public static final String COLUMN_NAME_SALT = "salt";
         public static final String COLUMN_NAME_PWD_HASH = "pwd hash";
         public static final String COLUMN_NAME_ADMINISTRATOR = "administrator";
@@ -62,7 +64,7 @@ public final class SqlTablenames {
 
     public static class universitiesTable implements BaseColumns {
         public static final String TABLE_NAME = "universities";
-        public static final String COLUMN_NAME_UUID = "uuid";
+        public static final String COLUMN_NAME_UNI_UUID = "uuid";
         public static final String COLUMN_NAME_NAME = "name";
         public static final String COLUMN_NAME_ADDRESS = "address";
     }

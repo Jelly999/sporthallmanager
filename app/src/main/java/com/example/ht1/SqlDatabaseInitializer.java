@@ -25,6 +25,8 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
                             SqlTablenames.userTable.COLUMN_NAME_USERNAME + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_SURNAME + " TEXT NOT NULL," +
+                            SqlTablenames.userTable.COLUMN_NAME_EMAIL + " TEXT NOT NULL," +
+                            SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_SALT + " BLOB NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_PWD_HASH + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR + " INTEGER DEFAULT 0);";//TODO set default value to 0 and check if 0 or 1
@@ -61,15 +63,15 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
 
             final String SQL_CREATE_UNIVERSITIES =
                     "CREATE TABLE " + SqlTablenames.universitiesTable.TABLE_NAME + " (" +
-                            SqlTablenames.universitiesTable.COLUMN_NAME_UUID + " INTEGER PRIMARY KE AUTOINCREMENTY," +
+                            SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                             SqlTablenames.universitiesTable.COLUMN_NAME_NAME + " TEXT NOT NULL," +
                             SqlTablenames.universitiesTable.COLUMN_NAME_ADDRESS + " TEXT NOT NULL);";
 
             final String SQL_CREATE_USER_ACCESS_UNI =
                     "CREATE TABLE " + SqlTablenames.user_access_uni_Table.TABLE_NAME + " (" +
-                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_ACCESS_UUID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID + " INTEGER AUTOINCREMENT," +
-                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID + " INTEGER AUTOINCREMENT);";
+                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_ACCESS_UUID + " INTEGER PRIMARY KEY," +
+                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID + " INTEGER," +
+                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID + " INTEGER);";
 
 
             db.execSQL(SQL_CREATE_USER);

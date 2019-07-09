@@ -2,23 +2,41 @@ package com.example.ht1;
 
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+
 
 public class SqlManager {
 
 
+    private static SqlManager uniqueInstance;
 
-    SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);//TODO getContext toimimaan ?
+    SqlManager(Context context) {
+        SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+    }
 
-    // Lets set some values to the database
-    SQLiteDatabase db = dbHelper.getWritableDatabase();
+    public static SqlManager getInstance(Context context) {
+        if (uniqueInstance == null) {
+            uniqueInstance = new SqlManager(context);
+        }
+        return uniqueInstance;
+    }
+
+    //TODO tänne ennalta määritetyt taulukon sisällöt käyttämällä SQLwriteRowia
 
 
-    // TODO alustukset taulukoille ennalta määritetyillä arvoilla
-    ContentValues values = new ContentValues();
-    values.put(FeedEntry.COLUMN_NAME_TITLE, title);
-    values.put(FeedEntry.COLUMN_NAME_SUBTITLE, subtitle);
 
-    // Insert the new row, returning the primary key value of the new row
-    long newRowId = db.insert(FeedEntry.TABLE_NAME, null, values);
+    //Methods for writing, deletin and updating sql tables
+    public void SQLwriteRow {
+
+    }
+
+    public void SQLdeleteRow {
+
+    }
+
+    public void SQLupdateRow {
+
+    }
 }
