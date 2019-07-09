@@ -92,7 +92,7 @@ public class ReservationManager {
 
 
 
-    // ======= PUBLIC IS METHODS =======
+    // ======= PUBLIC BOOLEAN METHODS =======
 
     public boolean isTimeSlotReserved(Sporthall sporthall, Calendar startDate, Calendar endDate) {
 
