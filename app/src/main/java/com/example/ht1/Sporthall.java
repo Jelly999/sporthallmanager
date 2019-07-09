@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Sporthall {
-    private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
     private int UUID;                       // Sporthall's own UUID
     private String name;                    // Name
     private int maximumCapacity;            // Maximum capacity
@@ -17,8 +16,8 @@ public class Sporthall {
     private String streetAdress;            // Location of the sporthall
     private ArrayList<Reservation> reservationsList; // List of all the reservations for this sporthall
 
-    Sporthall(String hallName, String university, int maxCapacity) {
-        UUID = getSequentialUUID();
+    Sporthall(int uniqueID, String hallName, String university, int maxCapacity) {
+        UUID = uniqueID;
         name = hallName;
         universityName = university;
         maximumCapacity = maxCapacity;
@@ -108,19 +107,13 @@ public class Sporthall {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (sequentialUUID + " " + UUID + " " + name + " " + universityName + " " + maximumCapacity + " " + disabled);
+        return (UUID + " " + name + " " + universityName + " " + maximumCapacity + " " + disabled);
     }
 
 
 
 
     // ======= PRIVATE METHODS =======
-
-    // Only used in the builder as a initializer, DO NOT USE ANYWHERE ELSE!
-    private int getSequentialUUID() {
-        sequentialUUID++; // Rises the latest UUID by one
-        return sequentialUUID; // Returns the latest raised UUID
-    }
 
     private boolean doesReservationExist(Reservation reservation) {
         for (Reservation reserv : reservationsList) {

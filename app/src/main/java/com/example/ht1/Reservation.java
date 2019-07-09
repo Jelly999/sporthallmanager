@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Reservation {
-    private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
     private int UUID;                       // Reservation's UUID
     private String title;                   // Title of the reservation
     private Sporthall sporthall;            // The sporthall that is being reserved
@@ -16,8 +15,8 @@ public class Reservation {
     private Calendar endCalendar;               // Date at which the reservation starts
     private ArrayList<User> attenderList;   // List of users attending the reservation
 
-    Reservation(User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate) {
-        UUID = getSequentialUUID();
+    Reservation(int uniqueID, User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate) {
+        UUID = uniqueID;
         title = newTitle;
         sporthall = hall;
         this.owner = owner;
@@ -106,7 +105,7 @@ public class Reservation {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (sequentialUUID + " " + UUID + " " + title + " " + describtion + " " + owner.getUserName() + " " + getAttenderAmount());
+        return (UUID + " " + title + " " + describtion + " " + owner.getUserName() + " " + getAttenderAmount());
     }
 
 
@@ -123,12 +122,6 @@ public class Reservation {
     // TODO: Turha jos kutsutaan vain removeAttenderista
     private void removeUserFrom(User user) {
         attenderList.remove(user);
-    }
-
-    // Only used in the builder as a initializer, DO NOT USE ANYWHERE ELSE!
-    private int getSequentialUUID() {
-        sequentialUUID++; // Rises the latest UUID by one
-        return sequentialUUID; // Returns the latest raised UUID
     }
 
     private boolean setStartDate(Calendar newStartDate) {
