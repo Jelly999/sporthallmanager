@@ -49,28 +49,7 @@ public class Reservation {
 
     // ======= PUBLIC SETTERS =======
 
-    public boolean setTitle(String newTitle) {
-        if (newTitle != null) {
-            title = newTitle;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean setDescribtion(String newDescription) {
-        if (newDescription != null) {
-            describtion = newDescription;
-            return true;
-        }
-        return false;
-    }
-
-    // No internal error handling or integrity check, so the check that
-    // start is before end etc. must be done in Reservation Manager
-    public void setDate(Calendar startDate, Calendar endDate) {
-        setStartDate(startDate);
-        setEndDate(endDate);
-    }
+    // TODO Setterit lähettävät datan suoraan SQL
 
 
 

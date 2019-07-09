@@ -32,28 +32,6 @@ public class JSONManager {
 
     }
 
-    /*public void saveReservationJSON(Reservation reservation, String fileName) {
-        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
-
-        JSONObject reservObj = new JSONObject();
-        try {
-            reservObj.put("UUID", reservation.getUUID());
-            reservObj.put("title", reservation.getTitle());
-            reservObj.put("sporthall", reservation.getSporthall().getName());
-            reservObj.put("describtion", reservation.getDescribtion());
-            reservObj.put("owner", reservation.getOwner());
-            String startDate = format.format(reservation.getStartDate());
-            String endDate = format.format(reservation.getEndDate());
-            reservObj.put("start_date", startDate);
-            reservObj.put("end_date", endDate);
-            reservObj.put("attenders", attendersJSON(reservation));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        writeJSONToStorage(reservObj, "json_reservation_test.txt");
-
-    }*/
 
     public void saveReservationsCSV(Reservation[] reservations, String fileName) {
         String data = "";
@@ -173,6 +151,27 @@ public class JSONManager {
         }
 
         return main;
+    }
+
+    public JSONObject getReservationJSON(Reservation reservation, String fileName) {
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
+
+        JSONObject reservObj = new JSONObject();
+        try {
+            reservObj.put("UUID", reservation.getUUID());
+            reservObj.put("title", reservation.getTitle());
+            reservObj.put("sporthall", reservation.getSporthall().getName());
+            reservObj.put("describtion", reservation.getDescribtion());
+            reservObj.put("owner", reservation.getOwner());
+            String startDate = format.format(reservation.getStartDate());
+            String endDate = format.format(reservation.getEndDate());
+            reservObj.put("start_date", startDate);
+            reservObj.put("end_date", endDate);
+            reservObj.put("attenders", attendersJSON(reservation));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return reservObj;
     }
 
 

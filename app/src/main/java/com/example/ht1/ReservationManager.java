@@ -47,23 +47,23 @@ public class ReservationManager {
 
     // ======= PUBLIC OTHER METHODS =======
 
-    public void addNewReservation(User owner, Sporthall sporthall, String title, Calendar startDate, Calendar endDate) {
+    public void addNewReservation(int UUID, User owner, Sporthall sporthall, String title, Calendar startDate, Calendar endDate) {
         // What reservation requires:
         // User owner, String newTitle, Date reservStartDate, Date reservEndDate
 
         if (isDateFaulty(startDate, endDate)) { // Is date faulty (ends before starts)
             if (!isTimeSlotReserved(sporthall, startDate, endDate)) { // Is time slot NOT reserved
-                Reservation reservation = new Reservation(owner, sporthall, title, startDate, endDate);
+                Reservation reservation = new Reservation(UUID, owner, sporthall, title, startDate, endDate);
                 addReservation(sporthall, reservation); // Private method to invoke reservations
             }
         }
     }
 
-    public void addNewWeeklyReservation(User owner, Sporthall sporthall, String title, Calendar startDate, Calendar endDate, int durationInWeeks) {
+    public void addNewWeeklyReservation(int UUID, User owner, Sporthall sporthall, String title, Calendar startDate, Calendar endDate, int durationInWeeks) {
 
         if (isWeeklyReservationPossible(sporthall, startDate, endDate, durationInWeeks)) {
             for (int i = 0; i < durationInWeeks; i++) {
-                Reservation reservation = new Reservation(owner, sporthall, title, startDate, endDate);
+                Reservation reservation = new Reservation(UUID, owner, sporthall, title, startDate, endDate);
                 addReservation(sporthall, reservation); // Private method to invoke reservation
             }
         }

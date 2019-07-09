@@ -45,35 +45,7 @@ public class Sporthall {
 
 
     // ======= PUBLIC SETTERS =======
-
-    public boolean setName(String newName) {
-        // Can add integity check which when failed should return False,
-        // and not set the given value
-        if (newName != null) {
-            name = newName;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean setMaximumCapacity(int newMaximumCapacity) {
-        // Can add integity check which when failed should return False,
-        // and not set the given value
-        maximumCapacity = newMaximumCapacity;
-        return true;
-    }
-
-    public void setDisabled(boolean isDisabled) {
-        disabled = isDisabled;
-    }
-
-    // Make into boolean?
-    public void setStreetAdress(String newAdress) {
-        if (newAdress != null) {
-            streetAdress = newAdress;
-        }
-    }
-
+    // TODO Setterit lähettävät datan suoraan SQL
 
 
 
