@@ -35,7 +35,7 @@ public class LoginFragment extends Fragment {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        // Move ^^ to login success and launch it from main activity?
+        // Move ^^ to loginSuccess and launch it from main activity?
     }
 
     //              Public
