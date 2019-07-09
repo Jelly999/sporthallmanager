@@ -29,6 +29,7 @@ public final class SqlTablenames {
 
     public static class sporthallTable implements BaseColumns {
         public static final String TABLE_NAME = "sporthall";
+        public static final String COLUMN_NAME_HALLID = "sporthall uuid";
         public static final String COLUMN_NAME_HALLNAME = "hallname";
         public static final String COLUMN_NAME_LOCATION = "location";
         public static final String COLUMN_NAME_HALLTYPE = "halltype";
