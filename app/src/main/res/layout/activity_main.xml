@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="60dp"
-        android:text="Join sport event"
+        android:text="@string/join_event_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +24,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Create new sport event"
+        android:text="@string/create_new_event_button"
         app:layout_constraintBottom_toTopOf="@+id/bEditEvent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bJoinEvent" />
@@ -36,7 +36,7 @@
         android:layout_marginStart="62dp"
         android:layout_marginTop="12dp"
         android:onClick="login"
-        android:text="Manage users"
+        android:text="@string/manage_users_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textStaticMain2" />
 
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
         android:layout_marginTop="12dp"
-        android:text="Manage sporthalls"
+        android:text="@string/manage_halls_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bManageUsers" />
 
@@ -57,7 +57,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="221dp"
-        android:text="Administrative tasks"
+        android:text="@string/admin_tasks_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,6 +74,7 @@
         android:clickable="true"
         android:onClick="login"
         android:src="@drawable/ic_boss"
+        android:contentDescription="@string/profile_pic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
 
@@ -83,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="12dp"
-        android:text="View enrolled events"
+        android:text="@string/view_enrolled_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bCreateNew" />
 
@@ -93,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="12dp"
-        android:text="Edit created event"
+        android:text="@string/edit_event_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bEditEvent" />
 
@@ -103,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginBottom="4dp"
-        android:text="User tasks"
+        android:text="@string/usertasks_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/bJoinEvent"
@@ -115,7 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
         android:layout_marginEnd="48dp"
-        android:text="User profile"
+        android:text="@string/user_profile_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
