@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:text="Get \n reservations"
+        android:text="@string/get_reservations_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
@@ -35,7 +35,7 @@
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:text="Delete\nhall"
+        android:text="@string/Delete_hall_button"
         app:layout_constraintStart_toEndOf="@+id/button7"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
@@ -45,7 +45,7 @@
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:text="Enable"
+        android:text="@string/enable_button"
         app:layout_constraintStart_toEndOf="@+id/button8"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
@@ -56,7 +56,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="17dp"
-        android:text="Disable"
+        android:text="@string/disable_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/button9"
@@ -68,8 +68,9 @@
         android:layout_height="45dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="11dp"
+        android:autofillHints="@string/set_halltype_text"
         android:ems="10"
-        android:hint="Set halltype"
+        android:hint="@string/set_halltype_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
@@ -83,8 +84,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="24dp"
+        android:autofillHints="@string/set_hall_location_text"
         android:ems="10"
-        android:hint="Set hall location"
+        android:hint="@string/set_hall_location_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
@@ -99,8 +101,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="216dp"
+        android:autofillHints="@string/set_hallname_text"
         android:ems="10"
-        android:hint="Set hallname"
+        android:hint="@string/set_hallname_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
@@ -116,7 +119,7 @@
         android:layout_marginStart="77dp"
         android:layout_marginEnd="26dp"
         android:layout_marginBottom="72dp"
-        android:text="Create hall"
+        android:text="@string/create_hall_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button12"
         app:layout_constraintHorizontal_bias="0.0"
@@ -128,7 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="92dp"
         android:layout_marginBottom="72dp"
-        android:text="Main menu"
+        android:text="@string/main_menu_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
