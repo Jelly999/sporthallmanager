@@ -43,7 +43,7 @@ public class LoginFragment extends Fragment {
     public boolean loginSuccess(String username, String password) throws NoSuchAlgorithmException {
 
         String algorithm = "SHA-512";
-        //byte[] salt = username; //TODO get salt from db
+        byte[] salt = username.getBytes(); //TODO get salt from db
         String usernamedb = ""; //TODO Get username from db
         String pwdhashdb = ""; //TODO Get password hash from db
         String pwdhash = generateHash(password, algorithm, salt); // Create hash for comparison
