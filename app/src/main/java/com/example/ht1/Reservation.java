@@ -2,6 +2,8 @@ package com.example.ht1;
 
 //TODO Varaus-luokka, joka pitää sisällään varauksen tiedot
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -15,17 +17,14 @@ public class Reservation {
     private Calendar endCalendar;               // Date at which the reservation starts
     private ArrayList<User> attenderList;   // List of users attending the reservation
 
-    Reservation(int uniqueID, User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate) {
-        UUID = uniqueID;
-        title = newTitle;
-        sporthall = hall;
-        this.owner = owner;
-        startCalendar = reservStartDate;
-        endCalendar = reservEndDate;
-        attenderList = new ArrayList<>();
+    Reservation(String sqlText) {
+        Log.d("SQL", sqlText);
+
+        String[] textArr = sqlText.split(",");
+
 
         //TODO: Pitäisikö reservation ownerin olla samalla varauksensa attender??
-    }
+    } // int uniqueID, User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate
 
     // ======= PUBLIC GETTERS =======
 
