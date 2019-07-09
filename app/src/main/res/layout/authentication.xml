@@ -8,7 +8,7 @@
     android:background="#2f2f2f">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/text_randint"
         android:layout_width="279dp"
         android:layout_height="62dp"
         android:layout_marginStart="64dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/edit_inputint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
@@ -33,7 +33,7 @@
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/text_randint" />
 
     <Button
         android:id="@+id/button5"
@@ -43,5 +43,5 @@
         android:layout_marginTop="29dp"
         android:text="@string/confirm_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_inputint" />
 </androidx.constraintlayout.widget.ConstraintLayout>
