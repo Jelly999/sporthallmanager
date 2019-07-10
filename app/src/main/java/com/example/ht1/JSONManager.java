@@ -32,27 +32,28 @@ public class JSONManager {
 
     }
 
-    public void saveReservationJSON(Reservation reservation, String fileName) {
+
+    public void saveReservationsCSV(Reservation[] reservations, String fileName) {
+        String data = "";
         SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
 
-        JSONObject reservObj = new JSONObject();
-        try {
-            reservObj.put("UUID", reservation.getUUID());
-            reservObj.put("title", reservation.getTitle());
-            reservObj.put("sporthall", reservation.getSporthall().getName());
-            reservObj.put("describtion", reservation.getDescribtion());
-            reservObj.put("owner", reservation.getOwner());
-            String startDate = format.format(reservation.getStartDate());
-            String endDate = format.format(reservation.getEndDate());
-            reservObj.put("start_date", startDate);
-            reservObj.put("end_date", endDate);
-            reservObj.put("attenders", attendersJSON(reservation));
-        } catch (JSONException e) {
-            e.printStackTrace();
+        for (Reservation reserv : reservations) {
+            data += reserv.getUUID() + ",";
+            data += reserv.getTitle() + ",";
+            data += reserv.getSporthall().getName() + ",";
+            data += reserv.getDescribtion() + ",";
+            data += reserv.getOwner().getUserName() + ",";
+            data += format.format(reserv.getStartDate()) + ",";
+            data += format.format(reserv.getEndDate()) + ",";
+
+            String attenders = "";
+            for (User user : reserv.getAttenderList()) {
+                attenders += user.getUserName() + ",";
+            }
+            data += attenders + ";";
         }
 
-        writeJSONToStorage(reservObj, "json_reservation_test.txt");
-
+        writeToFile(data, fileName);
     }
 
     // TODO Toistaiseksi vain testi-tilanteen tallennus
@@ -152,46 +153,61 @@ public class JSONManager {
         return main;
     }
 
+    public JSONObject getReservationJSON(Reservation reservation, String fileName) {
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
+
+        JSONObject reservObj = new JSONObject();
+        try {
+            reservObj.put("UUID", reservation.getUUID());
+            reservObj.put("title", reservation.getTitle());
+            reservObj.put("sporthall", reservation.getSporthall().getName());
+            reservObj.put("describtion", reservation.getDescribtion());
+            reservObj.put("owner", reservation.getOwner());
+            String startDate = format.format(reservation.getStartDate());
+            String endDate = format.format(reservation.getEndDate());
+            reservObj.put("start_date", startDate);
+            reservObj.put("end_date", endDate);
+            reservObj.put("attenders", attendersJSON(reservation));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return reservObj;
+    }
+
 
     // ======= METHODS FILE MANAGEMENT =======
 
-    protected boolean writeJSONToStorage(JSONObject object, String fileName) {
-        if (isExternalStorageWritable()) {
-            Log.d("JSON", context.getExternalFilesDir(null).toString());
-            try {
-                writeToFile(object.toString(4), fileName);
-            } catch (JSONException e) { //TODO Oisko parempi virheen hallinta?
-                e.printStackTrace();
-            }
+    private boolean writeJSONToStorage(JSONObject object, String fileName) {
+        Log.d("JSON", context.getExternalFilesDir(null).toString());
+        try {
+            writeToFile(object.toString(4), fileName);
+        } catch (JSONException e) { //TODO Oisko parempi virheen hallinta?
+            e.printStackTrace();
         }
         return false;
     }
 
 
     private void writeToFile(String data, String filename) {
-        try {
-            OutputStreamWriter OSW = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
-            OSW.write(data);
-            OSW.close();
-        } catch (Exception e) { //TODO Oisko parempi virheen hallinta?
-            e.printStackTrace();
+        if (isExternalStorageWritable()) {
+            try {
+                OutputStreamWriter OSW = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
+                OSW.write(data);
+                OSW.close();
+            } catch (Exception e) { //TODO Oisko parempi virheen hallinta?
+                e.printStackTrace();
+            }
         }
     }
 
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     private boolean isExternalStorageReadable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state) ||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
     }
 }

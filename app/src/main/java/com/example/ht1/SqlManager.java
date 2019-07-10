@@ -28,15 +28,15 @@ public class SqlManager {
 
 
     //Methods for writing, deletin and updating sql tables
-    public void SQLwriteRow {
+    public void SQLwriteRow() {
 
     }
 
-    public void SQLdeleteRow {
+    public void SQLdeleteRow() {
 
     }
 
-    public void SQLupdateRow {
+    public void SQLupdateRow() {
 
     }
 }

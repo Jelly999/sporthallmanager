@@ -2,11 +2,12 @@ package com.example.ht1;
 
 //TODO Varaus-luokka, joka pitää sisällään varauksen tiedot
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Reservation {
-    private static int sequentialUUID = 0;  // Sequential number to keep track of latest UUID
     private int UUID;                       // Reservation's UUID
     private String title;                   // Title of the reservation
     private Sporthall sporthall;            // The sporthall that is being reserved
@@ -16,17 +17,14 @@ public class Reservation {
     private Calendar endCalendar;               // Date at which the reservation starts
     private ArrayList<User> attenderList;   // List of users attending the reservation
 
-    Reservation(User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate) {
-        UUID = getSequentialUUID();
-        title = newTitle;
-        sporthall = hall;
-        this.owner = owner;
-        startCalendar = reservStartDate;
-        endCalendar = reservEndDate;
-        attenderList = new ArrayList<>();
+    Reservation(String sqlText) {
+        Log.d("SQL", sqlText);
+
+        String[] textArr = sqlText.split(",");
+
 
         //TODO: Pitäisikö reservation ownerin olla samalla varauksensa attender??
-    }
+    } // int uniqueID, User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate
 
     // ======= PUBLIC GETTERS =======
 
@@ -50,28 +48,7 @@ public class Reservation {
 
     // ======= PUBLIC SETTERS =======
 
-    public boolean setTitle(String newTitle) {
-        if (newTitle != null) {
-            title = newTitle;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean setDescribtion(String newDescription) {
-        if (newDescription != null) {
-            describtion = newDescription;
-            return true;
-        }
-        return false;
-    }
-
-    // No internal error handling or integrity check, so the check that
-    // start is before end etc. must be done in Reservation Manager
-    public void setDate(Calendar startDate, Calendar endDate) {
-        setStartDate(startDate);
-        setEndDate(endDate);
-    }
+    // TODO Setterit lähettävät datan suoraan SQL
 
 
 
@@ -106,7 +83,7 @@ public class Reservation {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (sequentialUUID + " " + UUID + " " + title + " " + describtion + " " + owner.getUserName() + " " + getAttenderAmount());
+        return (UUID + " " + title + " " + describtion + " " + owner.getUserName() + " " + getAttenderAmount());
     }
 
 
@@ -123,12 +100,6 @@ public class Reservation {
     // TODO: Turha jos kutsutaan vain removeAttenderista
     private void removeUserFrom(User user) {
         attenderList.remove(user);
-    }
-
-    // Only used in the builder as a initializer, DO NOT USE ANYWHERE ELSE!
-    private int getSequentialUUID() {
-        sequentialUUID++; // Rises the latest UUID by one
-        return sequentialUUID; // Returns the latest raised UUID
     }
 
     private boolean setStartDate(Calendar newStartDate) {
