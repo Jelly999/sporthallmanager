@@ -2,6 +2,7 @@ package com.example.ht1;
 
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 
@@ -11,6 +12,7 @@ public class SqlManager {
     private static SqlManager uniqueInstance;
 
     private static SQLiteDatabase Wdb; //TODO Tämä varmaan pitänee olla täällä?
+    private static SQLiteDatabase Rdb;
 
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
@@ -163,5 +165,11 @@ public class SqlManager {
                     " WHERE " + RESERVE_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
+    }
+
+    public static User[] getUserFromDatabase() throws SQLException {
+        String query = "SELECT * FROM ";
+
+        return null;
     }
 }
