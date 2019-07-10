@@ -42,11 +42,9 @@ public final class SqlTablenames {
         public static final String TABLE_NAME = "reservations";
         public static final String COLUMN_NAME_RESERVEID = "reserveid";
         public static final String COLUMN_NAME_HALLID = "uuid";
-        public static final String COLUMN_NAME_DATE = "date";
         public static final String COLUMN_NAME_START_TIME = "start time";
         public static final String COLUMN_NAME_DURATION = "duration";
         public static final String COLUMN_NAME_USER_UUID = "user uuid";
-        public static final String COLUMN_NAME_PARTICIPANTS = "participants";
         public static final String COLUMN_NAME_MAXPARTICIPANTS = "maxparticipants";
         public static final String COLUMN_NAME_RECURRING_EVENT = "recurring event";
     }
