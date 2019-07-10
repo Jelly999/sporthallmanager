@@ -21,7 +21,7 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
             //Creation of the sql tables
             final String SQL_CREATE_USER =
                     "CREATE TABLE " + SqlTablenames.userTable.TABLE_NAME + " (" +
-                            SqlTablenames.userTable.COLUMN_NAME_UUID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                            SqlTablenames.userTable.COLUMN_NAME_USER_UUID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                             SqlTablenames.userTable.COLUMN_NAME_USERNAME + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_SURNAME + " TEXT NOT NULL," +
@@ -42,11 +42,11 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
             final String SQL_CREATE_RESERVATION =
                     "CREATE TABLE " + SqlTablenames.reservationsTable.TABLE_NAME + " (" +
                             SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_HALLNAME + " TEXT NOT NULL," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + " TEXT NOT NULL FOREIGN KEY," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_DATE + " TEXT NOT NULL," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + " TEXT NOT NULL," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + " INTEGER NOT NULL," +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_BOOKER + " TEXT," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID + " INTEGER FOREIGN KEY," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_PARTICIPANTS + " INTEGER," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + " INTEGER," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT + " INTEGER DEFAULT 0);";//TODO set default value to 0 and check if 0 or 1
@@ -54,11 +54,8 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
             final String SQL_CREATE_ENROLLS =
                     "CREATE TABLE " + SqlTablenames.enrollsTable.TABLE_NAME + " (" +
                             SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                            SqlTablenames.enrollsTable.COLUMN_NAME_HALLNAME + " TEXT NOT NULL," +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_DATE + " TEXT NOT NULL," +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_START_TIME + " TEXT NOT NULL," +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_DURATION + " INTEGER NOT NULL," +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_USERNAME + " TEXT NOT NULL);";
+                            SqlTablenames.enrollsTable.COLUMN_NAME_USER_UUID + " INTEGER FOREIGN KEY," +
+                            SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID + " INTEGER FOREIGN KEY);";
 
             final String SQL_CREATE_UNIVERSITIES =
                     "CREATE TABLE " + SqlTablenames.universitiesTable.TABLE_NAME + " (" +
@@ -68,9 +65,9 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
 
             final String SQL_CREATE_USER_ACCESS_UNI =
                     "CREATE TABLE " + SqlTablenames.user_access_uni_Table.TABLE_NAME + " (" +
-                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_ACCESS_UUID + " INTEGER PRIMARY KEY," +
-                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID + " INTEGER," +
-                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID + " INTEGER);";
+                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_ACCESS_UUID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID + " INTEGER FOREIGN KEY REFERENCES "+SqlTablenames.userTable.TABLE_NAME+"," +
+                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID + " INTEGER FOREIGN KEY);";
 
 
             db.execSQL(SQL_CREATE_USER);
