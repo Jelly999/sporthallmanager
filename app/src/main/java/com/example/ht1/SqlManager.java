@@ -10,11 +10,13 @@ public class SqlManager {
 
     private static SqlManager uniqueInstance;
 
-    private static SQLiteDatabase db; //TODO Tämä varmaan pitänee olla täällä?
+    private static SQLiteDatabase Wdb; //TODO Tämä varmaan pitänee olla täällä?
 
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
-        db = dbHelper.getWritableDatabase();
+        Wdb = dbHelper.getWritableDatabase();
+        Rdb = dbHelper.getReadableDatabase();
+
     }
 
     public static SqlManager getInstance(Context context) {
@@ -56,20 +58,20 @@ public class SqlManager {
             }
             SQLquery += ");";
 
-            db.execSQL(SQLquery);
+            Wdb.execSQL(SQLquery);
         }
 
         public void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + USER_UUID + " = " + UUID + ";";
-            db.execSQL(SQLquery);
+            Wdb.execSQL(SQLquery);
         }
 
         public void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + TABLE_NAME +
                     " WHERE " + USER_UUID + " = " + UUID + ";";
-            db.execSQL(SQLquery);
+            Wdb.execSQL(SQLquery);
         }
     }
 
@@ -99,20 +101,20 @@ public class SqlManager {
             }
             SQLquery += ");";
 
-            db.execSQL(SQLquery);
+            Wdb.execSQL(SQLquery);
         }
 
         public void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + HALL_UUID + " = " + UUID + ";";
-            db.execSQL(SQLquery);
+            Wdb.execSQL(SQLquery);
         }
 
         public void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + TABLE_NAME +
                     " WHERE " + HALL_UUID + " = " + UUID + ";";
-            db.execSQL(SQLquery);
+            Wdb.execSQL(SQLquery);
         }
 
     }
@@ -145,20 +147,20 @@ public class SqlManager {
             }
             SQLquery += ");";
 
-            db.execSQL(SQLquery);
+            Wdb.execSQL(SQLquery);
         }
 
         public void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + RESERVE_UUID + " = " + UUID + ";";
-            db.execSQL(SQLquery);
+            Wdb.execSQL(SQLquery);
         }
 
         public void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + TABLE_NAME +
                     " WHERE " + RESERVE_UUID + " = " + UUID + ";";
-            db.execSQL(SQLquery);
+            Wdb.execSQL(SQLquery);
         }
     }
 }
