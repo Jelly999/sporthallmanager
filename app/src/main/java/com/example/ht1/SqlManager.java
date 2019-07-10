@@ -47,7 +47,7 @@ public class SqlManager {
                     SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER + "," +
                     SqlTablenames.userTable.COLUMN_NAME_PWD_HASH + "," +
                     SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR +
-                    ") VALUES " + "(";
+                    ") VALUES (";
             for (int i = 0; i < userInfo.length; i++) {
                 SQLquery += userInfo[i];
                 if (i < (userInfo.length-1)) {
@@ -73,7 +73,7 @@ public class SqlManager {
         }
     }
 
-    public static class SQLsporthall{
+    public static class SQLsporthall extends SQLuser{
 
         private static String TABLE_NAME;
         private static String HALL_UUID;
@@ -90,7 +90,7 @@ public class SqlManager {
                     SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + "," +
                     SqlTablenames.sporthallTable.COLUMN_NAME_SPORT + "," +
                     SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE +
-                    ") VALUES " + "(";
+                    ") VALUES (";
             for (int i = 0; i < hallInfo.length; i++) {
                 SQLquery += hallInfo[i];
                 if (i < (hallInfo.length-1)) {
@@ -101,23 +101,9 @@ public class SqlManager {
 
             db.execSQL(SQLquery);
         }
-
-        public void updateRow(String UUID, String COLUMN_NAME, String DATA) {
-            String SQLquery = "UPDATE " + TABLE_NAME +
-                    " SET " + COLUMN_NAME + " = " + DATA +
-                    " WHERE " + HALL_UUID + " = " + UUID + ";";
-            db.execSQL(SQLquery);
-        }
-
-        public void removeRow(String UUID) {
-            String SQLquery = "DELETE FROM " + TABLE_NAME +
-                    " WHERE " + HALL_UUID + " = " + UUID + ";";
-            db.execSQL(SQLquery);
-        }
-
     }
 
-    public static class SQLreservation {
+    public static class SQLreservation extends SQLuser {
 
         private static String TABLE_NAME;
         private static String RESERVE_UUID;
@@ -136,7 +122,7 @@ public class SqlManager {
                     SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT +
-                    ") VALUES " + "(";
+                    ") VALUES (";
             for (int i = 0; i < userInfo.length; i++) {
                 SQLquery += userInfo[i];
                 if (i < (userInfo.length-1)) {
@@ -145,19 +131,6 @@ public class SqlManager {
             }
             SQLquery += ");";
 
-            db.execSQL(SQLquery);
-        }
-
-        public void updateRow(String UUID, String COLUMN_NAME, String DATA) {
-            String SQLquery = "UPDATE " + TABLE_NAME +
-                    " SET " + COLUMN_NAME + " = " + DATA +
-                    " WHERE " + RESERVE_UUID + " = " + UUID + ";";
-            db.execSQL(SQLquery);
-        }
-
-        public void removeRow(String UUID) {
-            String SQLquery = "DELETE FROM " + TABLE_NAME +
-                    " WHERE " + RESERVE_UUID + " = " + UUID + ";";
             db.execSQL(SQLquery);
         }
     }
