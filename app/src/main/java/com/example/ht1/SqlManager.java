@@ -17,8 +17,6 @@ public class SqlManager {
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
         Wdb = dbHelper.getWritableDatabase();
-        Rdb = dbHelper.getReadableDatabase();
-
     }
 
     public static SqlManager getInstance(Context context) {
