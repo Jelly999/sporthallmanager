@@ -40,7 +40,7 @@ public class SqlManager {
         }
 
         public void insertRow(String[] userInfo) {
-            String SQLquery = "INSERT INTO " + tableName + "(" +
+            String SQLquery = "INSERT INTO " + tableName + " (" +
                     SqlTablenames.userTable.COLUMN_NAME_USERNAME + "," +
                     SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME + "," +
                     SqlTablenames.userTable.COLUMN_NAME_SURNAME + "," +
