@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editNewHallType"
         android:layout_width="257dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
@@ -70,10 +70,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/button17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editNewHallname" />
 
     <EditText
-        android:id="@+id/editLoginName"
+        android:id="@+id/editNewHallLocation"
         android:layout_width="256dp"
         android:layout_height="43dp"
         android:layout_marginStart="17dp"
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editNewHallname"
         android:layout_width="259dp"
         android:layout_height="42dp"
         android:layout_marginStart="15dp"
@@ -102,7 +102,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/button14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLoginName" />
+        app:layout_constraintTop_toBottomOf="@+id/editNewHallLocation" />
 
     <Button
         android:id="@+id/button11"

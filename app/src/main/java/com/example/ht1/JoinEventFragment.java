@@ -1,4 +1,8 @@
 package com.example.ht1;
 
-public class JoinEventFragment {
+import androidx.fragment.app.Fragment;
+
+public class JoinEventFragment extends Fragment {
+
+
 }

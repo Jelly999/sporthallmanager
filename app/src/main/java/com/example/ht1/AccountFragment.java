@@ -20,7 +20,6 @@ public class AccountFragment extends Fragment {
             //input email to db
         }else; //debugging
             System.out.println("failed");
-
     }
 
 

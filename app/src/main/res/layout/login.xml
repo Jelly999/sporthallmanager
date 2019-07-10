@@ -8,7 +8,7 @@
     android:background="#2f2f2f">
 
     <EditText
-        android:id="@+id/editLoginName"
+        android:id="@+id/editNewHallLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
@@ -37,7 +37,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLoginName" />
+        app:layout_constraintTop_toBottomOf="@+id/editNewHallLocation" />
 
     <Button
         android:id="@+id/buttonLogin"
