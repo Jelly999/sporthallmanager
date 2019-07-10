@@ -12,7 +12,7 @@ public class SqlManager {
 
     private static SqlManager uniqueInstance;
 
-    SQLiteDatabase db; //TODO Tämä varmaan pitänee olla täällä?
+    static SQLiteDatabase db; //TODO Tämä varmaan pitänee olla täällä?
 
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
@@ -56,6 +56,8 @@ public class SqlManager {
                 }
             }
             SQLquery += ");";
+
+            db.execSQL(SQLquery);
         }
 
         public void updateRow() {
