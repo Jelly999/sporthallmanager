@@ -27,7 +27,6 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
                             SqlTablenames.userTable.COLUMN_NAME_SURNAME + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_EMAIL + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER + " TEXT NOT NULL," +
-                            SqlTablenames.userTable.COLUMN_NAME_SALT + " BLOB NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_PWD_HASH + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR + " INTEGER DEFAULT 0);";//TODO set default value to 0 and check if 0 or 1
 
