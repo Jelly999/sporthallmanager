@@ -15,60 +15,63 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
-
+        // TODO kaikille taulukoille sarakkeen tyyppi TEXT/?_KEY/INTEGER... yms. yms.
         public void onCreate(SQLiteDatabase db) {
 
             //Creation of the sql tables
             final String SQL_CREATE_USER =
-                    "CREATE TABLE " + SqlTablenames.userTable.TABLE_NAME +
-                            SqlTablenames.userTable.COLUMN_NAME_UUID +
-                            SqlTablenames.userTable.COLUMN_NAME_USERNAME +
-                            SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME +
-                            SqlTablenames.userTable.COLUMN_NAME_SURNAME +
-                            SqlTablenames.userTable.COLUMN_NAME_SALT +
-                            SqlTablenames.userTable.COLUMN_NAME_PWD_HASH +
-                            SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR;
+                    "CREATE TABLE " + SqlTablenames.userTable.TABLE_NAME + " (" +
+                            SqlTablenames.userTable.COLUMN_NAME_UUID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                            SqlTablenames.userTable.COLUMN_NAME_USERNAME + " TEXT NOT NULL," +
+                            SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME + " TEXT NOT NULL," +
+                            SqlTablenames.userTable.COLUMN_NAME_SURNAME + " TEXT NOT NULL," +
+                            SqlTablenames.userTable.COLUMN_NAME_EMAIL + " TEXT NOT NULL," +
+                            SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER + " TEXT NOT NULL," +
+                            SqlTablenames.userTable.COLUMN_NAME_SALT + " BLOB NOT NULL," +
+                            SqlTablenames.userTable.COLUMN_NAME_PWD_HASH + " TEXT NOT NULL," +
+                            SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR + " INTEGER DEFAULT 0);";//TODO set default value to 0 and check if 0 or 1
 
             final String SQL_CREATE_SPORTHALL =
-                    "CREATE TABLE " + SqlTablenames.sporthallTable.TABLE_NAME +
-                            SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME +
-                            SqlTablenames.sporthallTable.COLUMN_NAME_LOCATION +
-                            SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE +
-                            SqlTablenames.sporthallTable.COLUMN_NAME_SPORT +
-                            SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE;
+                    "CREATE TABLE " + SqlTablenames.sporthallTable.TABLE_NAME + " (" +
+                            SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                            SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME + " TEXT NOT NULL," +
+                            SqlTablenames.sporthallTable.COLUMN_NAME_LOCATION + " TEXT NOT NULL," +
+                            SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + " TEXT NOT NULL," +
+                            SqlTablenames.sporthallTable.COLUMN_NAME_SPORT + " TEXT NOT NULL DEFAULT 'default'," +
+                            SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE +" INTEGER NOT NULL DEFAULT 0);";
 
             final String SQL_CREATE_RESERVATION =
-                    "CREATE TABLE " + SqlTablenames.reservationsTable.TABLE_NAME +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_HALLNAME +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_DATE +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_DURATION +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_BOOKER +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_PARTICIPANTS +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT;
+                    "CREATE TABLE " + SqlTablenames.reservationsTable.TABLE_NAME + " (" +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_HALLNAME + " TEXT NOT NULL," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_DATE + " TEXT NOT NULL," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + " TEXT NOT NULL," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + " INTEGER NOT NULL," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_BOOKER + " TEXT," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_PARTICIPANTS + " INTEGER," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + " INTEGER," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT + " INTEGER DEFAULT 0);";//TODO set default value to 0 and check if 0 or 1
 
             final String SQL_CREATE_ENROLLS =
-                    "CREATE TABLE " + SqlTablenames.enrollsTable.TABLE_NAME +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_HALLNAME +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_DATE +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_START_TIME +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_DURATION +
-                            SqlTablenames.enrollsTable.COLUMN_NAME_USERNAME;
+                    "CREATE TABLE " + SqlTablenames.enrollsTable.TABLE_NAME + " (" +
+                            SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                            SqlTablenames.enrollsTable.COLUMN_NAME_HALLNAME + " TEXT NOT NULL," +
+                            SqlTablenames.enrollsTable.COLUMN_NAME_DATE + " TEXT NOT NULL," +
+                            SqlTablenames.enrollsTable.COLUMN_NAME_START_TIME + " TEXT NOT NULL," +
+                            SqlTablenames.enrollsTable.COLUMN_NAME_DURATION + " INTEGER NOT NULL," +
+                            SqlTablenames.enrollsTable.COLUMN_NAME_USERNAME + " TEXT NOT NULL);";
 
             final String SQL_CREATE_UNIVERSITIES =
-                    "CREATE TABLE " + SqlTablenames.universitiesTable.TABLE_NAME +
-                            SqlTablenames.universitiesTable.COLUMN_NAME_UUID +
-                            SqlTablenames.universitiesTable.COLUMN_NAME_NAME +
-                            SqlTablenames.universitiesTable.COLUMN_NAME_ADDRESS;
+                    "CREATE TABLE " + SqlTablenames.universitiesTable.TABLE_NAME + " (" +
+                            SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                            SqlTablenames.universitiesTable.COLUMN_NAME_NAME + " TEXT NOT NULL," +
+                            SqlTablenames.universitiesTable.COLUMN_NAME_ADDRESS + " TEXT NOT NULL);";
 
             final String SQL_CREATE_USER_ACCESS_UNI =
-                    "CREATE TABLE " + SqlTablenames.user_access_uni_Table.TABLE_NAME +
-                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_ACCESS_UUID +
-                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID +
-                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID;
+                    "CREATE TABLE " + SqlTablenames.user_access_uni_Table.TABLE_NAME + " (" +
+                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_ACCESS_UUID + " INTEGER PRIMARY KEY," +
+                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID + " INTEGER," +
+                            SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID + " INTEGER);";
 
 
             db.execSQL(SQL_CREATE_USER);

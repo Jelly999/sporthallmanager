@@ -35,7 +35,7 @@ public class LoginFragment extends Fragment {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        // Move ^^ to login success and launch it from main activity?
+        // Move ^^ to loginSuccess and launch it from main activity?
     }
 
     //              Public
@@ -43,7 +43,7 @@ public class LoginFragment extends Fragment {
     public boolean loginSuccess(String username, String password) throws NoSuchAlgorithmException {
 
         String algorithm = "SHA-512";
-        byte[] salt = createSalt(); //TODO get salt from db
+        byte[] salt = username.getBytes(); //TODO get salt from db
         String usernamedb = ""; //TODO Get username from db
         String pwdhashdb = ""; //TODO Get password hash from db
         String pwdhash = generateHash(password, algorithm, salt); // Create hash for comparison
@@ -79,11 +79,4 @@ public class LoginFragment extends Fragment {
     }
     private final static char[] hexArray = "01234656789ABCDEF".toCharArray();
 
-    // exist only because no database connection
-    public static byte[] createSalt(){
-        byte[] bytes = new byte[16];
-        SecureRandom random = new SecureRandom();
-        random.nextBytes(bytes);
-        return bytes;
-    }
 }
