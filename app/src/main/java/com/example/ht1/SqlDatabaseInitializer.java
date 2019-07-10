@@ -28,7 +28,8 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
                             SqlTablenames.userTable.COLUMN_NAME_EMAIL + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER + " TEXT NOT NULL," +
                             SqlTablenames.userTable.COLUMN_NAME_PWD_HASH + " TEXT NOT NULL," +
-                            SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR + " INTEGER DEFAULT 0);";//TODO set default value to 0 and check if 0 or 1
+                            SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR + " INTEGER DEFAULT 0 " +
+                            "CHECK ("+SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR+" = 0 OR "+SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR+" = 1));";//TODO set default value to 0 and check if 0 or 1
 
             final String SQL_CREATE_SPORTHALL =
                     "CREATE TABLE " + SqlTablenames.sporthallTable.TABLE_NAME + " (" +
@@ -37,7 +38,8 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
                             SqlTablenames.sporthallTable.COLUMN_NAME_LOCATION + " TEXT NOT NULL," +
                             SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + " TEXT NOT NULL," +
                             SqlTablenames.sporthallTable.COLUMN_NAME_SPORT + " TEXT NOT NULL DEFAULT 'default'," +
-                            SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE +" INTEGER NOT NULL DEFAULT 0);";
+                            SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE +" INTEGER NOT NULL DEFAULT 0 " +
+                            "CHECK ("+SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE+" = 0 OR "+SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE+" = 1));";
 
             final String SQL_CREATE_RESERVATION =
                     "CREATE TABLE " + SqlTablenames.reservationsTable.TABLE_NAME + " (" +
