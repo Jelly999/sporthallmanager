@@ -27,6 +27,7 @@ public class SqlManager {
     }
 
     //TODO tänne ennalta määritetyt taulukon sisällöt käyttämällä SQLwriteRowia
+    //TODO Toimiiko tämä
 
 
 
