@@ -312,20 +312,6 @@ public class SqlManager {
         reserved = new String[]{ "2", "Badminton", "2019-07-20T16:00", "4", "3", "10", "0" };
         SQLreservation.insertRow(reserved);
 
-        /* NÄMÄ TULEE RESERVATIOIHIN //TODO kellon ajat oikein databaseen
-        INSERT INTO "reservations"
-        VALUES (2265812, 'Kerpiili', '20.07.2019', 1400, 2, 'mattim', 1, 20,0);
-        INSERT INTO "reservations"
-        VALUES (2265813, 'Kerpiili', '20.07.2019', 1600, 4, 'rickv', 4, 10,0);
-
-        COLUMN_NAME_HALLID
-        COLUMN_NAME_SPORT
-        COLUMN_NAME_START_TIME
-        COLUMN_NAME_DURATION
-        COLUMN_NAME_USER_UUID
-        COLUMN_NAME_MAXPARTICIPANTS
-        COLUMN_NAME_RECURRING_EVENT*/
-
         //Enrolls preset values
         SQLenrolls.insertRow("3", "1");
         SQLenrolls.insertRow("4", "1");
