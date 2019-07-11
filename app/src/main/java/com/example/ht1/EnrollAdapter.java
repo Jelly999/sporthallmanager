@@ -43,11 +43,11 @@ public class EnrollAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         item currentItem = mlist.get(position);
-
+/*
         holder.mImageView.setImageResource(currentItem.getImageResource());
         holder.mTextView1.SetText(currentItem.getImageResource());
         holder.mTextView2.SetText(currentItem.getImageResource());
-
+*/
     }
 
 

@@ -38,13 +38,13 @@ public class EnrolledFragment extends Fragment {
         exampleList.add(new item(R.drawable.ic_android, "Line 25", "Line 26"));
         exampleList.add(new item(R.drawable.ic_android, "Line 27", "Line 28"));
         exampleList.add(new item(R.drawable.ic_android, "Line 29", "Line 30"));
-
+/*
         mRecyclerView = view.findViewById();
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ExampleAdapter(exampleList);
+        mAdapter = new EnrollAdapter(exampleList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-    }
+  */  }
 }
