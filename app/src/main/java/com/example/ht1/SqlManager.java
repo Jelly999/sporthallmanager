@@ -13,6 +13,7 @@ import java.util.List;
 public class SqlManager {
 
 
+    //TODO VOIKO TÄMÄN RIKKOA
     private static SqlManager uniqueInstance;
 
     private static SQLiteDatabase Wdb; //TODO Tämä varmaan pitänee olla täällä?
