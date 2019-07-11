@@ -302,7 +302,7 @@ public class SqlManager {
         SQLsporthall.insertRow(hall);
         hall = new String[]{ "Kerpiili", "1", "Badminton", "0" };
         SQLsporthall.insertRow(hall);
-        hall = new String[]{ "Kerbiili", "1", "Basketball", "0" };
+        hall = new String[]{ "Kerbiili", "1", "Multipurpose", "0" };
         SQLsporthall.insertRow(hall);
         hall = new String[]{ "Gerbiili", "1", "Gym", "0" };
 
