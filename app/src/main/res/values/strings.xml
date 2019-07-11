@@ -51,5 +51,11 @@
     <string name="username_text">Username</string>
     <string name="password_text">Password</string>
     <string name="login_button">Login</string>
+    <string name="delete_uni_button">Delete University</string>
+    <string name="setUniName_text">Set name of the University</string>
+    <string name="setUniAddr_text">Set address of the University</string>
+    <string name="add_uni_button">Add new university</string>
+
+
 
 </resources>

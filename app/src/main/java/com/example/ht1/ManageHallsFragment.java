@@ -20,7 +20,7 @@ public class ManageHallsFragment extends Fragment {
         return input;
     }
     public String getNewHallType(View view){
-        EditText value = view.findViewById(R.id.editNewHallType);
+        EditText value = view.findViewById(R.id.editNewUniName);
         String input = value.getText().toString();
         return input;
     }
