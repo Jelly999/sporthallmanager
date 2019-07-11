@@ -176,13 +176,13 @@ public class SqlManager {
     public void presetDatabaseValues() {
         String[] user = {"admin", "admin", "admin", "admin.admin@adminmail.com", "0500628689", "hash", "0" };
         SQLuser.insertRow(user);
-        String[] user = {"mattim", "Matti", "Meikäläinen", "Matti.Meikalainen@gmail.com", "0500628689", "hash", "0" };
+        user = new String[]{"mattim", "Matti", "Meikäläinen", "Matti.Meikalainen@gmail.com", "0500628689", "hash", "0"};
         SQLuser.insertRow(user);
-        String[] user = {"mattim", "Matti", "Meikäläinen", "Matti.Meikalainen@gmail.com", "0500628689", "hash", "0" };
+        user = new String[]{"mattim", "Matti", "Meikäläinen", "Matti.Meikalainen@gmail.com", "0500628689", "hash", "0"};
         SQLuser.insertRow(user);
-        String[] user = {"mattim", "Matti", "Meikäläinen", "Matti.Meikalainen@gmail.com", "0500628689", "hash", "0" };
+        user = new String[]{"mattim", "Matti", "Meikäläinen", "Matti.Meikalainen@gmail.com", "0500628689", "hash", "0"};
         SQLuser.insertRow(user);
-        String[] user = {"mattim", "Matti", "Meikäläinen", "Matti.Meikalainen@gmail.com", "0500628689", "hash", "0" };
+        user = new String[]{"mattim", "Matti", "Meikäläinen", "Matti.Meikalainen@gmail.com", "0500628689", "hash", "0"};
         SQLuser.insertRow(user);
 
     }
