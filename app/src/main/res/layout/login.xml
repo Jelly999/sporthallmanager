@@ -8,17 +8,18 @@
     android:background="#2f2f2f">
 
     <EditText
-        android:id="@+id/editLoginName"
+        android:id="@+id/editNewHallLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
         android:layout_marginTop="272dp"
         android:layout_marginEnd="99dp"
+        android:autofillHints="@string/username_text"
         android:ems="10"
-        android:hint="Username"
-        android:textColorHint="#F2F5F8"
-        android:textColor="#F2F5F8"
+        android:hint="@string/username_text"
         android:inputType="textPersonName"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,14 +31,15 @@
         android:layout_marginStart="99dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="99dp"
+        android:autofillHints="@string/password_text"
         android:ems="10"
-        android:hint="Password"
-        android:textColorHint="#F2F5F8"
-        android:textColor="#F2F5F8"
+        android:hint="@string/password_text"
         android:inputType="textPassword"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLoginName" />
+        app:layout_constraintTop_toBottomOf="@+id/editNewHallLocation" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -46,7 +48,7 @@
         android:layout_marginStart="162dp"
         android:layout_marginTop="42dp"
         android:layout_marginEnd="162dp"
-        android:text="Login"
+        android:text="@string/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editLoginPwd" />

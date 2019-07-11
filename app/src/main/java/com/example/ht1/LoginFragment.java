@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 
 public class LoginFragment extends Fragment {
@@ -25,7 +24,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         //Get values from edit fields
-        EditText usrname = view.findViewById(R.id.editLoginName);
+        EditText usrname = view.findViewById(R.id.editNewHallLocation);
         String username = usrname.getText().toString();
         EditText pwd = view.findViewById(R.id.editLoginPwd);
         String password = pwd.getText().toString();

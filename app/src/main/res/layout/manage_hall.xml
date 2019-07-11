@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editNewHallType"
         android:layout_width="194dp"
         android:layout_height="45dp"
         android:layout_marginTop="14dp"
@@ -75,10 +75,10 @@
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editNewHallname" />
 
     <EditText
-        android:id="@+id/editLoginName"
+        android:id="@+id/editNewHallLocation"
         android:layout_width="172dp"
         android:layout_height="44dp"
         android:layout_marginStart="10dp"
@@ -90,12 +90,12 @@
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/editNewHallType"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editNewHallname" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editNewHallname"
         android:layout_width="390dp"
         android:layout_height="43dp"
         android:layout_marginStart="10dp"
