@@ -45,7 +45,7 @@ public class ReservationManager {
 
 
 
-/*
+
     // ======= PUBLIC OTHER METHODS =======
 
     public void addNewReservation(User owner, Sporthall sporthall, String title, Calendar startDate, int duration) {
@@ -202,5 +202,4 @@ public class ReservationManager {
         date.add(Calendar.DAY_OF_YEAR, 7);
         // TODO TÄMÄN PITÄISI kasvattaa viikkoa yhdellä!
     }
-*/
 }
