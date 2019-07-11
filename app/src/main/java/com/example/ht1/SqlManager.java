@@ -12,7 +12,7 @@ public class SqlManager {
     private static SqlManager uniqueInstance;
 
     private static SQLiteDatabase Wdb; //TODO Tämä varmaan pitänee olla täällä?
-    private static SQLiteDatabase Rdb;
+    private static SQLiteDatabase Rdb; //TODO Tätä varmaan TARVITAAN/KÄYTETÄÄN?
 
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
@@ -260,7 +260,10 @@ public class SqlManager {
         return null;
     }
 
-    //Presets values to database
+    /////////////////////////////////
+    //PRESETTING VALUES TO DATABASE//
+    /////////////////////////////////
+
     public void presetDatabaseValues() {
 
         //User preset values
@@ -304,9 +307,9 @@ public class SqlManager {
         hall = new String[]{ "Gerbiili", "1", "Gym", "0" };
 
         //Reservations preset values
-        String[] reserved = { "2", "Floorball", "yyyy-MM-dd'T'kk:mm", "2", "2", "20", "0" };
+        String[] reserved = { "2", "Floorball", "2019-07-20T14:00", "2", "2", "20", "0" };
         SQLreservation.insertRow(reserved);
-        reserved = new String[]{ "2", "Badminton", "yyyy-MM-dd'T'kk:mm", "4", "3", "10", "0" };
+        reserved = new String[]{ "2", "Badminton", "2019-07-20T16:00", "4", "3", "10", "0" };
         SQLreservation.insertRow(reserved);
 
         /* NÄMÄ TULEE RESERVATIOIHIN //TODO kellon ajat oikein databaseen
@@ -332,7 +335,6 @@ public class SqlManager {
         SQLenrolls.insertRow("7", "2");
         SQLenrolls.insertRow("8", "2");
         SQLenrolls.insertRow("1", "2");
-
 
     }
 }
