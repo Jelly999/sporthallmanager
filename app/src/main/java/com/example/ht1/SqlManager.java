@@ -258,7 +258,7 @@ public class SqlManager {
     }
 
 
-    public static List<User> getUserFromDatabase() throws SQLException {
+    public static List<User> getUsersFromDatabase() throws SQLException {
         List<User> users = new ArrayList<>();
 
         Cursor cursor = Rdb.query(SqlTablenames.userTable.TABLE_NAME, null,
@@ -309,6 +309,11 @@ public class SqlManager {
 
         }
 
+        return null;
+    }
+
+    public static List<Sporthall> getSporthallsFromDatabase() {
+        //asd
         return null;
     }
 
