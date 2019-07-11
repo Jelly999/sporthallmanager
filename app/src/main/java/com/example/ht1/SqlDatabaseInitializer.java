@@ -41,6 +41,7 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
                             "CHECK ("+SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE+" = 0 OR "+SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE+" = 1), " +
                             "FOREIGN KEY ("+SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID+") REFERENCES "+SqlTablenames.universitiesTable.TABLE_NAME+" ("+SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID+") ON DELETE CASCADE);";
 
+            //TODO MIKSI HALL-ID ON STRING?
             final String SQL_CREATE_RESERVATION =
                     "CREATE TABLE " + SqlTablenames.reservationsTable.TABLE_NAME + " (" +
                             SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
