@@ -37,7 +37,6 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
                             SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME + " TEXT NOT NULL," +
                             SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + " INTEGER," +
                             SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + " TEXT NOT NULL," +
-                            SqlTablenames.sporthallTable.COLUMN_NAME_SPORT + " TEXT NOT NULL DEFAULT 'default'," +
                             SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE +" INTEGER NOT NULL DEFAULT 0 " +
                             "CHECK ("+SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE+" = 0 OR "+SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE+" = 1), " +
                             "FOREIGN KEY ("+SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID+") REFERENCES "+SqlTablenames.universitiesTable.TABLE_NAME+" ("+SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID+") ON DELETE CASCADE);";
@@ -46,6 +45,7 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
                     "CREATE TABLE " + SqlTablenames.reservationsTable.TABLE_NAME + " (" +
                             SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + " TEXT NOT NULL," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_SPORT + " TEXT NOT NULL DEFAULT 'default'," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + " TEXT NOT NULL," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + " INTEGER NOT NULL," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID + " INTEGER," +
