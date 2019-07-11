@@ -21,82 +21,43 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/get_reservations_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
-
-    <Button
         android:id="@+id/button8"
-        android:layout_width="80dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/delete_user_button"
-        app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="80dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/enable_button"
-        app:layout_constraintStart_toEndOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="80dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="17dp"
-        android:text="@string/disable_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button9"
+        android:layout_width="256dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/delete_uni_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
 
     <EditText
         android:id="@+id/editNewUniName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="300dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="20dp"
         android:autofillHints="@string/set_username_text"
         android:ems="10"
-        android:hint="@string/set_username_text"
+        android:hint="@string/setUniName_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintBottom_toTopOf="@+id/editNewUniAddr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editNewUniAddr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="300dp"
+        android:layout_height="64"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="52dp"
         android:autofillHints="@string/set_password_text"
         android:ems="10"
-        android:hint="@string/set_password_text"
-        android:inputType="textPassword"
+        android:hint="@string/setUniAddr_text"
+        android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintBottom_toTopOf="@+id/button11"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -106,17 +67,17 @@
         android:layout_marginStart="77dp"
         android:layout_marginEnd="26dp"
         android:layout_marginBottom="72dp"
-        android:text="@string/create_user_button"
+        android:text="@string/add_uni_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button12"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="52dp"
         android:layout_marginBottom="72dp"
         android:text="@string/main_menu_button"
         app:layout_constraintBottom_toBottomOf="parent"

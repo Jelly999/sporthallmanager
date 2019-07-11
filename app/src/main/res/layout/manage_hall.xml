@@ -8,7 +8,7 @@
     android:background="#2f2f2f">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/UniSpinner"
         android:layout_width="389dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
@@ -27,7 +27,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/get_reservations_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
 
     <Button
         android:id="@+id/button8"
@@ -37,7 +37,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/Delete_hall_button"
         app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
 
     <Button
         android:id="@+id/button9"
@@ -47,7 +47,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/enable_button"
         app:layout_constraintStart_toEndOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
 
     <Button
         android:id="@+id/button10"
@@ -60,10 +60,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/button9"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editNewUniName"
         android:layout_width="194dp"
         android:layout_height="45dp"
         android:layout_marginTop="14dp"
@@ -75,10 +75,10 @@
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editNewHallname" />
 
     <EditText
-        android:id="@+id/editLoginName"
+        android:id="@+id/editNewHallLocation"
         android:layout_width="172dp"
         android:layout_height="44dp"
         android:layout_marginStart="10dp"
@@ -90,12 +90,12 @@
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/editNewUniName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editNewHallname" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editNewHallname"
         android:layout_width="390dp"
         android:layout_height="43dp"
         android:layout_marginStart="10dp"

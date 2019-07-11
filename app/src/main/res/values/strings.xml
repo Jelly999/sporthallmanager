@@ -40,4 +40,22 @@
     <string name="set_password_text">Set password</string>
     <string name="create_user_button">Create user</string>
     <string name="type_numbers_text">Type numbers above</string>
+    <string name="joining_to_event_text">Waiting user action to join</string>
+    <string name="remove_reservation_button">Remove selected reservation</string>
+    <string name="export_reservationCSV_button">Get all reservations \nin CSV-fileformat</string>
+    <string name="edit_maximumparticipants_text">Edit maxinum participants</string>
+    <string name="edit_duration_text">Edit duration</string>
+    <string name="change_sporthall_text">Change sporthall</string>
+    <string name="set_event_sport_text">Set event sport</string>
+    <string name="select_eventID_text">Select EventID</string>
+    <string name="username_text">Username</string>
+    <string name="password_text">Password</string>
+    <string name="login_button">Login</string>
+    <string name="delete_uni_button">Delete University</string>
+    <string name="setUniName_text">Set name of the University</string>
+    <string name="setUniAddr_text">Set address of the University</string>
+    <string name="add_uni_button">Add new university</string>
+
+
+
 </resources>
