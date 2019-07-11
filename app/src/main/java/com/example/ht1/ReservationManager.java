@@ -53,8 +53,9 @@ public class ReservationManager {
 
         if (isDateFaulty(startDate, endDate)) { // Is date faulty (ends before starts)
             if (!isTimeSlotReserved(sporthall, startDate, endDate)) { // Is time slot NOT reserved
-                Reservation reservation = new Reservation(UUID, owner, sporthall, title, startDate, endDate);
-                addReservation(sporthall, reservation); // Private method to invoke reservations
+                //Reservation reservation = new Reservation(UUID, owner, sporthall, title, startDate, endDate);
+                //addReservation(sporthall, reservation); // Private method to invoke reservations
+                // TODO reservation lisäys
             }
         }
     }
@@ -63,8 +64,9 @@ public class ReservationManager {
 
         if (isWeeklyReservationPossible(sporthall, startDate, endDate, durationInWeeks)) {
             for (int i = 0; i < durationInWeeks; i++) {
-                Reservation reservation = new Reservation(UUID, owner, sporthall, title, startDate, endDate);
-                addReservation(sporthall, reservation); // Private method to invoke reservation
+                //Reservation reservation = new Reservation(UUID, owner, sporthall, title, startDate, endDate);
+                //addReservation(sporthall, reservation); // Private method to invoke reservation
+                // TODO Reservation lisäys
             }
         }
     }
