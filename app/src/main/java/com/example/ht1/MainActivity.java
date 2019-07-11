@@ -16,8 +16,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO tämä tässä vain testiä varten
         JSONManager jsonManager = new JSONManager(this);
         jsonManager.JSONTEST();
-        PasswordManager passwordManager = new PasswordManager();
-        passwordManager.hashTest();
+        PasswordManager.hashTest();
         // Testi loppu
     }
     public void login(View V){
