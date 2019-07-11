@@ -7,7 +7,7 @@
     android:background="#2f2f2f">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/UniSpinner"
         android:layout_width="272dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
@@ -26,11 +26,11 @@
         android:text="@string/select_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/spinner"
+        app:layout_constraintStart_toEndOf="@+id/UniSpinner"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editNewHallType"
+        android:id="@+id/editNewUniName"
         android:layout_width="256dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
@@ -78,7 +78,7 @@
         android:textColorHint="#F2F5F8"
         app:layout_constraintEnd_toStartOf="@+id/button16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
 
     <Button
         android:id="@+id/button11"
@@ -168,7 +168,7 @@
         android:text="@string/Select_hall_text"
         android:textColor="#F2F5F8"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintBottom_toTopOf="@+id/UniSpinner"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Switch
@@ -195,7 +195,7 @@
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNewHallType" />
+        app:layout_constraintTop_toBottomOf="@+id/editNewUniName" />
 
     <Button
         android:id="@+id/button"
