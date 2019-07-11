@@ -321,7 +321,7 @@ public class SqlManager {
     //PRESETTING VALUES TO DATABASE//
     /////////////////////////////////
 
-    public void presetDatabaseValues() {
+    public static void presetDatabaseValues() {
 
         //User preset values
         String[] user = {"admin", "admin", "admin", "admin.admin@adminmail.com", "0500628689", PasswordManager.getHashedPassword("admin", "admin"), "1" };
