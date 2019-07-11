@@ -4,14 +4,15 @@ public class User {
 
     private int UUID;                       // User's UUID
     private String userName;                // Username
+    private String firstName;
+    private String surName;
+    private String email;
+    private String phoneNum;
+    private String passwordHash;
     private boolean admin;                  // Is the user admin (True = yes, False = no)
-    private boolean disabled;               // Is the user disabled -||-
 
-    User(int uniqueID, String name) {
-        UUID = uniqueID;
-        userName = name;
-        admin = false;  // User is not admin by default
-        disabled = false; // User is not disabled by default
+    User() {
+        // Empty
     }
 
 
@@ -21,8 +22,12 @@ public class User {
 
     public int getUUID() {return UUID;}
     public String getUserName() {return userName;}
+    public String getFirstName() {return firstName;}
+    public String getSurName() {return surName;}
+    public String getEmail() {return email;}
+    public String getPhoneNum() {return phoneNum;}
+    public String getPasswordHash() {return passwordHash;}
     public boolean isAdmin() {return admin;}
-    public boolean isDisabled() {return disabled;}
 
 
 
@@ -30,9 +35,14 @@ public class User {
 
     // ======= PUBLIC SETTERS =======
 
-    public void setUserName(String newName) { userName = newName; }
-    public void setAdminPrivilege(boolean isAdmin) { admin = isAdmin; }
-    public void setDisabledStatus(boolean isDisabled) {disabled = isDisabled;}
+    public void setUUID(int newUUID) {UUID = newUUID;}
+    public void setUserName(String newName) {userName = newName;}
+    public void setFirstName(String newName) {firstName = newName;}
+    public void setSurName(String newName) {surName = newName;}
+    public void setEmail(String newEmail) {email = newEmail;}
+    public void setPhoneNum(String phone) {phoneNum = phone;}
+    public void setPasswordHash(String pwdHash) {passwordHash = pwdHash;}
+    public void setAdminPrivilege(boolean isAdmin) {admin = isAdmin;}
 
 
 

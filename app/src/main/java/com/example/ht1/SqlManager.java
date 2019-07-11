@@ -2,8 +2,12 @@ package com.example.ht1;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SqlManager {
@@ -17,6 +21,7 @@ public class SqlManager {
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
         Wdb = dbHelper.getWritableDatabase();
+        Rdb = dbHelper.getReadableDatabase();
     }
 
     public static SqlManager getInstance(Context context) {
@@ -62,14 +67,14 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
-        public void updateRow(String UUID, String COLUMN_NAME, String DATA) {
+        public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + USER_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
 
-        public void removeRow(String UUID) {
+        public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + TABLE_NAME +
                     " WHERE " + USER_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
@@ -105,14 +110,14 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
-        public void updateRow(String UUID, String COLUMN_NAME, String DATA) {
+        public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + HALL_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
 
-        public void removeRow(String UUID) {
+        public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + TABLE_NAME +
                     " WHERE " + HALL_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
@@ -132,7 +137,6 @@ public class SqlManager {
 
         public static void insertRow(String[] userInfo) {
             String SQLquery = "INSERT INTO " + TABLE_NAME + "(" +
-                    SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + "," +
@@ -151,22 +155,70 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
-        public void updateRow(String UUID, String COLUMN_NAME, String DATA) {
+        public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + RESERVE_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
 
-        public void removeRow(String UUID) {
+        public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + TABLE_NAME +
                     " WHERE " + RESERVE_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
     }
 
-    public static User[] getUserFromDatabase() throws SQLException {
-        String query = "SELECT * FROM ";
+    public static List<User> getUserFromDatabase() throws SQLException {
+        List<User> users = new ArrayList<>();
+
+        Cursor cursor = Rdb.query(SqlTablenames.userTable.TABLE_NAME, null,
+                null, null, null, null,
+                SqlTablenames.userTable.COLUMN_NAME_USER_UUID);
+        // TODO Jos ei toimi http://www.androidhive.info/2011/11/android-sqlite-database-tutorial/
+
+        if (cursor.moveToFirst()) {
+            do {
+                int ID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.userTable.COLUMN_NAME_USER_UUID
+                ));
+                String userName = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.userTable.COLUMN_NAME_USERNAME
+                ));
+                String firstName = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME
+                ));
+                String surName = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.userTable.COLUMN_NAME_SURNAME
+                ));
+                String email = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.userTable.COLUMN_NAME_EMAIL
+                ));
+                String phoneNum = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER
+                ));
+                String pwdHash = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.userTable.COLUMN_NAME_PWD_HASH
+                ));
+                boolean admin = (cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR
+                )) == 1);
+
+
+                User user = new User();
+
+                user.setUUID(ID);
+                user.setUserName(userName);
+                user.setFirstName(firstName);
+                user.setSurName(surName);
+                user.setEmail(email);
+                user.setPhoneNum(phoneNum);
+                user.setPasswordHash(pwdHash);
+                user.setAdminPrivilege(admin);
+
+            } while (cursor.moveToNext());
+
+        }
 
         return null;
     }
