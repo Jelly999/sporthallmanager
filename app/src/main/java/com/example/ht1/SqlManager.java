@@ -90,7 +90,7 @@ public class SqlManager {
         public static void insertRow(String[] hallInfo) {
             String SQLquery = "INSERT INTO " + TABLE_NAME + "(" +
                     SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME + "," +
-                    SqlTablenames.sporthallTable.COLUMN_NAME_LOCATION + "," +
+                    SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + "," +
                     SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + "," +
                     SqlTablenames.sporthallTable.COLUMN_NAME_SPORT + "," +
                     SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE +
@@ -133,7 +133,6 @@ public class SqlManager {
 
         public static void insertRow(String[] userInfo) {
             String SQLquery = "INSERT INTO " + TABLE_NAME + "(" +
-                    SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + "," +
@@ -162,6 +161,60 @@ public class SqlManager {
         public void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + TABLE_NAME +
                     " WHERE " + RESERVE_UUID + " = " + UUID + ";";
+            Wdb.execSQL(SQLquery);
+        }
+    }
+
+    //Methods for adding and removing enrolls
+    public static class SQLenrolls {
+
+        private static String TABLE_NAME;
+        private static String ENROLLID;
+
+        SQLenrolls() {
+            TABLE_NAME = SqlTablenames.enrollsTable.TABLE_NAME;
+            ENROLLID = SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID;
+        }
+
+        public static void insertRow(String USER_UUID, String RESERVEID) {
+            String SQLquery = "INSERT INTO " + TABLE_NAME + " (" +
+                    SqlTablenames.enrollsTable.COLUMN_NAME_USER_UUID + "," +
+                    SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID +
+                    ") VALUES " + "(" + USER_UUID + ", " + RESERVEID + ");";
+
+            Wdb.execSQL(SQLquery);
+        }
+
+        public void removeRow(String UUID) {
+            String SQLquery = "DELETE FROM " + TABLE_NAME +
+                    " WHERE " + ENROLLID + " = " + UUID + ";";
+            Wdb.execSQL(SQLquery);
+        }
+    }
+
+    //Methods for adding and removing universities
+    public static class SQLuniversities {
+
+        private static String TABLE_NAME;
+        private static String UNI_UUID;
+
+        SQLuniversities() {
+            TABLE_NAME = SqlTablenames.universitiesTable.TABLE_NAME;
+            UNI_UUID = SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID;
+        }
+
+        public static void insertRow(String , String ) {
+            String SQLquery = "INSERT INTO " + TABLE_NAME + " (" +
+                    SqlTablenames + "," +
+                    SqlTablenames +
+                    ") VALUES " + "(" +  + ", " +  + ");";
+
+            Wdb.execSQL(SQLquery);
+        }
+
+        public void removeRow(String UUID) {
+            String SQLquery = "DELETE FROM " + TABLE_NAME +
+                    " WHERE " + UNI_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
     }
