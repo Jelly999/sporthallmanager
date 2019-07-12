@@ -375,6 +375,8 @@ public class SqlManager {
         if (cursor.moveToFirst()) {
             do {
                 Reservation reservation = new Reservation();
+
+                //TODO Reservation olion setterit
             } while (cursor.moveToNext());
         }
         cursor.close();
