@@ -1,7 +1,6 @@
 package com.example.ht1;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -47,18 +46,44 @@ public class MainActivity extends AppCompatActivity {
             exampleList.add(new ExampleItem(R.drawable.ic_android, "Line 25", "Line 26"));
             exampleList.add(new ExampleItem(R.drawable.ic_android, "Line 27", "Line 28"));
             exampleList.add(new ExampleItem(R.drawable.ic_android, "Line 29", "Line 30"));
-
+/*
             mRecyclerView = findViewById(R.id.recyclerView);
-            mRecyclerView.setHasFixedSize(true);
+            //mRecyclerView.setHasFixedSize(true);
             mLayoutManager = new LinearLayoutManager(this);
             mAdapter = new ExampleAdapter(exampleList);
 
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.setAdapter(mAdapter);
-        } //Recycle view test
+*/        } //Recycle view test
 
     }
     public void login(View V){
-        
+        System.out.println("login");
+    }
+
+    public void account(View v){
+        //TODO go to account fragmnent, User can click
+        System.out.println("account");
+    }
+    public void joinEvent(View v){
+        //TODO go to join event fragmnent, User can click
+    }
+    public void creteNewEvent(View v){
+        //TODO go to create new event fragmnent, User can click
+    }
+    public void viewEnrolled(View v){
+        //TODO go to enrolled fragmnent, User can click
+    }
+    public void editEvent(View v){
+        //TODO go to edit event fragmnent, User can click
+    }
+    public void manageUsers(View v){
+        //TODO go to manage users fragmnent, Only For Admin to click
+    }
+    public void manageHalls(View v){
+        //TODO go to manage hall fragmnent, Only For Admin to click
+    }
+    public void manageUni(View v){
+        //TODO go to manage uni fragmnent, Only For Admin to click
     }
 }

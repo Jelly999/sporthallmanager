@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="60dp"
+        android:onClick="joinEvent"
         android:text="@string/join_event_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +25,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:onClick="creteNewEvent"
         android:text="@string/create_new_event_button"
         app:layout_constraintBottom_toTopOf="@+id/bEditEvent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
         android:layout_marginTop="12dp"
-        android:onClick="login"
+        android:onClick="manageUsers"
         android:text="@string/manage_users_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textStaticMain2" />
@@ -46,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
         android:layout_marginTop="12dp"
+        android:onClick="manageHalls"
         android:text="@string/manage_halls_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bManageUsers" />
@@ -55,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="221dp"
         android:text="@string/admin_tasks_text"
         android:textColor="#F2F5F8"
@@ -67,16 +70,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="111dp"
-        android:layout_height="121dp"
+        android:layout_width="128dp"
+        android:layout_height="142dp"
         android:layout_marginStart="260dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="38dp"
         android:clickable="true"
-        android:onClick="login"
-        android:src="@drawable/ic_boss"
         android:contentDescription="@string/profile_pic"
+        android:onClick="account"
+        android:src="@drawable/ic_boss"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/textStaticMain3" />
 
     <Button
         android:id="@+id/bEditEvent"
@@ -84,6 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="12dp"
+        android:onClick="viewEnrolled"
         android:text="@string/view_enrolled_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bCreateNew" />
@@ -94,6 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="12dp"
+        android:onClick="editEvent"
         android:text="@string/edit_event_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bEditEvent" />
@@ -115,10 +120,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="120dp"
         android:text="@string/user_profile_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textStaticMain2"
-        app:layout_constraintTop_toBottomOf="@+id/bCreateNew" />
+        app:layout_constraintTop_toBottomOf="@+id/bEditEvent" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="12dp"
+        android:onClick="manageUni"
+        android:text="@string/manage_uni_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

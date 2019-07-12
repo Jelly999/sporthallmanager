@@ -55,7 +55,7 @@
     <string name="setUniName_text">Set name of the University</string>
     <string name="setUniAddr_text">Set address of the University</string>
     <string name="add_uni_button">Add new university</string>
-
+    <string name="manage_uni_button">Manage Universities</string>
 
 
 </resources>
