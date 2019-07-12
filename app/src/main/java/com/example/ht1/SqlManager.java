@@ -324,9 +324,10 @@ public class SqlManager {
         // https://stackoverflow.com/questions/4957009/how-do-i-join-two-sqlite-tables-in-my-android-application
         // https://blog.fossasia.org/doing-a-table-join-in-android-without-using-rawquery/
         // https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
-        // TODO Jostain inputtina minkä yliopiston tietoja haetaan (UNI_UUID 1=LUT, 2=toisena lisätty....)
         // TODO kummin päin? uniin liitetään sportshallit vai toisin päin
         // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
+        // TODO suosisin tätä
+        // TODO Jostain inputtina minkä yliopiston tietoja haetaan (UNI_UUID 1=LUT, 2=toisena lisätty....)
         String rawQuery = "SELECT * FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
                 + " ON " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = " + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
                 + " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = 1";
