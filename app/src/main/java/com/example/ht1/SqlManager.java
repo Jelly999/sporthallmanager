@@ -259,7 +259,7 @@ public class SqlManager {
 
 
     public static List<User> getUsersFromDatabase() throws SQLException {
-        List<User> users = new ArrayList<>();
+        List<User> userList = new ArrayList<>();
 
         Cursor cursor = Rdb.query(SqlTablenames.userTable.TABLE_NAME, null,
                 null, null, null, null,
@@ -305,16 +305,55 @@ public class SqlManager {
                 user.setPasswordHash(pwdHash);
                 user.setAdminPrivilege(admin);
 
+                userList.add(user);
+
             } while (cursor.moveToNext());
 
         }
+        cursor.close(); // TODO Cursorin sulkeminen?
 
-        return null;
+        return userList;
     }
 
     public static List<Sporthall> getSporthallsFromDatabase() {
-        //asd
-        return null;
+        List<Sporthall> hallList = new ArrayList<>();
+
+        Cursor cursor = Rdb.query(SqlTablenames.sporthallTable.TABLE_NAME, null,
+                null, null, null, null,
+                SqlTablenames.sporthallTable.COLUMN_NAME_HALLID);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int ID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_HALLID
+                ));
+                String name = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME
+                ));
+                int uniID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
+                ));
+                String type = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE
+                ));
+                boolean notAvailable = (cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE
+                )) == 1);
+
+                Sporthall sporthall = new Sporthall();
+                sporthall.setUUID(ID);
+                sporthall.setName(name);
+                //TODO: Universityn nimi? sporthall.setUniversityName(naenae)
+                sporthall.setType(type);
+                sporthall.setDisabled(notAvailable);
+
+                hallList.add(sporthall);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return hallList;
     }
 
     /////////////////////////////////
