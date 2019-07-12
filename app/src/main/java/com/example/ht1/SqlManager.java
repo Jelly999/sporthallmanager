@@ -230,7 +230,7 @@ public class SqlManager {
         }
     }
 
-    //Methods for adding and removing user access tu universities
+    //Methods for adding and removing user access to universities
     public static class SQLaccess {
 
         private static String TABLE_NAME;
@@ -257,7 +257,9 @@ public class SqlManager {
         }
     }
 
+    ///// DATA FROM DATABASE TO OBJECTS /////
 
+    // userdata to user object
     public static List<User> getUsersFromDatabase() throws SQLException {
         List<User> userList = new ArrayList<>();
 
@@ -315,6 +317,7 @@ public class SqlManager {
         return userList;
     }
 
+    // sporthalldata to object
     public static List<Sporthall> getSporthallsFromDatabase() {
         List<Sporthall> hallList = new ArrayList<>();
 
