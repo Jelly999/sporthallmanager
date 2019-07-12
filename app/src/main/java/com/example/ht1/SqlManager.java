@@ -320,6 +320,32 @@ public class SqlManager {
     public static List<Sporthall> getSporthallsFromDatabase() {
         List<Sporthall> hallList = new ArrayList<>();
 
+        // TODO Tänne rawquery joka noutaa yliopiston tiedot (uuid ja UNI_NAME)
+        // https://stackoverflow.com/questions/4957009/how-do-i-join-two-sqlite-tables-in-my-android-application
+        // https://blog.fossasia.org/doing-a-table-join-in-android-without-using-rawquery/
+        // https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
+        // TODO Jostain inputtina minkä yliopiston tietoja haetaan (UNI_UUID 1=LUT, 2=toisena lisätty....)
+        // TODO kummin päin? uniin liitetään sportshallit vai toisin päin
+        // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
+        String rawQuery = "SELECT * FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
+                + " ON " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = " + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
+                + " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = 1";
+        Cursor c = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+        c.close();
+        // ja tässä toisin päin (nyt hakee nimi ja id uni columnit ja yhdistää ne sporthalleihin niin että molemmissa uni id = 1)
+        String rawQuery = "SELECT * FROM " + SqlTablenames.universitiesTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.sporthallTable.TABLE_NAME
+                + " ON " + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + " = " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID
+                + " WHERE " + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + " = 1";
+        Cursor c = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+        c.close();
+        // TODO kummin päin? uniin liitetään sportshallit vai toisin päin
+
         Cursor cursor = Rdb.query(SqlTablenames.sporthallTable.TABLE_NAME, null,
                 null, null, null, null,
                 SqlTablenames.sporthallTable.COLUMN_NAME_HALLID);
