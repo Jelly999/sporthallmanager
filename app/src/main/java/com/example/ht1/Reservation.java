@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class Reservation {
     private int UUID;                       // Reservation's UUID
@@ -15,10 +16,11 @@ public class Reservation {
     private User owner;                     // owner user of the reservation
     private Calendar startCalendar;             // Date at which the reservation starts
     private Calendar endCalendar;               // Date at which the reservation starts
-    private ArrayList<User> attenderList;   // List of users attending the reservation
+    private List<User> attenderList;   // List of users attending the reservation
 
     Reservation() {
 
+        attenderList = new ArrayList<>();
 
         //TODO: Pitäisikö reservation ownerin olla samalla varauksensa attender??
     } // int uniqueID, User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate
@@ -32,10 +34,11 @@ public class Reservation {
     Calendar getStartDate() {return startCalendar;}
     Calendar getEndDate() {return endCalendar;}
     Sporthall getSporthall() {return sporthall;}
-    ArrayList<User> getAttenderList() {return attenderList;}
+    List<User> getAttenderList() {return attenderList;}
 
     int getAttenderAmount() {
         return attenderList.size();
+
     }
 
 
@@ -45,7 +48,13 @@ public class Reservation {
 
     // ======= PUBLIC SETTERS =======
 
-    // TODO Setterit lähettävät datan suoraan SQL
+    void setUUID(int newID) {UUID = newID;}
+    void setTitle(String text) {title = text;}
+    void setDescribtion(String text) {describtion = text;}
+    void setOwner(String ownerID) {
+
+    }
+    void setStartCalendar(Calendar calend) {}
 
 
 

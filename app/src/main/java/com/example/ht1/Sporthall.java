@@ -17,10 +17,11 @@ public class Sporthall {
     private String type;
     private boolean disabled;               // If sporthall is disabled for repair etc.
     private String universityName;          // Name of the university the sporthall is located in
-    private ArrayList<Reservation> reservationsList; // List of all the reservations for this sporthall
+    private List<Reservation> reservationsList; // List of all the reservations for this sporthall
 
     Sporthall() {
         reservationsList = new ArrayList<>();
+        reservationsList = SqlManager.getReservationsFromDatabase(this);
     }
 
 
@@ -36,7 +37,7 @@ public class Sporthall {
     public String getUniversityName() {return universityName;}
     public int getReservationAmount() {return reservationsList.size();}
 
-    public ArrayList<Reservation> getReservations() {return reservationsList;}
+    public List<Reservation> getReservations() {return reservationsList;}
 
 
 

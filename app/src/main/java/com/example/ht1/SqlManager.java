@@ -141,7 +141,6 @@ public class SqlManager {
                     SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID + "," +
-                    SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT +
                     ") VALUES " + "(";
             for (int i = 0; i < userInfo.length; i++) {
