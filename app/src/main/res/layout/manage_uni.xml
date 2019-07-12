@@ -48,7 +48,7 @@
     <EditText
         android:id="@+id/editNewUniAddr"
         android:layout_width="300dp"
-        android:layout_height="64"
+        android:layout_height="64dp"
         android:layout_marginStart="52dp"
         android:layout_marginBottom="52dp"
         android:autofillHints="@string/set_password_text"
