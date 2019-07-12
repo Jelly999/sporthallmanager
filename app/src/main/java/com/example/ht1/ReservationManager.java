@@ -5,12 +5,19 @@ package com.example.ht1;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class ReservationManager {
-    private ArrayList<Sporthall> sporthallsList;
+
+    public static List<User> usersList;
+    public static List<Sporthall> sporthallsList;
 
     ReservationManager() {
         sporthallsList = new ArrayList<>();
+        sporthallsList = SqlManager.getSporthallsFromDatabase();
+
+        usersList = new ArrayList<>();
+        usersList = SqlManager.getUsersFromDatabase();
     }
 
 
@@ -65,10 +72,9 @@ public class ReservationManager {
                 String dateStr = format.format(startDate);
                 String durStr = Integer.toString(duration);
                 String ownnerIDstr = Integer.toString(owner.getUUID());
-                String maxPartStr = Integer.toString(sporthall.getMaximumCapacity());
 
                 // parent hall ID, start time, duration, owner user ID, max participants, recurring
-                String[] reservData = {hallIDstr, dateStr, durStr, ownnerIDstr, maxPartStr, "0"};
+                String[] reservData = {hallIDstr, dateStr, durStr, ownnerIDstr, "0"};
                 SqlManager.SQLreservation.insertRow(reservData);
             }
         }
@@ -89,10 +95,9 @@ public class ReservationManager {
                 String dateStr = format.format(startDate);
                 String durStr = Integer.toString(duration);
                 String ownnerIDstr = Integer.toString(owner.getUUID());
-                String maxPartStr = Integer.toString(sporthall.getMaximumCapacity());
 
                 // parent hall ID, start time, duration, owner user ID, max participants, recurring
-                String[] reservData = {hallIDstr, dateStr, durStr, ownnerIDstr, maxPartStr, "1"};
+                String[] reservData = {hallIDstr, dateStr, durStr, ownnerIDstr, "1"};
                 SqlManager.SQLreservation.insertRow(reservData);
             }
         }
