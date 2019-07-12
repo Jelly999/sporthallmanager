@@ -344,6 +344,7 @@ public class SqlManager {
                 sporthall.setUUID(ID);
                 sporthall.setName(name);
                 //TODO: Universityn nimi? sporthall.setUniversityName(naenae)
+                // TODO Täytyy hakea rawQuery innerjoin sporthall --> sporthall_university --> university
                 sporthall.setType(type);
                 sporthall.setDisabled(notAvailable);
 
@@ -354,6 +355,29 @@ public class SqlManager {
         cursor.close();
 
         return hallList;
+    }
+
+
+    public static List<Reservation> getReservationsFromDatabase(Sporthall sporthall) {
+        List<Reservation> reservationList = new ArrayList<>();
+        // TODO ajattelin että voisi hakea reservationit jokaiselle sporthall erikseen,
+        // TODO säästäisi hieman prosessointiaikaa
+
+        String[] sporthallID = {Integer.toString(sporthall.getUUID())}; // The id of the sporthall
+        String whereClause = SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + " = ?";
+
+        Cursor cursor = Rdb.query(SqlTablenames.reservationsTable.TABLE_NAME,null,
+                whereClause, sporthallID,
+                null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Reservation reservation = new Reservation();
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return reservationList;
     }
 
     /////////////////////////////////

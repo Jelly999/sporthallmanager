@@ -17,10 +17,7 @@ public class Reservation {
     private Calendar endCalendar;               // Date at which the reservation starts
     private ArrayList<User> attenderList;   // List of users attending the reservation
 
-    Reservation(String sqlText) {
-        Log.d("SQL", sqlText);
-
-        String[] textArr = sqlText.split(",");
+    Reservation() {
 
 
         //TODO: Pitäisikö reservation ownerin olla samalla varauksensa attender??
