@@ -116,6 +116,9 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
             final String SQL_DELETE_USER_ACCESS_UNI =
                     "DROP TABLE IF EXISTS " + SqlTablenames.user_access_uni_Table.TABLE_NAME;
 
+            final String SQL_DELETE_ADMIN_ACCOUNTS =
+                    "DROP TABLE IF EXISTS " + SqlTablenames.admin_accounts_Table.TABLE_NAME;
+
             db.execSQL(SQL_DELETE_USER);
             db.execSQL(SQL_DELETE_SPORTHALL);
             db.execSQL(SQL_DELETE_RESERVATION);
