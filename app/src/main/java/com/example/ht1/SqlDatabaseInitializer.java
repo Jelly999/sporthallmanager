@@ -125,6 +125,7 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
             db.execSQL(SQL_DELETE_ENROLLS);
             db.execSQL(SQL_DELETE_UNIVERSITIES);
             db.execSQL(SQL_DELETE_USER_ACCESS_UNI);
+            db.execSQL(SQL_DELETE_ADMIN_ACCOUNTS);
             onCreate(db);
         }
 }
