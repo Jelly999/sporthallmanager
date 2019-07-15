@@ -56,7 +56,7 @@
     <string name="setUniAddr_text">Set address of the University</string>
     <string name="add_uni_button">Add new university</string>
     <string name="manage_uni_button">Manage Universities</string>
-    <string name="remove_user_reservation_button">Delete User's reservation</string>
+    <string name="remove_user_reservation_button">Delete User\'s reservation</string>
     <string name="create_new_user_text">Create new user</string>
     <string name="select_user_text">Select User</string>
     <string name="select_uni_text">Select University</string>

@@ -2,6 +2,7 @@ package com.example.ht1;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         //CardView card = new CardView();
 
         // TODO tämä tässä vain testiä varten
-        JSONManager jsonManager = new JSONManager(this);
-        jsonManager.JSONTEST();
-        PasswordManager.hashTest();
+        new SqlManager(this);
+        SqlManager.presetDatabaseValues();
+        sqlTest();
         // Testi loppu
         {
             ArrayList<ExampleItem> exampleList = new ArrayList<>();
@@ -56,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
 */        } //Recycle view test
 
     }
+    public static void sqlTest() { // TODO DELETE ONCE TEST OVER
+        List<User> userList = SqlManager.getUsersFromDatabase();
+        Log.d("TEST", "TEST MESSAGE");
+        Log.d("TEST", Integer.toString(userList.size()));
+        for (User user : userList) {
+            Log.d("TEST", user.toString());
+        }
+    }
+
     public void login(View V){
         System.out.println("login");
     }

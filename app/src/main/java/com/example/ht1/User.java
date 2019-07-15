@@ -51,7 +51,7 @@ public class User {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (UUID + " " + userName + " " + admin);
+        return (UUID + " " + userName + " " + firstName + "," + surName + " " + admin);
     }
 
 
