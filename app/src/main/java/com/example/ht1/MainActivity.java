@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             mRecyclerView.setAdapter(mAdapter);
 */        } //Recycle view test
 
+
     }
     public void login(View V){
         System.out.println("login");
