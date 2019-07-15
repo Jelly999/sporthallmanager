@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             mRecyclerView.setAdapter(mAdapter);
 */        } //Recycle view test
 
+
     }
     public static void sqlTest() { // TODO DELETE ONCE TEST OVER
         List<User> userList = SqlManager.getUsersFromDatabase();
