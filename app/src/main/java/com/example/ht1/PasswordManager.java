@@ -5,6 +5,7 @@ import android.util.Log;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 public class PasswordManager {
 
@@ -26,6 +27,13 @@ public class PasswordManager {
         }
         return null;
     }
+
+    public static String authNumbers() { // It will generate 6 digit random Number.
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+        return String.format("%06d", number);
+    }
+
     private static boolean passwordIsCompliant(String str) {
         char ch;
         boolean capitalFlag = false;
