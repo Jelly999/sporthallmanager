@@ -12,22 +12,22 @@ public class PasswordManager {
         //ASD
     }
 
-    public void hashTest() {
-        String password = "seppomies";
-        String userName = "hitdatyeet";
+    public static void hashTest() {
+        String password = "admin";
+        String userName = "admin";
         String hash = getHashedPassword(password, userName);
         Log.d("HASH", hash);
     }
 
 
-    public String getHashedPassword(String password, String userName) {
+    public static String getHashedPassword(String password, String userName) {
         if (password != null && userName != null) {
             return get_SHA_512_SecurePassword(password, userName);
         }
         return null;
     }
 
-    private String get_SHA_512_SecurePassword(String passwordToHash, String   salt){
+    private static String get_SHA_512_SecurePassword(String passwordToHash, String   salt){
         String generatedPassword = null;
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");

@@ -2,6 +2,7 @@ package com.example.ht1;
 
 //TODO Varaushallinta-luokka, joka pitää kirjaa sali-olioista
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -44,29 +45,58 @@ public class ReservationManager {
 
 
 
-/*
+
     // ======= PUBLIC OTHER METHODS =======
 
-    public void addNewReservation(int UUID, User owner, Sporthall sporthall, String title, Calendar startDate, Calendar endDate) {
+    public void addNewReservation(User owner, Sporthall sporthall, String title, Calendar startDate, int duration) {
         // What reservation requires:
         // User owner, String newTitle, Date reservStartDate, Date reservEndDate
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm");
+        Calendar endDate = (Calendar) startDate.clone();
+        // end date is cloned from start date
+        endDate.add(Calendar.HOUR_OF_DAY, duration);
+        // hours of duration are added to the end date
 
         if (isDateFaulty(startDate, endDate)) { // Is date faulty (ends before starts)
             if (!isTimeSlotReserved(sporthall, startDate, endDate)) { // Is time slot NOT reserved
-                Reservation reservation = new Reservation(UUID, owner, sporthall, title, startDate, endDate);
-                addReservation(sporthall, reservation); // Private method to invoke reservations
+
+
+                String hallIDstr = Integer.toString(sporthall.getUUID());
+                String dateStr = format.format(startDate);
+                String durStr = Integer.toString(duration);
+                String ownnerIDstr = Integer.toString(owner.getUUID());
+                String maxPartStr = Integer.toString(sporthall.getMaximumCapacity());
+
+                // parent hall ID, start time, duration, owner user ID, max participants, recurring
+                String[] reservData = {hallIDstr, dateStr, durStr, ownnerIDstr, maxPartStr, "0"};
+                SqlManager.SQLreservation.insertRow(reservData);
             }
         }
     }
 
-    public void addNewWeeklyReservation(int UUID, User owner, Sporthall sporthall, String title, Calendar startDate, Calendar endDate, int durationInWeeks) {
+    public void addNewWeeklyReservation(User owner, Sporthall sporthall, String title, Calendar startDate, int duration, int durationInWeeks) {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm");
+
+        Calendar endDate = (Calendar) startDate.clone();
+        // end date is cloned from start date
+        endDate.add(Calendar.HOUR_OF_DAY, duration);
+        // hours of duration are added to the end date
 
         if (isWeeklyReservationPossible(sporthall, startDate, endDate, durationInWeeks)) {
             for (int i = 0; i < durationInWeeks; i++) {
-                Reservation reservation = new Reservation(UUID, owner, sporthall, title, startDate, endDate);
-                addReservation(sporthall, reservation); // Private method to invoke reservation
+                String hallIDstr = Integer.toString(sporthall.getUUID());
+                String dateStr = format.format(startDate);
+                String durStr = Integer.toString(duration);
+                String ownnerIDstr = Integer.toString(owner.getUUID());
+                String maxPartStr = Integer.toString(sporthall.getMaximumCapacity());
+
+                // parent hall ID, start time, duration, owner user ID, max participants, recurring
+                String[] reservData = {hallIDstr, dateStr, durStr, ownnerIDstr, maxPartStr, "1"};
+                SqlManager.SQLreservation.insertRow(reservData);
             }
         }
+        updateReservationsFromSQL(sporthall);
     }
 
     public boolean removeReservation(Sporthall sporthall, Reservation reservation) {
@@ -87,6 +117,11 @@ public class ReservationManager {
         for (Sporthall sporthall : sporthallsList) { // Goes through every sporthall
             sporthall.removeAllUserReservations(owner);
         }
+    }
+
+
+    public void updateReservationsFromSQL(Sporthall sporthall) {
+        //TODO Tähän se joka ottaa reservationit SQL
     }
 
 
@@ -117,6 +152,7 @@ public class ReservationManager {
     }
 
     public boolean isWeeklyReservationPossible(Sporthall sporthall, Calendar startDate, Calendar endDate, int DurationInWeeks) {
+
         for (int i = 0; i < DurationInWeeks; i++) {
             if(isTimeSlotReserved(sporthall, startDate, endDate)) { // For every week checks if reservation is possible
                 return false; // if the time slot is reserved returns false
@@ -166,5 +202,4 @@ public class ReservationManager {
         date.add(Calendar.DAY_OF_YEAR, 7);
         // TODO TÄMÄN PITÄISI kasvattaa viikkoa yhdellä!
     }
-*/
 }
