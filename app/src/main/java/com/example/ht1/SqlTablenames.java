@@ -23,8 +23,8 @@ public final class SqlTablenames {
         public static final String COLUMN_NAME_FIRSTNAME = "firstname";
         public static final String COLUMN_NAME_SURNAME = "surname";
         public static final String COLUMN_NAME_EMAIL = "email";
-        public static final String COLUMN_NAME_PHONE_NUMBER = "phone number";
-        public static final String COLUMN_NAME_PWD_HASH = "pwd hash";
+        public static final String COLUMN_NAME_PHONE_NUMBER = "phone_number";
+        public static final String COLUMN_NAME_PWD_HASH = "pwd_hash";
         public static final String COLUMN_NAME_ADMINISTRATOR = "administrator";
     }
 
@@ -32,9 +32,9 @@ public final class SqlTablenames {
         public static final String TABLE_NAME = "sporthall";
         public static final String COLUMN_NAME_HALLID = "uuid";
         public static final String COLUMN_NAME_HALLNAME = "hallname";
-        public static final String COLUMN_NAME_UNI_UUID = "uni uuid";
+        public static final String COLUMN_NAME_UNI_UUID = "uni_uuid";
         public static final String COLUMN_NAME_HALLTYPE = "halltype";
-        public static final String COLUMN_NAME_NOT_AVAILABLE = "not available";
+        public static final String COLUMN_NAME_NOT_AVAILABLE = "not_available";
     }
 
     public static class reservationsTable implements BaseColumns {
@@ -42,11 +42,11 @@ public final class SqlTablenames {
         public static final String COLUMN_NAME_RESERVEID = "reserveid";
         public static final String COLUMN_NAME_HALLID = "uuid";
         public static final String COLUMN_NAME_SPORT = "sport";
-        public static final String COLUMN_NAME_START_TIME = "start time";
+        public static final String COLUMN_NAME_START_TIME = "start_time";
         public static final String COLUMN_NAME_DURATION = "duration";
-        public static final String COLUMN_NAME_USER_UUID = "user uuid";
+        public static final String COLUMN_NAME_USER_UUID = "user_uuid";
         public static final String COLUMN_NAME_MAXPARTICIPANTS = "maxparticipants";
-        public static final String COLUMN_NAME_RECURRING_EVENT = "recurring event";
+        public static final String COLUMN_NAME_RECURRING_EVENT = "recurring_event";
     }
 
     public static class enrollsTable implements BaseColumns {
@@ -65,9 +65,9 @@ public final class SqlTablenames {
 
     public static class user_access_uni_Table implements BaseColumns {
         public static final String TABLE_NAME = "user_access_uni";
-        public static final String COLUMN_NAME_ACCESS_UUID = "access uuid";
-        public static final String COLUMN_NAME_USER_UUID = "user uuid";
-        public static final String COLUMN_NAME_UNI_UUID = "uni uuid";
+        public static final String COLUMN_NAME_ACCESS_UUID = "access_uuid";
+        public static final String COLUMN_NAME_USER_UUID = "user_uuid";
+        public static final String COLUMN_NAME_UNI_UUID = "uni_uuid";
     }
 
 }
