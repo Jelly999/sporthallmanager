@@ -26,6 +26,30 @@ public class PasswordManager {
         }
         return null;
     }
+    private static boolean passwordIsCompliant(String str) {
+        char ch;
+        boolean capitalFlag = false;
+        boolean lowerCaseFlag = false;
+        boolean numberFlag = false;
+        boolean lengthFlag = false;
+        if (str.length() > 12){
+            lengthFlag = true;
+        }
+        for(int i=0;i < str.length();i++) {
+            ch = str.charAt(i);
+            if( Character.isDigit(ch)) {
+                numberFlag = true;
+            }
+            else if (Character.isUpperCase(ch)) {
+                capitalFlag = true;
+            } else if (Character.isLowerCase(ch)) {
+                lowerCaseFlag = true;
+            }
+            if(numberFlag && capitalFlag && lowerCaseFlag && lengthFlag)
+                return true;
+        }
+        return false;
+    }
 
     private static String get_SHA_512_SecurePassword(String passwordToHash, String   salt){
         String generatedPassword = null;
