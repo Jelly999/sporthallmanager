@@ -415,5 +415,13 @@ public class SqlManager {
         SQLenrolls.insertRow("8", "2");
         SQLenrolls.insertRow("1", "2");
 
+        //admin preset values
+        String rawQuery = "INSERT INTO " + SqlTablenames.admin_accounts_Table.TABLE_NAME + "(" + SqlTablenames.admin_accounts_Table.COLUMN_NAME_USER_UUID + ") VALUES(1);";
+        Cursor c = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+        c.close();
+
     }
 }
