@@ -26,27 +26,7 @@ public class authFragment extends Fragment {
 
 }
 
-    // Checks if authentication code is correct
-    public boolean authenticated(View view){
-        String randomintvalue = getRandomNumberString();
-        TextView randomint = view.findViewById(R.id.text_randint);
-        randomint.setText(randomintvalue);
-        EditText value = view.findViewById(R.id.edit_inputint);
-        String input = value.getText().toString();
-        if (randomintvalue == input){
-            return true;
-        } else;
-            return false;
-    }
 
-    // Generates 6 digit interger
-    public static String getRandomNumberString() {
-        // It will generate 6 digit random Number.
-        // from 0 to 999999
-        Random rnd = new Random();
-        int number = rnd.nextInt(999999);
 
-        // this will convert any number sequence into 6 character.
-        return String.format("%06d", number);
-    }
+
 }

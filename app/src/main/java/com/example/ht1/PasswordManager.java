@@ -1,6 +1,9 @@
 package com.example.ht1;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -32,6 +35,18 @@ public class PasswordManager {
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
         return String.format("%06d", number);
+    }
+    // Checks if authentication code is correct
+    public boolean authenticated(View view){
+        String randomintvalue = authNumbers();
+        TextView randomint = view.findViewById(R.id.text_randint);
+        randomint.setText(randomintvalue);
+        EditText value = view.findViewById(R.id.edit_inputint);
+        String input = value.getText().toString();
+        if (randomintvalue == input){
+            return true;
+        } else;
+        return false;
     }
 
     private static boolean passwordIsCompliant(String str) {
