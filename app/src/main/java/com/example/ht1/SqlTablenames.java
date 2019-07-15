@@ -32,9 +32,8 @@ public final class SqlTablenames {
         public static final String TABLE_NAME = "sporthall";
         public static final String COLUMN_NAME_HALLID = "uuid";
         public static final String COLUMN_NAME_HALLNAME = "hallname";
-        public static final String COLUMN_NAME_LOCATION = "location";
+        public static final String COLUMN_NAME_UNI_UUID = "uni uuid";
         public static final String COLUMN_NAME_HALLTYPE = "halltype";
-        public static final String COLUMN_NAME_SPORT = "sport";
         public static final String COLUMN_NAME_NOT_AVAILABLE = "not available";
     }
 
@@ -42,11 +41,10 @@ public final class SqlTablenames {
         public static final String TABLE_NAME = "reservations";
         public static final String COLUMN_NAME_RESERVEID = "reserveid";
         public static final String COLUMN_NAME_HALLID = "uuid";
-        public static final String COLUMN_NAME_DATE = "date";
+        public static final String COLUMN_NAME_SPORT = "sport";
         public static final String COLUMN_NAME_START_TIME = "start time";
         public static final String COLUMN_NAME_DURATION = "duration";
         public static final String COLUMN_NAME_USER_UUID = "user uuid";
-        public static final String COLUMN_NAME_PARTICIPANTS = "participants";
         public static final String COLUMN_NAME_MAXPARTICIPANTS = "maxparticipants";
         public static final String COLUMN_NAME_RECURRING_EVENT = "recurring event";
     }

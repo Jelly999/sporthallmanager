@@ -26,8 +26,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO tämä tässä vain testiä varten
         JSONManager jsonManager = new JSONManager(this);
         jsonManager.JSONTEST();
-        PasswordManager passwordManager = new PasswordManager();
-        passwordManager.hashTest();
+        PasswordManager.hashTest();
         // Testi loppu
         {
             ArrayList<ExampleItem> exampleList = new ArrayList<>();
