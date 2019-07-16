@@ -11,6 +11,8 @@ public class User {
     private String passwordHash;
     private boolean admin;                  // Is the user admin (True = yes, False = no)
 
+    // LIST OF USERS IS IN RESERVATION MANAGER!
+
     User() {
         // Empty
     }

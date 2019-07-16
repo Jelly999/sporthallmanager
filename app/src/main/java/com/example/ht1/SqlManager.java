@@ -280,9 +280,11 @@ public class SqlManager {
         // https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
         // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
         // TODO Jostain inputtina minkä yliopiston tietoja haetaan (UNI_UUID 1=LUT, 2=toisena lisätty....)
-        String rawQuery = "SELECT "+SqlTablenames.sporthallTable.COLUMN_NAME_HALLID+" FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
-                + " ON " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = " + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
-                + " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = 1";
+        String rawQuery = "SELECT " + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_HALLID
+                + " FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
+                + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = "
+                + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
+                + " WHERE " + SqlTablenames.universitiesTable.TABLE_NAME + "." +  SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = 1";
         Cursor c = Rdb.rawQuery(
                 rawQuery,
                 null

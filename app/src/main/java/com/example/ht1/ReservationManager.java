@@ -2,6 +2,8 @@ package com.example.ht1;
 
 //TODO Varaushallinta-luokka, joka pitää kirjaa sali-olioista
 
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,11 +15,11 @@ public class ReservationManager {
     public static List<Sporthall> sporthallsList;
 
     ReservationManager() {
-        sporthallsList = new ArrayList<>();
-        sporthallsList = SqlManager.getSporthallsFromDatabase();
-
         usersList = new ArrayList<>();
         usersList = SqlManager.getUsersFromDatabase();
+
+        sporthallsList = new ArrayList<>();
+        sporthallsList = SqlManager.getSporthallsFromDatabase();
     }
 
 
@@ -127,6 +129,19 @@ public class ReservationManager {
 
     public void updateReservationsFromSQL(Sporthall sporthall) {
         //TODO Tähän se joka ottaa reservationit SQL
+    }
+
+
+    public void logAllUsers(String TAG) {
+        for (User user : usersList) {
+            Log.d(TAG, user.toString());
+        }
+    }
+
+    public void logAllSporthalls(String TAG) {
+        for (Sporthall sporthall : sporthallsList) {
+            Log.d(TAG, sporthall.toString());
+        }
     }
 
 

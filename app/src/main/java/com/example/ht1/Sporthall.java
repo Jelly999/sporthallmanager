@@ -85,7 +85,7 @@ public class Sporthall {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (UUID + " " + name + " " + universityName + " " + disabled);
+        return (UUID + " " + name + " " + type + " " + universityName + " " + disabled);
     }
 
 

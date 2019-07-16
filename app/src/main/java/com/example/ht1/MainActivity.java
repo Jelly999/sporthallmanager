@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private ReservationManager reservationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             new SqlManager(this); // This must be after the existance of the file is checked
             SqlManager.presetDatabaseValues();
         }
-        sqlTest();
+        objectInitalizationTest();
         // Testi loppu
         {
             ArrayList<ExampleItem> exampleList = new ArrayList<>();
@@ -71,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean databaseExists() {
-        //String path = this.getDir("databases",Context.MODE_PRIVATE).toString();
         String path = this.getFilesDir().getPath();
         path = path.substring(0,28);
         path += "/databases";
@@ -81,12 +82,10 @@ public class MainActivity extends AppCompatActivity {
         return file.exists();
     }
 
-    public static void sqlTest() { // TODO DELETE ONCE TEST OVER
-        List<User> userList = SqlManager.getUsersFromDatabase();
-        Log.d("SQL", "Number of users: " + userList.size());
-        for (User user : userList) {
-            Log.d("SQL", user.toString());
-        }
+    public void objectInitalizationTest() { // TODO DELETE ONCE TEST OVER
+        reservationManager = new ReservationManager();
+        reservationManager.logAllUsers("OBJECT");
+        reservationManager.logAllSporthalls("OBJECT");
     }
 
     public void login(View V){
