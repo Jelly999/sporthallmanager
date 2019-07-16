@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -341,9 +344,52 @@ public class SqlManager {
                 whereClause, sporthallID,
                 null, null, null);
 
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm");
+
         if (cursor.moveToFirst()) {
             do {
+
+                int ID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID
+                ));
+                String sport = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_SPORT
+                ));
+
+                // CALENDAR PARSE STARTS
+                Calendar startTime = Calendar.getInstance();
+                try {
+                    startTime.setTime(format.parse(cursor.getString(cursor.getColumnIndex(
+                            SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME
+                    ))));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                // CALENDAR PARSE ENDS
+
+                int duration = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_DURATION
+                ));
+                int ownerID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID
+                ));
+                int maxPart = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS
+                ));
+                int recurEvent = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT
+                ));
+
+
                 Reservation reservation = new Reservation();
+                reservation.setUUID(ID);
+                reservation.setSport(sport);
+                reservation.setStartCalendar(startTime);
+                reservation.setEndFromStartDur(startTime, duration);
+                reservation.setOwner(ownerID);
+                reservation.setMaxParticipants(maxPart);
+                // TODO RECURRING EVENT
+
 
                 //TODO Reservation olion setterit
             } while (cursor.moveToNext());
