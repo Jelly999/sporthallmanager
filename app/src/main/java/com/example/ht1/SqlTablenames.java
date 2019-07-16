@@ -69,6 +69,7 @@ public final class SqlTablenames {
         public static final String COLUMN_NAME_USER_UUID = "user_uuid";
         public static final String COLUMN_NAME_UNI_UUID = "uni_uuid";
     }
+
     public static class admin_accounts_Table implements BaseColumns {
         public static final String TABLE_NAME = "admin_accounts";
         public static final String COLUMN_NAME_ADMIN_USER_UUID = "admin user uuid";

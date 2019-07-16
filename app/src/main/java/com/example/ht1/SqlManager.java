@@ -38,7 +38,6 @@ public class SqlManager {
 
     public static class SQLuser {
 
-
         public static void insertRow(String[] userInfo) {
             String SQLquery = "INSERT INTO " + SqlTablenames.userTable.TABLE_NAME + "(" +
                     SqlTablenames.userTable.COLUMN_NAME_USERNAME + "," +
