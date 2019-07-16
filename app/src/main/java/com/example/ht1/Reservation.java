@@ -78,7 +78,8 @@ public class Reservation {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (UUID + " " + title + " " + sport + " " + owner.getUserName() + " " + getAttenderAmount());
+        //TODO owner.getUserName() pitää lisätä kun toimii
+        return (UUID + " " + title + " " + sport + " " + getAttenderAmount());
     }
 
 

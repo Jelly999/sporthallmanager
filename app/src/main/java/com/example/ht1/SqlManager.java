@@ -322,6 +322,8 @@ public class SqlManager {
                 sporthall.setType(type);
                 sporthall.setDisabled(notAvailable);
 
+                sporthall.updateReservationsFromSQL();
+
                 hallList.add(sporthall);
 
             } while (c.moveToNext());
@@ -389,10 +391,10 @@ public class SqlManager {
                 reservation.setEndFromStartDur(startTime, duration);
                 reservation.setOwner(ownerID);
                 reservation.setMaxParticipants(maxPart);
+                // TODO UPDATE ATTENDANCES
                 // TODO RECURRING EVENT
 
-
-                //TODO Reservation olion setterit
+                reservationList.add(reservation);
             } while (cursor.moveToNext());
         }
         cursor.close();

@@ -22,7 +22,6 @@ public class Sporthall {
 
     Sporthall() {
         reservationsList = new ArrayList<>();
-        reservationsList = SqlManager.getReservationsFromDatabase(this);
     }
 
 
@@ -57,6 +56,10 @@ public class Sporthall {
 
 
     // ======= PUBLIC OTHER METHODS =======
+
+    public void updateReservationsFromSQL() {
+        reservationsList = SqlManager.getReservationsFromDatabase(this);
+    }
 
     public boolean addReservation(Reservation reservation) {
         if (reservation != null) {
