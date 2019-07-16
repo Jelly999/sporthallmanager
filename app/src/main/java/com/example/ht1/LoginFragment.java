@@ -24,7 +24,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         //Get values from edit fields
-        EditText usrname = view.findViewById(R.id.tUsername_login);
+        EditText usrname = view.findViewById(R.id.eUsername_login);
         String username = usrname.getText().toString();
         EditText pwd = view.findViewById(R.id.ePassowrd_login);
         String password = pwd.getText().toString();

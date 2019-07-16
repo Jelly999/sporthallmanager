@@ -27,7 +27,7 @@ public class ManageHallsFragment extends Fragment {
         return input;
     }
     public String getNewHallLocation(View view){
-        EditText value = view.findViewById(R.id.tUsername_login);
+        EditText value = view.findViewById(R.id.eUsername_login);
         String input = value.getText().toString();
         return input;
     }

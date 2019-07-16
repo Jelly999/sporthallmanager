@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
     <EditText
-        android:id="@+id/tUsername_login"
+        android:id="@+id/eUsername_login"
         android:layout_width="256dp"
         android:layout_height="46dp"
         android:layout_marginStart="17dp"
@@ -158,7 +158,7 @@
         android:textColorHint="#F2F5F8"
         app:layout_constraintEnd_toStartOf="@+id/button14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tUsername_login" />
+        app:layout_constraintTop_toBottomOf="@+id/eUsername_login" />
 
     <TextView
         android:id="@+id/textView2"

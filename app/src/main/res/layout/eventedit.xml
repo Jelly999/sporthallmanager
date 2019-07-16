@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/eNewHallname_MHalls" />
 
     <EditText
-        android:id="@+id/tUsername_login"
+        android:id="@+id/eUsername_login"
         android:layout_width="256dp"
         android:layout_height="43dp"
         android:layout_marginStart="17dp"
@@ -106,7 +106,7 @@
         android:textColorHint="#F2F5F8"
         app:layout_constraintEnd_toStartOf="@+id/button14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tUsername_login" />
+        app:layout_constraintTop_toBottomOf="@+id/eUsername_login" />
 
     <Button
         android:id="@+id/bAddNewUser_MUser"
