@@ -3,19 +3,13 @@ package com.example.ht1;
 import android.provider.BaseColumns;
 
 
-/*LINKS TO SQL DATABASE GUIDES
-https://developer.android.com/training/data-storage/sqlite
-https://www.tutorialspoint.com/android/android_sqlite_database.htm
-https://www.tutorialspoint.com/sqlite/sqlite_java.htm
- */
-
 
 public final class SqlTablenames {
-    // To prevent someone from accidentally instantiating the contract class,
+    // To prevent someone from accidentally instantiating the class,
     // make the constructor private.
     private SqlTablenames() {}
 
-    /* Inner class that defines the table contents */
+    // Inner class that defines the table contents
     public static class userTable implements BaseColumns {
         public static final String TABLE_NAME = "user";
         public static final String COLUMN_NAME_USER_UUID = "user_uuid";
