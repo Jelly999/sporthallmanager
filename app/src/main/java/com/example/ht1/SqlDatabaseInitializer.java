@@ -44,7 +44,7 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
             final String SQL_CREATE_RESERVATION =
                     "CREATE TABLE " + SqlTablenames.reservationsTable.TABLE_NAME + " (" +
                             SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                            SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + " TEXT NOT NULL," +
+                            SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + " INTEGER," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_SPORT + " TEXT NOT NULL DEFAULT 'default'," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + " TEXT NOT NULL," +
                             SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + " INTEGER NOT NULL," +

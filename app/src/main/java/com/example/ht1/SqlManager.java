@@ -141,7 +141,6 @@ public class SqlManager {
                     SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID + "," +
-                    SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT +
                     ") VALUES " + "(";
             for (int i = 0; i < userInfo.length; i++) {
@@ -230,7 +229,7 @@ public class SqlManager {
         }
     }
 
-    //Methods for adding and removing user access tu universities
+    //Methods for adding and removing user access to universities
     public static class SQLaccess {
 
         private static String TABLE_NAME;
@@ -257,9 +256,11 @@ public class SqlManager {
         }
     }
 
+    ///// DATA FROM DATABASE TO OBJECTS /////
 
-    public static List<User> getUserFromDatabase() throws SQLException {
-        List<User> users = new ArrayList<>();
+    // userdata to user object
+    public static List<User> getUsersFromDatabase() throws SQLException {
+        List<User> userList = new ArrayList<>();
 
         Cursor cursor = Rdb.query(SqlTablenames.userTable.TABLE_NAME, null,
                 null, null, null, null,
@@ -305,18 +306,104 @@ public class SqlManager {
                 user.setPasswordHash(pwdHash);
                 user.setAdminPrivilege(admin);
 
+                userList.add(user);
+
             } while (cursor.moveToNext());
 
         }
+        cursor.close(); // TODO Cursorin sulkeminen?
 
-        return null;
+        return userList;
+    }
+
+    // sporthalldata to object
+    public static List<Sporthall> getSporthallsFromDatabase() {
+        List<Sporthall> hallList = new ArrayList<>();
+
+        // TODO Tänne rawquery joka noutaa yliopiston tiedot (uuid ja UNI_NAME)
+        // https://stackoverflow.com/questions/4957009/how-do-i-join-two-sqlite-tables-in-my-android-application
+        // https://blog.fossasia.org/doing-a-table-join-in-android-without-using-rawquery/
+        // https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
+        // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
+        // TODO Jostain inputtina minkä yliopiston tietoja haetaan (UNI_UUID 1=LUT, 2=toisena lisätty....)
+        String rawQuery = "SELECT "+SqlTablenames.sporthallTable.COLUMN_NAME_HALLID+" FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
+                + " ON " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = " + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
+                + " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = 1";
+        Cursor c = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+        c.close();
+
+        Cursor cursor = Rdb.query(SqlTablenames.sporthallTable.TABLE_NAME, null,
+                null, null, null, null,
+                SqlTablenames.sporthallTable.COLUMN_NAME_HALLID);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int ID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_HALLID
+                ));
+                String name = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME
+                ));
+                int uniID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
+                ));
+                String type = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE
+                ));
+                boolean notAvailable = (cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE
+                )) == 1);
+
+                Sporthall sporthall = new Sporthall();
+                sporthall.setUUID(ID);
+                sporthall.setName(name);
+                //TODO: Universityn nimi? sporthall.setUniversityName(naenae)
+                // TODO Täytyy hakea rawQuery innerjoin sporthall --> sporthall_university --> university
+                sporthall.setType(type);
+                sporthall.setDisabled(notAvailable);
+
+                hallList.add(sporthall);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return hallList;
+    }
+
+
+    public static List<Reservation> getReservationsFromDatabase(Sporthall sporthall) {
+        List<Reservation> reservationList = new ArrayList<>();
+        // TODO ajattelin että voisi hakea reservationit jokaiselle sporthall erikseen,
+        // TODO säästäisi hieman prosessointiaikaa
+
+        String[] sporthallID = {Integer.toString(sporthall.getUUID())}; // The id of the sporthall
+        String whereClause = SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + " = ?";
+
+        Cursor cursor = Rdb.query(SqlTablenames.reservationsTable.TABLE_NAME,null,
+                whereClause, sporthallID,
+                null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Reservation reservation = new Reservation();
+
+                //TODO Reservation olion setterit
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return reservationList;
     }
 
     /////////////////////////////////
     //PRESETTING VALUES TO DATABASE//
     /////////////////////////////////
 
-    public void presetDatabaseValues() {
+    public static void presetDatabaseValues() {
 
         //User preset values
         String[] user = {"admin", "admin", "admin", "admin.admin@adminmail.com", "0500628689", PasswordManager.getHashedPassword("admin", "admin"), "1" };
