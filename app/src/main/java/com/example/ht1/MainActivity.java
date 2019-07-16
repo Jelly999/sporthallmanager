@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (loginSuccess == true){
-            //Go to main menu
+            //On login button press --> Go to main menu
         }
     }
 
