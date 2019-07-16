@@ -280,52 +280,50 @@ public class SqlManager {
         // https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
         // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
         // TODO Jostain inputtina minkä yliopiston tietoja haetaan (UNI_UUID 1=LUT, 2=toisena lisätty....)
-        String rawQuery = "SELECT " + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_HALLID
-                + " FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
+        String rawQuery = "SELECT * FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
                 + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = "
-                + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
-                + " WHERE " + SqlTablenames.universitiesTable.TABLE_NAME + "." +  SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = 1";
+                + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + ";";
         Cursor c = Rdb.rawQuery(
                 rawQuery,
                 null
         );
-        c.close();
+        /*c.close();
 
         Cursor cursor = Rdb.query(SqlTablenames.sporthallTable.TABLE_NAME, null,
                 null, null, null, null,
-                SqlTablenames.sporthallTable.COLUMN_NAME_HALLID);
+                SqlTablenames.sporthallTable.COLUMN_NAME_HALLID);*/
 
-        if (cursor.moveToFirst()) {
+        if (c.moveToFirst()) {
             do {
-                int ID = cursor.getInt(cursor.getColumnIndex(
+                int ID = c.getInt(c.getColumnIndex(
                         SqlTablenames.sporthallTable.COLUMN_NAME_HALLID
                 ));
-                String name = cursor.getString(cursor.getColumnIndex(
+                String name = c.getString(c.getColumnIndex(
                         SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME
                 ));
-                int uniID = cursor.getInt(cursor.getColumnIndex(
-                        SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
+                String uniname = c.getString(c.getColumnIndex(
+                        SqlTablenames.universitiesTable.COLUMN_NAME_NAME
                 ));
-                String type = cursor.getString(cursor.getColumnIndex(
+                String type = c.getString(c.getColumnIndex(
                         SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE
                 ));
-                boolean notAvailable = (cursor.getInt(cursor.getColumnIndex(
+                boolean notAvailable = (c.getInt(c.getColumnIndex(
                         SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE
                 )) == 1);
 
                 Sporthall sporthall = new Sporthall();
                 sporthall.setUUID(ID);
                 sporthall.setName(name);
-                //TODO: Universityn nimi? sporthall.setUniversityName(naenae)
+                sporthall.setUniversityName(uniname);
                 // TODO Täytyy hakea rawQuery innerjoin sporthall --> sporthall_university --> university
                 sporthall.setType(type);
                 sporthall.setDisabled(notAvailable);
 
                 hallList.add(sporthall);
 
-            } while (cursor.moveToNext());
+            } while (c.moveToNext());
         }
-        cursor.close();
+        c.close();
 
         return hallList;
     }
@@ -400,6 +398,7 @@ public class SqlManager {
         hall = new String[]{ "'Kerbiili'", "1", "'Multipurpose'", "0" };
         SQLsporthall.insertRow(hall);
         hall = new String[]{ "'Gerbiili'", "1", "'Gym'", "0" };
+        SQLsporthall.insertRow(hall);
 
         //Reservations preset values
         String[] reserved = { "2", "'Floorball'", "'2019-07-20T14:00'", "2", "2", "20", "0" };
