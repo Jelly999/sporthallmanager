@@ -2,6 +2,7 @@ package com.example.ht1;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.out.println("Help!");
         //CardView card = new CardView();
-
         // TODO tämä tässä vain testiä varten
         if (databaseExists()) {
             Log.d("FILE", "ON OLEMASSA!");

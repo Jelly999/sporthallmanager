@@ -25,6 +25,9 @@ public class SqlManager {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
         Wdb = dbHelper.getWritableDatabase();
         Rdb = dbHelper.getReadableDatabase();
+        // Lets ser PRAGMA foreign_keys = ON; so cascade will work
+        String SQLquery = "PRAGMA foreign_keys = ON;";
+        Wdb.execSQL(SQLquery);
     }
 
 
