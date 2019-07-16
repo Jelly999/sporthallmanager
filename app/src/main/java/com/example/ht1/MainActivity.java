@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,14 @@ public class MainActivity extends AppCompatActivity {
         //CardView card = new CardView();
 
         // TODO tämä tässä vain testiä varten
-        new SqlManager(this);
-        SqlManager.presetDatabaseValues();
+        if (databaseExists()) {
+            Log.d("FILE", "ON OLEMASSA!");
+            new SqlManager(this);
+        } else {
+            Log.d("FILE", "EI OLE OLEMASSA");
+            new SqlManager(this); // This must be after the existance of the file is checked
+            SqlManager.presetDatabaseValues();
+        }
         sqlTest();
         // Testi loppu
         {
@@ -58,6 +65,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public boolean databaseExists() {
+        File file = new File("/data/data/com.example.ht1/databases/sporthallmanager.db");
+        if (file.exists()) {
+            return true;
+        }
+        return false;
+    }
+
     public static void sqlTest() { // TODO DELETE ONCE TEST OVER
         List<User> userList = SqlManager.getUsersFromDatabase();
         Log.d("TEST", "TEST MESSAGE");
