@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         reservationManager = new ReservationManager();
         reservationManager.logAllUsers("OBJECT");
         reservationManager.logAllSporthalls("OBJECT");
+        reservationManager.logAllReservations("OBJECT");
     }
 
     public void login(View V){

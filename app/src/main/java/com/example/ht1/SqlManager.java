@@ -383,6 +383,7 @@ public class SqlManager {
 
                 Reservation reservation = new Reservation();
                 reservation.setUUID(ID);
+                reservation.setParent(sporthall);
                 reservation.setSport(sport);
                 reservation.setStartCalendar(startTime);
                 reservation.setEndFromStartDur(startTime, duration);

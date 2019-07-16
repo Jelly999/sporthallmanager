@@ -106,19 +106,24 @@ public class ReservationManager {
         updateReservationsFromSQL(sporthall);
     }
 
-    public boolean removeReservation(Sporthall sporthall, Reservation reservation) {
+    /*public boolean removeReservation(Sporthall sporthall, Reservation reservation) {
         if (reservation != null) {
             return sporthall.removeReservation(reservation);
         }
         return false;
-    }
+    }*/
 
-    public void clearAllSporthalls(Boolean areYouSerious) {
-        if (areYouSerious) {
-            sporthallsList.clear();
+    // STATIC FOR VISIBILITY
+    /*public static Sporthall getSporthallFromID(int ID) {
+        for (Sporthall sporthall : sporthallsList) {
+            if (sporthall.getUUID() == ID) {
+                return sporthall;
+            }
         }
-    }
+        return null;
+    }*/
 
+    //TODO SQL BASED?
     public void removeAllUserReservations(User owner) {
 
         for (Sporthall sporthall : sporthallsList) { // Goes through every sporthall
@@ -141,6 +146,12 @@ public class ReservationManager {
     public void logAllSporthalls(String TAG) {
         for (Sporthall sporthall : sporthallsList) {
             Log.d(TAG, sporthall.toString());
+        }
+    }
+
+    public void logAllReservations(String TAG) {
+        for (Sporthall sporthall : sporthallsList) {
+            sporthall.logAllReservations(TAG);
         }
     }
 
