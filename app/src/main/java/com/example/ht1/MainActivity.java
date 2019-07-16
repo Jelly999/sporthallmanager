@@ -1,7 +1,9 @@
 package com.example.ht1;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,19 +71,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean databaseExists() {
-        File file = new File("/data/data/com.example.ht1/databases/sporthallmanager.db");
-        if (file.exists()) {
-            return true;
-        }
-        return false;
+        //String path = this.getDir("databases",Context.MODE_PRIVATE).toString();
+        String path = this.getFilesDir().getPath();
+        path = path.substring(0,28);
+        path += "/databases";
+        path += "/sporthallmanager.db";
+        File file = new File(path);
+        Log.d("FILE", path);
+        return file.exists();
     }
 
     public static void sqlTest() { // TODO DELETE ONCE TEST OVER
         List<User> userList = SqlManager.getUsersFromDatabase();
-        Log.d("TEST", "TEST MESSAGE");
-        Log.d("TEST", Integer.toString(userList.size()));
+        Log.d("SQL", "Number of users: " + userList.size());
         for (User user : userList) {
-            Log.d("TEST", user.toString());
+            Log.d("SQL", user.toString());
         }
     }
 
