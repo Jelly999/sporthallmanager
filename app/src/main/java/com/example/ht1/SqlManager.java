@@ -18,8 +18,8 @@ public class SqlManager {
 
     private static SqlManager uniqueInstance;
 
-    private static SQLiteDatabase Wdb; //TODO Tämä varmaan pitänee olla täällä?
-    private static SQLiteDatabase Rdb; //TODO Tätä varmaan TARVITAAN/KÄYTETÄÄN?
+    private static SQLiteDatabase Wdb;
+    private static SQLiteDatabase Rdb;
 
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
@@ -27,16 +27,13 @@ public class SqlManager {
         Rdb = dbHelper.getReadableDatabase();
     }
 
+
     public static SqlManager getInstance(Context context) {
         if (uniqueInstance == null) {
             uniqueInstance = new SqlManager(context);
         }
         return uniqueInstance;
     }
-
-    //TODO tänne ennalta määritetyt taulukon sisällöt käyttämällä SQLwriteRowia
-    //TODO Toimiiko tämä
-
 
 
     public static class SQLuser {
@@ -62,6 +59,7 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + SqlTablenames.userTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
@@ -75,6 +73,7 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
     }
+
 
     public static class SQLsporthall{
 
@@ -96,6 +95,7 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + SqlTablenames.sporthallTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
@@ -103,13 +103,14 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.sporthallTable.TABLE_NAME +
                     " WHERE " + SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
-
     }
+
 
     public static class SQLreservation {
 
@@ -135,12 +136,14 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + SqlTablenames.reservationsTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
+
 
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.reservationsTable.TABLE_NAME +
@@ -161,6 +164,7 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.enrollsTable.TABLE_NAME +
                     " WHERE " + SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID + " = " + UUID + ";";
@@ -180,12 +184,14 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + SqlTablenames.universitiesTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
+
 
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.universitiesTable.TABLE_NAME +
@@ -205,6 +211,7 @@ public class SqlManager {
 
             Wdb.execSQL(SQLquery);
         }
+
 
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.user_access_uni_Table.TABLE_NAME +
@@ -277,12 +284,7 @@ public class SqlManager {
     public static List<Sporthall> getSporthallsFromDatabase() {
         List<Sporthall> hallList = new ArrayList<>();
 
-        // TODO Tänne rawquery joka noutaa yliopiston tiedot (uuid ja UNI_NAME)
-        // https://stackoverflow.com/questions/4957009/how-do-i-join-two-sqlite-tables-in-my-android-application
-        // https://blog.fossasia.org/doing-a-table-join-in-android-without-using-rawquery/
-        // https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
-        // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
-        // TODO Jostain inputtina minkä yliopiston tietoja haetaan (UNI_UUID 1=LUT, 2=toisena lisätty....)
+        // tässä sporthalliin liitetään yliopiston tiedot
         String rawQuery = "SELECT * FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
                 + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = "
                 + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + ";";
@@ -290,11 +292,6 @@ public class SqlManager {
                 rawQuery,
                 null
         );
-        /*c.close();
-
-        Cursor cursor = Rdb.query(SqlTablenames.sporthallTable.TABLE_NAME, null,
-                null, null, null, null,
-                SqlTablenames.sporthallTable.COLUMN_NAME_HALLID);*/
 
         if (c.moveToFirst()) {
             do {
