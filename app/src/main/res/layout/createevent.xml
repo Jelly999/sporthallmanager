@@ -7,7 +7,7 @@
     android:background="#2f2f2f">
 
     <Spinner
-        android:id="@+id/UniSpinner"
+        android:id="@+id/UniSpinner_MUser"
         android:layout_width="272dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
@@ -17,20 +17,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/bDisablehall_MHalls"
         android:layout_width="96dp"
-        android:layout_height="45dp"
+        android:layout_height="56dp"
         android:layout_marginStart="11dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="24dp"
         android:text="@string/select_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/UniSpinner"
+        app:layout_constraintStart_toEndOf="@+id/UniSpinner_MUser"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editNewUniName"
+        android:id="@+id/eSetUserName_MUser"
         android:layout_width="256dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
     <EditText
-        android:id="@+id/editNewHallLocation"
+        android:id="@+id/tUsername_login"
         android:layout_width="256dp"
         android:layout_height="46dp"
         android:layout_marginStart="17dp"
@@ -78,10 +78,10 @@
         android:textColorHint="#F2F5F8"
         app:layout_constraintEnd_toStartOf="@+id/button16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/bAddNewUser_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="77dp"
@@ -89,7 +89,7 @@
         android:layout_marginBottom="72dp"
         android:text="@string/create_event_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button12"
+        app:layout_constraintEnd_toStartOf="@+id/bCancel_MUser"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -107,11 +107,11 @@
         android:id="@+id/button16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="38dp"
         android:layout_marginEnd="32dp"
         android:text="@string/confirm_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10" />
+        app:layout_constraintTop_toBottomOf="@+id/bDisablehall_MHalls" />
 
     <Button
         android:id="@+id/button15"
@@ -134,12 +134,12 @@
         app:layout_constraintTop_toBottomOf="@+id/button14" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/bCancel_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="92dp"
         android:layout_marginBottom="72dp"
-        android:text="@string/main_menu_button"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -158,7 +158,7 @@
         android:textColorHint="#F2F5F8"
         app:layout_constraintEnd_toStartOf="@+id/button14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNewHallLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/tUsername_login" />
 
     <TextView
         android:id="@+id/textView2"
@@ -168,7 +168,7 @@
         android:text="@string/Select_hall_text"
         android:textColor="#F2F5F8"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/UniSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/UniSpinner_MUser"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Switch
@@ -195,7 +195,7 @@
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNewUniName" />
+        app:layout_constraintTop_toBottomOf="@+id/eSetUserName_MUser" />
 
     <Button
         android:id="@+id/button"

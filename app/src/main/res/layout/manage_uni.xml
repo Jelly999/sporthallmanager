@@ -8,30 +8,27 @@
     android:background="#2f2f2f">
 
     <Spinner
-        android:id="@+id/UniSpinner"
+        android:id="@+id/UniSpinner_MUser"
         android:layout_width="389dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="96dp"
-        android:layout_marginEnd="8dp"
         android:backgroundTint="#F2F5F8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/bDeleteUser_MUser"
         android:layout_width="256dp"
         android:layout_height="53dp"
         android:layout_marginStart="76dp"
         android:layout_marginTop="28dp"
         android:text="@string/delete_uni_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
 
     <EditText
-        android:id="@+id/editNewUniName"
+        android:id="@+id/eSetUserName_MUser"
         android:layout_width="300dp"
         android:layout_height="64dp"
         android:layout_marginStart="52dp"
@@ -42,11 +39,11 @@
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintBottom_toTopOf="@+id/editNewUniAddr"
+        app:layout_constraintBottom_toTopOf="@+id/eSetUserPassword_MUser"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editNewUniAddr"
+        android:id="@+id/eSetUserPassword_MUser"
         android:layout_width="300dp"
         android:layout_height="64dp"
         android:layout_marginStart="52dp"
@@ -57,53 +54,50 @@
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintBottom_toTopOf="@+id/button11"
+        app:layout_constraintBottom_toTopOf="@+id/bAddNewUser_MUser"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/bAddNewUser_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginStart="64dp"
         android:layout_marginBottom="72dp"
         android:text="@string/add_uni_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button12"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/bCancel_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
+        android:layout_marginStart="11dp"
         android:layout_marginBottom="72dp"
-        android:text="@string/main_menu_button"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tStatic1_MUni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:text="@string/select_uni_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/UniSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/UniSpinner_MUser"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tStatic2_MUni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/create_new_uni_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editNewUniName"
+        app:layout_constraintBottom_toTopOf="@+id/eSetUserName_MUser"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,6 +61,8 @@
     <string name="select_user_text">Select User</string>
     <string name="select_uni_text">Select University</string>
     <string name="create_new_uni_text">Create new University</string>
+    <string name="cancel">Cancel</string>
+    <string name="create_new_hall_text">Create new hall</string>
 
 
 </resources>

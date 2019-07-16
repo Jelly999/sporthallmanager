@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,98 +7,90 @@
     android:background="#2f2f2f">
 
     <Spinner
-        android:id="@+id/UniSpinner"
+        android:id="@+id/UniSpinner_MUser"
         android:layout_width="389dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="96dp"
-        android:layout_marginEnd="8dp"
         android:backgroundTint="#F2F5F8"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/bReservations_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:text="@string/get_reservations_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/bDeleteUser_MUser"
         android:layout_width="80dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:text="@string/Delete_hall_button"
-        app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
+        app:layout_constraintStart_toEndOf="@+id/bReservations_MUser"
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/bDeleteUserReservation_MUser"
         android:layout_width="80dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:text="@string/enable_button"
-        app:layout_constraintStart_toEndOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
+        app:layout_constraintStart_toEndOf="@+id/bDeleteUser_MUser"
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/bDisablehall_MHalls"
         android:layout_width="80dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="17dp"
         android:text="@string/disable_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toEndOf="@+id/button9"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner" />
+        app:layout_constraintStart_toEndOf="@+id/bDeleteUserReservation_MUser"
+        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
 
     <EditText
-        android:id="@+id/editNewUniName"
+        android:id="@+id/eSetUserName_MUser"
         android:layout_width="194dp"
         android:layout_height="45dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="11dp"
         android:autofillHints="@string/set_halltype_text"
         android:ems="10"
         android:hint="@string/set_halltype_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNewHallname" />
+        app:layout_constraintStart_toEndOf="@+id/eNewHallLocation_MHalls"
+        app:layout_constraintTop_toBottomOf="@+id/eNewHallname_MHalls" />
 
     <EditText
-        android:id="@+id/editNewHallLocation"
+        android:id="@+id/eNewHallLocation_MHalls"
         android:layout_width="172dp"
         android:layout_height="44dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="24dp"
         android:autofillHints="@string/set_hall_location_text"
         android:ems="10"
         android:hint="@string/set_hall_location_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/editNewUniName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNewHallname" />
+        app:layout_constraintTop_toBottomOf="@+id/eNewHallname_MHalls" />
 
     <EditText
-        android:id="@+id/editNewHallname"
+        android:id="@+id/eNewHallname_MHalls"
         android:layout_width="390dp"
         android:layout_height="43dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="11dp"
         android:layout_marginBottom="216dp"
         android:autofillHints="@string/set_hallname_text"
         android:ems="10"
@@ -108,54 +99,49 @@
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/bAddNewUser_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="77dp"
-        android:layout_marginEnd="26dp"
         android:layout_marginBottom="72dp"
         android:text="@string/create_hall_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button12"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/bCancel_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
+        android:layout_marginStart="49dp"
         android:layout_marginBottom="72dp"
-        android:text="@string/main_menu_button"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textStatic1_MHall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:text="Select hall"
+        android:text="@string/Select_hall_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/UniSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/UniSpinner_MUser"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textStatic2_MHall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginBottom="32dp"
-        android:text="Create new hall"
+        android:text="@string/create_new_hall_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editNewHallname"
+        app:layout_constraintBottom_toTopOf="@+id/eNewHallname_MHalls"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

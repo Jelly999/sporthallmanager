@@ -39,9 +39,9 @@ public class PasswordManager {
     // Checks if authentication code is correct
     public boolean authenticated(View view){
         String randomintvalue = authNumbers();
-        TextView randomint = view.findViewById(R.id.text_randint);
+        TextView randomint = view.findViewById(R.id.text_randint_auth);
         randomint.setText(randomintvalue);
-        EditText value = view.findViewById(R.id.edit_inputint);
+        EditText value = view.findViewById(R.id.edit_inputint_auth);
         String input = value.getText().toString();
         if (randomintvalue == input){
             return true;
