@@ -441,10 +441,6 @@ public class SqlManager {
                 whereClause, reservationID,
                 null, null, null);
 
-        Cursor cursor = Rdb.query(SqlTablenames.enrollsTable.TABLE_NAME, null,
-                null, null, null, null,
-                SqlTablenames.userTable.COLUMN_NAME_USER_UUID);
-
         if (cursor.moveToFirst()) {
             do {
                 int enrollID = cursor.getInt(cursor.getColumnIndex(

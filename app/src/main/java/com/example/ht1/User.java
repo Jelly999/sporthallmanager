@@ -2,6 +2,8 @@ package com.example.ht1;
 
 public class User {
 
+    private static User currentlyLoggedin;
+
     private int UUID;                       // User's UUID
     private String userName;                // Username
     private String firstName;
@@ -18,6 +20,8 @@ public class User {
     }
 
 
+    public static User getCurrentUser() {return currentlyLoggedin;}
+    public static void setCurrentUser(User newUser) {currentlyLoggedin = newUser;}
 
 
     // ======= PUBLIC GETTERS =======

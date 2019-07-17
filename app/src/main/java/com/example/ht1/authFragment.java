@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import java.util.Random;
 
 public class authFragment extends Fragment {
+
+    private EditText userNameInput;
+    private EditText passwordInput;
     private TextView randomint;
 
     @Override
@@ -22,11 +25,15 @@ public class authFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+    }
 
-
-}
-
-
-
-
+    /*public void authbutton(View v){
+        System.out.println("auth button");
+        String authNumbers = "";
+        EditText rinput = findViewById(R.id.edit_inputint_auth);
+        String numbers = rinput.getText().toString();
+        if (authNumbers != numbers) {
+            launchMainMenu();
+        }
+    }*/
 }
