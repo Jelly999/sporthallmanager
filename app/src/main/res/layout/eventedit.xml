@@ -10,7 +10,7 @@
         android:id="@+id/textStaticJoinevent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:text="@string/select_eventID_text"
         android:textColor="#F2F5F8"
         android:textSize="24sp"
@@ -21,7 +21,7 @@
         android:id="@+id/sporthallSpinner_createevent"
         android:layout_width="272dp"
         android:layout_height="43dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="72dp"
         android:backgroundTint="#F2F5F8"
         android:foregroundTint="#00000000"
@@ -42,69 +42,61 @@
 
     <EditText
         android:id="@+id/eSetUserName_MUser"
-        android:layout_width="257dp"
+        android:layout_width="374dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="18dp"
         android:autofillHints="@string/edit_maximumparticipants_text"
         android:ems="10"
         android:hint="@string/edit_maximumparticipants_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/button15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
     <EditText
         android:id="@+id/editText6"
-        android:layout_width="257dp"
-        android:layout_height="47dp"
+        android:layout_width="374dp"
+        android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="18dp"
         android:autofillHints="@string/edit_duration_text"
         android:ems="10"
         android:hint="@string/edit_duration_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/button17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eNewHallname_MHalls" />
 
     <EditText
         android:id="@+id/eUsername_login"
-        android:layout_width="256dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="18dp"
+        android:layout_width="374dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:autofillHints="@string/set_event_sport_text"
         android:ems="10"
         android:hint="@string/set_event_sport_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/button16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
 
     <EditText
         android:id="@+id/eNewHallname_MHalls"
-        android:layout_width="259dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="15dp"
+        android:layout_width="374dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="17dp"
         android:autofillHints="@string/change_sporthall_text"
         android:ems="10"
         android:hint="@string/change_sporthall_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/button14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eUsername_login" />
 
@@ -114,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="77dp"
         android:layout_marginEnd="26dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/save_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bCancel_MUser"
@@ -122,51 +114,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/confirm_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button16" />
-
-    <Button
-        android:id="@+id/button16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/confirm_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bDisablehall_MHalls" />
-
-    <Button
-        android:id="@+id/button15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/confirm_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button17" />
-
-    <Button
-        android:id="@+id/button17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/confirm_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button14" />
-
-    <Button
         android:id="@+id/bCancel_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="92dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -175,17 +127,17 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:text="@string/remove_reservation_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button15" />
+        app:layout_constraintTop_toBottomOf="@+id/eSetUserName_MUser" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:text="@string/export_CSV_button"
         app:layout_constraintEnd_toEndOf="parent"
