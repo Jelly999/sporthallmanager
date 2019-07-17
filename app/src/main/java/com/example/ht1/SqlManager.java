@@ -428,6 +428,51 @@ public class SqlManager {
     }
 
 
+    // get enrolls from database
+    public static List<Enroll> getEnrollsFromDatabase(Reservation reservation) throws SQLException {
+        List<Enroll> enrollsList = new ArrayList<>();
+        // TODO ajattelin että voisi hakea enrollit jokaiselle reservationille erikseen,
+        // TODO säästäisi hieman prosessointiaikaa
+
+        String[] reservationID = {Integer.toString(reservation.getUUID())}; // The id of the reservation
+        String whereClause = SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID + " = ?";
+
+        Cursor cursor = Rdb.query(SqlTablenames.reservationsTable.TABLE_NAME,null,
+                whereClause, reservationID,
+                null, null, null);
+
+        Cursor cursor = Rdb.query(SqlTablenames.enrollsTable.TABLE_NAME, null,
+                null, null, null, null,
+                SqlTablenames.userTable.COLUMN_NAME_USER_UUID);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int enrollID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID
+                ));
+                int reserveID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID
+                ));
+                int userUUID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.enrollsTable.COLUMN_NAME_USER_UUID
+                ));
+
+
+                Enroll enroll = new Enroll();
+
+                enroll.setEnrollID(enrollID);
+                enroll.setReserveID(reserveID);
+                enroll.setUserUUID(userUUID);
+
+                enrollsList.add(enroll);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return enrollsList;
+    }
+
+
     /////////////////////////////////
     //PRESETTING VALUES TO DATABASE//
     /////////////////////////////////
