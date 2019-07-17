@@ -201,6 +201,29 @@ public class MainActivity extends AppCompatActivity {
         String numbers = rinput.getText().toString();
         if (authNumbers != numbers) {
             launchMainMenu();
+    public void login(){
+        launchlogin();
+        EditText input = findViewById(R.id.eUsername_login);
+        String username = input.getText().toString();
+        input = findViewById(R.id.eUsername_login);
+        String password = input.getText().toString();
+        String pwdhash = PasswordManager.getHashedPassword(password, username);
+        String pwdhashdb = "";//getPasswordHash(username); // Get password hash from database
+        boolean loginSuccess = false;
+        if (pwdhash == pwdhashdb){
+            //Go to Authenticator fragment
+            launchAuth();
+            String authNumbers = PasswordManager.authNumbers();
+            TextView output = findViewById(R.id.text_randint_auth);
+            output.setText(authNumbers);
+            EditText rinput = findViewById(R.id.edit_inputint_auth);
+            String numbers = rinput.getText().toString();
+            if (authNumbers == numbers){
+                loginSuccess = true;
+            }
+        }
+        if (loginSuccess == true){
+            //On login button press --> Go to main menu
         }
     }
 
