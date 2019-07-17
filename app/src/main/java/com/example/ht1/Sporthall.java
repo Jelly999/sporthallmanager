@@ -3,6 +3,7 @@ package com.example.ht1;
 //TODO Sali-luokka, joka pitää kirjaa salin varaus-olioista
 
 import android.net.wifi.aware.PublishConfig;
+import android.util.Log;
 
 import java.net.IDN;
 import java.sql.Struct;
@@ -65,15 +66,6 @@ public class Sporthall {
         return false;
     }
 
-    public boolean removeReservation(Reservation reservation) {
-        if (doesReservationExist(reservation)) {
-            reservationsList.remove(reservation);
-            reservation = null; //TODO onko tarpeellinen rivi?
-            return true;
-        }
-        return false;
-    }
-
     public void removeAllUserReservations(User owner) { // Removes all reservations by owner iterating
         Iterator iterator = reservationsList.iterator();
         while (iterator.hasNext()) {
@@ -81,11 +73,17 @@ public class Sporthall {
                 iterator.remove();
             }
         }
+    } //TODO REMOVE ALL USERS SQL??
+
+    public void logAllReservations(String TAG) {
+        for (Reservation reservation : reservationsList) {
+            Log.d(TAG, reservation.toString());
+        }
     }
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (UUID + " " + name + " " + universityName + " " + disabled);
+        return (UUID + " " + name + " " + type + " " + universityName + " " + disabled);
     }
 
 

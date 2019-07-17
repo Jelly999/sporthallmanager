@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -38,16 +41,8 @@ public class SqlManager {
 
     public static class SQLuser {
 
-        private static String TABLE_NAME;
-        private static String USER_UUID;
-
-        SQLuser() {
-            TABLE_NAME = SqlTablenames.userTable.TABLE_NAME;
-            USER_UUID = SqlTablenames.userTable.COLUMN_NAME_USER_UUID;
-        }
-
         public static void insertRow(String[] userInfo) {
-            String SQLquery = "INSERT INTO " + TABLE_NAME + "(" +
+            String SQLquery = "INSERT INTO " + SqlTablenames.userTable.TABLE_NAME + "(" +
                     SqlTablenames.userTable.COLUMN_NAME_USERNAME + "," +
                     SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME + "," +
                     SqlTablenames.userTable.COLUMN_NAME_SURNAME + "," +
@@ -68,31 +63,23 @@ public class SqlManager {
         }
 
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
-            String SQLquery = "UPDATE " + TABLE_NAME +
+            String SQLquery = "UPDATE " + SqlTablenames.userTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
-                    " WHERE " + USER_UUID + " = " + UUID + ";";
+                    " WHERE " + SqlTablenames.userTable.COLUMN_NAME_USER_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
 
         public static void removeRow(String UUID) {
-            String SQLquery = "DELETE FROM " + TABLE_NAME +
-                    " WHERE " + USER_UUID + " = " + UUID + ";";
+            String SQLquery = "DELETE FROM " + SqlTablenames.userTable.TABLE_NAME +
+                    " WHERE " + SqlTablenames.userTable.COLUMN_NAME_USER_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
     }
 
     public static class SQLsporthall{
 
-        private static String TABLE_NAME;
-        private static String HALL_UUID;
-
-        SQLsporthall() {
-            TABLE_NAME = SqlTablenames.sporthallTable.TABLE_NAME;
-            HALL_UUID = SqlTablenames.sporthallTable.COLUMN_NAME_HALLID;
-        }
-
         public static void insertRow(String[] hallInfo) {
-            String SQLquery = "INSERT INTO " + TABLE_NAME + "(" +
+            String SQLquery = "INSERT INTO " + SqlTablenames.sporthallTable.TABLE_NAME + "(" +
                     SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME + "," +
                     SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + "," +
                     SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + "," +
@@ -110,15 +97,15 @@ public class SqlManager {
         }
 
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
-            String SQLquery = "UPDATE " + TABLE_NAME +
+            String SQLquery = "UPDATE " + SqlTablenames.sporthallTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
-                    " WHERE " + HALL_UUID + " = " + UUID + ";";
+                    " WHERE " + SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
 
         public static void removeRow(String UUID) {
-            String SQLquery = "DELETE FROM " + TABLE_NAME +
-                    " WHERE " + HALL_UUID + " = " + UUID + ";";
+            String SQLquery = "DELETE FROM " + SqlTablenames.sporthallTable.TABLE_NAME +
+                    " WHERE " + SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
 
@@ -126,21 +113,15 @@ public class SqlManager {
 
     public static class SQLreservation {
 
-        private static String TABLE_NAME;
-        private static String RESERVE_UUID;
-
-        SQLreservation() {
-            TABLE_NAME = SqlTablenames.reservationsTable.TABLE_NAME;
-            RESERVE_UUID = SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID;
-        }
-
         public static void insertRow(String[] userInfo) {
-            String SQLquery = "INSERT INTO " + TABLE_NAME + "(" +
+            String SQLquery = "INSERT INTO " + SqlTablenames.reservationsTable.TABLE_NAME + "(" +
                     SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_SPORT + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID + "," +
+                    SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + "," +
+
                     SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT +
                     ") VALUES " + "(";
             for (int i = 0; i < userInfo.length; i++) {
@@ -155,15 +136,15 @@ public class SqlManager {
         }
 
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
-            String SQLquery = "UPDATE " + TABLE_NAME +
+            String SQLquery = "UPDATE " + SqlTablenames.reservationsTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
-                    " WHERE " + RESERVE_UUID + " = " + UUID + ";";
+                    " WHERE " + SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
 
         public static void removeRow(String UUID) {
-            String SQLquery = "DELETE FROM " + TABLE_NAME +
-                    " WHERE " + RESERVE_UUID + " = " + UUID + ";";
+            String SQLquery = "DELETE FROM " + SqlTablenames.reservationsTable.TABLE_NAME +
+                    " WHERE " + SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
     }
@@ -171,16 +152,8 @@ public class SqlManager {
     //Methods for adding and removing enrolls
     public static class SQLenrolls {
 
-        private static String TABLE_NAME;
-        private static String ENROLLID;
-
-        SQLenrolls() {
-            TABLE_NAME = SqlTablenames.enrollsTable.TABLE_NAME;
-            ENROLLID = SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID;
-        }
-
         public static void insertRow(String USER_UUID, String RESERVEID) {
-            String SQLquery = "INSERT INTO " + TABLE_NAME + " (" +
+            String SQLquery = "INSERT INTO " + SqlTablenames.enrollsTable.TABLE_NAME + " (" +
                     SqlTablenames.enrollsTable.COLUMN_NAME_USER_UUID + "," +
                     SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID +
                     ") VALUES " + "(" + USER_UUID + ", " + RESERVEID + ");";
@@ -189,8 +162,8 @@ public class SqlManager {
         }
 
         public static void removeRow(String UUID) {
-            String SQLquery = "DELETE FROM " + TABLE_NAME +
-                    " WHERE " + ENROLLID + " = " + UUID + ";";
+            String SQLquery = "DELETE FROM " + SqlTablenames.enrollsTable.TABLE_NAME +
+                    " WHERE " + SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
     }
@@ -198,16 +171,8 @@ public class SqlManager {
     //Methods for adding, updating and removing universities
     public static class SQLuniversities {
 
-        private static String TABLE_NAME;
-        private static String UNI_UUID;
-
-        SQLuniversities() {
-            TABLE_NAME = SqlTablenames.universitiesTable.TABLE_NAME;
-            UNI_UUID = SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID;
-        }
-
         public static void insertRow(String UNI_NAME, String UNI_ADDRESS) {
-            String SQLquery = "INSERT INTO " + TABLE_NAME + " (" +
+            String SQLquery = "INSERT INTO " + SqlTablenames.universitiesTable.TABLE_NAME + " (" +
                     SqlTablenames.universitiesTable.COLUMN_NAME_NAME + "," +
                     SqlTablenames.universitiesTable.COLUMN_NAME_ADDRESS +
                     ") VALUES " + "(" + UNI_NAME + ", " + UNI_ADDRESS + ");";
@@ -216,15 +181,15 @@ public class SqlManager {
         }
 
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
-            String SQLquery = "UPDATE " + TABLE_NAME +
+            String SQLquery = "UPDATE " + SqlTablenames.universitiesTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
-                    " WHERE " + UNI_UUID + " = " + UUID + ";";
+                    " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
 
         public static void removeRow(String UUID) {
-            String SQLquery = "DELETE FROM " + TABLE_NAME +
-                    " WHERE " + UNI_UUID + " = " + UUID + ";";
+            String SQLquery = "DELETE FROM " + SqlTablenames.universitiesTable.TABLE_NAME +
+                    " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
     }
@@ -232,16 +197,8 @@ public class SqlManager {
     //Methods for adding and removing user access to universities
     public static class SQLaccess {
 
-        private static String TABLE_NAME;
-        private static String ACCESS_UUID;
-
-        SQLaccess() {
-            TABLE_NAME = SqlTablenames.user_access_uni_Table.TABLE_NAME;
-            ACCESS_UUID = SqlTablenames.user_access_uni_Table.COLUMN_NAME_ACCESS_UUID;
-        }
-
         public static void insertRow(String USER_UUID, String UNI_UUID) {
-            String SQLquery = "INSERT INTO " + TABLE_NAME + " (" +
+            String SQLquery = "INSERT INTO " + SqlTablenames.user_access_uni_Table.TABLE_NAME + " (" +
                     SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID + "," +
                     SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID +
                     ") VALUES " + "(" + USER_UUID + ", " + UNI_UUID + ");";
@@ -250,8 +207,8 @@ public class SqlManager {
         }
 
         public static void removeRow(String UUID) {
-            String SQLquery = "DELETE FROM " + TABLE_NAME +
-                    " WHERE " + ACCESS_UUID + " = " + UUID + ";";
+            String SQLquery = "DELETE FROM " + SqlTablenames.user_access_uni_Table.TABLE_NAME +
+                    " WHERE " + SqlTablenames.user_access_uni_Table.COLUMN_NAME_ACCESS_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
     }
@@ -326,50 +283,50 @@ public class SqlManager {
         // https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
         // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
         // TODO Jostain inputtina minkä yliopiston tietoja haetaan (UNI_UUID 1=LUT, 2=toisena lisätty....)
-        String rawQuery = "SELECT "+SqlTablenames.sporthallTable.COLUMN_NAME_HALLID+" FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
-                + " ON " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = " + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
-                + " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = 1";
+        String rawQuery = "SELECT * FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
+                + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = "
+                + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + ";";
         Cursor c = Rdb.rawQuery(
                 rawQuery,
                 null
         );
-        c.close();
+        /*c.close();
 
         Cursor cursor = Rdb.query(SqlTablenames.sporthallTable.TABLE_NAME, null,
                 null, null, null, null,
-                SqlTablenames.sporthallTable.COLUMN_NAME_HALLID);
+                SqlTablenames.sporthallTable.COLUMN_NAME_HALLID);*/
 
-        if (cursor.moveToFirst()) {
+        if (c.moveToFirst()) {
             do {
-                int ID = cursor.getInt(cursor.getColumnIndex(
+                int ID = c.getInt(c.getColumnIndex(
                         SqlTablenames.sporthallTable.COLUMN_NAME_HALLID
                 ));
-                String name = cursor.getString(cursor.getColumnIndex(
+                String name = c.getString(c.getColumnIndex(
                         SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME
                 ));
-                int uniID = cursor.getInt(cursor.getColumnIndex(
-                        SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID
+                String uniname = c.getString(c.getColumnIndex(
+                        SqlTablenames.universitiesTable.COLUMN_NAME_NAME
                 ));
-                String type = cursor.getString(cursor.getColumnIndex(
+                String type = c.getString(c.getColumnIndex(
                         SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE
                 ));
-                boolean notAvailable = (cursor.getInt(cursor.getColumnIndex(
+                boolean notAvailable = (c.getInt(c.getColumnIndex(
                         SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE
                 )) == 1);
 
                 Sporthall sporthall = new Sporthall();
                 sporthall.setUUID(ID);
                 sporthall.setName(name);
-                //TODO: Universityn nimi? sporthall.setUniversityName(naenae)
+                sporthall.setUniversityName(uniname);
                 // TODO Täytyy hakea rawQuery innerjoin sporthall --> sporthall_university --> university
                 sporthall.setType(type);
                 sporthall.setDisabled(notAvailable);
 
                 hallList.add(sporthall);
 
-            } while (cursor.moveToNext());
+            } while (c.moveToNext());
         }
-        cursor.close();
+        c.close();
 
         return hallList;
     }
@@ -387,9 +344,53 @@ public class SqlManager {
                 whereClause, sporthallID,
                 null, null, null);
 
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm");
+
         if (cursor.moveToFirst()) {
             do {
+
+                int ID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID
+                ));
+                String sport = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_SPORT
+                ));
+
+                // CALENDAR PARSE STARTS
+                Calendar startTime = Calendar.getInstance();
+                try {
+                    startTime.setTime(format.parse(cursor.getString(cursor.getColumnIndex(
+                            SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME
+                    ))));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                // CALENDAR PARSE ENDS
+
+                int duration = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_DURATION
+                ));
+                int ownerID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID
+                ));
+                int maxPart = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS
+                ));
+                int recurEvent = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT
+                ));
+
+
                 Reservation reservation = new Reservation();
+                reservation.setUUID(ID);
+                reservation.setParent(sporthall);
+                reservation.setSport(sport);
+                reservation.setStartCalendar(startTime);
+                reservation.setEndFromStartDur(startTime, duration);
+                reservation.setOwner(ownerID);
+                reservation.setMaxParticipants(maxPart);
+                // TODO RECURRING EVENT
+
 
                 //TODO Reservation olion setterit
             } while (cursor.moveToNext());
@@ -406,25 +407,25 @@ public class SqlManager {
     public static void presetDatabaseValues() {
 
         //User preset values
-        String[] user = {"admin", "admin", "admin", "admin.admin@adminmail.com", "0500628689", PasswordManager.getHashedPassword("admin", "admin"), "1" };
+        String[] user = {"'admin'", "'admin'", "'admin'", "'email'", "'0500628689'", "'" + PasswordManager.getHashedPassword("admin", "admin") + "'" , "1" };
         SQLuser.insertRow(user);
-        user = new String[]{"mattim", "Matti", "Meikäläinen", "Matti.Meikalainen@gmail.com", "0505689132", PasswordManager.getHashedPassword("44mUj40nP4lJ0n", "mattim"), "0"};
+        user = new String[]{"'mattim'", "'Matti'", "'Meikäläinen'", "'email'", "'0505689132'", "'" + PasswordManager.getHashedPassword("44mUj40nP4lJ0n", "mattim") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"rickv", "Rick", "Vang", "Rick.Vang@webmail.com", "0290909857", PasswordManager.getHashedPassword("AuR1nk#1n€n12?", "rickv"), "0"};
+        user = new String[]{"'rickv'", "'Rick'", "'Vang'", "'email'", "'0290909857'", "'" + PasswordManager.getHashedPassword("AuR1nk#1n€n12?", "rickv") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"jimb", "Jim", "Bass", "jimba89@gmail.com", "0440698602", PasswordManager.getHashedPassword("H3LL0@w0rld!!!", "jimb"), "0"};
+        user = new String[]{"'jimb'", "'Jim'", "'Bass'", "'email'", "'0440698602'", "'" + PasswordManager.getHashedPassword("H3LL0@w0rld!!!", "jimb") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"jonh", "John", "Denton", "Jonny.Boii@memes.com", "0400568223", PasswordManager.getHashedPassword("M€€mut0nK1v0ja", "jonh"), "0"};
+        user = new String[]{"'jonh'", "'John'", "'Denton'", "'email'", "'0400568223'", "'" + PasswordManager.getHashedPassword("M€€mut0nK1v0ja", "jonh") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"gregn", "Greg", "Novak", "Gregori.Nova@slavmail.ru", "0440666869", PasswordManager.getHashedPassword("##N0tY0uR5But0ur5##", "gregn"), "0"};
+        user = new String[]{"'gregn'", "'Greg'", "'Novak'", "'email'", "'0440666869'", "'" + PasswordManager.getHashedPassword("##N0tY0uR5But0ur5##", "gregn") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"omarm", "Omar", "Marshall", "FieldMarshall@USAmail.com", "0500911420", PasswordManager.getHashedPassword("M4k€US4Gr€4T4G4in", "omarm"), "0"};
+        user = new String[]{"'omarm'", "'Omar'", "'Marshall'", "'email'", "'0500911420'", "'" + PasswordManager.getHashedPassword("M4k€US4Gr€4T4G4in", "omarm") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"miac", "Mia", "Croft", "mia.croft@onlinemail.com", "0670884925", PasswordManager.getHashedPassword("M€€mut0nK1v0ja", "miac"), "0"};
+        user = new String[]{"'miac'", "'Mia'", "'Croft'", "'email'", "'0670884925'", "'" + PasswordManager.getHashedPassword("M€€mut0nK1v0ja", "miac") + "'" , "0"};
         SQLuser.insertRow(user);
 
         //Universities preset values
-        SQLuniversities.insertRow("LUT", "Yliopistonkatu 34, 53850 Lappeenranta");
+        SQLuniversities.insertRow("'LUT'", "'Yliopistonkatu 34, 53850 Lappeenranta'");
 
         //User_access_uni preset values
         SQLaccess.insertRow("1", "1");
@@ -437,18 +438,19 @@ public class SqlManager {
         SQLaccess.insertRow("8", "1");
 
         //Sporthall preset values
-        String[] hall = { "Gerpiili", "1", "Multipurpose", "0" };
+        String[] hall = { "'Gerpiili'", "1", "'Multipurpose'", "0" };
         SQLsporthall.insertRow(hall);
-        hall = new String[]{ "Kerpiili", "1", "Badminton", "0" };
+        hall = new String[]{ "'Kerpiili'", "1", "'Badminton'", "0" };
         SQLsporthall.insertRow(hall);
-        hall = new String[]{ "Kerbiili", "1", "Multipurpose", "0" };
+        hall = new String[]{ "'Kerbiili'", "1", "'Multipurpose'", "0" };
         SQLsporthall.insertRow(hall);
-        hall = new String[]{ "Gerbiili", "1", "Gym", "0" };
+        hall = new String[]{ "'Gerbiili'", "1", "'Gym'", "0" };
+        SQLsporthall.insertRow(hall);
 
         //Reservations preset values
-        String[] reserved = { "2", "Floorball", "2019-07-20T14:00", "2", "2", "20", "0" };
+        String[] reserved = { "2", "'Floorball'", "'2019-07-20T14:00'", "2", "2", "20", "0" };
         SQLreservation.insertRow(reserved);
-        reserved = new String[]{ "2", "Badminton", "2019-07-20T16:00", "4", "3", "10", "0" };
+        reserved = new String[]{ "2", "'Badminton'", "'2019-07-20T16:00'", "4", "3", "10", "0" };
         SQLreservation.insertRow(reserved);
 
         //Enrolls preset values

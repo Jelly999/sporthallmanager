@@ -10,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 
@@ -41,7 +40,7 @@ public class JSONManager {
             data += reserv.getUUID() + ",";
             data += reserv.getTitle() + ",";
             data += reserv.getSporthall().getName() + ",";
-            data += reserv.getDescribtion() + ",";
+            data += reserv.getSport() + ",";
             data += reserv.getOwner().getUserName() + ",";
             data += format.format(reserv.getStartDate()) + ",";
             data += format.format(reserv.getEndDate()) + ",";
@@ -161,7 +160,7 @@ public class JSONManager {
             reservObj.put("UUID", reservation.getUUID());
             reservObj.put("title", reservation.getTitle());
             reservObj.put("sporthall", reservation.getSporthall().getName());
-            reservObj.put("describtion", reservation.getDescribtion());
+            reservObj.put("describtion", reservation.getSport());
             reservObj.put("owner", reservation.getOwner());
             String startDate = format.format(reservation.getStartDate());
             String endDate = format.format(reservation.getEndDate());

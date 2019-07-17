@@ -16,12 +16,12 @@ public class PasswordManager {
         //ASD
     }
 
-    public static void hashTest() {
+    /*public static void hashTest() {
         String password = "admin";
         String userName = "admin";
         String hash = getHashedPassword(password, userName);
-        Log.d("HASH", hash);
-    }
+        //Log.d("HASH", hash);
+    }*/
 
 
     public static String getHashedPassword(String password, String userName) {

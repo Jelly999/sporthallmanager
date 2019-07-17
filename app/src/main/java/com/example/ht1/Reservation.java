@@ -2,8 +2,6 @@ package com.example.ht1;
 
 //TODO Varaus-luokka, joka pitää sisällään varauksen tiedot
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -12,8 +10,9 @@ public class Reservation {
     private int UUID;                       // Reservation's UUID
     private String title;                   // Title of the reservation
     private Sporthall sporthall;            // The sporthall that is being reserved
-    private String describtion;             // Describtion of the reservation
+    private String sport;             // Describtion of the reservation
     private User owner;                     // owner user of the reservation
+    private int maxParticipants;
     private Calendar startCalendar;             // Date at which the reservation starts
     private Calendar endCalendar;               // Date at which the reservation starts
     private List<User> attenderList;   // List of users attending the reservation
@@ -29,8 +28,9 @@ public class Reservation {
 
     int getUUID() {return UUID;}
     String getTitle() {return title;}
-    String getDescribtion() {return describtion;}
+    String getSport() {return sport;}
     User getOwner() {return owner;}
+    int getMaxParticipants() {return maxParticipants;}
     Calendar getStartDate() {return startCalendar;}
     Calendar getEndDate() {return endCalendar;}
     Sporthall getSporthall() {return sporthall;}
@@ -49,13 +49,16 @@ public class Reservation {
     // ======= PUBLIC SETTERS =======
 
     void setUUID(int newID) {UUID = newID;}
+    void setParent(Sporthall parent) {
+        sporthall = parent;
+    }
     void setTitle(String text) {title = text;}
-    void setDescribtion(String text) {describtion = text;}
-    void setOwner(String ownerID) {
+    void setSport(String text) {sport = text;}
+    void setOwner(int ownerID) {
 
     }
+    void setMaxParticipants(int max) {maxParticipants = max;}
     void setStartCalendar(Calendar calend) {}
-
 
 
 
@@ -63,24 +66,10 @@ public class Reservation {
 
     // ======= PUBLIC OTHER METHODS =======
 
-    public boolean addAsAttender(User user) {
-        if (user != null) {   // User is not null
-            if (!isUserAttender(user)) {   // User CANNOT be found from attenderList
-                addUserTo(user);
-                return true;
-            }
-        }
-        return false;   // Returns false if not possible due to conditions above
-    }
-
-    public boolean removeAttender(User user) {
-        if (user != null) {   // User is not null
-            if (isUserAttender(user)) {   // User CAN be found from attenderList
-                removeUserFrom(user);
-                return true;
-            }
-        }
-        return false;   // Returns false if not possible due to conditions above
+    public void setEndFromStartDur(Calendar startDate, int duration) {
+        Calendar endDate = (Calendar) startDate.clone();
+        endDate.add(Calendar.HOUR_OF_DAY, duration);
+        setEndDate(endDate);
     }
 
     public boolean hasUserAsAttendant(User user) {
@@ -89,7 +78,7 @@ public class Reservation {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (UUID + " " + title + " " + describtion + " " + owner.getUserName() + " " + getAttenderAmount());
+        return (UUID + " " + title + " " + sport + " " + owner.getUserName() + " " + getAttenderAmount());
     }
 
 

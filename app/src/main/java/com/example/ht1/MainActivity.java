@@ -1,7 +1,10 @@
 package com.example.ht1;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,12 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private ReservationManager reservationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +33,15 @@ public class MainActivity extends AppCompatActivity {
         //CardView card = new CardView();
 
         // TODO tämä tässä vain testiä varten
-        JSONManager jsonManager = new JSONManager(this);
-        jsonManager.JSONTEST();
-        PasswordManager.hashTest();
+        if (databaseExists()) {
+            Log.d("FILE", "ON OLEMASSA!");
+            new SqlManager(this);
+        } else {
+            Log.d("FILE", "EI OLE OLEMASSA");
+            new SqlManager(this); // This must be after the existance of the file is checked
+            SqlManager.presetDatabaseValues();
+        }
+        objectInitalizationTest();
         // Testi loppu
         {
             ArrayList<ExampleItem> exampleList = new ArrayList<>();
@@ -59,6 +73,24 @@ public class MainActivity extends AppCompatActivity {
     //TODO launch login fragment
 
     }
+
+    public boolean databaseExists() {
+        String path = this.getFilesDir().getPath();
+        path = path.substring(0,28);
+        path += "/databases";
+        path += "/sporthallmanager.db";
+        File file = new File(path);
+        Log.d("FILE", path);
+        return file.exists();
+    }
+
+    public void objectInitalizationTest() { // TODO DELETE ONCE TEST OVER
+        reservationManager = new ReservationManager();
+        reservationManager.logAllUsers("OBJECT");
+        reservationManager.logAllSporthalls("OBJECT");
+        reservationManager.logAllReservations("OBJECT");
+    }
+
     public void login(View V){
         EditText input = findViewById(R.id.eUsername_login);
         String username = input.getText().toString();

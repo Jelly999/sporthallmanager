@@ -77,11 +77,11 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
                             "FOREIGN KEY ("+SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID+") REFERENCES "+SqlTablenames.userTable.TABLE_NAME+" ("+SqlTablenames.userTable.COLUMN_NAME_USER_UUID+") ON DELETE CASCADE," +
                             "FOREIGN KEY ("+SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID+") REFERENCES "+SqlTablenames.universitiesTable.TABLE_NAME+" ("+SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID+") ON DELETE CASCADE);";
 
-            final String SQL_CREATE_ADMIN_ACCOUNTS = // No intended use
+            final String SQL_CREATE_ADMIN_ACCOUNTS =
                     "CREATE TABLE " + SqlTablenames.admin_accounts_Table.TABLE_NAME + " (" +
                             SqlTablenames.admin_accounts_Table.COLUMN_NAME_ADMIN_USER_UUID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                             SqlTablenames.admin_accounts_Table.COLUMN_NAME_USER_UUID + " INTEGER," +
-                            "FOREIGN KEY ("+SqlTablenames.admin_accounts_Table.COLUMN_NAME_USER_UUID+") REFERENCES "+SqlTablenames.userTable.TABLE_NAME+" ("+SqlTablenames.userTable.COLUMN_NAME_USER_UUID+") ON DELETE CASCADE,";
+                            "FOREIGN KEY ("+SqlTablenames.admin_accounts_Table.COLUMN_NAME_USER_UUID+") REFERENCES "+SqlTablenames.userTable.TABLE_NAME+" ("+SqlTablenames.userTable.COLUMN_NAME_USER_UUID+") ON DELETE CASCADE);";
 
 
             db.execSQL(SQL_CREATE_USER);
@@ -90,6 +90,7 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
             db.execSQL(SQL_CREATE_ENROLLS);
             db.execSQL(SQL_CREATE_UNIVERSITIES);
             db.execSQL(SQL_CREATE_USER_ACCESS_UNI);
+            db.execSQL(SQL_CREATE_ADMIN_ACCOUNTS);
         }
 
 
