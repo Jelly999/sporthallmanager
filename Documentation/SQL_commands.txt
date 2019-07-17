@@ -69,7 +69,7 @@ INSERT INTO user(username, firstname, surname, email, phone, pwd_hash, administr
 );
 
 INSERT INTO user(username, firstname, surname, email, phone, pwd_hash, administrator) VALUES(
-'mattim', 'Matti', 'Meik‰l‰inen', 'Matti.Meikalainen@gmail.com', '0505689132', 'hash', 0
+'mattim', 'Matti', 'Meik√§l√§inen', 'Matti.Meikalainen@gmail.com', '0505689132', 'hash', 0
 );
 
 INSERT INTO user(username, firstname, surname, email, phone, pwd_hash, administrator) VALUES(
