@@ -234,7 +234,7 @@ public class SqlManager {
     ///// DATA FROM DATABASE TO OBJECTS /////
     // university name to arraylist
     public static ArrayList<String> getUniNameFromDatabase() throws SQLException {
-            ArrayList<String> uniList = new ArrayList<>();
+        ArrayList<String> uniList = new ArrayList<>();
 
         String rawQuery = "SELECT " + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + " FROM " + SqlTablenames.universitiesTable.TABLE_NAME +";";
         Cursor cursor = Rdb.rawQuery(
@@ -447,10 +447,6 @@ public class SqlManager {
         Cursor cursor = Rdb.query(SqlTablenames.reservationsTable.TABLE_NAME,null,
                 whereClause, reservationID,
                 null, null, null);
-
-        Cursor cursor = Rdb.query(SqlTablenames.enrollsTable.TABLE_NAME, null,
-                null, null, null, null,
-                SqlTablenames.userTable.COLUMN_NAME_USER_UUID);
 
         if (cursor.moveToFirst()) {
             do {
