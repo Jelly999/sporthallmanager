@@ -38,7 +38,6 @@ public class JSONManager {
 
         for (Reservation reserv : reservations) {
             data += reserv.getUUID() + ",";
-            data += reserv.getTitle() + ",";
             data += reserv.getSporthall().getName() + ",";
             data += reserv.getSport() + ",";
             data += reserv.getOwner().getUserName() + ",";
@@ -158,7 +157,6 @@ public class JSONManager {
         JSONObject reservObj = new JSONObject();
         try {
             reservObj.put("UUID", reservation.getUUID());
-            reservObj.put("title", reservation.getTitle());
             reservObj.put("sporthall", reservation.getSporthall().getName());
             reservObj.put("describtion", reservation.getSport());
             reservObj.put("owner", reservation.getOwner());

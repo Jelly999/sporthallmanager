@@ -25,7 +25,11 @@ public class SqlManager {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
         Wdb = dbHelper.getWritableDatabase();
         Rdb = dbHelper.getReadableDatabase();
+        // Lets ser PRAGMA foreign_keys = ON; so cascade will work
+        String SQLquery = "PRAGMA foreign_keys = ON;";
+        Wdb.execSQL(SQLquery);
     }
+
 
     public static SqlManager getInstance(Context context) {
         if (uniqueInstance == null) {
@@ -62,6 +66,7 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + SqlTablenames.userTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
@@ -75,6 +80,7 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
     }
+
 
     public static class SQLsporthall{
 
@@ -96,6 +102,7 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + SqlTablenames.sporthallTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
@@ -103,13 +110,14 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.sporthallTable.TABLE_NAME +
                     " WHERE " + SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
-
     }
+
 
     public static class SQLreservation {
 
@@ -135,12 +143,14 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + SqlTablenames.reservationsTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + SqlTablenames.reservationsTable.COLUMN_NAME_RESERVEID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
+
 
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.reservationsTable.TABLE_NAME +
@@ -161,6 +171,7 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.enrollsTable.TABLE_NAME +
                     " WHERE " + SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID + " = " + UUID + ";";
@@ -180,12 +191,14 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void updateRow(String UUID, String COLUMN_NAME, String DATA) {
             String SQLquery = "UPDATE " + SqlTablenames.universitiesTable.TABLE_NAME +
                     " SET " + COLUMN_NAME + " = " + DATA +
                     " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = " + UUID + ";";
             Wdb.execSQL(SQLquery);
         }
+
 
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.universitiesTable.TABLE_NAME +
@@ -205,6 +218,7 @@ public class SqlManager {
 
             Wdb.execSQL(SQLquery);
         }
+
 
         public static void removeRow(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.user_access_uni_Table.TABLE_NAME +
@@ -290,11 +304,6 @@ public class SqlManager {
                 rawQuery,
                 null
         );
-        /*c.close();
-
-        Cursor cursor = Rdb.query(SqlTablenames.sporthallTable.TABLE_NAME, null,
-                null, null, null, null,
-                SqlTablenames.sporthallTable.COLUMN_NAME_HALLID);*/
 
         if (c.moveToFirst()) {
             do {
@@ -321,6 +330,8 @@ public class SqlManager {
                 // TODO Täytyy hakea rawQuery innerjoin sporthall --> sporthall_university --> university
                 sporthall.setType(type);
                 sporthall.setDisabled(notAvailable);
+
+                sporthall.updateReservationsFromSQL();
 
                 hallList.add(sporthall);
 
@@ -389,10 +400,10 @@ public class SqlManager {
                 reservation.setEndFromStartDur(startTime, duration);
                 reservation.setOwner(ownerID);
                 reservation.setMaxParticipants(maxPart);
+                // TODO UPDATE ATTENDANCES
                 // TODO RECURRING EVENT
 
-
-                //TODO Reservation olion setterit
+                reservationList.add(reservation);
             } while (cursor.moveToNext());
         }
         cursor.close();

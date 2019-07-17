@@ -2,6 +2,7 @@ package com.example.ht1;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.out.println("Help!");
         //CardView card = new CardView();
-
         // TODO tämä tässä vain testiä varten
         if (databaseExists()) {
             Log.d("FILE", "ON OLEMASSA!");
@@ -72,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO launch login fragment
 
+        // TEMPORARY TEST
+        launchMainMenu();
+
+    }
+
+    private void launchMainMenu() {
+        MainMenuFragment joinevent = new MainMenuFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, joinevent);
+        fragmentTransaction.commit();
     }
 
     public boolean databaseExists() {
@@ -120,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("account");
     }
     public void joinEvent(View v){
+        JoinEventFragment joinevent = new JoinEventFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, joinevent);
+        fragmentTransaction.commit();
         //TODO go to join event fragmnent, User can click
     }
     public void creteNewEvent(View v){
