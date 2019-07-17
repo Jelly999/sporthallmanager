@@ -312,8 +312,8 @@ public class SqlManager {
         List<Sporthall> hallList = new ArrayList<>();
 
         // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
-        String rawQuery = "SELECT "+ SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME
-                + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE
+        String rawQuery = "SELECT "+ SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + ", " + SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME
+                + ", " + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + ", " + SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + ", " + SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE
                 + " FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
                 + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = "
                 + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + ";";
