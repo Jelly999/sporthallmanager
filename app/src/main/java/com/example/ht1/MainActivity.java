@@ -108,4 +108,25 @@ public class MainActivity extends AppCompatActivity {
     public void manageUni(View v){
         //TODO go to manage uni fragmnent, Only For Admin to click
     }
+
+
+
+    public void getHallReservations(View v){
+        //TODO Show selected hall reservations in View
+    }
+    public void deleteHall(View v){
+        //TODO Delete selected hall
+    }
+    public void enableHall(View v){
+        //TODO save hall
+    }
+    public void disableHall(View v){
+        //TODO disable hall
+    }
+    public void saveHall(View v){
+        //TODO save new hall and go to main menu fragment
+    }
+    public void cancelHall(View v){
+        //TODO go to main menu fragment
+    }
 }

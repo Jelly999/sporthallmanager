@@ -16,33 +16,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/bDisablehall_MHalls"
-        android:layout_width="96dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/select_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/UniSpinner_MUser"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/eSetUserName_MUser"
         android:layout_width="256dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="18dp"
         android:autofillHints="@string/set_max_particp_text"
         android:ems="10"
         android:hint="@string/set_max_particp_text"
         android:inputType="number"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/button15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
@@ -52,14 +37,12 @@
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="18dp"
         android:autofillHints="@string/set_duration_text"
         android:ems="10"
         android:hint="@string/set_duration_text"
         android:inputType="number"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/button17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
@@ -69,14 +52,12 @@
         android:layout_height="46dp"
         android:layout_marginStart="17dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="18dp"
         android:autofillHints="@string/set_sport_text"
         android:ems="10"
         android:hint="@string/set_sport_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/button16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
 
@@ -94,46 +75,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/confirm_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button16" />
-
-    <Button
-        android:id="@+id/button16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/confirm_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bDisablehall_MHalls" />
-
-    <Button
-        android:id="@+id/button15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/confirm_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button17" />
-
-    <Button
-        android:id="@+id/button17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/confirm_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button14" />
-
-    <Button
         android:id="@+id/bCancel_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -149,14 +90,12 @@
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="21dp"
         android:autofillHints="@string/set_stime_text"
         android:ems="10"
         android:hint="@string/set_stime_text"
         android:inputType="time"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintEnd_toStartOf="@+id/button14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eUsername_login" />
 
@@ -175,12 +114,12 @@
         android:id="@+id/switch1"
         android:layout_width="85dp"
         android:layout_height="44dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
         android:text="@string/active_text"
         android:textColor="#F2F5F8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button15" />
+        app:layout_constraintStart_toEndOf="@+id/editText8"
+        app:layout_constraintTop_toBottomOf="@+id/eSetUserName_MUser" />
 
     <EditText
         android:id="@+id/editText8"
