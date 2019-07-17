@@ -1,17 +1,20 @@
 package com.example.ht1;
 
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.io.File;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -70,6 +73,24 @@ public class MainActivity extends AppCompatActivity {
         // TEMPORARY TEST
         //launchMainMenu();
         login();
+    }
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("Tryna go back.");
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (f instanceof LoginFragment) {
+            System.out.println("Login fragment it is");
+            finish();
+        } else if (f instanceof authFragment) {
+            System.out.println("Authenticator it is");
+            finish();
+        } else if (f instanceof MainMenuFragment) {
+            System.out.println("Main menu it is");
+            finish();
+        } else {
+            getSupportFragmentManager().popBackStackImmediate();
+        }
     }
 
     private void launchMainMenu() {
@@ -230,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
     public void account(View v){
         AccountFragment account = new AccountFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, account);
         fragmentTransaction.commit();
         //TODO go to account fragmnent, User can click
@@ -237,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
     public void joinEvent(View v){
         JoinEventFragment joinevent = new JoinEventFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, joinevent);
         fragmentTransaction.commit();
         //TODO go to join event fragmnent, User can click
@@ -244,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
     public void creteNewEvent(View v){
         CreateEventFragment createevent = new CreateEventFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, createevent);
         fragmentTransaction.commit();
         //TODO go to create new event fragmnent, User can click
@@ -251,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
     public void viewEnrolled(View v){
         EnrolledFragment enrolled = new EnrolledFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, enrolled);
         fragmentTransaction.commit();
         //TODO go to enrolled fragmnent, User can click
@@ -258,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
     public void editEvent(View v){
         EventEditFragment eventedit = new EventEditFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, eventedit);
         fragmentTransaction.commit();
         //TODO go to edit event fragmnent, User can click
@@ -265,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
     public void manageUsers(View v){
         ManageUsersFragment manage_users = new ManageUsersFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, manage_users);
         fragmentTransaction.commit();
         //TODO go to manage users fragmnent, Only For Admin to click
@@ -272,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
     public void manageHalls(View v){
         ManageHallsFragment manage_hall = new ManageHallsFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, manage_hall);
         fragmentTransaction.commit();
         //TODO go to manage hall fragmnent, Only For Admin to click
@@ -279,6 +307,7 @@ public class MainActivity extends AppCompatActivity {
     public void manageUni(View v){
         ManageUniFragment manage_uni = new ManageUniFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, manage_uni);
         fragmentTransaction.commit();
         //TODO go to manage uni fragmnent, Only For Admin to click
