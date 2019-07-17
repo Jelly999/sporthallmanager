@@ -138,21 +138,45 @@ public class MainActivity extends AppCompatActivity {
         //TODO go to join event fragmnent, User can click
     }
     public void creteNewEvent(View v){
+        CreateEventFragment createevent = new CreateEventFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, createevent);
+        fragmentTransaction.commit();
         //TODO go to create new event fragmnent, User can click
     }
     public void viewEnrolled(View v){
+        EnrolledFragment enrolled = new EnrolledFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, enrolled);
+        fragmentTransaction.commit();
         //TODO go to enrolled fragmnent, User can click
     }
     public void editEvent(View v){
+        EventEditFragment eventedit = new EventEditFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, eventedit);
+        fragmentTransaction.commit();
         //TODO go to edit event fragmnent, User can click
     }
     public void manageUsers(View v){
+        ManageUsersFragment manage_users = new ManageUsersFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, manage_users);
+        fragmentTransaction.commit();
         //TODO go to manage users fragmnent, Only For Admin to click
     }
     public void manageHalls(View v){
+        ManageHallsFragment manage_hall = new ManageHallsFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, manage_hall);
+        fragmentTransaction.commit();
         //TODO go to manage hall fragmnent, Only For Admin to click
     }
     public void manageUni(View v){
+        ManageUniFragment manage_uni = new ManageUniFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, manage_uni);
+        fragmentTransaction.commit();
         //TODO go to manage uni fragmnent, Only For Admin to click
     }
 
