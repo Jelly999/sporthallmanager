@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,8 +77,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        getSupportFragmentManager().popBackStackImmediate();
         System.out.println("Tryna go back.");
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (f instanceof LoginFragment) {
+            System.out.println("Login fragment it is");
+            finish();
+        } else if (f instanceof authFragment) {
+            System.out.println("Authenticator it is");
+            finish();
+        } else if (f instanceof MainMenuFragment) {
+            System.out.println("Main menu it is");
+            finish();
+        } else {
+            getSupportFragmentManager().popBackStackImmediate();
+        }
     }
 
     private void launchMainMenu() {
