@@ -93,20 +93,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void launchMainMenu() {
+    public void launchMainMenu() {
         MainMenuFragment joinevent = new MainMenuFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, joinevent);
         fragmentTransaction.commit();
     }
 
-    private void launchlogin() {
+    public void launchlogin() {
         LoginFragment login = new LoginFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, login);
         fragmentTransaction.commit();
     }
-    private void launchAuth() {
+    public void launchAuth() {
         authFragment authentication = new authFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, authentication);

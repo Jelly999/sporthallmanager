@@ -52,6 +52,9 @@ public class LoginFragment extends Fragment {
         if (loginUser != null) {
             System.out.println("Login accepted");
             User.setCurrentUser(loginUser);
+
+            ((MainActivity)getActivity()).launchAuth();
+
         } else {
             System.out.println("Login denied");
         }
