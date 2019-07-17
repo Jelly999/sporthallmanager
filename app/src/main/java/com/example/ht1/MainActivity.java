@@ -74,14 +74,26 @@ public class MainActivity extends AppCompatActivity {
     //TODO launch login fragment
 
         // TEMPORARY TEST
-        launchMainMenu();
-
+        //launchMainMenu();
+        login();
     }
 
     private void launchMainMenu() {
         MainMenuFragment joinevent = new MainMenuFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, joinevent);
+        fragmentTransaction.commit();
+    }
+    private void launchlogin() {
+        LoginFragment login = new LoginFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, login);
+        fragmentTransaction.commit();
+    }
+    private void launchAuth() {
+        authFragment authentication = new authFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, authentication);
         fragmentTransaction.commit();
     }
 
@@ -102,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
         reservationManager.logAllReservations("OBJECT");
     }
 
-    public void login(View V){
+    public void login(){
+        launchlogin();
         EditText input = findViewById(R.id.eUsername_login);
         String username = input.getText().toString();
         input = findViewById(R.id.eUsername_login);
@@ -112,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         boolean loginSuccess = false;
         if (pwdhash == pwdhashdb){
             //Go to Authenticator fragment
+            launchAuth();
             String authNumbers = PasswordManager.authNumbers();
             TextView output = findViewById(R.id.text_randint_auth);
             output.setText(authNumbers);
@@ -127,8 +141,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void account(View v){
+        AccountFragment account = new AccountFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, account);
+        fragmentTransaction.commit();
         //TODO go to account fragmnent, User can click
-        System.out.println("account");
     }
     public void joinEvent(View v){
         JoinEventFragment joinevent = new JoinEventFragment();
@@ -138,21 +155,66 @@ public class MainActivity extends AppCompatActivity {
         //TODO go to join event fragmnent, User can click
     }
     public void creteNewEvent(View v){
+        CreateEventFragment createevent = new CreateEventFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, createevent);
+        fragmentTransaction.commit();
         //TODO go to create new event fragmnent, User can click
     }
     public void viewEnrolled(View v){
+        EnrolledFragment enrolled = new EnrolledFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, enrolled);
+        fragmentTransaction.commit();
         //TODO go to enrolled fragmnent, User can click
     }
     public void editEvent(View v){
+        EventEditFragment eventedit = new EventEditFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, eventedit);
+        fragmentTransaction.commit();
         //TODO go to edit event fragmnent, User can click
     }
     public void manageUsers(View v){
+        ManageUsersFragment manage_users = new ManageUsersFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, manage_users);
+        fragmentTransaction.commit();
         //TODO go to manage users fragmnent, Only For Admin to click
     }
     public void manageHalls(View v){
+        ManageHallsFragment manage_hall = new ManageHallsFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, manage_hall);
+        fragmentTransaction.commit();
         //TODO go to manage hall fragmnent, Only For Admin to click
     }
     public void manageUni(View v){
+        ManageUniFragment manage_uni = new ManageUniFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, manage_uni);
+        fragmentTransaction.commit();
         //TODO go to manage uni fragmnent, Only For Admin to click
+    }
+
+
+
+    public void getHallReservations(View v){
+        //TODO Show selected hall reservations in View
+    }
+    public void deleteHall(View v){
+        //TODO Delete selected hall
+    }
+    public void enableHall(View v){
+        //TODO save hall
+    }
+    public void disableHall(View v){
+        //TODO disable hall
+    }
+    public void saveHall(View v){
+        //TODO save new hall and go to main menu fragment
+    }
+    public void cancelHall(View v){
+        //TODO go to main menu fragment
     }
 }
