@@ -74,14 +74,26 @@ public class MainActivity extends AppCompatActivity {
     //TODO launch login fragment
 
         // TEMPORARY TEST
-        launchMainMenu();
-
+        //launchMainMenu();
+        login();
     }
 
     private void launchMainMenu() {
         MainMenuFragment joinevent = new MainMenuFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, joinevent);
+        fragmentTransaction.commit();
+    }
+    private void launchlogin() {
+        LoginFragment login = new LoginFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, login);
+        fragmentTransaction.commit();
+    }
+    private void launchAuth() {
+        authFragment authentication = new authFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, authentication);
         fragmentTransaction.commit();
     }
 
@@ -102,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
         reservationManager.logAllReservations("OBJECT");
     }
 
-    public void login(View V){
+    public void login(){
+        launchlogin();
         EditText input = findViewById(R.id.eUsername_login);
         String username = input.getText().toString();
         input = findViewById(R.id.eUsername_login);
@@ -112,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         boolean loginSuccess = false;
         if (pwdhash == pwdhashdb){
             //Go to Authenticator fragment
+            launchAuth();
             String authNumbers = PasswordManager.authNumbers();
             TextView output = findViewById(R.id.text_randint_auth);
             output.setText(authNumbers);
@@ -127,8 +141,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void account(View v){
+        AccountFragment account = new AccountFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, account);
+        fragmentTransaction.commit();
         //TODO go to account fragmnent, User can click
-        System.out.println("account");
     }
     public void joinEvent(View v){
         JoinEventFragment joinevent = new JoinEventFragment();
