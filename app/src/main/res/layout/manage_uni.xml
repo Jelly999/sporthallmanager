@@ -8,7 +8,7 @@
     android:background="#2f2f2f">
 
     <Spinner
-        android:id="@+id/UniSpinner_MUser"
+        android:id="@+id/sporthallSpinner_createevent"
         android:layout_width="389dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
@@ -25,7 +25,7 @@
         android:layout_marginTop="28dp"
         android:text="@string/delete_uni_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
+        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
 
     <EditText
         android:id="@+id/eSetUserName_MUser"
@@ -85,7 +85,7 @@
         android:text="@string/select_uni_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/UniSpinner_MUser"
+        app:layout_constraintBottom_toTopOf="@+id/sporthallSpinner_createevent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

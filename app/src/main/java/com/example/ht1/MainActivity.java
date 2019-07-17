@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -72,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO launch login fragment
 
+        // TEMPORARY TEST
+        launchMainMenu();
+
+    }
+
+    private void launchMainMenu() {
+        MainMenuFragment joinevent = new MainMenuFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, joinevent);
+        fragmentTransaction.commit();
     }
 
     public boolean databaseExists() {
@@ -120,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("account");
     }
     public void joinEvent(View v){
+        JoinEventFragment joinevent = new JoinEventFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, joinevent);
+        fragmentTransaction.commit();
         //TODO go to join event fragmnent, User can click
     }
     public void creteNewEvent(View v){

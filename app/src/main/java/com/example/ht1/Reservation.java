@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Reservation {
     private int UUID;                       // Reservation's UUID
-    private String title;                   // Title of the reservation
+    //private String title;                   // Title of the reservation
     private Sporthall sporthall;            // The sporthall that is being reserved
     private String sport;             // Describtion of the reservation
     private User owner;                     // owner user of the reservation
@@ -27,7 +27,7 @@ public class Reservation {
     // ======= PUBLIC GETTERS =======
 
     int getUUID() {return UUID;}
-    String getTitle() {return title;}
+    //String getTitle() {return title;}
     String getSport() {return sport;}
     User getOwner() {return owner;}
     int getMaxParticipants() {return maxParticipants;}
@@ -52,7 +52,7 @@ public class Reservation {
     void setParent(Sporthall parent) {
         sporthall = parent;
     }
-    void setTitle(String text) {title = text;}
+    //void setTitle(String text) {title = text;}
     void setSport(String text) {sport = text;}
     void setOwner(int ownerID) {
 
@@ -79,7 +79,7 @@ public class Reservation {
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
         //TODO owner.getUserName() pitää lisätä kun toimii
-        return (UUID + " " + title + " " + sport + " " + getAttenderAmount());
+        return (UUID + " " + sport + " " + getAttenderAmount());
     }
 
 
