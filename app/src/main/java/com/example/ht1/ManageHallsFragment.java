@@ -22,17 +22,17 @@ public class ManageHallsFragment extends Fragment {
 
 
     public String getNewHallname(View view){
-        EditText value = view.findViewById(R.id.editNewHallname);
+        EditText value = view.findViewById(R.id.eNewHallname_MHalls);
         String input = value.getText().toString();
         return input;
     }
     public String getNewHallLocation(View view){
-        EditText value = view.findViewById(R.id.editNewHallLocation);
+        EditText value = view.findViewById(R.id.eUsername_login);
         String input = value.getText().toString();
         return input;
     }
     public String getNewHallType(View view){
-        EditText value = view.findViewById(R.id.editNewUniName);
+        EditText value = view.findViewById(R.id.eSetUserName_MUser);
         String input = value.getText().toString();
         return input;
     }

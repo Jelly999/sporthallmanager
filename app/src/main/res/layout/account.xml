@@ -8,34 +8,31 @@
     android:background="#2f2f2f">
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/bAddNewUser_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="77dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="96dp"
         android:text="@string/save_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button12"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/bCancel_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="72dp"
-        android:text="@string/main_menu_button"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="96dp"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser" />
 
     <EditText
         android:id="@+id/editPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="320dp"
         android:autofillHints="@string/change_phone_hint"
         android:ems="10"
         android:hint="@string/change_phone_hint"

@@ -7,9 +7,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             mRecyclerView.setAdapter(mAdapter);
 */        } //Recycle view test
 
+    //TODO launch login fragment
 
     }
 
@@ -90,7 +92,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View V){
-        System.out.println("login");
+        EditText input = findViewById(R.id.eUsername_login);
+        String username = input.getText().toString();
+        input = findViewById(R.id.eUsername_login);
+        String password = input.getText().toString();
+        String pwdhash = PasswordManager.getHashedPassword(password, username);
+        String pwdhashdb = "";//getPasswordHash(username); // Get password hash from database
+        boolean loginSuccess = false;
+        if (pwdhash == pwdhashdb){
+            //Go to Authenticator fragment
+            String authNumbers = PasswordManager.authNumbers();
+            TextView output = findViewById(R.id.text_randint_auth);
+            output.setText(authNumbers);
+            EditText rinput = findViewById(R.id.edit_inputint_auth);
+            String numbers = rinput.getText().toString();
+            if (authNumbers == numbers){
+                loginSuccess = true;
+            }
+        }
+        if (loginSuccess == true){
+            //On login button press --> Go to main menu
+        }
     }
 
     public void account(View v){

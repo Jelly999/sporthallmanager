@@ -23,12 +23,12 @@ public class ManageUsersFragment extends Fragment {
 
 
     public String getNewUsername(View view){
-        EditText value = view.findViewById(R.id.editNewUniName);
+        EditText value = view.findViewById(R.id.eSetUserName_MUser);
         String input = value.getText().toString();
         return input;
     }
     public String getNewUserpassword(View view){
-        EditText value = view.findViewById(R.id.editNewUniAddr);
+        EditText value = view.findViewById(R.id.eSetUserPassword_MUser);
         String input = value.getText().toString();
         return input;
     }
