@@ -18,8 +18,8 @@ public class SqlManager {
 
     private static SqlManager uniqueInstance;
 
-    private static SQLiteDatabase Wdb;
-    private static SQLiteDatabase Rdb;
+    private static SQLiteDatabase Wdb; //TODO Tämä varmaan pitänee olla täällä?
+    private static SQLiteDatabase Rdb; //TODO Tätä varmaan TARVITAAN/KÄYTETÄÄN?
 
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
