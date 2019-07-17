@@ -38,10 +38,6 @@ public class SqlManager {
         return uniqueInstance;
     }
 
-    //TODO tänne ennalta määritetyt taulukon sisällöt käyttämällä SQLwriteRowia
-    //TODO Toimiiko tämä
-
-
 
     public static class SQLuser {
 
@@ -227,8 +223,8 @@ public class SqlManager {
         }
     }
 
-    ///// DATA FROM DATABASE TO OBJECTS /////
 
+    ///// DATA FROM DATABASE TO OBJECTS /////
     // userdata to user object
     public static List<User> getUsersFromDatabase() throws SQLException {
         List<User> userList = new ArrayList<>();
@@ -280,24 +276,20 @@ public class SqlManager {
                 userList.add(user);
 
             } while (cursor.moveToNext());
-
         }
-        cursor.close(); // TODO Cursorin sulkeminen?
-
+        cursor.close();
         return userList;
     }
+
 
     // sporthalldata to object
     public static List<Sporthall> getSporthallsFromDatabase() {
         List<Sporthall> hallList = new ArrayList<>();
 
-        // TODO Tänne rawquery joka noutaa yliopiston tiedot (uuid ja UNI_NAME)
-        // https://stackoverflow.com/questions/4957009/how-do-i-join-two-sqlite-tables-in-my-android-application
-        // https://blog.fossasia.org/doing-a-table-join-in-android-without-using-rawquery/
-        // https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
         // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
-        // TODO Jostain inputtina minkä yliopiston tietoja haetaan (UNI_UUID 1=LUT, 2=toisena lisätty....)
-        String rawQuery = "SELECT * FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
+        String rawQuery = "SELECT "+ SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME
+                + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE
+                + " FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
                 + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = "
                 + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + ";";
         Cursor c = Rdb.rawQuery(
@@ -327,7 +319,6 @@ public class SqlManager {
                 sporthall.setUUID(ID);
                 sporthall.setName(name);
                 sporthall.setUniversityName(uniname);
-                // TODO Täytyy hakea rawQuery innerjoin sporthall --> sporthall_university --> university
                 sporthall.setType(type);
                 sporthall.setDisabled(notAvailable);
 
@@ -338,11 +329,11 @@ public class SqlManager {
             } while (c.moveToNext());
         }
         c.close();
-
         return hallList;
     }
 
 
+    //get reservations from database
     public static List<Reservation> getReservationsFromDatabase(Sporthall sporthall) {
         List<Reservation> reservationList = new ArrayList<>();
         // TODO ajattelin että voisi hakea reservationit jokaiselle sporthall erikseen,
@@ -411,6 +402,7 @@ public class SqlManager {
         return reservationList;
     }
 
+
     /////////////////////////////////
     //PRESETTING VALUES TO DATABASE//
     /////////////////////////////////
@@ -418,21 +410,21 @@ public class SqlManager {
     public static void presetDatabaseValues() {
 
         //User preset values
-        String[] user = {"'admin'", "'admin'", "'admin'", "'email'", "'0500628689'", "'" + PasswordManager.getHashedPassword("admin", "admin") + "'" , "1" };
+        String[] user = {"'admin'", "'admin'", "'admin'", "'admin.admin@adminmail.com'", "'0500628689'", "'" + PasswordManager.getHashedPassword("admin", "admin") + "'" , "1" };
         SQLuser.insertRow(user);
-        user = new String[]{"'mattim'", "'Matti'", "'Meikäläinen'", "'email'", "'0505689132'", "'" + PasswordManager.getHashedPassword("44mUj40nP4lJ0n", "mattim") + "'" , "0"};
+        user = new String[]{"'mattim'", "'Matti'", "'Meikäläinen'", "'Matti.Meikalainen@gmail.com'", "'0505689132'", "'" + PasswordManager.getHashedPassword("44mUj40nP4lJ0n", "mattim") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"'rickv'", "'Rick'", "'Vang'", "'email'", "'0290909857'", "'" + PasswordManager.getHashedPassword("AuR1nk#1n€n12?", "rickv") + "'" , "0"};
+        user = new String[]{"'rickv'", "'Rick'", "'Vang'", "'Rick.Vang@webmail.com'", "'0290909857'", "'" + PasswordManager.getHashedPassword("AuR1nk#1n€n12?", "rickv") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"'jimb'", "'Jim'", "'Bass'", "'email'", "'0440698602'", "'" + PasswordManager.getHashedPassword("H3LL0@w0rld!!!", "jimb") + "'" , "0"};
+        user = new String[]{"'jimb'", "'Jim'", "'Bass'", "'jimba89@gmail.com'", "'0440698602'", "'" + PasswordManager.getHashedPassword("H3LL0@w0rld!!!", "jimb") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"'jonh'", "'John'", "'Denton'", "'email'", "'0400568223'", "'" + PasswordManager.getHashedPassword("M€€mut0nK1v0ja", "jonh") + "'" , "0"};
+        user = new String[]{"'jonh'", "'John'", "'Denton'", "'Jonny.Boii@memes.com'", "'0400568223'", "'" + PasswordManager.getHashedPassword("M€€mut0nK1v0ja", "jonh") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"'gregn'", "'Greg'", "'Novak'", "'email'", "'0440666869'", "'" + PasswordManager.getHashedPassword("##N0tY0uR5But0ur5##", "gregn") + "'" , "0"};
+        user = new String[]{"'gregn'", "'Greg'", "'Novak'", "'Gregori.Nova@slavmail.ru'", "'0440666869'", "'" + PasswordManager.getHashedPassword("##N0tY0uR5But0ur5##", "gregn") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"'omarm'", "'Omar'", "'Marshall'", "'email'", "'0500911420'", "'" + PasswordManager.getHashedPassword("M4k€US4Gr€4T4G4in", "omarm") + "'" , "0"};
+        user = new String[]{"'omarm'", "'Omar'", "'Marshall'", "'FieldMarshall@USAmail.com'", "'0500911420'", "'" + PasswordManager.getHashedPassword("M4k€US4Gr€4T4G4in", "omarm") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"'miac'", "'Mia'", "'Croft'", "'email'", "'0670884925'", "'" + PasswordManager.getHashedPassword("M€€mut0nK1v0ja", "miac") + "'" , "0"};
+        user = new String[]{"'miac'", "'Mia'", "'Croft'", "'mia.croft@onlinemail.com'", "'0670884925'", "'" + PasswordManager.getHashedPassword("M€€mut0nK1v0ja", "miac") + "'" , "0"};
         SQLuser.insertRow(user);
 
         //Universities preset values
