@@ -7,7 +7,7 @@
     android:background="#2f2f2f">
 
     <Spinner
-        android:id="@+id/UniSpinner_MUser"
+        android:id="@+id/sporthallSpinner_createevent"
         android:layout_width="389dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
@@ -24,7 +24,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/get_reservations_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
+        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
 
     <Button
         android:id="@+id/bDeleteUser_MUser"
@@ -34,7 +34,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/Delete_hall_button"
         app:layout_constraintStart_toEndOf="@+id/bReservations_MUser"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
+        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
 
     <Button
         android:id="@+id/bDeleteUserReservation_MUser"
@@ -44,7 +44,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/enable_button"
         app:layout_constraintStart_toEndOf="@+id/bDeleteUser_MUser"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
+        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
 
     <Button
         android:id="@+id/bDisablehall_MHalls"
@@ -54,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/disable_button"
         app:layout_constraintStart_toEndOf="@+id/bDeleteUserReservation_MUser"
-        app:layout_constraintTop_toBottomOf="@+id/UniSpinner_MUser" />
+        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
 
     <EditText
         android:id="@+id/eSetUserName_MUser"
@@ -129,7 +129,7 @@
         android:text="@string/Select_hall_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/UniSpinner_MUser"
+        app:layout_constraintBottom_toTopOf="@+id/sporthallSpinner_createevent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
