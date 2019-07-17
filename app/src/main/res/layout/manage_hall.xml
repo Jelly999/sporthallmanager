@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
 
     <EditText
-        android:id="@+id/eSetUserName_MUser"
+        android:id="@+id/eNewUsername_MUser"
         android:layout_width="194dp"
         android:layout_height="45dp"
         android:layout_marginStart="24dp"
@@ -107,6 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="77dp"
         android:layout_marginBottom="72dp"
+        android:onClick="saveHalldata"
         android:text="@string/create_hall_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -117,6 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
         android:layout_marginBottom="72dp"
+        android:onClick="GotoMainMenu"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser" />
