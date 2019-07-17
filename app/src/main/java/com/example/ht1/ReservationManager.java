@@ -24,8 +24,6 @@ public class ReservationManager {
 
 
 
-
-
     // ======= PUBLIC GET METHODS =======
 
     // Arrays received from getters should not be saved anywhere permanently
@@ -50,9 +48,6 @@ public class ReservationManager {
         }
         return null;
     }
-
-
-
 
 
     // ======= PUBLIC OTHER METHODS =======
@@ -106,26 +101,6 @@ public class ReservationManager {
         updateReservationsFromSQL(sporthall);
     }
 
-    public boolean removeReservation(Sporthall sporthall, Reservation reservation) {
-        if (reservation != null) {
-            return sporthall.removeReservation(reservation);
-        }
-        return false;
-    }
-
-    public void clearAllSporthalls(Boolean areYouSerious) {
-        if (areYouSerious) {
-            sporthallsList.clear();
-        }
-    }
-
-    public void removeAllUserReservations(User owner) {
-
-        for (Sporthall sporthall : sporthallsList) { // Goes through every sporthall
-            sporthall.removeAllUserReservations(owner);
-        }
-    }
-
 
     public void updateReservationsFromSQL(Sporthall sporthall) {
         //TODO Tähän se joka ottaa reservationit SQL
@@ -144,8 +119,20 @@ public class ReservationManager {
         }
     }
 
+    public void logAllReservations(String TAG) {
+        for (Sporthall sporthall : sporthallsList) {
+            sporthall.logAllReservations(TAG);
+        }
+    }
 
 
+    public void deleteUserOwnedReservations(User owner) {
+        // TODO HERE GOES THE METHOD CALL SQLMANAGER
+    }
+
+    public void deleteUserAttendances(User attender) {
+        // TODO HERE GOES THE METHOD CALL SQLMANAGER
+    }
 
     // ======= PUBLIC BOOLEAN METHODS =======
 
@@ -190,10 +177,6 @@ public class ReservationManager {
 
 
     // ======= PRIVATE OTHER METHODS =======
-
-    private void addReservation(Sporthall sporthall, Reservation reservation) {
-        sporthall.addReservation(reservation);
-    }
 
 
     // Checks if both dates are not null, and if the startDate is before or equal to endDate

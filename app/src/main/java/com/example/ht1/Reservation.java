@@ -49,6 +49,9 @@ public class Reservation {
     // ======= PUBLIC SETTERS =======
 
     void setUUID(int newID) {UUID = newID;}
+    void setParent(Sporthall parent) {
+        sporthall = parent;
+    }
     void setTitle(String text) {title = text;}
     void setSport(String text) {sport = text;}
     void setOwner(int ownerID) {
@@ -56,7 +59,6 @@ public class Reservation {
     }
     void setMaxParticipants(int max) {maxParticipants = max;}
     void setStartCalendar(Calendar calend) {}
-
 
 
 
@@ -76,7 +78,8 @@ public class Reservation {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (UUID + " " + title + " " + sport + " " + owner.getUserName() + " " + getAttenderAmount());
+        //TODO owner.getUserName() pitää lisätä kun toimii
+        return (UUID + " " + title + " " + sport + " " + getAttenderAmount());
     }
 
 

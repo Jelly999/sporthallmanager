@@ -18,8 +18,8 @@ public class SqlManager {
 
     private static SqlManager uniqueInstance;
 
-    private static SQLiteDatabase Wdb;
-    private static SQLiteDatabase Rdb;
+    private static SQLiteDatabase Wdb; //TODO Tämä varmaan pitänee olla täällä?
+    private static SQLiteDatabase Rdb; //TODO Tätä varmaan TARVITAAN/KÄYTETÄÄN?
 
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
@@ -322,6 +322,8 @@ public class SqlManager {
                 sporthall.setType(type);
                 sporthall.setDisabled(notAvailable);
 
+                sporthall.updateReservationsFromSQL();
+
                 hallList.add(sporthall);
 
             } while (c.moveToNext());
@@ -383,15 +385,16 @@ public class SqlManager {
 
                 Reservation reservation = new Reservation();
                 reservation.setUUID(ID);
+                reservation.setParent(sporthall);
                 reservation.setSport(sport);
                 reservation.setStartCalendar(startTime);
                 reservation.setEndFromStartDur(startTime, duration);
                 reservation.setOwner(ownerID);
                 reservation.setMaxParticipants(maxPart);
+                // TODO UPDATE ATTENDANCES
                 // TODO RECURRING EVENT
 
-
-                //TODO Reservation olion setterit
+                reservationList.add(reservation);
             } while (cursor.moveToNext());
         }
         cursor.close();
