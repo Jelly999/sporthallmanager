@@ -225,6 +225,31 @@ public class SqlManager {
 
 
     ///// DATA FROM DATABASE TO OBJECTS /////
+    // university name to arraylist
+    public static ArrayList<String> getUniNameFromDatabase() throws SQLException {
+            ArrayList<String> uniList = new ArrayList<>();
+
+        String rawQuery = "SELECT " + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + " FROM " + SqlTablenames.universitiesTable.TABLE_NAME +";";
+        Cursor cursor = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+        if (cursor.moveToFirst()) {
+            do {
+
+                String name = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.universitiesTable.COLUMN_NAME_NAME
+                ));
+
+                uniList.add(name);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return uniList;
+    }
+
+
     // userdata to user object
     public static List<User> getUsersFromDatabase() throws SQLException {
         List<User> userList = new ArrayList<>();
@@ -287,8 +312,8 @@ public class SqlManager {
         List<Sporthall> hallList = new ArrayList<>();
 
         // tässä sporthalliim liitetään unin tiedot (nyt hakee kaikki sporthallin tiedot ja liittää niihin uni tablen niin että molemmissa uni id = 1)
-        String rawQuery = "SELECT "+ SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME
-                + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE
+        String rawQuery = "SELECT "+ SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + ", " + SqlTablenames.sporthallTable.COLUMN_NAME_HALLNAME
+                + ", " + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + ", " + SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + ", " + SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE
                 + " FROM " + SqlTablenames.sporthallTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
                 + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = "
                 + SqlTablenames.sporthallTable.TABLE_NAME + "." + SqlTablenames.sporthallTable.COLUMN_NAME_UNI_UUID + ";";

@@ -7,8 +7,8 @@
     android:background="#2f2f2f">
 
     <Spinner
-        android:id="@+id/UniSpinner_MUser"
-        android:layout_width="374dp"
+        android:id="@+id/sporthallSpinner_createevent"
+        android:layout_width="272dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="46dp"
@@ -16,21 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/bDisablehall_MHalls"
-        android:layout_width="96dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/select_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/sporthallSpinner_createevent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
-        android:id="@+id/eSetUserName_MUser"
+        android:id="@+id/eNewUsername_MUser"
         android:layout_width="374dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
@@ -133,7 +120,7 @@
         android:text="@string/active_text"
         android:textColor="#F2F5F8"
         app:layout_constraintStart_toEndOf="@+id/editText8"
-        app:layout_constraintTop_toBottomOf="@+id/eNewUsername_MUser" />
+        app:layout_constraintTop_toBottomOf="@+id/eSetUserName_MUser" />
 
     <EditText
         android:id="@+id/editText8"
