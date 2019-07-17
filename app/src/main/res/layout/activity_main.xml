@@ -27,7 +27,7 @@
         android:layout_marginBottom="10dp"
         android:onClick="creteNewEvent"
         android:text="@string/create_new_event_button"
-        app:layout_constraintBottom_toTopOf="@+id/bEditEvent"
+        app:layout_constraintBottom_toTopOf="@+id/bViewEvent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bJoinEvent" />
 
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textStaticMain2" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/bManageHalls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
@@ -66,10 +66,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bEditEvent" />
+        app:layout_constraintTop_toBottomOf="@+id/bViewEvent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iUserProfile"
         android:layout_width="128dp"
         android:layout_height="142dp"
         android:layout_marginStart="260dp"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textStaticMain3" />
 
     <Button
-        android:id="@+id/bEditEvent"
+        android:id="@+id/bViewEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/bCreateNew" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/bEditEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -101,7 +101,7 @@
         android:onClick="editEvent"
         android:text="@string/edit_event_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bEditEvent" />
+        app:layout_constraintTop_toBottomOf="@+id/bViewEvent" />
 
     <TextView
         android:id="@+id/textStaticMain"
@@ -125,10 +125,10 @@
         android:textColor="#F2F5F8"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textStaticMain2"
-        app:layout_constraintTop_toBottomOf="@+id/bEditEvent" />
+        app:layout_constraintTop_toBottomOf="@+id/bViewEvent" />
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/bManageUni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
@@ -136,5 +136,5 @@
         android:onClick="manageUni"
         android:text="@string/manage_uni_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/bManageHalls" />
 </androidx.constraintlayout.widget.ConstraintLayout>

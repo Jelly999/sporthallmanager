@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 //SQL HELPER
 public class SqlDatabaseInitializer extends SQLiteOpenHelper {
 
-        // If you change the database schema, you must increment the database version.
+        // If you change the database schema, you must increment the version.
         private static final int DATABASE_VERSION = 1;
         private static final String DATABASE_NAME = "sporthallmanager.db";
 
@@ -15,10 +15,9 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
-        // TODO kaikille taulukoille sarakkeen tyyppi TEXT/?_KEY/INTEGER... yms. yms.
+        // Creation of the sql tables
         public void onCreate(SQLiteDatabase db) {
 
-            //Creation of the sql tables
             final String SQL_CREATE_USER =
                     "CREATE TABLE " + SqlTablenames.userTable.TABLE_NAME + " (" +
                             SqlTablenames.userTable.COLUMN_NAME_USER_UUID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -94,9 +93,9 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
         }
 
 
+        // TODO kuinka tämän käyttö ??? tarvitaanko edes koska update metodit on olemassa
+        //  voidaan suoraan päivittää tietokantaan ja hakea tietokannasta olioihin uudestaan käyttämättä tätä???
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            // This database is only a cache for online data, so its upgrade policy is
-            // to simply to discard the data and start over
 
             //Delete functions for sql tables
             final String SQL_DELETE_USER =
