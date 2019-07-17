@@ -168,9 +168,16 @@ public class SqlManager {
         }
 
 
-        public static void removeRow(String UUID) {
+        public static void removeEnrollsByID(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.enrollsTable.TABLE_NAME +
                     " WHERE " + SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID + " = " + UUID + ";";
+            Wdb.execSQL(SQLquery);
+        }
+
+
+        public static void removeAllUsersEnrolls(int userUUID) {
+            String SQLquery = "DELETE FROM " + SqlTablenames.enrollsTable.TABLE_NAME +
+                    " WHERE " + SqlTablenames.enrollsTable.COLUMN_NAME_USER_UUID + " = " + userUUID + ";";
             Wdb.execSQL(SQLquery);
         }
     }

@@ -72,6 +72,11 @@ public class Reservation {
         setEndDate(endDate);
     }
 
+    //TODO TÄMÄ TÄNNE??? kuinka tämä toimii?
+    public void updateEnrollssFromSQL() {
+        List<Enroll> enrollsList = SqlManager.getEnrollsFromDatabase(this);
+    }
+
     public boolean hasUserAsAttendant(User user) {
         return isUserAttender(user);
     }

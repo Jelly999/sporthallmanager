@@ -1,6 +1,9 @@
 package com.example.ht1;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Enroll {
@@ -27,5 +30,35 @@ public class Enroll {
     public void setEnrollID(int newEnrollID) {EnrollID = newEnrollID;}
     public void setReserveID(int newReserveID) {ReserveID = newReserveID;}
     public void setUserUUID(int newUserID) {UserUUID = newUserID;}
+
+    public void setEnrollsList(ArrayList<Enroll> enrolls) {enrollsList = enrolls;}
+
+
+    // ======= PUBLIC OTHER METHODS =======
+    // TODO mitä kaikkea täällä tarvitaan entäs update tänne vai reservationiin??
+
+    public boolean addEnroll(Enroll enroll) {
+        if (enroll != null) {
+            enrollsList.add(enroll);
+            return true;
+        }
+        return false;
+    }
+
+    public void logAllEnrolls(String TAG) {
+        for (Enroll enroll : enrollsList) {
+            Log.d(TAG, enroll.toString());
+        }
+    }
+
+    // ======= PRIVATE METHODS =======
+    private boolean doesEnrollExist(Enroll enroll) {
+        for (Enroll enrl : enrollsList) {
+            if (enrl.equals(enroll)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
