@@ -12,7 +12,7 @@
         android:layout_width="279dp"
         android:layout_height="62dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="332dp"
+        android:layout_marginTop="280dp"
         android:text="Random 6 integers"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
         android:layout_marginTop="29dp"
+        android:onClick="authbutton"
         android:text="@string/confirm_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_inputint_auth" />

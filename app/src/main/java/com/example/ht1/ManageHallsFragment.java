@@ -32,7 +32,7 @@ public class ManageHallsFragment extends Fragment {
         return input;
     }
     public String getNewHallType(View view){
-        EditText value = view.findViewById(R.id.eSetUserName_MUser);
+        EditText value = view.findViewById(R.id.eNewUsername_MUser);
         String input = value.getText().toString();
         return input;
     }
