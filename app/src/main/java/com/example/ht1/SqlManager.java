@@ -225,6 +225,31 @@ public class SqlManager {
 
 
     ///// DATA FROM DATABASE TO OBJECTS /////
+    // university name to arraylist
+    public static ArrayList<String> getUniNameFromDatabase() throws SQLException {
+            ArrayList<String> uniList = new ArrayList<>();
+
+        String rawQuery = "SELECT " + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + " FROM " + SqlTablenames.universitiesTable.TABLE_NAME +";";
+        Cursor cursor = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+        if (cursor.moveToFirst()) {
+            do {
+
+                String name = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.universitiesTable.COLUMN_NAME_NAME
+                ));
+
+                uniList.add(name);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return uniList;
+    }
+
+
     // userdata to user object
     public static List<User> getUsersFromDatabase() throws SQLException {
         List<User> userList = new ArrayList<>();
