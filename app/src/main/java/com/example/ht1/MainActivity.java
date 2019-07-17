@@ -84,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, joinevent);
         fragmentTransaction.commit();
     }
+    public void GotoMainMenu(View v) {
+        MainMenuFragment joinevent = new MainMenuFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, joinevent);
+        fragmentTransaction.commit();
+    }
     private void launchlogin() {
         LoginFragment login = new LoginFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -114,29 +120,64 @@ public class MainActivity extends AppCompatActivity {
         reservationManager.logAllReservations("OBJECT");
     }
 
-    public void login(){
+    public void login() {
         launchlogin();
+        /*
+            EditText input = findViewById(R.id.eUsername_login);
+            String username = input.getText().toString();
+            input = findViewById(R.id.eUsername_login);
+            String password = input.getText().toString();
+            String pwdhash = PasswordManager.getHashedPassword(password, username);
+            String pwdhashdb = "";//getPasswordHash(username); // Get password hash from database
+            boolean loginSuccess = false;
+
+            if (pwdhash == pwdhashdb) {
+                //Go to Authenticator fragment
+                launchAuth();
+                String authNumbers = PasswordManager.authNumbers();
+                TextView output = findViewById(R.id.text_randint_auth);
+                output.setText(authNumbers);
+                EditText rinput = findViewById(R.id.edit_inputint_auth);
+                String numbers = rinput.getText().toString();
+                if (authNumbers == numbers) {
+                    loginSuccess = true;
+                }
+
+            }
+
+            if (loginSuccess == true) {
+                //On login button press --> Go to main menu
+                launchMainMenu();
+                }
+*/
+        }
+    public void loginbutton(View v) {
         EditText input = findViewById(R.id.eUsername_login);
         String username = input.getText().toString();
         input = findViewById(R.id.eUsername_login);
         String password = input.getText().toString();
         String pwdhash = PasswordManager.getHashedPassword(password, username);
         String pwdhashdb = "";//getPasswordHash(username); // Get password hash from database
-        boolean loginSuccess = false;
-        if (pwdhash == pwdhashdb){
+        System.out.println("login button");
+
+
+        if (pwdhash != pwdhashdb) {
             //Go to Authenticator fragment
             launchAuth();
-            String authNumbers = PasswordManager.authNumbers();
+            /*String authNumbers = PasswordManager.authNumbers();
+            System.out.println(authNumbers);
             TextView output = findViewById(R.id.text_randint_auth);
             output.setText(authNumbers);
-            EditText rinput = findViewById(R.id.edit_inputint_auth);
-            String numbers = rinput.getText().toString();
-            if (authNumbers == numbers){
-                loginSuccess = true;
-            }
+*/
         }
-        if (loginSuccess == true){
-            //On login button press --> Go to main menu
+    }
+    public void authbutton(View v){
+        System.out.println("auth button");
+        String authNumbers = "";
+        EditText rinput = findViewById(R.id.edit_inputint_auth);
+        String numbers = rinput.getText().toString();
+        if (authNumbers != numbers) {
+            launchMainMenu();
         }
     }
 
