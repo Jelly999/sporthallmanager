@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -23,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private ReservationManager reservationManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 */
         }
-    public void loginbutton(View v) {
+    public void loginbutton(View view) {
         EditText input = findViewById(R.id.eUsername_login);
         String username = input.getText().toString();
         input = findViewById(R.id.eUsername_login);
@@ -203,11 +203,12 @@ public class MainActivity extends AppCompatActivity {
         String pwdhash = PasswordManager.getHashedPassword(password, username);
         String pwdhashdb = "";//getPasswordHash(username); // Get password hash from database
         System.out.println("login button");
-
-
         if (pwdhash != pwdhashdb) {
             //Go to Authenticator fragment
             launchAuth();
+            String authNumbers = PasswordManager.authNumbers();
+            //TextView authNumb = findViewById(R.id.text_randint_auth);
+            //authNumb.setText(authNumbers);
             /*String authNumbers = PasswordManager.authNumbers();
             System.out.println(authNumbers);
             TextView output = findViewById(R.id.text_randint_auth);
@@ -217,34 +218,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void authbutton(View v){
         System.out.println("auth button");
-        String authNumbers = "";
+        String authNumbers = "123456";
         EditText rinput = findViewById(R.id.edit_inputint_auth);
         String numbers = rinput.getText().toString();
-        if (authNumbers != numbers) {
+        if (authNumbers.equals(numbers)) {
             launchMainMenu();
-    public void login(){
-        launchlogin();
-        EditText input = findViewById(R.id.eUsername_login);
-        String username = input.getText().toString();
-        input = findViewById(R.id.eUsername_login);
-        String password = input.getText().toString();
-        String pwdhash = PasswordManager.getHashedPassword(password, username);
-        String pwdhashdb = "";//getPasswordHash(username); // Get password hash from database
-        boolean loginSuccess = false;
-        if (pwdhash == pwdhashdb){
-            //Go to Authenticator fragment
-            launchAuth();
-            String authNumbers = PasswordManager.authNumbers();
-            TextView output = findViewById(R.id.text_randint_auth);
-            output.setText(authNumbers);
-            EditText rinput = findViewById(R.id.edit_inputint_auth);
-            String numbers = rinput.getText().toString();
-            if (authNumbers == numbers){
-                loginSuccess = true;
-            }
-        }
-        if (loginSuccess == true){
-            //On login button press --> Go to main menu
         }
     }
 
