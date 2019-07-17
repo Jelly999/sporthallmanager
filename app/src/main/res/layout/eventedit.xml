@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/eSetUserName_MUser"
+        android:id="@+id/eNewUsername_MUser"
         android:layout_width="374dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
@@ -120,7 +120,7 @@
         android:layout_marginEnd="32dp"
         android:text="@string/remove_reservation_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eSetUserName_MUser" />
+        app:layout_constraintTop_toBottomOf="@+id/eNewUsername_MUser" />
 
     <Button
         android:id="@+id/button3"
