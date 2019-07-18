@@ -77,7 +77,6 @@ public class JoinEventFragment extends Fragment {
             String text = "";
             text += "Sport type: " + reservation.getSport() + "\n";
             text += "Sporthall name: " + reservation.getSporthall().getName() + "\n";
-            // TODO OWNER PITÄÄ SETATA!
             text += "Owner: " + reservation.getOwner().getFirstName() + " " + reservation.getOwner().getSurName() + "\n";
             text += "Start time: " + format.format(reservation.getStartDate().getTime()) + "\n";
             text += "End time: " + format.format(reservation.getEndDate().getTime()) + "\n";

@@ -18,26 +18,11 @@
         android:background="#F2F5F8"/>
 
     <EditText
-        android:id="@+id/eNewUsername_MUser"
-        android:layout_width="374dp"
+        android:id="@+id/eSetDurationHours_create"
+        android:layout_width="100dp"
         android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:autofillHints="@string/set_max_particp_text"
-        android:ems="10"
-        android:hint="@string/set_max_particp_text"
-        android:inputType="number"
-        android:textColor="#F2F5F8"
-        android:textColorHint="#F2F5F8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
-
-    <EditText
-        android:id="@+id/editText6"
-        android:layout_width="374dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
         android:autofillHints="@string/set_duration_text"
         android:ems="10"
         android:hint="@string/set_duration_text"
@@ -45,22 +30,22 @@
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintTop_toBottomOf="@+id/bSetStartTime_create" />
 
     <EditText
-        android:id="@+id/eUsername_login"
-        android:layout_width="374dp"
+        android:id="@+id/eSetMaximumPart_create"
+        android:layout_width="240dp"
         android:layout_height="46dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="16dp"
-        android:autofillHints="@string/set_sport_text"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="@string/set_sport_text"
+        android:autofillHints="@string/set_max_particp_text"
+        android:hint="@string/set_max_particp_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sporthallSpinner_createevent" />
+        app:layout_constraintTop_toBottomOf="@+id/eSetDurationHours_create" />
 
     <Button
         android:id="@+id/bAddNewUser_MUser"
@@ -86,20 +71,57 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="374dp"
+    <Button
+        android:id="@+id/bSetStartTime_create"
+        android:layout_width="100dp"
         android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="28dp"
         android:autofillHints="@string/set_stime_text"
         android:ems="10"
         android:hint="@string/set_stime_text"
-        android:inputType="time"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eSetSportName_create" />
+
+    <TextView
+        android:id="@+id/CompleteStartDate_create"
+        android:layout_width="130dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:textColor="#F2F5F8"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/bSetStartTime_create"
+        app:layout_constraintTop_toBottomOf="@id/eSetSportName_create" />
+
+    <EditText
+        android:id="@+id/eSetStartTime"
+        android:layout_width="80dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:autofillHints="@string/set_start_date_create"
+        android:ems="10"
+        android:hint="@string/set_start_date_create"
+        android:inputType="datetime"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eUsername_login" />
+        app:layout_constraintStart_toEndOf="@+id/CompleteStartDate_create"
+        app:layout_constraintTop_toBottomOf="@+id/eSetSportName_create" />
+
+    <TextView
+        android:id="@+id/CompleteEndDate_create"
+        android:layout_width="218dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#F2F5F8"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/eSetDurationHours_create"
+        app:layout_constraintTop_toBottomOf="@+id/CompleteStartDate_create" />
 
     <TextView
         android:id="@+id/textView2"
@@ -116,19 +138,19 @@
         android:id="@+id/sRecurring_create"
         android:layout_width="107dp"
         android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="148dp"
         android:text="@string/active_text"
         android:textColor="#F2F5F8"
-        app:layout_constraintStart_toEndOf="@id/bExportToCSV_create"
-        app:layout_constraintTop_toBottomOf="@id/editText6" />
+        app:layout_constraintStart_toEndOf="@+id/bExportToCSV_create"
+        app:layout_constraintTop_toBottomOf="@id/eSetDurationHours_create" />
 
     <EditText
-        android:id="@+id/editText8"
-        android:layout_width="256dp"
+        android:id="@+id/eSetReoccuring_create"
+        android:layout_width="300dp"
         android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="80dp"
         android:autofillHints="@string/reservatio_recurs_text"
         android:ems="10"
         android:hint="@string/reservatio_recurs_text"
@@ -136,16 +158,31 @@
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eNewUsername_MUser" />
+        app:layout_constraintTop_toBottomOf="@+id/CompleteEndDate_create" />
 
     <Button
         android:id="@+id/bExportToCSV_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
         android:text="@string/export_CSV_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintTop_toBottomOf="@+id/eSetReoccuring_create" />
+
+    <EditText
+        android:id="@+id/eSetSportName_create"
+        android:layout_width="374dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:autofillHints="@string/set_event_sport_text"
+        android:hint="@string/set_event_sport_text"
+        android:inputType="textPersonName"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

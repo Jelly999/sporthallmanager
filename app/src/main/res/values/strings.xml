@@ -24,6 +24,7 @@
     <string name="set_stime_text">Set start time</string>
     <string name="set_duration_text">Set duration</string>
     <string name="set_max_particp_text">Set maximum participants</string>
+    <string name="set_start_date_create">00:00</string>
     <string name="reservatio_recurs_text">Reservation recurs # of weeks</string>
     <string name="select_sportevent_text">Select Sportevent</string>
     <string name="join_button">Join</string>
