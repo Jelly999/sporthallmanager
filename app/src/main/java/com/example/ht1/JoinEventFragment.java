@@ -53,6 +53,41 @@ public class JoinEventFragment extends Fragment {
         sporteventInfoText.setText("Yehaw!");
     }
 
+    public void JoinAnEvent(View v) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'kk:mm");
+        List<Reservation> reservationsList;
+        String spinner = sporteventsSpinner.getSelectedItem().toString();
+        System.out.println(spinner);
+        reservationsList = getEventFromList();
+        for (Reservation reservation : reservationsList) {
+            String reservationData = reservation.getSport() + " " + format.format(reservation.getStartDate().getTime());
+            System.out.println(reservationData);
+            if (reservationData.equals(spinner)) {
+                List<User> attenders = reservation.getAttenderList();
+                for (User user : attenders) {
+                    if (user.getUUID() != User.getCurrentUser().getUUID()) {
+                        System.out.println("Nyt osallistutaan");
+
+                    }
+                }
+            }
+        }
+
+        //SqlManager.SQLenrolls.insertRow(User.getCurrentUser().getUUID(),);
+    }
+
+    private List<Reservation> getEventFromList() {
+        List<Reservation> reservations = new ArrayList<>();
+        for (Sporthall sporthall : ReservationManager.sporthallsList) {
+            if (!sporthall.getDisabled()) {
+                for (Reservation reservation : sporthall.getReservations()) {
+                    reservations.add(reservation);
+                }
+            }
+        }
+        return reservations;
+    }
+
     private void updateSporteventSpinner() {
 
 
