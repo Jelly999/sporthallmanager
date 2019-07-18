@@ -98,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d("ONBACK", "popBackStack on command");
         getSupportFragmentManager().popBackStackImmediate();
     }
+    public void logOut(View v){
+        User.setCurrentUser(null);
+        launchlogin();
+    }
 
     public void launchMainMenu() {
         MainMenuFragment joinevent = new MainMenuFragment();
