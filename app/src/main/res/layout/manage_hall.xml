@@ -76,6 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
         android:layout_marginBottom="53dp"
+        android:onClick="saveHalldata"
         android:text="@string/save_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -140,6 +141,7 @@
         android:hint="@string/set_halltype_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toEndOf="@+id/eNewHallLocation_MHalls"
         app:layout_constraintTop_toBottomOf="@+id/eNewHallname_MHalls" />
 
