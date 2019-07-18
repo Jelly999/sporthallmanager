@@ -12,7 +12,7 @@ public class User {
     private String phoneNum;
     private String passwordHash;
     private boolean admin;
-    private String uniName// Is the user admin (True = yes, False = no)
+    private String uniName;// Is the user admin (True = yes, False = no)
 
     // LIST OF USERS IS IN RESERVATION MANAGER!
 

@@ -450,22 +450,18 @@ public class SqlManager {
 
 
     // get enrolls from database
-    public static List<Enroll> getEnrollsFromDatabase(Reservation reservation) throws SQLException {
+    public static List<Enroll> getEnrollsFromDatabase() throws SQLException {
         List<Enroll> enrollsList = new ArrayList<>();
-        // TODO ajattelin että voisi hakea enrollit jokaiselle reservationille erikseen,
-        // TODO säästäisi hieman prosessointiaikaa
 
-        String[] reservationID = {Integer.toString(reservation.getUUID())}; // The id of the reservation
-        String whereClause = SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID + " = ?";
+        String[] reservationID = {SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID, SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID, SqlTablenames.enrollsTable.COLUMN_NAME_USER_UUID};
 
-        Cursor cursor = Rdb.query(SqlTablenames.reservationsTable.TABLE_NAME,null,
-                whereClause, reservationID,
-                null, null, null);
+        Cursor cursor = Rdb.query(SqlTablenames.enrollsTable.TABLE_NAME, reservationID,
+                null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
                 int enrollID = cursor.getInt(cursor.getColumnIndex(
-                        SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID
+                        SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID
                 ));
                 int reserveID = cursor.getInt(cursor.getColumnIndex(
                         SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID
