@@ -2,11 +2,7 @@ package com.example.ht1;
 
 //TODO Sali-luokka, joka pitää kirjaa salin varaus-olioista
 
-import android.net.wifi.aware.PublishConfig;
 import android.util.Log;
-
-import java.net.IDN;
-import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

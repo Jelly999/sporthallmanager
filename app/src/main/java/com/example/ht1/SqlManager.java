@@ -168,9 +168,16 @@ public class SqlManager {
         }
 
 
-        public static void removeRow(String UUID) {
+        public static void removeEnrollsByID(String UUID) {
             String SQLquery = "DELETE FROM " + SqlTablenames.enrollsTable.TABLE_NAME +
                     " WHERE " + SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID + " = " + UUID + ";";
+            Wdb.execSQL(SQLquery);
+        }
+
+
+        public static void removeAllUsersEnrolls(int userUUID) {
+            String SQLquery = "DELETE FROM " + SqlTablenames.enrollsTable.TABLE_NAME +
+                    " WHERE " + SqlTablenames.enrollsTable.COLUMN_NAME_USER_UUID + " = " + userUUID + ";";
             Wdb.execSQL(SQLquery);
         }
     }
@@ -227,7 +234,7 @@ public class SqlManager {
     ///// DATA FROM DATABASE TO OBJECTS /////
     // university name to arraylist
     public static ArrayList<String> getUniNameFromDatabase() throws SQLException {
-            ArrayList<String> uniList = new ArrayList<>();
+        ArrayList<String> uniList = new ArrayList<>();
 
         String rawQuery = "SELECT " + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + " FROM " + SqlTablenames.universitiesTable.TABLE_NAME +";";
         Cursor cursor = Rdb.rawQuery(
@@ -254,10 +261,20 @@ public class SqlManager {
     public static List<User> getUsersFromDatabase() throws SQLException {
         List<User> userList = new ArrayList<>();
 
-        Cursor cursor = Rdb.query(SqlTablenames.userTable.TABLE_NAME, null,
-                null, null, null, null,
-                SqlTablenames.userTable.COLUMN_NAME_USER_UUID);
-        // TODO Jos ei toimi http://www.androidhive.info/2011/11/android-sqlite-database-tutorial/
+        String rawQuery = "SELECT "+ SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_USER_UUID + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_USERNAME
+                + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_SURNAME
+                + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_EMAIL + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER
+                + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_PWD_HASH
+                + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR + ", " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_NAME
+                + " FROM ((" + SqlTablenames.userTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.user_access_uni_Table.TABLE_NAME
+                + " ON " + SqlTablenames.user_access_uni_Table.TABLE_NAME + "." + SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID + " = "
+                + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_USER_UUID + ") INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
+                + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + "="
+                + SqlTablenames.user_access_uni_Table.TABLE_NAME + "." + SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID +");";
+        Cursor cursor = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
 
         if (cursor.moveToFirst()) {
             do {
@@ -285,6 +302,9 @@ public class SqlManager {
                 boolean admin = (cursor.getInt(cursor.getColumnIndex(
                         SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR
                 )) == 1);
+                String uniName = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.universitiesTable.COLUMN_NAME_NAME
+                ));
 
 
                 User user = new User();
@@ -297,6 +317,7 @@ public class SqlManager {
                 user.setPhoneNum(phoneNum);
                 user.setPasswordHash(pwdHash);
                 user.setAdminPrivilege(admin);
+                user.setUniName(uniName);
 
                 userList.add(user);
 
@@ -429,22 +450,18 @@ public class SqlManager {
 
 
     // get enrolls from database
-    public static List<Enroll> getEnrollsFromDatabase(Reservation reservation) throws SQLException {
+    public static List<Enroll> getEnrollsFromDatabase() throws SQLException {
         List<Enroll> enrollsList = new ArrayList<>();
-        // TODO ajattelin että voisi hakea enrollit jokaiselle reservationille erikseen,
-        // TODO säästäisi hieman prosessointiaikaa
 
-        String[] reservationID = {Integer.toString(reservation.getUUID())}; // The id of the reservation
-        String whereClause = SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID + " = ?";
+        String[] reservationID = {SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID, SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID, SqlTablenames.enrollsTable.COLUMN_NAME_USER_UUID};
 
-        Cursor cursor = Rdb.query(SqlTablenames.reservationsTable.TABLE_NAME,null,
-                whereClause, reservationID,
-                null, null, null);
+        Cursor cursor = Rdb.query(SqlTablenames.enrollsTable.TABLE_NAME, reservationID,
+                null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
                 int enrollID = cursor.getInt(cursor.getColumnIndex(
-                        SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID
+                        SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID
                 ));
                 int reserveID = cursor.getInt(cursor.getColumnIndex(
                         SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID
