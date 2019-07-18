@@ -6,130 +6,121 @@
     android:layout_height="match_parent"
     android:background="#2f2f2f">
 
+    <Button
+        android:id="@+id/bCancel_join"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="56dp"
+        android:onClick="GotoMainMenu"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bSave_edit" />
+
     <TextView
-        android:id="@+id/textStaticJoinevent"
+        android:id="@+id/tStatic1_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/select_eventID_text"
         android:textColor="#F2F5F8"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/sporthallSpinner_createevent"
+        android:textColorHint="#F2F5F8"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/sporthallSpinner_createevent"
-        android:layout_width="272dp"
-        android:layout_height="43dp"
+        android:id="@+id/spinner"
+        android:layout_width="370dp"
+        android:layout_height="46dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="72dp"
-        android:backgroundTint="#F2F5F8"
-        android:foregroundTint="#00000000"
+        android:layout_marginTop="64dp"
+        android:background="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/eNewUsername_MUser"
-        android:layout_width="374dp"
-        android:layout_height="46dp"
+        android:id="@+id/eSetEventSport_edit"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:autofillHints="@string/edit_maximumparticipants_text"
-        android:ems="10"
-        android:hint="@string/edit_maximumparticipants_text"
-        android:inputType="textPersonName"
-        android:textColor="#F2F5F8"
-        android:textColorHint="#F2F5F8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
-
-    <EditText
-        android:id="@+id/editText6"
-        android:layout_width="374dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
-        android:autofillHints="@string/edit_duration_text"
-        android:ems="10"
-        android:hint="@string/edit_duration_text"
-        android:inputType="textPersonName"
-        android:textColor="#F2F5F8"
-        android:textColorHint="#F2F5F8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eNewHallname_MHalls" />
-
-    <EditText
-        android:id="@+id/eUsername_login"
-        android:layout_width="374dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:autofillHints="@string/set_event_sport_text"
         android:ems="10"
-        android:hint="@string/set_event_sport_text"
+        android:hint="@string/set_sport_text"
         android:inputType="textPersonName"
+        android:text="@string/set_event_sport_text"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <EditText
-        android:id="@+id/eNewHallname_MHalls"
-        android:layout_width="374dp"
-        android:layout_height="46dp"
+        android:id="@+id/eChangeSporthall_edit"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="12dp"
         android:autofillHints="@string/change_sporthall_text"
         android:ems="10"
         android:hint="@string/change_sporthall_text"
         android:inputType="textPersonName"
+        android:text="@string/change_sporthall_text"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eUsername_login" />
+        app:layout_constraintTop_toBottomOf="@+id/eSetEventSport_edit" />
+
+    <EditText
+        android:id="@+id/eEditEventDuration_edit"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints="@string/edit_duration_text"
+        android:ems="10"
+        android:hint="@string/edit_duration_text"
+        android:inputType="textPersonName"
+        android:text="@string/edit_duration_text"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eChangeSporthall_edit" />
+
+    <EditText
+        android:id="@+id/eEditMAXParticipants_edit"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints="@string/edit_maximumparticipants_text"
+        android:ems="10"
+        android:hint="@string/edit_maximumparticipants_text"
+        android:inputType="textPersonName"
+        android:text="@string/edit_maximumparticipants_text"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eEditEventDuration_edit" />
 
     <Button
-        android:id="@+id/bAddNewUser_MUser"
+        android:id="@+id/bRemoveSelectReservation_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="31dp"
+        android:text="@string/remove_reservation_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eEditMAXParticipants_edit" />
+
+    <Button
+        android:id="@+id/bSave_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="83dp"
         android:layout_marginBottom="56dp"
         android:text="@string/save_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bCancel_MUser"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/bCancel_join"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="56dp"
-        android:onClick="GotoMainMenu"
-        android:text="@string/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/remove_reservation_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eSetUserName_MUser" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/export_CSV_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
