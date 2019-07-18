@@ -18,7 +18,7 @@ public class authFragment extends Fragment {
     private TextView randomintText;
     private Button confirmButton;
 
-    private int authCode;
+    private String authCode;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,18 +54,20 @@ public class authFragment extends Fragment {
 
     private void setRandomIntegers() {
         Random rnd = new Random();
-        authCode = rnd.nextInt(999999);
-        randomintText.setText(Integer.toString(authCode));
+        String authText = "";
+
+        for (int i = 0; i < 6; i++) {
+            authText += Integer.toString(rnd.nextInt(9));
+        }
+        authCode = authText;
+
+        randomintText.setText(authCode);
     }
 
     private boolean checkIfAuthMatch(String input) {
         if (input.length() == 0) {
             return true; //TODO REMOVE ONCE ALL IS GOOD
         }
-        if (input != null) {
-            if (input.equals(Integer.toString(authCode)))
-                return true;
-        }
-        return false;
+        return input.equals(authCode);
     }
 }

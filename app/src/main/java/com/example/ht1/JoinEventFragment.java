@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +22,7 @@ public class JoinEventFragment extends Fragment {
     private Spinner sporteventsSpinner;
     private Button joinButton;
     private Button cancelButton;
-
+    SimpleDateFormat format;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,19 +36,72 @@ public class JoinEventFragment extends Fragment {
         sporteventsSpinner = view.findViewById(R.id.sporteventSpinner_join);
         joinButton = view.findViewById(R.id.bJoinEvent);
         cancelButton = view.findViewById(R.id.bCancel_join);
+        format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
+
+        updateSporteventSpinner();
+        sporteventsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                updateInfoBox(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //Yeet
+            }
+        });
+        sporteventInfoText.setText("Yehaw!");
     }
 
     private void updateSporteventSpinner() {
+
+
         List<String> reservationStrings = new ArrayList<>();
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
             if (!sporthall.getDisabled()) {
                 for (Reservation reservation : sporthall.getReservations()) {
                     String text = reservation.getSport();
-                    text += " " + reservation.getStartDate().toString();
+                    text += "  " + format.format(reservation.getStartDate().getTime());
                     reservationStrings.add(text);
                 }
             }
         }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getView().getContext(),R.layout.support_simple_spinner_dropdown_item,reservationStrings);
+        sporteventsSpinner.setAdapter(adapter);
+    }
+
+    private void updateInfoBox(int i) {
+        Reservation reservation = getReservationFromPosition(i);
+        if (reservation != null) {
+            String text = "";
+            text += "Sport type: " + reservation.getSport() + "\n";
+            text += "Sporthall name: " + reservation.getSporthall().getName() + "\n";
+            // TODO OWNER PITÄÄ SETATA!
+            text += "Owner: " + reservation.getOwner().getFirstName() + " " + reservation.getOwner().getSurName() + "\n";
+            text += "Start time: " + format.format(reservation.getStartDate().getTime()) + "\n";
+            text += "End time: " + format.format(reservation.getEndDate().getTime()) + "\n";
+            text += "Attenders: " + reservation.getAttenderAmount() + "\n";
+            text += "Max attenders: " + reservation.getMaxParticipants() + "\n";
+
+            sporteventInfoText.setText(text);
+        }
+    }
+
+    private Reservation getReservationFromPosition(int i) {
+        int j = 0;
+        for (Sporthall sporthall : ReservationManager.sporthallsList) {
+            if (!sporthall.getDisabled()) {
+                for (Reservation reservation : sporthall.getReservations()) {
+                    if (j == i) {
+                        return reservation;
+                    } else {
+                        j++;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
 }

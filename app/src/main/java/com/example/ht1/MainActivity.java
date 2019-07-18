@@ -141,10 +141,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void GotoMainMenu(View v) {
-        MainMenuFragment joinevent = new MainMenuFragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, joinevent);
-        fragmentTransaction.commit();
+        popStacks();
     }
 
     public void saveUserdata(View v) throws Exception {
