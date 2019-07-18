@@ -14,7 +14,8 @@
         android:layout_marginTop="46dp"
         android:backgroundTint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#F2F5F8"/>
 
     <EditText
         android:id="@+id/eNewUsername_MUser"

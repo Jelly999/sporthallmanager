@@ -2,6 +2,8 @@ package com.example.ht1;
 
 //TODO Varaus-luokka, joka pitää sisällään varauksen tiedot
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -55,10 +57,16 @@ public class Reservation {
     //void setTitle(String text) {title = text;}
     void setSport(String text) {sport = text;}
     void setOwner(int ownerID) {
-
+        for (User user : ReservationManager.usersList) {
+            if (ownerID == user.getUUID()) {
+                owner = user;
+                return;
+            }
+        }
+        Log.e("RESERVATION", "no such owner can be found");
     }
     void setMaxParticipants(int max) {maxParticipants = max;}
-    void setStartCalendar(Calendar calend) {}
+    void setStartCalendar(Calendar calend) {startCalendar = calend;}
 
 
 
