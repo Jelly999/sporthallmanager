@@ -8,5 +8,7 @@
     <TextView
         android:id="@+id/Scrollable"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:textColor="#F2F5F8"
+        android:textSize="18sp" />
 </RelativeLayout>

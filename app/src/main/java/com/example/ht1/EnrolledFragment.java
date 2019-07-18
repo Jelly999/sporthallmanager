@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +28,19 @@ public class EnrolledFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'kk:mm");
         enrollList = SqlManager.getEnrollsFromDatabase();
         scrollableText = getView().findViewById(R.id.Scrollable);
+        scrollableText.setText("");
         ReservtionToEnrollList = getAllReservation();
         System.out.println(ReservtionToEnrollList);
         for (Enroll enroll : enrollList) {
             if (enroll.getUserUUID() == User.getCurrentUser().getUUID()) {
                 for (Reservation reservation : ReservtionToEnrollList) {
-                    String a_enroll = reservation.getSporthall().getName() + ", " + reservation.getStartDate() + ", " + reservation.getSport() + ", " + reservation.getAttenderAmount();
-                    scrollableText.setText(a_enroll + "\n\nYKSI ENROLLI!!");
+                    if (enroll.getReserveID() == reservation.getUUID()) {
+                        String an_enroll = reservation.getSporthall().getName() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport() + ", " + reservation.getAttenderAmount();
+                        scrollableText.append("\n" + an_enroll);
+                    }
                 }
             }
         }
