@@ -478,9 +478,9 @@ public class SqlManager {
         //User preset values
         String[] user = {"'admin'", "'admin'", "'admin'", "'admin.admin@adminmail.com'", "'0500628689'", "'" + PasswordManager.getHashedPassword("admin", "admin") + "'" , "1" };
         SQLuser.insertRow(user);
-        user = new String[]{"'mattim'", "'Matti'", "'Meikäläinen'", "'Matti.Meikalainen@gmail.com'", "'0505689132'", "'" + PasswordManager.getHashedPassword("44mUj40nP4lJ0n", "mattim") + "'" , "0"};
+        user = new String[]{"'mattim'", "'Matti'", "'Meikäläinen'", "'Matti.Meikalainen@gmail.com'", "'0505689132'", "'" + PasswordManager.getHashedPassword("tuuve12!", "mattim") + "'" , "0"};
         SQLuser.insertRow(user);
-        user = new String[]{"'rickv'", "'Rick'", "'Vang'", "'Rick.Vang@webmail.com'", "'0290909857'", "'" + PasswordManager.getHashedPassword("AuR1nk#1n€n12?", "rickv") + "'" , "0"};
+        user = new String[]{"'rickv'", "'Rick'", "'Vang'", "'Rick.Vang@webmail.com'", "'0290909857'", "'" + PasswordManager.getHashedPassword("richard12!", "rickv") + "'" , "0"};
         SQLuser.insertRow(user);
         user = new String[]{"'jimb'", "'Jim'", "'Bass'", "'jimba89@gmail.com'", "'0440698602'", "'" + PasswordManager.getHashedPassword("H3LL0@w0rld!!!", "jimb") + "'" , "0"};
         SQLuser.insertRow(user);
