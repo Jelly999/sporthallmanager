@@ -1,6 +1,7 @@
 package com.example.ht1;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,23 +50,29 @@ public class LoginFragment extends Fragment {
 
         User loginUser = isCredintialsOK(userName, pswHash);
 
+        Log.d("LOGIN", "---------------");
+
         if (loginUser != null) {
-            System.out.println("Login accepted");
+            Log.d("LOGIN", "Login accepted");
             User.setCurrentUser(loginUser);
 
             ((MainActivity)getActivity()).launchAuth();
 
         } else {
-            System.out.println("Login denied");
+            Log.d("LOGIN", "Login denied");
         }
 
-        System.out.println(userName + "  " + password);
+        Log.d("LOGIN", userName + "-" + password);
     }
 
     private User isCredintialsOK(String userName, String passwordHash) {
 
+        Log.d("LOGIN", "Hash 1: " + passwordHash);
+
         for (User user : ReservationManager.usersList) {
             if (user.getUserName().equals(userName)) {
+                Log.d("LOGIN", "Found matching username: " + user.getUserName());
+                Log.d("LOGIN", "Hash 2: " + user.getPasswordHash());
                 if (user.getPasswordHash().equals(passwordHash)) {
                     return user;
                 }

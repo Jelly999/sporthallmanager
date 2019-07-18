@@ -79,7 +79,7 @@
         android:onClick="account"
         android:src="@drawable/ic_boss"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textStaticMain3" />
+        app:layout_constraintTop_toBottomOf="@+id/tUserProfileName_menu" />
 
     <Button
         android:id="@+id/bViewEvent"
@@ -116,7 +116,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textStaticMain3"
+        android:id="@+id/tUserProfileName_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
