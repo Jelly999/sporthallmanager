@@ -1,11 +1,13 @@
 package com.example.ht1;
 
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -92,6 +94,14 @@ public class MainActivity extends AppCompatActivity {
             Log.d("ONBACK", "popBackStack");
             getSupportFragmentManager().popBackStackImmediate();
         }
+    }
+    public void toast(){
+        Context context = getApplicationContext();
+        CharSequence text = "You do not have administrative permissions!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
     public void popStacks() {
@@ -221,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, manage_users);
         fragmentTransaction.commit();
-        }else{System.out.println("Not admin");}
+        }else{toast();}
         //TODO go to manage users fragmnent, Only For Admin to click
     }
     public void manageHalls(View v){
@@ -232,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.replace(R.id.fragment_container, manage_hall);
             fragmentTransaction.commit();
-        }else{System.out.println("Not admin");}
+        }else{toast();}
         //TODO go to manage hall fragmnent, Only For Admin to click
     }
     public void manageUni(View v){
@@ -243,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, manage_uni);
         fragmentTransaction.commit();
-        }else{System.out.println("Not admin");}
+        }else{toast();}
         //TODO go to manage uni fragmnent, Only For Admin to click
     }
 
