@@ -302,6 +302,9 @@ public class SqlManager {
                 boolean admin = (cursor.getInt(cursor.getColumnIndex(
                         SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR
                 )) == 1);
+                String uniName = cursor.getString(cursor.getColumnIndex(
+                        SqlTablenames.universitiesTable.COLUMN_NAME_NAME
+                ));
 
 
                 User user = new User();
@@ -314,6 +317,7 @@ public class SqlManager {
                 user.setPhoneNum(phoneNum);
                 user.setPasswordHash(pwdHash);
                 user.setAdminPrivilege(admin);
+                user.setUniName(uniName);
 
                 userList.add(user);
 

@@ -11,7 +11,8 @@ public class User {
     private String email;
     private String phoneNum;
     private String passwordHash;
-    private boolean admin;                  // Is the user admin (True = yes, False = no)
+    private boolean admin;
+    private String uniName// Is the user admin (True = yes, False = no)
 
     // LIST OF USERS IS IN RESERVATION MANAGER!
 
@@ -34,6 +35,7 @@ public class User {
     public String getPhoneNum() {return phoneNum;}
     public String getPasswordHash() {return passwordHash;}
     public boolean isAdmin() {return admin;}
+    public String getUniName() {return uniName;}
 
 
 
@@ -49,6 +51,7 @@ public class User {
     public void setPhoneNum(String phone) {phoneNum = phone;}
     public void setPasswordHash(String pwdHash) {passwordHash = pwdHash;}
     public void setAdminPrivilege(boolean isAdmin) {admin = isAdmin;}
+    public void setUniName(String newUniName) {uniName = newUniName;}
 
 
 
@@ -57,7 +60,7 @@ public class User {
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
-        return (UUID + ", " + userName + ", " + firstName + " " + surName + ", " + email + ", " + admin);
+        return (UUID + ", " + userName + ", " + firstName + " " + surName + ", " + email + ", " + admin + ", " + uniName);
     }
 
 
