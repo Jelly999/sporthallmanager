@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bDisablehall_MHalls"
+        android:id="@+id/bDisableHall_MHalls"
         android:layout_width="101dp"
         android:layout_height="56dp"
         android:layout_marginStart="11dp"
@@ -32,24 +32,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bAddNewUser_MUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="72dp"
-        android:text="@string/save_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/bCancel_join"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/bCancel_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="76dp"
         android:onClick="GotoMainMenu"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,14 +46,12 @@
         android:id="@+id/textJoinSuccess"
         android:layout_width="379dp"
         android:layout_height="75dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="48dp"
         android:text="@string/joining_to_event_text"
         android:textColor="#F2F5F8"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/bAddNewUser_MUser"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bCancel_join"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

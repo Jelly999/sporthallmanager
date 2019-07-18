@@ -1,5 +1,30 @@
+This file will include all used and possibly used sql commands which are in the android program.
+
+Those orders are presented in following order:
+
+PRAGMA
+CREATE TABLE
+INSERT INTO
+SELECT
+INSERT INTO
+UPDATE
+DELETE FROM
+
+
+Following commands are inside methods in our android program and thus we indicate name of the table as table_name,
+name of the column as column_name, if multiple as column_1, ..., column_n and data what we want to use as Data,
+also if multiple as Data_1, ..., Data_n. When before we used data that we are inserting into database.
+
+INSERT INTO
+UPDATE
+DELETE FROM
+
+
+
+
 PRAGMA foreign_keys = ON
 ;
+
 
 
 CREATE TABLE user(
@@ -64,12 +89,13 @@ FOREIGN KEY (user_uuid) REFERENCES user(user_uuid) ON DELETE CASCADE
 );
 
 
+
 INSERT INTO user(username, firstname, surname, email, phone, pwd_hash, administrator) VALUES(
 'admin', 'admin', 'admin', 'admin.admin@adminmail.com', '0500628689', 'hash', 1
 );
 
 INSERT INTO user(username, firstname, surname, email, phone, pwd_hash, administrator) VALUES(
-'mattim', 'Matti', 'Meik√§l√§inen', 'Matti.Meikalainen@gmail.com', '0505689132', 'hash', 0
+'mattim', 'Matti', 'Meik‰l‰inen', 'Matti.Meikalainen@gmail.com', '0505689132', 'hash', 0
 );
 
 INSERT INTO user(username, firstname, surname, email, phone, pwd_hash, administrator) VALUES(
@@ -193,12 +219,28 @@ INSERT INTO admin_accounts(user_uuid) VALUES(
 );
 
 
+
 SELECT * FROM user;
 
-SELECT hallid, hallname, name, halltype, not_available FROM sporthall INNER JOIN universities ON universities.uni_uuid = sporthall.uni_uuid;
+SELECT hallid, hallname, name, halltype, not_available FROM sporthall
+INNER JOIN universities ON universities.uni_uuid = sporthall.uni_uuid;
 
 SELECT * FROM reservations;
 
 SELECT * FROM enrolls;
 
 SELECT name FROM universities;
+
+
+
+INSERT INTO table_name(column_1, ..., column_n) VALUES(
+Data_1, ..., Data_n
+);
+
+
+
+UPDATE table_name SET column = Data_1 WHERE column_Data_2 = Data_2;
+
+
+
+DELETE FROM table_name WHERE column_Data = Data;

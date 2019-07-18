@@ -6,46 +6,6 @@
     android:layout_height="match_parent"
     android:background="#2f2f2f">
 
-    <Spinner
-        android:id="@+id/sporthallSpinner_createevent"
-        android:layout_width="389dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
-        android:backgroundTint="#F2F5F8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bReservations_MUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/get_reservations_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
-
-    <Button
-        android:id="@+id/bDeleteUser_MUser"
-        android:layout_width="80dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/delete_user_button"
-        app:layout_constraintStart_toEndOf="@+id/bReservations_MUser"
-        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
-
-    <Button
-        android:id="@+id/bDeleteUserReservation_MUser"
-        android:layout_width="166dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/remove_user_reservation_button"
-        app:layout_constraintStart_toEndOf="@+id/bDeleteUser_MUser"
-        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
-
     <EditText
         android:id="@+id/eNewUsername_MUser"
         android:layout_width="wrap_content"
@@ -114,11 +74,51 @@
         android:id="@+id/eSetUniName_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="16dp"
         android:text="@string/select_user_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/sporthallSpinner_createevent"
+        app:layout_constraintBottom_toTopOf="@+id/Usersspinner_MUser"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/Usersspinner_MUser"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="96dp"
+        android:background="#F2F5F8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/get_reservations_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Usersspinner_MUser" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/delete_user_button"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/Usersspinner_MUser" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/remove_user_reservation_button"
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/Usersspinner_MUser" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

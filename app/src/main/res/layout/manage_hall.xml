@@ -6,71 +6,6 @@
     android:layout_height="match_parent"
     android:background="#2f2f2f">
 
-    <Spinner
-        android:id="@+id/sporthallSpinner_createevent"
-        android:layout_width="389dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
-        android:backgroundTint="#F2F5F8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bReservations_MUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/get_reservations_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
-
-    <Button
-        android:id="@+id/bDeleteUser_MUser"
-        android:layout_width="80dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/Delete_hall_button"
-        app:layout_constraintStart_toEndOf="@+id/bReservations_MUser"
-        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
-
-    <Button
-        android:id="@+id/bDeleteUserReservation_MUser"
-        android:layout_width="80dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/enable_button"
-        app:layout_constraintStart_toEndOf="@+id/bDeleteUser_MUser"
-        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
-
-    <Button
-        android:id="@+id/bDisablehall_MHalls"
-        android:layout_width="80dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/disable_button"
-        app:layout_constraintStart_toEndOf="@+id/bDeleteUserReservation_MUser"
-        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
-
-    <EditText
-        android:id="@+id/eNewUsername_MUser"
-        android:layout_width="194dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="14dp"
-        android:autofillHints="@string/set_halltype_text"
-        android:ems="10"
-        android:hint="@string/set_halltype_text"
-        android:inputType="textPersonName"
-        android:textColor="#F2F5F8"
-        android:textColorHint="#F2F5F8"
-        app:layout_constraintStart_toEndOf="@+id/eNewHallLocation_MHalls"
-        app:layout_constraintTop_toBottomOf="@+id/eNewHallname_MHalls" />
-
     <EditText
         android:id="@+id/eNewHallLocation_MHalls"
         android:layout_width="172dp"
@@ -102,26 +37,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bAddNewUser_MUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
-        android:layout_marginBottom="72dp"
-        android:onClick="saveHalldata"
-        android:text="@string/create_hall_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/bCancel_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginBottom="52dp"
         android:onClick="GotoMainMenu"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser" />
+        app:layout_constraintStart_toEndOf="@+id/bSaveNewHall_MHall" />
 
     <TextView
         android:id="@+id/textStatic1_MHall"
@@ -131,7 +55,7 @@
         android:text="@string/Select_hall_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/sporthallSpinner_createevent"
+        app:layout_constraintBottom_toTopOf="@+id/Hallspinner_MHall"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -145,5 +69,81 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/eNewHallname_MHalls"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bSaveNewHall_MHall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="53dp"
+        android:onClick="saveHalldata"
+        android:text="@string/save_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/Hallspinner_MHall"
+        android:layout_width="384dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="64dp"
+        android:background="#F2F5F8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bDisableHall_MHalls"
+        android:layout_width="80dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/disable_button"
+        app:layout_constraintStart_toEndOf="@+id/bEnableHall_MHalls"
+        app:layout_constraintTop_toBottomOf="@+id/Hallspinner_MHall" />
+
+    <Button
+        android:id="@+id/bEnableHall_MHalls"
+        android:layout_width="80dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/enable_button"
+        app:layout_constraintStart_toEndOf="@+id/bDeleteHall_MHalls"
+        app:layout_constraintTop_toBottomOf="@+id/Hallspinner_MHall" />
+
+    <Button
+        android:id="@+id/bDeleteHall_MHalls"
+        android:layout_width="80dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Delete_hall_button"
+        app:layout_constraintStart_toEndOf="@+id/bGetReservations_MHalls"
+        app:layout_constraintTop_toBottomOf="@+id/Hallspinner_MHall" />
+
+    <Button
+        android:id="@+id/bGetReservations_MHalls"
+        android:layout_width="125dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/get_reservations_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Hallspinner_MHall" />
+
+    <EditText
+        android:id="@+id/eNewHallType_MHalls"
+        android:layout_width="172dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="15dp"
+        android:autofillHints="@string/set_halltype_text"
+        android:ems="10"
+        android:hint="@string/set_halltype_text"
+        android:inputType="textPersonName"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
+        app:layout_constraintStart_toEndOf="@+id/eNewHallLocation_MHalls"
+        app:layout_constraintTop_toBottomOf="@+id/eNewHallname_MHalls" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
