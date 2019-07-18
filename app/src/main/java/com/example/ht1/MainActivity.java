@@ -214,27 +214,36 @@ public class MainActivity extends AppCompatActivity {
         //TODO go to edit event fragmnent, User can click
     }
     public void manageUsers(View v){
+        boolean value = User.getCurrentUser().isAdmin();
+        if (value) {
         ManageUsersFragment manage_users = new ManageUsersFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, manage_users);
         fragmentTransaction.commit();
+        }else{System.out.println("Not admin");}
         //TODO go to manage users fragmnent, Only For Admin to click
     }
     public void manageHalls(View v){
-        ManageHallsFragment manage_hall = new ManageHallsFragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.fragment_container, manage_hall);
-        fragmentTransaction.commit();
+        boolean value = User.getCurrentUser().isAdmin();
+        if (value) {
+            ManageHallsFragment manage_hall = new ManageHallsFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.replace(R.id.fragment_container, manage_hall);
+            fragmentTransaction.commit();
+        }else{System.out.println("Not admin");}
         //TODO go to manage hall fragmnent, Only For Admin to click
     }
     public void manageUni(View v){
+        boolean value = User.getCurrentUser().isAdmin();
+        if (value) {
         ManageUniFragment manage_uni = new ManageUniFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, manage_uni);
         fragmentTransaction.commit();
+        }else{System.out.println("Not admin");}
         //TODO go to manage uni fragmnent, Only For Admin to click
     }
 
