@@ -41,7 +41,7 @@
         android:ems="10"
         android:autofillHints="@string/set_max_particp_text"
         android:hint="@string/set_max_particp_text"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"

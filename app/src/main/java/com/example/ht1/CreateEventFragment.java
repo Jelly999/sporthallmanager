@@ -3,6 +3,9 @@ package com.example.ht1;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,7 @@ public class CreateEventFragment extends Fragment {
     private Spinner sporthallSpinner;
     private EditText sportNameEdit;
     private Button setStartCalBut;
+    private EditText setStartClock;
     private TextView completeStartCalText;
     private EditText setDurationEdit;
     private TextView completeEndCalText;
@@ -36,9 +40,10 @@ public class CreateEventFragment extends Fragment {
 
     private Context context;
 
-    final Calendar calendarDMY = Calendar.getInstance();
+    final Calendar startCalendar = Calendar.getInstance();
 
     SimpleDateFormat formatDMY;
+    SimpleDateFormat formatFull;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,10 +56,12 @@ public class CreateEventFragment extends Fragment {
 
         context = this.getContext();
         formatDMY = new SimpleDateFormat("yyyy.MM.dd");
+        formatFull = new SimpleDateFormat("yyyy.MM.dd  kk:mm");
 
         sporthallSpinner = getView().findViewById(R.id.sporthallSpinner_createevent);
         sportNameEdit = view.findViewById(R.id.eSetSportName_create);
         setStartCalBut = view.findViewById(R.id.bSetStartTime_create);
+        setStartClock = view.findViewById(R.id.eSetStartTime);
         completeStartCalText = view.findViewById(R.id.CompleteStartDate_create);
         setDurationEdit = view.findViewById(R.id.eSetDurationHours_create);
         completeEndCalText = view.findViewById(R.id.CompleteEndDate_create);
@@ -63,26 +70,87 @@ public class CreateEventFragment extends Fragment {
         exportAllEventsCSVButton = view.findViewById(R.id.bExportToCSV_create);
         activeSwitch = view.findViewById(R.id.sRecurring_create);
 
+        updateAll();
 
         final DatePickerDialog.OnDateSetListener date_datepicker = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                calendarDMY.set(Calendar.YEAR, i);
-                calendarDMY.set(Calendar.MONTH, i1);
-                calendarDMY.set(Calendar.DAY_OF_MONTH, i2);
-                setStartCalendar();
+                startCalendar.set(Calendar.YEAR, i);
+                startCalendar.set(Calendar.MONTH, i1);
+                startCalendar.set(Calendar.DAY_OF_MONTH, i2);
+                updateAll();
             }
         };
         setStartCalBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(context, date_datepicker, calendarDMY.get(Calendar.YEAR),
-                        calendarDMY.get(Calendar.MONTH), calendarDMY.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(context, date_datepicker, startCalendar.get(Calendar.YEAR),
+                        startCalendar.get(Calendar.MONTH), startCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        setDurationEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                updateAll();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                updateAll();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                updateAll();
+            }
+        });
+
+        setStartClock.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                updateAll();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                updateAll();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                updateAll();
             }
         });
 
 
+
         updateSporthallSpinner();
+    }
+
+    private void updateAll() {
+        addHoursToStartDate();
+        setStartCalendar();
+        setEndCalendar();
+    }
+
+    private void addHoursToStartDate() {
+        String clockText = setStartClock.getText().toString();
+        //Log.d("CREATE", "ClockText: " + clockText);
+        //Log.d("CREATE", "TextLength: " + clockText.length());
+        if (!clockText.isEmpty()) {
+            if (clockText.length() == 5) { // 5 characters
+                String[] splitted = clockText.split(":");
+                //Log.d("CREATE", "Split lenght: " + splitted.length);
+                if (splitted.length == 2) {
+                    int hours = Integer.parseInt(splitted[0]);
+                    int minutes = Integer.parseInt(splitted[1]);
+                    startCalendar.set(Calendar.HOUR_OF_DAY, hours);
+                    startCalendar.set(Calendar.MINUTE, minutes);
+                    Log.d("CREATE", "Time: " + hours + ":" + minutes);
+                }
+            }
+        }
     }
 
     private void updateSporthallSpinner() {
@@ -99,6 +167,16 @@ public class CreateEventFragment extends Fragment {
     }
 
     private void setStartCalendar() {
-        completeStartCalText.setText(formatDMY.format(calendarDMY.getTime()));
+        completeStartCalText.setText(formatDMY.format(startCalendar.getTime()));
+    }
+
+    private void setEndCalendar() {
+        Calendar endCalendar = (Calendar) startCalendar.clone();
+        String innerText = setDurationEdit.getText().toString();
+        if (!innerText.isEmpty()) {
+            int duration = Integer.parseInt(innerText);
+            endCalendar.add(Calendar.HOUR_OF_DAY, duration);
+        }
+        completeEndCalText.setText(formatFull.format(endCalendar.getTime()));
     }
 }
