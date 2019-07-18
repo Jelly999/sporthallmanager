@@ -261,10 +261,20 @@ public class SqlManager {
     public static List<User> getUsersFromDatabase() throws SQLException {
         List<User> userList = new ArrayList<>();
 
-        Cursor cursor = Rdb.query(SqlTablenames.userTable.TABLE_NAME, null,
-                null, null, null, null,
-                SqlTablenames.userTable.COLUMN_NAME_USER_UUID);
-        // TODO Jos ei toimi http://www.androidhive.info/2011/11/android-sqlite-database-tutorial/
+        String rawQuery = "SELECT "+ SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_USER_UUID + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_USERNAME
+                + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_SURNAME
+                + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_EMAIL + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER
+                + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_PWD_HASH
+                + ", " + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR + ", " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_NAME
+                + " FROM ((" + SqlTablenames.userTable.TABLE_NAME + " INNER JOIN " + SqlTablenames.user_access_uni_Table.TABLE_NAME
+                + " ON " + SqlTablenames.user_access_uni_Table.TABLE_NAME + "." + SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID + " = "
+                + SqlTablenames.userTable.TABLE_NAME + "." + SqlTablenames.userTable.COLUMN_NAME_USER_UUID + ") INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
+                + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + "="
+                + SqlTablenames.user_access_uni_Table.TABLE_NAME + "." + SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID +");";
+        Cursor cursor = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
 
         if (cursor.moveToFirst()) {
             do {
