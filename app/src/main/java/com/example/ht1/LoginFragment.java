@@ -50,6 +50,8 @@ public class LoginFragment extends Fragment {
 
         User loginUser = isCredintialsOK(userName, pswHash);
 
+        Log.d("LOGIN", "---------------");
+
         if (loginUser != null) {
             Log.d("LOGIN", "Login accepted");
             User.setCurrentUser(loginUser);

@@ -80,17 +80,23 @@ public class MainActivity extends AppCompatActivity {
         //System.out.println("Tryna go back.");
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (f instanceof LoginFragment) {
-            System.out.println("Login fragment it is");
+            Log.d("ONBACK", "Login fragment it is");
             finish();
         } else if (f instanceof authFragment) {
-            System.out.println("Authenticator it is");
+            Log.d("ONBACK", "Authenticator it is");
             finish();
         } else if (f instanceof MainMenuFragment) {
-            System.out.println("Main menu it is");
+            Log.d("ONBACK", "Main menu it is");
             finish();
         } else {
+            Log.d("ONBACK", "popBackStack");
             getSupportFragmentManager().popBackStackImmediate();
         }
+    }
+
+    public void popStacks() {
+        Log.d("ONBACK", "popBackStack on command");
+        getSupportFragmentManager().popBackStackImmediate();
     }
 
     public void launchMainMenu() {

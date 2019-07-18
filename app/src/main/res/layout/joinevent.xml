@@ -15,18 +15,8 @@
         android:textColor="#F2F5F8"
         android:textColorHint="#F2F5F8"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/sporthallSpinner_createevent"
+        app:layout_constraintBottom_toTopOf="@id/sporteventSpinner_join"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/sporthallSpinner_createevent"
-        android:layout_width="272dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="248dp"
-        android:backgroundTint="#F2F5F8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bDisablehall_MHalls"
@@ -38,7 +28,7 @@
         android:text="@string/join_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.384"
-        app:layout_constraintStart_toEndOf="@+id/sporthallSpinner_createevent"
+        app:layout_constraintStart_toEndOf="@id/sporteventSpinner_join"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -50,12 +40,12 @@
         android:layout_marginBottom="72dp"
         android:text="@string/save_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bCancel_MUser"
+        app:layout_constraintEnd_toStartOf="@id/bCancel_join"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bCancel_MUser"
+        android:id="@+id/bCancel_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="92dp"
@@ -78,5 +68,23 @@
         app:layout_constraintBottom_toTopOf="@+id/bAddNewUser_MUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tSporteventInfo_join"
+        android:layout_width="217dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/sporteventSpinner_join"
+        android:layout_width="265dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="232dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
