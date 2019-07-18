@@ -94,7 +94,7 @@
         android:layout_width="80dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/disable_button"
         app:layout_constraintStart_toEndOf="@+id/bEnableHall_MHalls"
         app:layout_constraintTop_toBottomOf="@+id/Hallspinner_MHall" />
@@ -104,7 +104,7 @@
         android:layout_width="80dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/enable_button"
         app:layout_constraintStart_toEndOf="@+id/bDeleteHall_MHalls"
         app:layout_constraintTop_toBottomOf="@+id/Hallspinner_MHall" />
@@ -114,7 +114,7 @@
         android:layout_width="80dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/Delete_hall_button"
         app:layout_constraintStart_toEndOf="@+id/bGetReservations_MHalls"
         app:layout_constraintTop_toBottomOf="@+id/Hallspinner_MHall" />
@@ -124,7 +124,7 @@
         android:layout_width="125dp"
         android:layout_height="56dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/get_reservations_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Hallspinner_MHall" />
