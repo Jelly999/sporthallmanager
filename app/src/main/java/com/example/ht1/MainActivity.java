@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -22,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList uniList;
 
     private ReservationManager reservationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
 
         // TEMPORARY TEST
         //launchMainMenu();
-        login();
+        launchlogin();
     }
 
     @Override
     public void onBackPressed() {
-        System.out.println("Tryna go back.");
+        //System.out.println("Tryna go back.");
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (f instanceof LoginFragment) {
             System.out.println("Login fragment it is");
@@ -94,20 +93,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void launchMainMenu() {
+    public void launchMainMenu() {
         MainMenuFragment joinevent = new MainMenuFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, joinevent);
         fragmentTransaction.commit();
     }
 
-    private void launchlogin() {
+    public void launchlogin() {
         LoginFragment login = new LoginFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, login);
         fragmentTransaction.commit();
     }
-    private void launchAuth() {
+    public void launchAuth() {
         authFragment authentication = new authFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, authentication);
@@ -165,67 +164,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO Save to database
         System.out.println(Hall_name+Hall_Location+Hall_type);
     }
-    public void login() {
-        launchlogin();
-        /*
-            EditText input = findViewById(R.id.eUsername_login);
-            String username = input.getText().toString();
-            input = findViewById(R.id.eUsername_login);
-            String password = input.getText().toString();
-            String pwdhash = PasswordManager.getHashedPassword(password, username);
-            String pwdhashdb = "";//getPasswordHash(username); // Get password hash from database
-            boolean loginSuccess = false;
 
-            if (pwdhash == pwdhashdb) {
-                //Go to Authenticator fragment
-                launchAuth();
-                String authNumbers = PasswordManager.authNumbers();
-                TextView output = findViewById(R.id.text_randint_auth);
-                output.setText(authNumbers);
-                EditText rinput = findViewById(R.id.edit_inputint_auth);
-                String numbers = rinput.getText().toString();
-                if (authNumbers == numbers) {
-                    loginSuccess = true;
-                }
-
-            }
-
-            if (loginSuccess == true) {
-                //On login button press --> Go to main menu
-                launchMainMenu();
-                }
-*/
-        }
-    public void loginbutton(View view) {
-        EditText input = findViewById(R.id.eUsername_login);
-        String username = input.getText().toString();
-        input = findViewById(R.id.eUsername_login);
-        String password = input.getText().toString();
-        String pwdhash = PasswordManager.getHashedPassword(password, username);
-        String pwdhashdb = "";//getPasswordHash(username); // Get password hash from database
-        System.out.println("login button");
-        if (pwdhash != pwdhashdb) {
-            //Go to Authenticator fragment
-            launchAuth();
-            String authNumbers = PasswordManager.authNumbers();
-            //TextView authNumb = findViewById(R.id.text_randint_auth);
-            //authNumb.setText(authNumbers);
-            /*String authNumbers = PasswordManager.authNumbers();
-            System.out.println(authNumbers);
-            TextView output = findViewById(R.id.text_randint_auth);
-            output.setText(authNumbers);
-*/
-        }
-    }
-    public void authbutton(View v){
-        System.out.println("auth button");
-        String authNumbers = "123456";
-        EditText rinput = findViewById(R.id.edit_inputint_auth);
-        String numbers = rinput.getText().toString();
-        if (authNumbers.equals(numbers)) {
-            launchMainMenu();
-        }
-    }
 
     public void account(View v){
         AccountFragment account = new AccountFragment();
