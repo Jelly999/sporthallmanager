@@ -136,7 +136,7 @@ public class ReservationManager {
 
     // ======= PUBLIC BOOLEAN METHODS =======
 
-    public boolean isTimeSlotReserved(Sporthall sporthall, Calendar startDate, Calendar endDate) {
+    public static boolean isTimeSlotReserved(Sporthall sporthall, Calendar startDate, Calendar endDate) {
 
         // Gets all the existing reservations for the specified sporthall
         for (Reservation reser : sporthall.getReservations()) {
@@ -180,28 +180,28 @@ public class ReservationManager {
 
 
     // Checks if both dates are not null, and if the startDate is before or equal to endDate
-    private boolean isDateFaulty(Calendar startDate, Calendar endDate) {
+    private static boolean isDateFaulty(Calendar startDate, Calendar endDate) {
         if (startDate != null && endDate != null) {
             return isDateBefore(startDate, endDate);
         }
         return false;
     }
 
-    private boolean isDateBefore(Calendar date, Calendar compareTo) {
+    private static boolean isDateBefore(Calendar date, Calendar compareTo) {
         return date.before(compareTo);
     }
 
     // Return true if first date is after or equal the second
-    private boolean isDateBeforeEqual(Calendar date1, Calendar date2) {
+    private static boolean isDateBeforeEqual(Calendar date1, Calendar date2) {
         return ((date1.compareTo(date2)) <= 0); // is before or equal
     }
 
     // Return true if first date is before or equal the second
-    private boolean isDateAfterEqual(Calendar date1, Calendar date2) {
+    private static boolean isDateAfterEqual(Calendar date1, Calendar date2) {
         return ((date1.compareTo(date2)) >= 0); // is after or equal
     }
 
-    private void addAWeekToDate(Calendar date) {
+    private static void addAWeekToDate(Calendar date) {
         date.add(Calendar.DAY_OF_YEAR, 7);
         // TODO TÄMÄN PITÄISI kasvattaa viikkoa yhdellä!
     }
