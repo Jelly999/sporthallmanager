@@ -28,6 +28,10 @@ public class ManageUsersFragment extends Fragment {
     private EditText setNewUserPassword;
     private Switch isAdmin;
     private Spinner userSpinner;
+    private EditText setPhone;
+    private EditText setEmail;
+    private EditText firstname;
+    private EditText surname;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,6 +48,10 @@ public class ManageUsersFragment extends Fragment {
         setNewUserPassword = view.findViewById(R.id.eNewPassword_MUser);
         isAdmin = view.findViewById(R.id.sIsAdmin);
         userSpinner = view.findViewById(R.id.Usersspinner_MUser);
+        setEmail = view.findViewById(R.id.eSetEmailaddress_MUser);
+        setPhone = view.findViewById(R.id.eSetPhone_MUser);
+        firstname = view.findViewById(R.id.);
+        surname = view.findViewById(R.id.);
         getReservations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,10 +105,10 @@ public class ManageUsersFragment extends Fragment {
     public void createUser() {
         String username = setNewUsername.getText().toString();
         String password = setNewUserPassword.getText().toString();
-        String firsname = ;
-        String surname = ;
-        String phone = ;
-        String email = ;
+        String firsname = firstname.getText().toString();
+        String surname = surname.getText().toString();
+        String phone = setPhone.getText().toString();
+        String email = setEmail.getText().toString();
         int adminAccount = 0;
         boolean adminUser = isAdmin.isChecked();
         boolean compliant = PasswordManager.passwordIsCompliant(password);

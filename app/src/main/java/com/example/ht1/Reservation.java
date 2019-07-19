@@ -54,7 +54,6 @@ public class Reservation {
 
     int getAttenderAmount() {
         return attenderList.size();
-
     }
 
     public List<User> getAttendersOfThis() {
