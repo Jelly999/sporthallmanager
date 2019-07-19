@@ -63,7 +63,6 @@ public class JoinEventFragment extends Fragment {
     public void JoinAnEvent() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd' 'kk:mm");
         String spinner = sporteventsSpinner.getSelectedItem().toString();
-        System.out.println(spinner);
         String Attend = "no";
         int reservID = 0;
         for (Reservation reservation : getEventFromList()) {
