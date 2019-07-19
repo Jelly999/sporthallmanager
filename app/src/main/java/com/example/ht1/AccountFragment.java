@@ -48,15 +48,15 @@ public class AccountFragment extends Fragment {
         toast.show();
     }
     private void buttonClicked() {
-        String phone = phoneInput.getText().toString();
-        String email = emailInput.getText().toString();
+        String phone = "'" + phoneInput.getText().toString() + "'";
+        String email = "'" + emailInput.getText().toString() + "'";
         if (phone.length()>0){
             //System.out.println(phone);
-            //TODO db input
+            SqlManager.SQLuser.updateRow(Integer.toString(User.getCurrentUser().getUUID()), SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER, phone);
         }
         if (email.length()>0 ){
             //System.out.println(email);
-            //TODO dbinput
+            SqlManager.SQLuser.updateRow(Integer.toString(User.getCurrentUser().getUUID()), SqlTablenames.userTable.COLUMN_NAME_EMAIL, email);
         }
         if (phone.length() == 0 && email.length() == 0){toast();}
     }
