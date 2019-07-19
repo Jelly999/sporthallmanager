@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -39,6 +40,7 @@ public class CreateEventFragment extends Fragment {
     private EditText setReoccuranceEdit;
     private Button exportAllEventsCSVButton;
     private Switch activeSwitch;
+    private Button createEventButton;
     private TextView isReservationPossibleText;
 
     private Context context;
@@ -76,6 +78,7 @@ public class CreateEventFragment extends Fragment {
         setReoccuranceEdit = view.findViewById(R.id.eSetReoccuring_create);
         exportAllEventsCSVButton = view.findViewById(R.id.bExportToCSV_create);
         activeSwitch = view.findViewById(R.id.sRecurring_create);
+        createEventButton = view.findViewById(R.id.bCreateEvent_create);
         isReservationPossibleText = view.findViewById(R.id.tIsReservationPossible_create);
 
 
@@ -142,6 +145,13 @@ public class CreateEventFragment extends Fragment {
             }
         });
 
+        createEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createEventMethod();
+            }
+        });
+
 
 
         updateSporthallSpinner();
@@ -156,13 +166,13 @@ public class CreateEventFragment extends Fragment {
     }
 
     private void checkReservationPossible(int index) {
-        Sporthall sporthall = getSporthallFromSpinner(index);
-        if (ReservationManager.isTimeSlotReserved(sporthall, startCalendar, endCalendar)) {
-            isReservationPossibleText.setText("Reservation is possible!");
+        selectedSporthall = getSporthallFromSpinner(index);
+        if (ReservationManager.isTimeSlotReserved(selectedSporthall, startCalendar, endCalendar)) {
+            isReservationPossibleText.setText("Time is available!");
             isReservationPossibleText.setTextColor(Color.parseColor("#45f542")); // GREEN
             Log.d("CREATE", "Reservation possible");
         } else {
-            isReservationPossibleText.setText("Reservation is NOT possible!");
+            isReservationPossibleText.setText("Time is taken!");
             isReservationPossibleText.setTextColor(Color.parseColor("#f54242")); // RED
             Log.d("CREATE", "Reservation NOT possible");
         }
@@ -185,6 +195,40 @@ public class CreateEventFragment extends Fragment {
                 }
             }
         }
+    }
+
+    private void createEventMethod() {
+        if (isGivenDataCorrect()) {
+            if (selectedSporthall != null) {
+                if (startCalendar.after(Calendar.getInstance())) {
+                    if (ReservationManager.isTimeSlotReserved(selectedSporthall, startCalendar, endCalendar)) {
+                        // TODO LISÄÄ EVENT SQL
+                        Toast.makeText(getActivity(), "Reservation created!", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        Toast.makeText(getActivity(), "Time is taken!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Illegal start time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        }
+        Toast.makeText(getActivity(), "Fill all the fields!", Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean isGivenDataCorrect() {
+        if (!sportNameEdit.getText().toString().isEmpty()) {
+            if (!setMaxParticipantEdit.getText().toString().isEmpty()) {
+                if (!setDurationEdit.getText().toString().isEmpty()) {
+                    if (Integer.parseInt(setDurationEdit.getText().toString()) > 0) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     private void updateSporthallSpinner() {
