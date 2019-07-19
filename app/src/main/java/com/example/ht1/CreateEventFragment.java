@@ -203,6 +203,7 @@ public class CreateEventFragment extends Fragment {
                 if (startCalendar.after(Calendar.getInstance())) {
                     if (ReservationManager.isTimeSlotReserved(selectedSporthall, startCalendar, endCalendar)) {
                         // TODO LISÄÄ EVENT SQL
+                        // TODO CHECK RECURRING
                         Toast.makeText(getActivity(), "Reservation created!", Toast.LENGTH_SHORT).show();
                         return;
                     } else {

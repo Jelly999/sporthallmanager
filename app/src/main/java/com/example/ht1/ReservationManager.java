@@ -52,7 +52,7 @@ public class ReservationManager {
 
     // ======= PUBLIC OTHER METHODS =======
 
-    public void addNewReservation(User owner, Sporthall sporthall, String title, Calendar startDate, int duration) {
+    public static void addNewReservation(User owner, Sporthall sporthall, String title, Calendar startDate, int duration) {
         // What reservation requires:
         // User owner, String newTitle, Date reservStartDate, Date reservEndDate
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm");
@@ -77,7 +77,7 @@ public class ReservationManager {
         }
     }
 
-    public void addNewWeeklyReservation(User owner, Sporthall sporthall, String title, Calendar startDate, int duration, int durationInWeeks) {
+    public static void addNewWeeklyReservation(User owner, Sporthall sporthall, String title, Calendar startDate, int duration, int durationInWeeks) {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm");
 
@@ -102,7 +102,7 @@ public class ReservationManager {
     }
 
 
-    public void updateReservationsFromSQL(Sporthall sporthall) {
+    public static void updateReservationsFromSQL(Sporthall sporthall) {
         //TODO Tähän se joka ottaa reservationit SQL
     }
 
@@ -158,7 +158,7 @@ public class ReservationManager {
         return  true;
     }
 
-    public boolean isWeeklyReservationPossible(Sporthall sporthall, Calendar startDate, Calendar endDate, int DurationInWeeks) {
+    public static boolean isWeeklyReservationPossible(Sporthall sporthall, Calendar startDate, Calendar endDate, int DurationInWeeks) {
 
         for (int i = 0; i < DurationInWeeks; i++) {
             if(isTimeSlotReserved(sporthall, startDate, endDate)) { // For every week checks if reservation is possible
