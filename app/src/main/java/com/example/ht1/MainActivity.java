@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         objectInitalizationTest();
         // Testi loppu
 
-        launchlogin();
+        launchlogin(); //This launches first fragment
 
         // TODO THIS IS HOW TO CALL JSON
         JSONManager jsonManager = new JSONManager(this);
