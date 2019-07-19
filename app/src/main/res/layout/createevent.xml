@@ -48,19 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/eSetDurationHours_create" />
 
     <Button
-        android:id="@+id/bAddNewUser_MUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="26dp"
-        android:text="@string/create_event_button"
-        app:layout_constraintEnd_toStartOf="@id/bCancel_join"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tIsReservationPossible_create" />
-
-    <Button
         android:id="@+id/bCancel_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -195,5 +182,15 @@
         android:textColorHint="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
+
+    <Button
+        android:id="@+id/bCreateEvent_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/create_event_button"
+        app:layout_constraintEnd_toStartOf="@+id/bCancel_join"
+        app:layout_constraintTop_toBottomOf="@+id/tIsReservationPossible_create" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

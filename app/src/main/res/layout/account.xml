@@ -7,16 +7,6 @@
     android:background="#2f2f2f">
 
     <Button
-        android:id="@+id/bAddNewUser_MUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginBottom="56dp"
-        android:text="@string/save_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/bCancel_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +15,7 @@
         android:onClick="GotoMainMenu"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser" />
+        app:layout_constraintStart_toEndOf="@+id/bSave_account" />
 
     <EditText
         android:id="@+id/editPhone"
@@ -62,10 +52,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="60dp"
         android:onClick="logOut"
         android:text="@string/logout"
         app:layout_constraintBottom_toTopOf="@+id/bCancel_join"
-        app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser" />
+        app:layout_constraintStart_toEndOf="@+id/bSave_account" />
+
+    <TextView
+        android:id="@+id/tUniAccess_account"
+        android:layout_width="265dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginBottom="112dp"
+        android:inputType="textMultiLine"
+        android:textColor="#F2F5F8"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/editPhone"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bSave_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginBottom="56dp"
+        android:text="@string/save_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
