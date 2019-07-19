@@ -127,61 +127,42 @@ public class MainActivity extends AppCompatActivity {
         popStacks();
     }
 
-
-    public void saveHalldata(View v) throws Exception{
-        EditText input = findViewById(R.id.eNewHallname_MHalls);
-        String Hall_name = input.getText().toString();
-        input = findViewById(R.id.eNewHallLocation_MHalls);
-        String Hall_Location = input.getText().toString();
-        input = findViewById(R.id.eNewUsername_MUser);
-        String Hall_type = input.getText().toString();
-        //TODO Save to database
-        System.out.println(Hall_name+Hall_Location+Hall_type);
-    }
-
-
-    public void account(View v){
+    public void account(View v){ //account fragment launch
         AccountFragment account = new AccountFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, account);
         fragmentTransaction.commit();
-
-        //TODO go to account fragmnent, User can click
     }
-    public void joinEvent(View v){
+    public void joinEvent(View v){//Join event fragment launch
         JoinEventFragment joinevent = new JoinEventFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, joinevent);
         fragmentTransaction.commit();
-        //TODO go to join event fragmnent, User can click
     }
-    public void creteNewEvent(View v){
+    public void creteNewEvent(View v){//Create event fragment launch
         CreateEventFragment createevent = new CreateEventFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, createevent);
         fragmentTransaction.commit();
-        //TODO go to create new event fragmnent, User can click
     }
-    public void viewEnrolled(View v){
+    public void viewEnrolled(View v){ //View enrolled fragment launch
         EnrolledFragment enrolled = new EnrolledFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, enrolled);
         fragmentTransaction.commit();
-        //TODO go to enrolled fragmnent, User can click
     }
-    public void editEvent(View v){
+    public void editEvent(View v){ //Edit event fragment launch
         EventEditFragment eventedit = new EventEditFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, eventedit);
         fragmentTransaction.commit();
-        //TODO go to edit event fragmnent, User can click
     }
-    public void manageUsers(View v){
+    public void manageUsers(View v){ //Manage users fragment launch
         boolean value = User.getCurrentUser().isAdmin();
         if (value) {
         ManageUsersFragment manage_users = new ManageUsersFragment();
@@ -190,9 +171,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, manage_users);
         fragmentTransaction.commit();
         }else{toast();}
-        //TODO go to manage users fragmnent, Only For Admin to click
     }
-    public void manageHalls(View v){
+    public void manageHalls(View v){ //Manage halls fragment launch
         boolean value = User.getCurrentUser().isAdmin();
         if (value) {
             ManageHallsFragment manage_hall = new ManageHallsFragment();
@@ -201,9 +181,8 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.replace(R.id.fragment_container, manage_hall);
             fragmentTransaction.commit();
         }else{toast();}
-        //TODO go to manage hall fragmnent, Only For Admin to click
     }
-    public void manageUni(View v){
+    public void manageUni(View v){ //Manage uni fragment launch
         boolean value = User.getCurrentUser().isAdmin();
         if (value) {
         ManageUniFragment manage_uni = new ManageUniFragment();
@@ -212,6 +191,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, manage_uni);
         fragmentTransaction.commit();
         }else{toast();}
-        //TODO go to manage uni fragmnent, Only For Admin to click
     }
 }
