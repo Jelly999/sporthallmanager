@@ -1,11 +1,13 @@
 package com.example.ht1;
 
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -93,6 +95,13 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStackImmediate();
         }
     }
+    private void toast(){
+        Context context = getApplicationContext();
+        CharSequence text = "You do not have administrative permissions!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context,text, duration);
+        toast.show();
+    }
 
     public void popStacks() {
         Log.d("ONBACK", "popBackStack on command");
@@ -144,23 +153,7 @@ public class MainActivity extends AppCompatActivity {
         popStacks();
     }
 
-    public void saveUserdata(View v) throws Exception {
-        EditText input = findViewById(R.id.eNewUsername_MUser);
-        String User_name = input.getText().toString();
-        input = findViewById(R.id.eNewPassword_MUser);
-        String password = input.getText().toString();
-        String passwordhash = PasswordManager.getHashedPassword(password, User_name);
-        //TODO Save to database
-        System.out.println(User_name+password+passwordhash);
-    }
-    public void saveUnidata(View v) throws Exception{
-        EditText input = findViewById(R.id.eNewUsername_MUser);
-        String Uni_name = input.getText().toString();
-        input = findViewById(R.id.eNewPassword_MUser);
-        String Uni_address = input.getText().toString();
-        //TODO Save to database
-        System.out.println(Uni_name+Uni_address);
-    }
+
     public void saveHalldata(View v) throws Exception{
         EditText input = findViewById(R.id.eNewHallname_MHalls);
         String Hall_name = input.getText().toString();
@@ -179,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, account);
         fragmentTransaction.commit();
+
         //TODO go to account fragmnent, User can click
     }
     public void joinEvent(View v){
@@ -221,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, manage_users);
         fragmentTransaction.commit();
-        }else{System.out.println("Not admin");}
+        }else{toast();}
         //TODO go to manage users fragmnent, Only For Admin to click
     }
     public void manageHalls(View v){
@@ -232,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.replace(R.id.fragment_container, manage_hall);
             fragmentTransaction.commit();
-        }else{System.out.println("Not admin");}
+        }else{toast();}
         //TODO go to manage hall fragmnent, Only For Admin to click
     }
     public void manageUni(View v){
@@ -243,28 +237,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, manage_uni);
         fragmentTransaction.commit();
-        }else{System.out.println("Not admin");}
+        }else{toast();}
         //TODO go to manage uni fragmnent, Only For Admin to click
-    }
-
-
-
-    public void getHallReservations(View v){
-        //TODO Show selected hall reservations in View
-    }
-    public void deleteHall(View v){
-        //TODO Delete selected hall
-    }
-    public void enableHall(View v){
-        //TODO save hall
-    }
-    public void disableHall(View v){
-        //TODO disable hall
-    }
-    public void saveHall(View v){
-        //TODO save new hall and go to main menu fragment
-    }
-    public void cancelHall(View v){
-        //TODO go to main menu fragment
     }
 }

@@ -7,87 +7,26 @@
     android:layout_height="match_parent"
     android:background="#2f2f2f">
 
-    <Spinner
-        android:id="@+id/sporthallSpinner_createevent"
-        android:layout_width="389dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
-        android:backgroundTint="#F2F5F8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bDeleteUser_MUser"
-        android:layout_width="256dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/delete_uni_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sporthallSpinner_createevent" />
-
-    <EditText
-        android:id="@+id/eNewUsername_MUser"
-        android:layout_width="300dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="20dp"
-        android:autofillHints="@string/set_username_text"
-        android:ems="10"
-        android:hint="@string/setUniName_text"
-        android:inputType="textPersonName"
-        android:textColor="#F2F5F8"
-        android:textColorHint="#F2F5F8"
-        app:layout_constraintBottom_toTopOf="@+id/eNewPassword_MUser"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/eNewPassword_MUser"
-        android:layout_width="300dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="52dp"
-        android:autofillHints="@string/set_password_text"
-        android:ems="10"
-        android:hint="@string/setUniAddr_text"
-        android:inputType="textPersonName"
-        android:textColor="#F2F5F8"
-        android:textColorHint="#F2F5F8"
-        app:layout_constraintBottom_toTopOf="@+id/bAddNewUser_MUser"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/bAddNewUser_MUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="72dp"
-        android:onClick="saveUnidata"
-        android:text="@string/add_uni_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/bCancel_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="56dp"
         android:onClick="GotoMainMenu"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser" />
+        app:layout_constraintStart_toEndOf="@+id/bAddNewUni_MUni" />
 
     <TextView
         android:id="@+id/tStatic1_MUni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="16dp"
         android:text="@string/select_uni_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/sporthallSpinner_createevent"
+        app:layout_constraintBottom_toTopOf="@+id/Unispinner_MUni"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -95,11 +34,71 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/create_new_uni_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/eNewUsername_MUser"
+        app:layout_constraintBottom_toTopOf="@+id/eSetNewUniName_MUni"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bDeleteUni_MUni"
+        android:layout_width="376dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
+        android:text="@string/delete_uni_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Unispinner_MUni" />
+
+    <Spinner
+        android:id="@+id/Unispinner_MUni"
+        android:layout_width="380dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:background="#F2F5F8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/eSetNewUniName_MUni"
+        android:layout_width="300dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="22dp"
+        android:autofillHints="@string/setUniName_text"
+        android:ems="10"
+        android:hint="@string/setUniName_text"
+        android:inputType="textPersonName"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
+        app:layout_constraintBottom_toTopOf="@+id/eNewUniAddress_MUni"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/eNewUniAddress_MUni"
+        android:layout_width="300dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="47dp"
+        android:autofillHints="@string/setUniAddr_text"
+        android:ems="10"
+        android:hint="@string/setUniAddr_text"
+        android:inputType="textPersonName"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
+        app:layout_constraintBottom_toTopOf="@+id/bCancel_join"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bAddNewUni_MUni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginBottom="56dp"
+        android:text="@string/create_new_uni_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
