@@ -45,7 +45,7 @@ public class JSONManager {
             data += format.format(reserv.getEndDate()) + ",";
 
             String attenders = "";
-            for (User user : reserv.getAttenderList()) {
+            for (User user : reserv.getAttenderList(reserv)) {
                 attenders += user.getUserName() + ",";
             }
             data += attenders + ";";
@@ -130,7 +130,7 @@ public class JSONManager {
 
     private JSONObject attendersJSON(Reservation reservation) {
         JSONArray attenders = new JSONArray();
-        for (User user : reservation.getAttenderList()) {
+        for (User user : reservation.getAttenderList(reservation)) {
             try {
                 JSONObject attender = new JSONObject();
                 attender.put("name", user.getUserName());

@@ -36,7 +36,21 @@ public class Reservation {
     Calendar getStartDate() {return startCalendar;}
     Calendar getEndDate() {return endCalendar;}
     Sporthall getSporthall() {return sporthall;}
-    List<User> getAttenderList() {return attenderList;}
+
+    List<User> getAttenderList(Reservation reservation) {
+        attenderList = new ArrayList<>();
+        int reserveid = reservation.getUUID();
+        System.out.println(reserveid);
+        for (Enroll enroll : SqlManager.getEnrollsFromDatabase()) {
+            if (enroll.getReserveID() == reserveid) {
+                for (User user : SqlManager.getUsersFromDatabase()) {
+                    if (enroll.getUserUUID() == user.getUUID()) {
+                        attenderList.add(user);
+                    }
+                }
+            }
+        }
+        return attenderList;}
 
     int getAttenderAmount() {
         return attenderList.size();

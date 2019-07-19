@@ -39,7 +39,7 @@ public class EnrolledFragment extends Fragment {
                 for (Reservation reservation : ReservtionToEnrollList) {
                     if (enroll.getReserveID() == reservation.getUUID()) {
                         String an_enroll = reservation.getSporthall().getName() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport() + ", " + reservation.getAttenderAmount();
-                        scrollableText.append("\n" + an_enroll);
+                        scrollableText.append("\n" + an_enroll + "\n");
                     }
                 }
             }
