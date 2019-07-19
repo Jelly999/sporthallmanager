@@ -34,7 +34,7 @@ public class JoinEventFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         sporteventInfoText = view.findViewById(R.id.tSporteventInfo_join);
         sporteventsSpinner = view.findViewById(R.id.sporteventSpinner_join);
-        joinButton = view.findViewById(R.id.bDisableHall_MHalls);
+        joinButton = view.findViewById(R.id.JoinAnEventButton);
         cancelButton = view.findViewById(R.id.bCancel_join);
         format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
         joinButton.setOnClickListener(new View.OnClickListener() {
