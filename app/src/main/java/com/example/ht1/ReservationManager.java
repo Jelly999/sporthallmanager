@@ -52,7 +52,7 @@ public class ReservationManager {
 
     // ======= PUBLIC OTHER METHODS =======
 
-    public static void addNewReservation(User owner, Sporthall sporthall, String title, Calendar startDate, int duration) {
+    public static void addNewReservation(User owner, Sporthall sporthall, String sport, Calendar startDate, int duration, int maxParticipants, int recurringEvent) {
         // What reservation requires:
         // User owner, String newTitle, Date reservStartDate, Date reservEndDate
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm");
@@ -61,19 +61,34 @@ public class ReservationManager {
         endDate.add(Calendar.HOUR_OF_DAY, duration);
         // hours of duration are added to the end date
 
+        /* THIS IS HOW THE RECEIVING END LOOKS LIKE
+        sqlTablenames.reservationsTable.COLUMN_NAME_HALLID + "," +
+        SqlTablenames.reservationsTable.COLUMN_NAME_SPORT + "," +
+        SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + "," +
+        SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + "," +
+        SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID + "," +
+        SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + "," +
+
+        SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT +
+         */
+
+
         if (isDateFaulty(startDate, endDate)) { // Is date faulty (ends before starts)
-            if (!isTimeSlotReserved(sporthall, startDate, endDate)) { // Is time slot NOT reserved
+            String hallIDstr = Integer.toString(sporthall.getUUID());
+            String sportName = "'" + sport + "'";
+            String dateStr = "'" + format.format(startDate.getTime()) + "'";
+            String durStr = Integer.toString(duration);
+            String ownnerIDstr = Integer.toString(owner.getUUID());
+            String maxPartici = Integer.toString(maxParticipants);
+            String recurring = Integer.toString(recurringEvent);
 
+            // parent hall ID, start time, duration, owner user ID, max participants, recurring
+            String[] reservData = {hallIDstr, sportName, dateStr, durStr, ownnerIDstr, maxPartici, recurring};
+            SqlManager.SQLreservation.insertRow(reservData);
 
-                String hallIDstr = Integer.toString(sporthall.getUUID());
-                String dateStr = format.format(startDate);
-                String durStr = Integer.toString(duration);
-                String ownnerIDstr = Integer.toString(owner.getUUID());
-
-                // parent hall ID, start time, duration, owner user ID, max participants, recurring
-                String[] reservData = {hallIDstr, dateStr, durStr, ownnerIDstr, "0"};
-                SqlManager.SQLreservation.insertRow(reservData);
-            }
+            sporthall.updateReservationsFromSQL();
+        } else {
+            System.out.println("Date is faulty");
         }
     }
 
@@ -98,12 +113,7 @@ public class ReservationManager {
                 SqlManager.SQLreservation.insertRow(reservData);
             }
         }
-        updateReservationsFromSQL(sporthall);
-    }
-
-
-    public static void updateReservationsFromSQL(Sporthall sporthall) {
-        //TODO Tähän se joka ottaa reservationit SQL
+        sporthall.updateReservationsFromSQL();
     }
 
 
