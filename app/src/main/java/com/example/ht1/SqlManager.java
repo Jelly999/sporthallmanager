@@ -548,6 +548,7 @@ public class SqlManager {
         SQLenrolls.insertRow("7", "2");
         SQLenrolls.insertRow("8", "2");
         SQLenrolls.insertRow("1", "2");
+        SQLenrolls.insertRow("4", "2");
 
     }
 }
