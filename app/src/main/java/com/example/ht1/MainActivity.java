@@ -2,11 +2,9 @@ package com.example.ht1;
 
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,22 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.io.File;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-
     private ReservationManager reservationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("Help!");
-        //CardView card = new CardView();
         // TODO tämä tässä vain testiä varten
         if (databaseExists()) {
             Log.d("FILE", "ON OLEMASSA!");
