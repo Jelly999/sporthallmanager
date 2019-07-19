@@ -1,5 +1,6 @@
 package com.example.ht1;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -81,7 +83,14 @@ public class JoinEventFragment extends Fragment {
 
         if (Attend.equals("no")) {
             SqlManager.SQLenrolls.insertRow(Integer.toString(User.getCurrentUser().getUUID()), Integer.toString(reservID));
-        }
+        }else {toast();}
+    }
+    private void toast(){
+        Context context = getActivity();
+        CharSequence text = "You are already in this event";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context,text, duration);
+        toast.show();
     }
 
     private List<Reservation> getEventFromList() {
