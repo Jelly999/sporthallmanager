@@ -52,31 +52,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="77dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="26dp"
-        android:layout_marginBottom="72dp"
         android:text="@string/create_event_button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/bCancel_join"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tIsReservationPossible_create" />
 
     <Button
         android:id="@+id/bCancel_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="80dp"
         android:onClick="GotoMainMenu"
         android:text="@string/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tIsReservationPossible_create" />
 
     <Button
         android:id="@+id/bSetStartTime_create"
         android:layout_width="100dp"
         android:layout_height="46dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:autofillHints="@string/set_stime_text"
         android:ems="10"
         android:hint="@string/set_stime_text"
@@ -91,7 +91,7 @@
         android:layout_width="130dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:textColor="#F2F5F8"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/bSetStartTime_create"
@@ -101,8 +101,8 @@
         android:id="@+id/eSetStartTime"
         android:layout_width="80dp"
         android:layout_height="46dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
         android:autofillHints="@string/set_start_date_create"
         android:ems="10"
         android:hint="@string/set_start_date_create"
@@ -169,6 +169,17 @@
         android:text="@string/export_CSV_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eSetReoccuring_create" />
+
+    <TextView
+        android:id="@+id/tIsReservationPossible_create"
+        android:layout_width="350dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:textColor="#F2F5F8"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bExportToCSV_create" />
 
     <EditText
         android:id="@+id/eSetSportName_create"

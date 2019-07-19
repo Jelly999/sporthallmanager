@@ -2,6 +2,7 @@ package com.example.ht1;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -37,10 +39,15 @@ public class CreateEventFragment extends Fragment {
     private EditText setReoccuranceEdit;
     private Button exportAllEventsCSVButton;
     private Switch activeSwitch;
+    private TextView isReservationPossibleText;
 
     private Context context;
+    private Sporthall selectedSporthall;
+
+    private List<String> spinnerList;
 
     final Calendar startCalendar = Calendar.getInstance();
+    Calendar endCalendar;
 
     SimpleDateFormat formatDMY;
     SimpleDateFormat formatFull;
@@ -69,8 +76,20 @@ public class CreateEventFragment extends Fragment {
         setReoccuranceEdit = view.findViewById(R.id.eSetReoccuring_create);
         exportAllEventsCSVButton = view.findViewById(R.id.bExportToCSV_create);
         activeSwitch = view.findViewById(R.id.sRecurring_create);
+        isReservationPossibleText = view.findViewById(R.id.tIsReservationPossible_create);
 
-        updateAll();
+
+        sporthallSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                updateAll();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //asd
+            }
+        });
 
         final DatePickerDialog.OnDateSetListener date_datepicker = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -126,12 +145,27 @@ public class CreateEventFragment extends Fragment {
 
 
         updateSporthallSpinner();
+        updateAll();
     }
 
     private void updateAll() {
         addHoursToStartDate();
         setStartCalendar();
         setEndCalendar();
+        checkReservationPossible(sporthallSpinner.getSelectedItemPosition());
+    }
+
+    private void checkReservationPossible(int index) {
+        Sporthall sporthall = getSporthallFromSpinner(index);
+        if (ReservationManager.isTimeSlotReserved(sporthall, startCalendar, endCalendar)) {
+            isReservationPossibleText.setText("Reservation is possible!");
+            isReservationPossibleText.setTextColor(Color.parseColor("#45f542")); // GREEN
+            Log.d("CREATE", "Reservation possible");
+        } else {
+            isReservationPossibleText.setText("Reservation is NOT possible!");
+            isReservationPossibleText.setTextColor(Color.parseColor("#f54242")); // RED
+            Log.d("CREATE", "Reservation NOT possible");
+        }
     }
 
     private void addHoursToStartDate() {
@@ -154,7 +188,7 @@ public class CreateEventFragment extends Fragment {
     }
 
     private void updateSporthallSpinner() {
-        List<String> spinnerList = new ArrayList<>();
+        spinnerList = new ArrayList<>();
 
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
             if (!sporthall.getDisabled()) {
@@ -166,12 +200,24 @@ public class CreateEventFragment extends Fragment {
         sporthallSpinner.setAdapter(adapter);
     }
 
+    private Sporthall getSporthallFromSpinner(int index) {
+
+        for (Sporthall sporthall : ReservationManager.sporthallsList) {
+            if (!sporthall.getDisabled()) {
+                if (sporthall.getName().equalsIgnoreCase(spinnerList.get(index))) {
+                    return sporthall;
+                }
+            }
+        }
+        return null;
+    }
+
     private void setStartCalendar() {
         completeStartCalText.setText(formatDMY.format(startCalendar.getTime()));
     }
 
     private void setEndCalendar() {
-        Calendar endCalendar = (Calendar) startCalendar.clone();
+        endCalendar = (Calendar) startCalendar.clone();
         String innerText = setDurationEdit.getText().toString();
         if (!innerText.isEmpty()) {
             int duration = Integer.parseInt(innerText);
