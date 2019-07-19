@@ -85,7 +85,7 @@ public class CreateEventFragment extends Fragment {
         sporthallSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                updateAll();
+                updateAll(); // If sporthall spinner is touched all will update inside this fragment
             }
 
             @Override
@@ -159,12 +159,15 @@ public class CreateEventFragment extends Fragment {
     }
 
     private void updateAll() {
-        addHoursToStartDate();
+        // Method that updates texts whenever it is called
+        setHoursToStartDate();
         setStartCalendar();
         setEndCalendar();
         checkReservationPossible(sporthallSpinner.getSelectedItemPosition());
     }
 
+    // Checks if given time has no overlapping reservations
+    // changes the color and content of the bottom text according to it
     private void checkReservationPossible(int index) {
         selectedSporthall = getSporthallFromSpinner(index);
         if (ReservationManager.isTimeSlotReserved(selectedSporthall, startCalendar, endCalendar)) {
@@ -178,7 +181,9 @@ public class CreateEventFragment extends Fragment {
         }
     }
 
-    private void addHoursToStartDate() {
+
+    // sets the hours and minutes to match the user inputfield
+    private void setHoursToStartDate() {
         String clockText = setStartClock.getText().toString();
         //Log.d("CREATE", "ClockText: " + clockText);
         //Log.d("CREATE", "TextLength: " + clockText.length());
@@ -197,16 +202,18 @@ public class CreateEventFragment extends Fragment {
         }
     }
 
+    // When the create event button is pressed
     private void createEventMethod() {
-        if (isGivenDataCorrect()) {
-            if (selectedSporthall != null) {
-                if (startCalendar.after(Calendar.getInstance())) {
-                    if (ReservationManager.isTimeSlotReserved(selectedSporthall, startCalendar, endCalendar)) {
+        if (isGivenDataCorrect()) { // Calls to check if all the necessary info is given
+            if (selectedSporthall != null) { // Just to be sure check that the sporthall exists
+                if (startCalendar.after(Calendar.getInstance())) { // Checks if the desired start date is after the current date
+                    if (ReservationManager.isTimeSlotReserved(selectedSporthall, startCalendar, endCalendar)) { // Calls method for final check if timeslot is free
                         // TODO Add system to and reoccuring events ReservationManager.addNewWeeklyReservation()
                         String sportName = sportNameEdit.getText().toString();
                         int duration = Integer.parseInt(setDurationEdit.getText().toString());
                         int maxPart = Integer.parseInt(setMaxParticipantEdit.getText().toString());
 
+                        // call to reservationmanager to add a new reservation
                         ReservationManager.addNewReservation(User.getCurrentUser(), selectedSporthall, sportName, startCalendar, duration, maxPart, 0);
                         Toast.makeText(getActivity(), "Reservation created!", Toast.LENGTH_SHORT).show();
                         return;
@@ -223,7 +230,7 @@ public class CreateEventFragment extends Fragment {
         Toast.makeText(getActivity(), "Fill all the fields!", Toast.LENGTH_SHORT).show();
     }
 
-    private boolean isGivenDataCorrect() {
+    private boolean isGivenDataCorrect() { // checks if all the necessary info is given and properly
         if (!sportNameEdit.getText().toString().isEmpty()) {
             if (!setMaxParticipantEdit.getText().toString().isEmpty()) {
                 if (!setDurationEdit.getText().toString().isEmpty()) {
