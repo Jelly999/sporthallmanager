@@ -43,7 +43,7 @@ public class ManageHallsFragment extends Fragment {
         getReservations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ;
+                viewReservations();
             }
         });
         deleteHall.setOnClickListener(new View.OnClickListener() {

@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/create_new_user_text"
         android:textColor="#F2F5F8"
         android:textSize="18sp"
@@ -92,7 +92,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/bGetReservations_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -102,23 +102,47 @@
         app:layout_constraintTop_toBottomOf="@+id/Usersspinner_MUser" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/bDeleteUser_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="@string/delete_user_button"
-        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@+id/bGetReservations_MUser"
         app:layout_constraintTop_toBottomOf="@+id/Usersspinner_MUser" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/bDeleteUsersReservation_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="@string/remove_user_reservation_button"
-        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintStart_toEndOf="@+id/bDeleteUser_MUser"
         app:layout_constraintTop_toBottomOf="@+id/Usersspinner_MUser" />
+
+    <TextView
+        android:id="@+id/tStaticAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="77dp"
+        android:layout_marginBottom="18dp"
+        android:text="@string/isadmin"
+        android:textColor="#F2F5F8"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/eNewUsername_MUser"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Switch
+        android:id="@+id/sIsAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginBottom="18dp"
+        android:text="@string/istrue"
+        android:textColor="#F2F5F8"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/eNewUsername_MUser"
+        app:layout_constraintStart_toEndOf="@+id/tStaticAdmin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
