@@ -170,11 +170,11 @@ public class CreateEventFragment extends Fragment {
         if (ReservationManager.isTimeSlotReserved(selectedSporthall, startCalendar, endCalendar)) {
             isReservationPossibleText.setText("Time is available!");
             isReservationPossibleText.setTextColor(Color.parseColor("#45f542")); // GREEN
-            Log.d("CREATE", "Reservation possible");
+            //Log.d("CREATE", "Reservation possible");
         } else {
             isReservationPossibleText.setText("Time is taken!");
             isReservationPossibleText.setTextColor(Color.parseColor("#f54242")); // RED
-            Log.d("CREATE", "Reservation NOT possible");
+            //Log.d("CREATE", "Reservation NOT possible");
         }
     }
 
@@ -202,8 +202,12 @@ public class CreateEventFragment extends Fragment {
             if (selectedSporthall != null) {
                 if (startCalendar.after(Calendar.getInstance())) {
                     if (ReservationManager.isTimeSlotReserved(selectedSporthall, startCalendar, endCalendar)) {
-                        // TODO LISÄÄ EVENT SQL
-                        // TODO CHECK RECURRING
+                        // TODO Add system to and reoccuring events ReservationManager.addNewWeeklyReservation()
+                        String sportName = sportNameEdit.getText().toString();
+                        int duration = Integer.parseInt(setDurationEdit.getText().toString());
+                        int maxPart = Integer.parseInt(setMaxParticipantEdit.getText().toString());
+
+                        ReservationManager.addNewReservation(User.getCurrentUser(), selectedSporthall, sportName, startCalendar, duration, maxPart, 0);
                         Toast.makeText(getActivity(), "Reservation created!", Toast.LENGTH_SHORT).show();
                         return;
                     } else {

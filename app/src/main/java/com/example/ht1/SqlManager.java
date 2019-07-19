@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -135,6 +136,8 @@ public class SqlManager {
                 }
             }
             SQLquery += ");";
+
+            Log.d("SQL", "Reservation inserted");
 
             Wdb.execSQL(SQLquery);
         }
