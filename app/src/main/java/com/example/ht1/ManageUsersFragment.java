@@ -127,7 +127,19 @@ public class ManageUsersFragment extends Fragment {
         updateUsersSpinner();
     }
     public void deleteUsersreservation(){
-        //TODO delete user's reservations from database
+        int user_uuid = 0;
+        for (User user : ReservationManager.usersList) {
+            if(user.getUserName().equals(userSpinner.getSelectedItem())){
+                user_uuid = user.getUUID();
+            }
+        }
+        for (Sporthall sporthall : ReservationManager.sporthallsList) {
+            for (Reservation reservation : sporthall.getReservations()) {
+                if (reservation.getOwner().getUUID() == user_uuid) {
+                    SqlManager.SQLreservation.removeRow(Integer.toString(reservation.getUUID()));
+                }
+            }
+        }
     }
     private void toast(String input) {
         Context context = getActivity();
