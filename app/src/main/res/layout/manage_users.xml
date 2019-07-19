@@ -8,9 +8,9 @@
 
     <EditText
         android:id="@+id/eNewUsername_MUser"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
+        android:layout_marginStart="32dp"
         android:layout_marginBottom="28dp"
         android:autofillHints="@string/set_username_text"
         android:ems="10"
@@ -23,9 +23,9 @@
 
     <EditText
         android:id="@+id/eNewPassword_MUser"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
+        android:layout_marginStart="32dp"
         android:layout_marginBottom="40dp"
         android:autofillHints="@string/set_password_text"
         android:ems="10"
@@ -125,7 +125,7 @@
         android:id="@+id/tStaticAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
+        android:layout_marginStart="32dp"
         android:layout_marginBottom="18dp"
         android:text="@string/isadmin"
         android:textColor="#F2F5F8"
@@ -138,11 +138,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/istrue"
         android:textColor="#F2F5F8"
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/eNewUsername_MUser"
         app:layout_constraintStart_toEndOf="@+id/tStaticAdmin" />
+
+    <EditText
+        android:id="@+id/eSetPhone_MUser"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="28dp"
+        android:autofillHints="@string/setPhone"
+        android:ems="10"
+        android:hint="@string/setPhone"
+        android:inputType="phone"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
+        app:layout_constraintBottom_toTopOf="@+id/eSetEmailaddress_MUser"
+        app:layout_constraintStart_toEndOf="@+id/eNewUsername_MUser" />
+
+    <EditText
+        android:id="@+id/eSetEmailaddress_MUser"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="40dp"
+        android:autofillHints="@string/setEmail"
+        android:ems="10"
+        android:hint="@string/setEmail"
+        android:inputType="textEmailAddress"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
+        app:layout_constraintBottom_toTopOf="@+id/bAddNewUser_MUser"
+        app:layout_constraintStart_toEndOf="@+id/eNewPassword_MUser" />
+
+    <TextView
+        android:id="@+id/tSetEnrollsHere_MUser"
+        android:layout_width="350dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bGetReservations_MUser" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
