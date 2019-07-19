@@ -12,6 +12,8 @@ import org.json.JSONObject;
 
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class JSONManager {
 
@@ -21,7 +23,7 @@ public class JSONManager {
         context = _context;
     }
 
-    private SimpleDateFormat format;
+    private SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");;
 
     public void JSONTEST() {
         try {
@@ -30,7 +32,6 @@ public class JSONManager {
         } catch (Exception e) { //TODO Oisko parempi virheen hallinta?
             e.printStackTrace();
         }
-        format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
     }
 
 
@@ -43,8 +44,8 @@ public class JSONManager {
             data += reserv.getSporthall().getName() + ",";
             data += reserv.getSport() + ",";
             data += reserv.getOwner().getUserName() + ",";
-            data += format.format(reserv.getStartDate()) + ",";
-            data += format.format(reserv.getEndDate()) + ",";
+            data += format.format(reserv.getStartDate().getTime()) + ",";
+            data += format.format(reserv.getEndDate().getTime()) + ",";
 
             String attenders = "";
             for (User user : reserv.getAttenderList(reserv)) {
@@ -94,15 +95,15 @@ public class JSONManager {
                 JSONObject reservJson = new JSONObject();
                 reservJson.put("RESERVEID", reservation.getUUID());
                 reservJson.put("sport", reservation.getSport());
-                //reservJson.put("startTime", format.format(reservation.getStartDate().getTime()));
-                //reservJson.put("endTime", format.format(reservation.getEndDate().getTime()));
+                reservJson.put("startTime", format.format(reservation.getStartDate().getTime()));
+                reservJson.put("endTime", format.format(reservation.getEndDate().getTime()));
                 reservJson.put("ownerID", reservation.getOwner().getUUID());
                 reservJson.put("maxParticipants", reservation.getMaxParticipants());
                 //reservJson.put("reccuring", ) TODO GET RECCURING EVENT!!
-                Log.d("JSON", "Reservation added");
+                //Log.d("JSON", "Reservation added");
 
                 JSONArray attenderArray = new JSONArray();
-                for (User user : reservation.getAttendersOfThis()) {
+                for (User user : reservation.getAttenderList(reservation)) {
                     JSONObject attend = new JSONObject();
                     attend.put("userID", user.getUUID());
                     attend.put("firstName", user.getFirstName());
@@ -172,7 +173,7 @@ public class JSONManager {
     }
 
     public JSONObject getReservationJSON(Reservation reservation, String fileName) {
-        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
+        //SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
 
         JSONObject reservObj = new JSONObject();
         try {

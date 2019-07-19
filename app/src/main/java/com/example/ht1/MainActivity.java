@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         // TEMPORARY TEST
         //launchMainMenu();
         launchlogin();
+
+        // TODO THIS IS HOW TO CALL JSON
         JSONManager jsonManager = new JSONManager(this);
         jsonManager.JSONTEST();
     }
