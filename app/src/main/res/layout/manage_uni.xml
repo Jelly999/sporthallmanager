@@ -57,6 +57,7 @@
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="64dp"
+        android:background="#F2F5F8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,7 +72,7 @@
         android:hint="@string/setUniName_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
-        android:text="@string/setUniName_text"
+        android:textColorHint="#F2F5F8"
         app:layout_constraintBottom_toTopOf="@+id/eNewUniAddress_MUni"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -86,7 +87,7 @@
         android:hint="@string/setUniAddr_text"
         android:inputType="textPersonName"
         android:textColor="#F2F5F8"
-        android:text="@string/setUniAddr_text"
+        android:textColorHint="#F2F5F8"
         app:layout_constraintBottom_toTopOf="@+id/bCancel_join"
         app:layout_constraintStart_toStartOf="parent" />
 
