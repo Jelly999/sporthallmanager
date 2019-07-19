@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2f2f2f">
@@ -11,8 +10,8 @@
         android:id="@+id/bAddNewUser_MUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/save_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -21,8 +20,8 @@
         android:id="@+id/bCancel_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="56dp"
         android:onClick="GotoMainMenu"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="200dp"
         android:autofillHints="@string/change_phone_hint"
         android:ems="10"
         android:hint="@string/change_phone_hint"
@@ -62,11 +61,11 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="64dp"
         android:onClick="logOut"
-        android:text="Log out"
-        app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser"
-        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+        android:text="@string/logout"
+        app:layout_constraintBottom_toTopOf="@+id/bCancel_join"
+        app:layout_constraintStart_toEndOf="@+id/bAddNewUser_MUser" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

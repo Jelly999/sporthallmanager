@@ -95,12 +95,11 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStackImmediate();
         }
     }
-    public void toast(){
+    private void toast(){
         Context context = getApplicationContext();
         CharSequence text = "You do not have administrative permissions!";
         int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
+        Toast toast = Toast.makeText(context,text, duration);
         toast.show();
     }
 

@@ -24,7 +24,7 @@ public class ManageUniFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        UniversitiesSpinner = (Spinner) getView().findViewById(R.id.sporthallSpinner_createevent);
+        UniversitiesSpinner = (Spinner) getView().findViewById(R.id.Unispinner_MUni);
         updateUniversitiesSpinner();
 
     }
