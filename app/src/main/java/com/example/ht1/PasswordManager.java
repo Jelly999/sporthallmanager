@@ -49,7 +49,7 @@ public class PasswordManager {
         return false;
     }
 
-    private static boolean passwordIsCompliant(String str) {
+    public static boolean passwordIsCompliant(String str) {
         char ch;
         boolean capitalFlag = false;
         boolean lowerCaseFlag = false;

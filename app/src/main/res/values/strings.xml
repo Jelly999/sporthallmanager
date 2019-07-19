@@ -65,6 +65,8 @@
     <string name="cancel">Cancel</string>
     <string name="create_new_hall_text">Create new hall</string>
     <string name="logout">Log Out</string>
+    <string name="isadmin">User is admin</string>
+    <string name="istrue">True</string>
 
 
 </resources>
