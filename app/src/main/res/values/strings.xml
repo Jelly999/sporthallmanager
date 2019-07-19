@@ -69,6 +69,8 @@
     <string name="istrue">True</string>
     <string name="setPhone">Set phone number</string>
     <string name="setEmail">Set email address</string>
+    <string name="firsname">Set Firstname</string>
+    <string name="surname">Set Surname</string>
 
 
 </resources>
