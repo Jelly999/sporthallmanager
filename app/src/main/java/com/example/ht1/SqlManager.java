@@ -71,9 +71,9 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
-        public static void removeRow(String UUID) {
+        public static void removeRow(String name) {
             String SQLquery = "DELETE FROM " + SqlTablenames.userTable.TABLE_NAME +
-                    " WHERE " + SqlTablenames.userTable.COLUMN_NAME_USER_UUID + " = " + UUID + ";";
+                    " WHERE " + SqlTablenames.userTable.COLUMN_NAME_USERNAME + " = " + name + ";";
             Wdb.execSQL(SQLquery);
         }
     }
