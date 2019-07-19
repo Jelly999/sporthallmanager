@@ -34,9 +34,16 @@ public class JoinEventFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         sporteventInfoText = view.findViewById(R.id.tSporteventInfo_join);
         sporteventsSpinner = view.findViewById(R.id.sporteventSpinner_join);
-        joinButton = view.findViewById(R.id.bJoinEvent);
+        joinButton = view.findViewById(R.id.bDisableHall_MHalls);
         cancelButton = view.findViewById(R.id.bCancel_join);
         format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
+        joinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JoinAnEvent();
+            }
+        });
+
 
         updateSporteventSpinner();
         sporteventsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -53,27 +60,29 @@ public class JoinEventFragment extends Fragment {
         sporteventInfoText.setText("Yehaw!");
     }
 
-    public void JoinAnEvent(View v) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'kk:mm");
-        List<Reservation> reservationsList;
+    public void JoinAnEvent() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd' 'kk:mm");
         String spinner = sporteventsSpinner.getSelectedItem().toString();
         System.out.println(spinner);
-        reservationsList = getEventFromList();
-        for (Reservation reservation : reservationsList) {
-            String reservationData = reservation.getSport() + " " + format.format(reservation.getStartDate().getTime());
-            System.out.println(reservationData);
-            if (reservationData.equals(spinner)) {
-                List<User> attenders = reservation.getAttenderList();
-                for (User user : attenders) {
-                    if (user.getUUID() != User.getCurrentUser().getUUID()) {
-                        System.out.println("Nyt osallistutaan");
-
+        String Attend = "no";
+        int reservID = 0;
+        for (Reservation reservation : getEventFromList()) {
+            String reservationData = reservation.getSport() + "  " + format.format(reservation.getStartDate().getTime());
+            if (spinner.equals(reservationData)) {
+                reservID = reservation.getUUID();
+                for (User user : reservation.getAttenderList(reservation)) {
+                    if (user.getUUID() == User.getCurrentUser().getUUID()) {
+                        Attend = "yes";
+                        break;
                     }
                 }
+                break;
             }
         }
 
-        //SqlManager.SQLenrolls.insertRow(User.getCurrentUser().getUUID(),);
+        if (Attend.equals("no")) {
+            SqlManager.SQLenrolls.insertRow(Integer.toString(User.getCurrentUser().getUUID()), Integer.toString(reservID));
+        }
     }
 
     private List<Reservation> getEventFromList() {
