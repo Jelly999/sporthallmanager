@@ -64,6 +64,7 @@
     <string name="create_new_uni_text">Create new University</string>
     <string name="cancel">Cancel</string>
     <string name="create_new_hall_text">Create new hall</string>
+    <string name="logout">Log Out</string>
 
 
 </resources>
