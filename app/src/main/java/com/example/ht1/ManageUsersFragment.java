@@ -50,8 +50,8 @@ public class ManageUsersFragment extends Fragment {
         userSpinner = view.findViewById(R.id.Usersspinner_MUser);
         setEmail = view.findViewById(R.id.eSetEmailaddress_MUser);
         setPhone = view.findViewById(R.id.eSetPhone_MUser);
-        firstname = view.findViewById(R.id.);
-        surname = view.findViewById(R.id.);
+        firstname = view.findViewById(R.id.eNewUserFirsname_MUser);
+        surname = view.findViewById(R.id.eNewUserSurname_MUser);
         getReservations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
