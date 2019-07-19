@@ -57,6 +57,10 @@ public class Reservation {
 
     }
 
+    public List<User> getAttendersOfThis() {
+        return attenderList;
+    }
+
 
 
 
