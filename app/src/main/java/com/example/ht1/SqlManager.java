@@ -281,6 +281,27 @@ public class SqlManager {
         cursor.close();
         return uni_uuid_List;
     }
+    public static ArrayList<Integer> getHallUUIDFromDatabase() throws SQLException {
+        ArrayList<Integer> hall_uuid_List = new ArrayList<>();
+
+        String rawQuery = "SELECT " + SqlTablenames.sporthallTable.COLUMN_NAME_HALLID + " FROM " + SqlTablenames.sporthallTable.TABLE_NAME +";";
+        Cursor cursor = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+        if (cursor.moveToFirst()) {
+            do {
+                int UUID = cursor.getInt(cursor.getColumnIndex(
+                        SqlTablenames.sporthallTable.COLUMN_NAME_HALLID
+                ));
+
+                hall_uuid_List.add(UUID);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return hall_uuid_List;
+    }
 
 
     // userdata to user object

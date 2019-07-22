@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ManageHallsFragment extends Fragment {
     private Button getReservations;
@@ -101,7 +102,14 @@ public class ManageHallsFragment extends Fragment {
     }
 
     public void deleteHall() {
-        //TODO database change
+        int pos = HallSpinner.getSelectedItemPosition();
+        List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
+        System.out.println(hall_uuid);
+        if (hall_uuid.size() > 1) {
+            SqlManager.SQLsporthall.removeRow(Integer.toString(hall_uuid.get(pos)));
+            updateHallSpinner();
+            System.out.println("deleted?");
+        }
     }
 
     public void enableHall() {
