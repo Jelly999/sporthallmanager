@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //TODO: Fragment
 public class ManageUsersFragment extends Fragment {
@@ -21,6 +27,11 @@ public class ManageUsersFragment extends Fragment {
     private EditText setNewUsername;
     private EditText setNewUserPassword;
     private Switch isAdmin;
+    private Spinner userSpinner;
+    private EditText setPhone;
+    private EditText setEmail;
+    private EditText firstname;
+    private EditText surname;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +47,11 @@ public class ManageUsersFragment extends Fragment {
         setNewUsername = view.findViewById(R.id.eNewUsername_MUser);
         setNewUserPassword = view.findViewById(R.id.eNewPassword_MUser);
         isAdmin = view.findViewById(R.id.sIsAdmin);
+        userSpinner = view.findViewById(R.id.Usersspinner_MUser);
+        setEmail = view.findViewById(R.id.eSetEmailaddress_MUser);
+        setPhone = view.findViewById(R.id.eSetPhone_MUser);
+        firstname = view.findViewById(R.id.eNewUserFirsname_MUser);
+        surname = view.findViewById(R.id.eNewUserSurname_MUser);
         getReservations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,27 +76,78 @@ public class ManageUsersFragment extends Fragment {
                 createUser();
             }
         });
+
+        updateUsersSpinner();
+        userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
     }
+
+    private void updateUsersSpinner() {
+        List<String> users = new ArrayList<>();
+        for (User user : SqlManager.getUsersFromDatabase()) {
+            String text = user.getUserName();
+            users.add(text);
+            }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getView().getContext(),R.layout.support_simple_spinner_dropdown_item,users);
+        userSpinner.setAdapter(adapter);
+    }
+
+
 
     public void createUser() {
         String username = setNewUsername.getText().toString();
         String password = setNewUserPassword.getText().toString();
+        String firsname = firstname.getText().toString();
+        String surname = surname.getText().toString();
+        String phone = setPhone.getText().toString();
+        String email = setEmail.getText().toString();
+        int adminAccount = 0;
         boolean adminUser = isAdmin.isChecked();
         boolean compliant = PasswordManager.passwordIsCompliant(password);
         String passwordhash = PasswordManager.getHashedPassword(password, username);
+        if (adminUser == true){
+            adminAccount = 1;
+        }
+        String[] userinfo = {"'"+username+"'", "'"+firsname+"'", "'"+surname+"'", "'"+phone+"'", "'"+email+"'", "'"+passwordhash+"'", adminAccount};
         if (compliant) {
-            //TODO input data to database
+            for (User user : ReservationManager.usersList) {
+                if (!username.equals(user.getUserName())) {
+                    SqlManager.SQLuser.insertRow(userinfo);
+                }
+            }
             System.out.println(username + password + passwordhash + adminUser);
         } else {toast("Password is not compliant");}
+        updateUsersSpinner();
     }
     public void getReservations(){
         //TODO get reservation and display them
     }
     public void deleteUser(){
-        //TODO delete user from database
+        SqlManager.SQLuser.removeRow("'" + userSpinner.getSelectedItem().toString() + "'");
+        updateUsersSpinner();
     }
     public void deleteUsersreservation(){
-        //TODO delete user's reservations from database
+        int user_uuid = 0;
+        for (User user : ReservationManager.usersList) {
+            if(user.getUserName().equals(userSpinner.getSelectedItem())){
+                user_uuid = user.getUUID();
+            }
+        }
+        for (Sporthall sporthall : ReservationManager.sporthallsList) {
+            for (Reservation reservation : sporthall.getReservations()) {
+                if (reservation.getOwner().getUUID() == user_uuid) {
+                    SqlManager.SQLreservation.removeRow(Integer.toString(reservation.getUUID()));
+                }
+            }
+        }
     }
     private void toast(String input) {
         Context context = getActivity();
