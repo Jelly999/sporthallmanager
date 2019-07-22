@@ -336,6 +336,22 @@ public class SqlManager {
         return uniID;
     }
 
+    public static Integer getUserUUID(String name) throws SQLException {
+        int userID = 0;
+        String rawQuery = "SELECT "+ SqlTablenames.userTable.COLUMN_NAME_USER_UUID + " FROM " + SqlTablenames.userTable.TABLE_NAME
+                + " WHERE " + SqlTablenames.userTable.COLUMN_NAME_USERNAME + " = '" + name + "';";
+        Cursor cursor = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            userID = cursor.getInt(cursor.getColumnIndex(SqlTablenames.userTable.COLUMN_NAME_USER_UUID));
+        }
+        cursor.close();
+        return userID;
+    }
+
 
     // userdata to user object
     public static List<User> getUsersFromDatabase() throws SQLException {
