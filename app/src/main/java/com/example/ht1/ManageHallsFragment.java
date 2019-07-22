@@ -117,7 +117,7 @@ public class ManageHallsFragment extends Fragment {
     public void enableHall() {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
-        if (hall_uuid.size() > 1) {
+        if (hall_uuid.size() > 0) {
             SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available","0");
             updateHallSpinner();
         }
@@ -126,7 +126,7 @@ public class ManageHallsFragment extends Fragment {
     public void disableHall() {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
-        if (hall_uuid.size() > 1) {
+        if (hall_uuid.size() > 0) {
             SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available", "1");
             updateHallSpinner();
         }
