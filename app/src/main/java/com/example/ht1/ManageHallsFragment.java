@@ -9,9 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -104,20 +102,28 @@ public class ManageHallsFragment extends Fragment {
     public void deleteHall() {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
-        System.out.println(hall_uuid);
         if (hall_uuid.size() > 1) {
             SqlManager.SQLsporthall.removeRow(Integer.toString(hall_uuid.get(pos)));
             updateHallSpinner();
-            System.out.println("deleted?");
         }
     }
 
     public void enableHall() {
-        //TODO database change
+        int pos = HallSpinner.getSelectedItemPosition();
+        List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
+        if (hall_uuid.size() > 1) {
+            SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available","0");
+            updateHallSpinner();
+        }
     }
 
     public void disableHall() {
-        //TODO database change}
+        int pos = HallSpinner.getSelectedItemPosition();
+        List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
+        if (hall_uuid.size() > 1) {
+            SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available", "1");
+            updateHallSpinner();
+        }
     }
 
     private void toast(String input) {
