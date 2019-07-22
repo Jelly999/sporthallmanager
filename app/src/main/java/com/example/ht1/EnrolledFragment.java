@@ -1,6 +1,7 @@
 package com.example.ht1;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class EnrolledFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         scrollableText = getView().findViewById(R.id.Scrollable);
+        scrollableText.setMovementMethod(new ScrollingMovementMethod());
         EnrollsSpinner = view.findViewById(R.id.RemoveEnrollspinner_enrolled);
         cancelEnroll = view.findViewById(R.id.bRemoveEnroll_enrolled);
         printAllUsersEnrolls();
