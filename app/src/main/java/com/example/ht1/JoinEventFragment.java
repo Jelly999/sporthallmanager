@@ -90,6 +90,7 @@ public class JoinEventFragment extends Fragment {
 
         }else {toast();}
 
+        updateSporteventSpinner();
     }
     private void toast(){
         Context context = getActivity();
@@ -112,7 +113,6 @@ public class JoinEventFragment extends Fragment {
     }
 
     private void updateSporteventSpinner() {
-
 
         List<String> reservationStrings = new ArrayList<>();
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
