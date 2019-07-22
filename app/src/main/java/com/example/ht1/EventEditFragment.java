@@ -75,8 +75,10 @@ public class EventEditFragment extends Fragment {
             SqlManager.SQLreservation.updateRow(Uuid,"duration", duration);
         }
         if (maxparticipants.length() > 0){
+            //TODO ammount check
             SqlManager.SQLreservation.updateRow(Uuid,"maxparticipants", maxparticipants);
         }
+        updateEditeventSpinner();
     }
         private void toast(String msg){
         Context context = getActivity();
