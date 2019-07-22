@@ -5,12 +5,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManageHallsFragment extends Fragment {
     private Button getReservations;
@@ -21,6 +26,8 @@ public class ManageHallsFragment extends Fragment {
     private EditText setNewHallname;
     private EditText setNewHallLocation;
     private EditText setNewHallType;
+    Spinner HallSpinner;
+    ArrayList spinnerList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +76,8 @@ public class ManageHallsFragment extends Fragment {
                 saveNewHall();
             }
         });
+        HallSpinner = view.findViewById(R.id.Hallspinner_MHall);
+        updateHallSpinner();
     }
 
     public void saveNewHall() {
@@ -81,12 +90,26 @@ public class ManageHallsFragment extends Fragment {
             toast("Please fill out all fields.");
         }
     }
+    private void updateHallSpinner() {
+        spinnerList = (ArrayList) SqlManager.getSporthallsFromDatabase();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getView().getContext(),R.layout.support_simple_spinner_dropdown_item,spinnerList);
+        HallSpinner.setAdapter(adapter);
+    }
     public void viewReservations(){
         //TODO get reservations from selected hall and view in text view
     }
 
     public void deleteHall() {
-        //TODO database change
+        int pos = HallSpinner.getSelectedItemPosition();
+        List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
+        System.out.println(hall_uuid);
+        if (hall_uuid.size() > 1) {
+            SqlManager.SQLsporthall.removeRow(Integer.toString(hall_uuid.get(pos)));
+            updateHallSpinner();
+            System.out.println("deleted?");
+        }
     }
 
     public void enableHall() {

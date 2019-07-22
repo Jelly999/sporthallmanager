@@ -76,6 +76,7 @@ public class JoinEventFragment extends Fragment {
                 for (User user : reservation.getAttenderList(reservation)) {
                     if (user.getUUID() == User.getCurrentUser().getUUID()) {
                         Attend = "yes";
+                        updateSporteventSpinner();
                         break;
                     }
                 }
@@ -86,6 +87,7 @@ public class JoinEventFragment extends Fragment {
         if (Attend.equals("no")) {
             SqlManager.SQLenrolls.insertRow(Integer.toString(User.getCurrentUser().getUUID()), Integer.toString(reservID));
             joinSuccess.setText("Successfully joined to event!");
+
         }else {toast();}
 
         updateSporteventSpinner();
