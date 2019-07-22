@@ -170,9 +170,9 @@ public class SqlManager {
         }
 
 
-        public static void removeEnrollsByID(String UUID) {
+        public static void removeEnrollsByID(String UUID, String User) {
             String SQLquery = "DELETE FROM " + SqlTablenames.enrollsTable.TABLE_NAME +
-                    " WHERE " + SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID + " = " + UUID + ";";
+                    " WHERE " + SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID + " = " + UUID + " AND " + SqlTablenames.enrollsTable.COLUMN_NAME_USER_UUID + " = " + User + ";";
             Wdb.execSQL(SQLquery);
         }
 
@@ -557,7 +557,7 @@ public class SqlManager {
         if (cursor.moveToFirst()) {
             do {
                 int enrollID = cursor.getInt(cursor.getColumnIndex(
-                        SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID
+                        SqlTablenames.enrollsTable.COLUMN_NAME_ENROLLID
                 ));
                 int reserveID = cursor.getInt(cursor.getColumnIndex(
                         SqlTablenames.enrollsTable.COLUMN_NAME_RESERVEID
