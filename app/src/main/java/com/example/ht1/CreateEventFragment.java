@@ -149,6 +149,7 @@ public class CreateEventFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createEventMethod();
+                setStartClock.setText(setStartClock.getText());
             }
         });
 

@@ -37,7 +37,7 @@ public class AccountFragment extends Fragment {
                 buttonClicked();
             }
         });
-        String hasAccess = "LUTUKKA"; //TODO get has access from db
+        String hasAccess = SqlManager.getUniAccessUniName(User.getCurrentUser().getUUID());
         uniAccess.setText(hasAccess);
     }
     private void toast(){
