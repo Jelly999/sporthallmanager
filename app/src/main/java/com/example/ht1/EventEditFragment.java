@@ -28,9 +28,7 @@ public class EventEditFragment extends Fragment {
     private Button deleteReservationB;
     private Button saveEdits;
     private ArrayList spinnerList;
-    private String selectedEventID;
-    private Calendar eventStart;
-    private Calendar evenEnd;
+    private ArrayList spinnerIDList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +39,6 @@ public class EventEditFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         eventSpinner = view.findViewById(R.id.Eventspinner_edit);
         setSport = view.findViewById(R.id.eSetEventSport_edit);
-        changeSporthall = view.findViewById(R.id.eChangeSporthall_edit);
         editDuration = view.findViewById(R.id.eEditEventDuration_edit);
         editMaxParticipants = view.findViewById(R.id.eEditMAXParticipants_edit);
         deleteReservationB = view.findViewById(R.id.bRemoveSelectReservation_edit);
@@ -63,59 +60,40 @@ public class EventEditFragment extends Fragment {
     private void deleteReservation(){
         //TODO Remove reservation from database
     }
-    private void saveChanges(){
-        String sport = setSport.toString();
-        String changehall = changeSporthall.toString();
-        String duration = editDuration.toString();
-        String maxparticipants = editMaxParticipants.toString();
-        int hall = 0;
-        int dur = 0;
-        int eventID;
-        if (sport.length() > 0){
-            //change sport name
-            toast("name in use");}
-        if (changehall.length() > 0){
-            hall = 1;
-            toast("hall unavailable");}
+    private void saveChanges() {
+        int pos = eventSpinner.getSelectedItemPosition();
+        pos =+ 1;
+        String sport = "'" + setSport.getText().toString() + "'";
+        String duration = editDuration.getText().toString();
+        String maxparticipants = editMaxParticipants.getText().toString();
+        String Uuid = (String) spinnerIDList.get(0*pos);
+        if (sport.length() > 0 ){
+            SqlManager.SQLreservation.updateRow(Uuid,"sport", sport);
+        }
         if (duration.length() > 0){
-            dur = 1;
-        toast("length is overlapping");}
+            //TODO collision check!
+            SqlManager.SQLreservation.updateRow(Uuid,"duration", duration);
+        }
         if (maxparticipants.length() > 0){
-            //check and edit event
-            toast("too many attenders");}
-        if (hall == 0 && dur == 0){
-            int duration2 = Integer.parseInt(duration);
-            //Date eventEnd = addHoursToJavaUtilDate(eventStart,duration2);
-            //ReservationManager.isTimeSlotReserved(changehall, eventStart, evenEnd)
-        }else if (hall == 1){
-
-        }else if (dur == 1){
-
+            SqlManager.SQLreservation.updateRow(Uuid,"maxparticipants", maxparticipants);
         }
     }
-
-    private void toast(String msg){
+        private void toast(String msg){
         Context context = getActivity();
         CharSequence text = msg;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context,text, duration);
         toast.show();
     }
-    public Date addHoursToJavaUtilDate(Date date, int hours) {
-        Calendar cal = Calendar.getInstance(); // creates calendar
-        cal.setTime(new Date()); // sets calendar time/date
-        cal.add(Calendar.HOUR_OF_DAY, hours); // adds one hour
-        return cal.getTime(); // returns new date object, one hour in the future
-    }
+
     private void updateEditeventSpinner() {
         spinnerList = (ArrayList) getReservations();
-
+        spinnerIDList = (ArrayList) getReservationsID();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getView().getContext(),R.layout.support_simple_spinner_dropdown_item,spinnerList);
         eventSpinner.setAdapter(adapter);
     }
     public List<String> getReservations(){
-        //TODO get reservation and display them
         List<String> reservations = new ArrayList<>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
         int user_uuid;
@@ -124,7 +102,22 @@ public class EventEditFragment extends Fragment {
             sporthall.updateReservationsFromSQL();
             for (Reservation reservation : sporthall.getReservations()) {
                 if (reservation.getOwner().getUUID() == user_uuid) {
-                    reservations.add(reservation.getSporthall().getName() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport());
+                    reservations.add(Integer.toString(reservation.getUUID())+": "+reservation.getSporthall().getName() + ": " + format.format(reservation.getStartDate().getTime()) + ": " + reservation.getSport()+": "+reservation.getMaxParticipants());
+                }
+            }
+        }
+        System.out.println(reservations);
+        return reservations;
+    }
+    public List<String> getReservationsID(){
+        List<String> reservations = new ArrayList<>();
+        int user_uuid;
+        user_uuid = User.getCurrentUser().getUUID();
+        for (Sporthall sporthall : ReservationManager.sporthallsList) {
+            sporthall.updateReservationsFromSQL();
+            for (Reservation reservation : sporthall.getReservations()) {
+                if (reservation.getOwner().getUUID() == user_uuid) {
+                    reservations.add(Integer.toString(reservation.getUUID()));
                 }
             }
         }
