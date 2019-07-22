@@ -132,6 +132,13 @@ public class ManageUsersFragment extends Fragment {
                     SqlManager.SQLuser.insertRow(userinfo);
                 }
             }
+            int user_uuid = 0;
+            int uni_uuid = 0;
+            user_uuid = SqlManager.getUserUUID(username);
+            uni_uuid = SqlManager.getUniUUid(Uniaccess);
+            String Uni_uuid = Integer.toString(uni_uuid);
+            String User_uuid = Integer.toString(user_uuid);
+            SqlManager.SQLaccess.insertRow(User_uuid,Uni_uuid);
             System.out.println(username + password + passwordhash + adminUser);
         } else {toast("Password is not compliant");}
         updateUsersSpinner();
