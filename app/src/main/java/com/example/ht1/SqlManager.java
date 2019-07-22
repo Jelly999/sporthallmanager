@@ -19,8 +19,8 @@ public class SqlManager {
 
     private static SqlManager uniqueInstance;
 
-    private static SQLiteDatabase Wdb; //TODO Tämä varmaan pitänee olla täällä?
-    private static SQLiteDatabase Rdb; //TODO Tätä varmaan TARVITAAN/KÄYTETÄÄN?
+    private static SQLiteDatabase Wdb; // Tämä varmaan pitänee olla täällä?
+    private static SQLiteDatabase Rdb; // Tätä varmaan TARVITAAN/KÄYTETÄÄN?
 
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
@@ -408,8 +408,8 @@ public class SqlManager {
     //get reservations from database
     public static List<Reservation> getReservationsFromDatabase(Sporthall sporthall) {
         List<Reservation> reservationList = new ArrayList<>();
-        // TODO ajattelin että voisi hakea reservationit jokaiselle sporthall erikseen,
-        // TODO säästäisi hieman prosessointiaikaa
+        // ajattelin että voisi hakea reservationit jokaiselle sporthall erikseen,
+        // säästäisi hieman prosessointiaikaa
 
         String[] sporthallID = {Integer.toString(sporthall.getUUID())}; // The id of the sporthall
         String whereClause = SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + " = ?";

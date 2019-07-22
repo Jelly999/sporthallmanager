@@ -25,12 +25,12 @@ public class JSONManager {
 
     private SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");;
 
-    // TODO
+
     public void JSONTEST() {
         try {
             JSONObject object = JSONEndocing();
             writeJSONToStorage(object, "json_test.txt");
-        } catch (Exception e) { //TODO Oisko parempi virheen hallinta?
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -200,7 +200,7 @@ public class JSONManager {
         Log.d("JSON", context.getExternalFilesDir(null).toString());
         try {
             writeToFile(object.toString(4), fileName);
-        } catch (JSONException e) { //TODO Oisko parempi virheen hallinta?
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return false;
@@ -213,7 +213,7 @@ public class JSONManager {
                 OutputStreamWriter OSW = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
                 OSW.write(data);
                 OSW.close();
-            } catch (Exception e) { //TODO Oisko parempi virheen hallinta?
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: Fragment
 public class ManageUsersFragment extends Fragment {
     private Button getReservations;
     private Button deleteUser;

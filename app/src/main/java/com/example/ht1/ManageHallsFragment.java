@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-// TODO Fragment
 public class ManageHallsFragment extends Fragment {
     private Button getReservations;
     private Button deleteHall;

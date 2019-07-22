@@ -83,7 +83,9 @@ public class JoinEventFragment extends Fragment {
 
         if (Attend.equals("no")) {
             SqlManager.SQLenrolls.insertRow(Integer.toString(User.getCurrentUser().getUUID()), Integer.toString(reservID));
+            sporteventInfoText.setText("Successfully joined to event!");
         }else {toast();}
+
     }
     private void toast(){
         Context context = getActivity();

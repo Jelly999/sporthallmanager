@@ -156,6 +156,13 @@ public class CreateEventFragment extends Fragment {
 
         updateSporthallSpinner();
         updateAll();
+        exportAllEventsCSVButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                JSONManager CSV = new JSONManager(getActivity());
+                //TODO CSV.saveReservationsCSV();
+            }
+        });
     }
 
     private void updateAll() {
@@ -180,7 +187,9 @@ public class CreateEventFragment extends Fragment {
             //Log.d("CREATE", "Reservation NOT possible");
         }
     }
+    private void CSVexport(){
 
+    }
 
     // sets the hours and minutes to match the user inputfield
     private void setHoursToStartDate() {

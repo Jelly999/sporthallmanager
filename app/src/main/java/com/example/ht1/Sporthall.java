@@ -1,7 +1,5 @@
 package com.example.ht1;
 
-//TODO Sali-luokka, joka pitää kirjaa salin varaus-olioista
-
 import android.util.Log;
 import java.util.ArrayList;
 import java.util.Iterator;

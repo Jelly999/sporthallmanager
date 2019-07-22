@@ -93,7 +93,7 @@ public class SqlDatabaseInitializer extends SQLiteOpenHelper {
         }
 
 
-        // TODO kuinka tämän käyttö ??? tarvitaanko edes koska update metodit on olemassa
+        // kuinka tämän käyttö ??? tarvitaanko edes koska update metodit on olemassa
         //  voidaan suoraan päivittää tietokantaan ja hakea tietokannasta olioihin uudestaan käyttämättä tätä???
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
