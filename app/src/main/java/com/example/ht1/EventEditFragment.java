@@ -21,7 +21,7 @@ public class EventEditFragment extends Fragment {
     private EditText changeSporthall;
     private EditText editDuration;
     private EditText editMaxParticipants;
-    private Button deleteReservation;
+    private Button deleteReservationB;
     private Button saveEdits;
     private String selectedEventID;
     private Calendar eventStart;
@@ -39,7 +39,9 @@ public class EventEditFragment extends Fragment {
         changeSporthall = view.findViewById(R.id.eChangeSporthall_edit);
         editDuration = view.findViewById(R.id.eEditEventDuration_edit);
         editMaxParticipants = view.findViewById(R.id.eEditMAXParticipants_edit);
-        deleteReservation.setOnClickListener(new View.OnClickListener() {
+        deleteReservationB = view.findViewById(R.id.bRemoveSelectReservation_edit);
+        saveEdits = view.findViewById(R.id.bSave_edit);
+        deleteReservationB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deleteReservation();
@@ -74,7 +76,7 @@ public class EventEditFragment extends Fragment {
         toast("length is overlapping");}
         if (maxparticipants.length() > 0){
             //check and edit event
-        toast("too many attenders");}
+            toast("too many attenders");}
         if (hall == 0 && dur == 0){
             int duration2 = Integer.parseInt(duration);
             //Date eventEnd = addHoursToJavaUtilDate(eventStart,duration2);
