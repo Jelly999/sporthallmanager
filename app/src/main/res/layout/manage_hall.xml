@@ -94,7 +94,6 @@
         android:id="@+id/bDisableHall_MHalls"
         android:layout_width="80dp"
         android:layout_height="56dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="@string/disable_button"
         app:layout_constraintStart_toEndOf="@+id/bEnableHall_MHalls"
