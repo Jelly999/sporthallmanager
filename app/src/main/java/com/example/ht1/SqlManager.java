@@ -303,6 +303,24 @@ public class SqlManager {
         return hall_uuid_List;
     }
 
+    public static String getUniAccessUniName(int userID) throws SQLException {
+        String uniName = "default";
+        String rawQuery = "SELECT "+ SqlTablenames.universitiesTable.COLUMN_NAME_NAME + " FROM " + SqlTablenames.user_access_uni_Table.TABLE_NAME + " INNER JOIN " + SqlTablenames.universitiesTable.TABLE_NAME
+                + " ON " + SqlTablenames.universitiesTable.TABLE_NAME + "." + SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " = "
+                + SqlTablenames.user_access_uni_Table.TABLE_NAME + "." + SqlTablenames.user_access_uni_Table.COLUMN_NAME_UNI_UUID
+                + " WHERE " + SqlTablenames.user_access_uni_Table.COLUMN_NAME_USER_UUID + " = " + userID + ";";
+        Cursor cursor = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            uniName = cursor.getString(cursor.getColumnIndex(SqlTablenames.universitiesTable.COLUMN_NAME_NAME));
+        }
+        cursor.close();
+        return uniName;
+    }
+
 
     // userdata to user object
     public static List<User> getUsersFromDatabase() throws SQLException {
