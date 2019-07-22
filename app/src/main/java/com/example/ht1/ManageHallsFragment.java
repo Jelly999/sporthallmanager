@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,10 +104,12 @@ public class ManageHallsFragment extends Fragment {
         HallSpinner.setAdapter(adapter);
     }
     public void viewReservations(){
-
-
-        viewReservations.setText("reservations");
-        //TODO get reservations from selected hall and view in text view
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
+        List<Sporthall> sporthalls = SqlManager.getSporthallsFromDatabase();
+        for (Reservation reservation : SqlManager.getReservationsFromDatabase(sporthalls.get(HallSpinner.getSelectedItemPosition()))) {
+            reservation.getAttenderList(reservation);
+            viewReservations.append(reservation.getSporthall() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport() + ", " + reservation.getAttenderAmount() + "\n\n");
+        }
     }
 
     public void deleteHall() {
