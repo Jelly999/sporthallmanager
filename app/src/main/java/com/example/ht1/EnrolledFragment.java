@@ -4,9 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,7 +21,6 @@ public class EnrolledFragment extends Fragment {
     List<Reservation> AllReservationsList;
     List<Reservation> ReservtionToEnrollList;
     List<Sporthall> sporthallList;
-    private Button cancelEnroll;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +36,16 @@ public class EnrolledFragment extends Fragment {
         scrollableText.setText("");
         ReservtionToEnrollList = getAllReservation();
         System.out.println(ReservtionToEnrollList);
+        for (Enroll enroll : enrollList) {
+            if (enroll.getUserUUID() == User.getCurrentUser().getUUID()) {
+                for (Reservation reservation : ReservtionToEnrollList) {
+                    if (enroll.getReserveID() == reservation.getUUID()) {
+                        String an_enroll = reservation.getSporthall().getName() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport() + ", " + reservation.getAttenderAmount();
+                        scrollableText.append("\n" + an_enroll + "\n");
+                    }
+                }
+            }
+        }
     }
 
     public List<Reservation> getAllReservation() {
@@ -53,5 +59,4 @@ public class EnrolledFragment extends Fragment {
         }
         return AllReservationsList;
     }
-
 }

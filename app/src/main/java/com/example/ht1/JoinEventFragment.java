@@ -24,8 +24,9 @@ public class JoinEventFragment extends Fragment {
     private Spinner sporteventsSpinner;
     private Button joinButton;
     private Button cancelButton;
+    private TextView joinSuccess;
     SimpleDateFormat format;
-
+//TODO update spinner when fragment is accessed
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class JoinEventFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         sporteventInfoText = view.findViewById(R.id.tSporteventInfo_join);
         sporteventsSpinner = view.findViewById(R.id.sporteventSpinner_join);
+        joinSuccess = view.findViewById(R.id.textJoinSuccess);
         joinButton = view.findViewById(R.id.JoinAnEventButton);
         cancelButton = view.findViewById(R.id.bCancel_join);
         format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
@@ -83,7 +85,7 @@ public class JoinEventFragment extends Fragment {
 
         if (Attend.equals("no")) {
             SqlManager.SQLenrolls.insertRow(Integer.toString(User.getCurrentUser().getUUID()), Integer.toString(reservID));
-            sporteventInfoText.setText("Successfully joined to event!");
+            joinSuccess.setText("Successfully joined to event!");
         }else {toast();}
 
     }

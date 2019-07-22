@@ -187,9 +187,6 @@ public class CreateEventFragment extends Fragment {
             //Log.d("CREATE", "Reservation NOT possible");
         }
     }
-    private void CSVexport(){
-
-    }
 
     // sets the hours and minutes to match the user inputfield
     private void setHoursToStartDate() {
