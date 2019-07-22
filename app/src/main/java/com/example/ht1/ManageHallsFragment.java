@@ -102,7 +102,6 @@ public class ManageHallsFragment extends Fragment {
     public void deleteHall() {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
-
         if (hall_uuid.size() > 1) {
             SqlManager.SQLsporthall.removeRow(Integer.toString(hall_uuid.get(pos)));
             updateHallSpinner();
@@ -113,17 +112,18 @@ public class ManageHallsFragment extends Fragment {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
         if (hall_uuid.size() > 1) {
-            SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "'NOT_AVAILABLE'","true");
+            SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available","0");
             updateHallSpinner();
         }
-        //TODO database change
     }
 
     public void disableHall() {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
-        System.out.println(hall_uuid.get(pos));
-        //TODO database change}
+        if (hall_uuid.size() > 1) {
+            SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available", "1");
+            updateHallSpinner();
+        }
     }
 
     private void toast(String input) {
