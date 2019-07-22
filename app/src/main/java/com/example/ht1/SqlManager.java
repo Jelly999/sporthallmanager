@@ -126,7 +126,6 @@ public class SqlManager {
                     SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + "," +
-
                     SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT +
                     ") VALUES " + "(";
             for (int i = 0; i < userInfo.length; i++) {
@@ -319,6 +318,22 @@ public class SqlManager {
         }
         cursor.close();
         return uniName;
+    }
+
+    public static Integer getUniUUid(String name) throws SQLException {
+        int uniID = 0;
+        String rawQuery = "SELECT "+ SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " FROM " + SqlTablenames.universitiesTable.TABLE_NAME
+                + " WHERE " + SqlTablenames.universitiesTable.COLUMN_NAME_NAME + " = '" + name + "';";
+        Cursor cursor = Rdb.rawQuery(
+                rawQuery,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            uniID = cursor.getInt(cursor.getColumnIndex(SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID));
+        }
+        cursor.close();
+        return uniID;
     }
 
 

@@ -86,10 +86,12 @@ public class ManageHallsFragment extends Fragment {
         String HallLocation = setNewHallLocation.getText().toString();
         String HallType = setNewHallType.getText().toString();
         if (Hallname.length() > 0 && HallLocation.length() > 0 && HallType.length() > 0) {
-            //TODO input to database
+            String[] HallData = {"'" + Hallname + "'", "'" + SqlManager.getUniUUid(HallLocation).toString() + "'", "'" + HallType + "'", "0"};
+            SqlManager.SQLsporthall.insertRow(HallData);
         } else {
             toast("Please fill out all fields.");
         }
+        updateHallSpinner();
     }
     private void updateHallSpinner() {
         spinnerList = (ArrayList) SqlManager.getSporthallsFromDatabase();
