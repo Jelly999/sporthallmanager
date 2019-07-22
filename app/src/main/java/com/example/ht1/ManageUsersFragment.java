@@ -33,6 +33,7 @@ public class ManageUsersFragment extends Fragment {
     private EditText setEmail;
     private EditText firstname;
     private EditText surname;
+    private EditText setUserUni;
     private TextView displayReservations;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +56,7 @@ public class ManageUsersFragment extends Fragment {
         firstname = view.findViewById(R.id.eNewUserFirsname_MUser);
         surname = view.findViewById(R.id.eNewUserSurname_MUser);
         displayReservations = view.findViewById(R.id.tSetEnrollsHere_MUser);
+        setUserUni = view.findViewById(R.id.eUserUni_MUser);
         getReservations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +116,7 @@ public class ManageUsersFragment extends Fragment {
         String Surname = surname.getText().toString(); //Android studio refused to accept variable "surname"
         String phone = setPhone.getText().toString();
         String email = setEmail.getText().toString();
+        String Uniaccess = setUserUni.getText().toString();
         int adminAccount = 0;
         boolean adminUser = isAdmin.isChecked();
         boolean compliant = PasswordManager.passwordIsCompliant(password);

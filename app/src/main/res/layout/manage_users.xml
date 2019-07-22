@@ -137,7 +137,7 @@
         android:id="@+id/sIsAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/istrue"
         android:textColor="#F2F5F8"
@@ -216,5 +216,19 @@
         android:textColorHint="#F2F5F8"
         app:layout_constraintBottom_toTopOf="@+id/bAddNewUser_MUser"
         app:layout_constraintStart_toEndOf="@+id/eNewUserFirsname_MUser" />
+
+    <EditText
+        android:id="@+id/eUserUni_MUser"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:autofillHints="@string/user_uni"
+        android:ems="10"
+        android:hint="@string/user_uni"
+        android:inputType="textPersonName"
+        android:textColor="#F2F5F8"
+        android:textColorHint="#F2F5F8"
+        app:layout_constraintBottom_toTopOf="@+id/eSetPhone_MUser"
+        app:layout_constraintEnd_toEndOf="@+id/eSetPhone_MUser" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

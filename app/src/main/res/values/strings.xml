@@ -72,7 +72,7 @@
     <string name="firsname">Set Firstname</string>
     <string name="surname">Set Surname</string>
     <string name="cancelEnroll">Cancel Enroll</string>
-
+    <string name="user_uni">Primary University</string>
 
 
 </resources>
