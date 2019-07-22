@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +25,7 @@ public class ManageHallsFragment extends Fragment {
     private EditText setNewHallname;
     private EditText setNewHallLocation;
     private EditText setNewHallType;
+    private TextView viewReservations;
     Spinner HallSpinner;
     ArrayList spinnerList;
 
@@ -75,6 +77,7 @@ public class ManageHallsFragment extends Fragment {
             }
         });
         HallSpinner = view.findViewById(R.id.Hallspinner_MHall);
+        viewReservations = view.findViewById(R.id.tViewReservations_MHall);
         updateHallSpinner();
     }
 
@@ -96,6 +99,9 @@ public class ManageHallsFragment extends Fragment {
         HallSpinner.setAdapter(adapter);
     }
     public void viewReservations(){
+
+
+        viewReservations.setText("reservations");
         //TODO get reservations from selected hall and view in text view
     }
 
@@ -111,7 +117,7 @@ public class ManageHallsFragment extends Fragment {
     public void enableHall() {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
-        if (hall_uuid.size() > 1) {
+        if (hall_uuid.size() > 0) {
             SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available","0");
             updateHallSpinner();
         }
@@ -120,7 +126,7 @@ public class ManageHallsFragment extends Fragment {
     public void disableHall() {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
-        if (hall_uuid.size() > 1) {
+        if (hall_uuid.size() > 0) {
             SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available", "1");
             updateHallSpinner();
         }
