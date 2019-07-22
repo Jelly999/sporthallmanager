@@ -15,6 +15,8 @@ public class ReservationManager {
     public static List<Sporthall> sporthallsList;
 
     ReservationManager() {
+        // TODO TÄÄLLÄ ON USEREIDEN JA SPORTHALLIEN HAKU DATABASESTA!
+
         usersList = new ArrayList<>();
         usersList = SqlManager.getUsersFromDatabase();
 
@@ -86,6 +88,8 @@ public class ReservationManager {
             String[] reservData = {hallIDstr, sportName, dateStr, durStr, ownnerIDstr, maxPartici, recurring};
             SqlManager.SQLreservation.insertRow(reservData);
 
+            // updates the objects to correspond the now changed sql database of reservations
+            // (updates the given sporthalls reservations)
             sporthall.updateReservationsFromSQL();
         } else {
             System.out.println("Date is faulty");
@@ -110,6 +114,9 @@ public class ReservationManager {
 
                 // parent hall ID, start time, duration, owner user ID, max participants, recurring
                 String[] reservData = {hallIDstr, dateStr, durStr, ownnerIDstr, "1"};
+
+                // updates the objects to correspond the now changed sql database of reservations
+                // (updates the given sporthalls reservations)
                 SqlManager.SQLreservation.insertRow(reservData);
             }
         }

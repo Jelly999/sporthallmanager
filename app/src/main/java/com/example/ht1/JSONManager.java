@@ -25,6 +25,7 @@ public class JSONManager {
 
     private SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");;
 
+    // TODO
     public void JSONTEST() {
         try {
             JSONObject object = JSONEndocing();
