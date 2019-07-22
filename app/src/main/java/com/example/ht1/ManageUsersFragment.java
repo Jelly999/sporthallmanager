@@ -106,7 +106,7 @@ public class ManageUsersFragment extends Fragment {
         String username = setNewUsername.getText().toString();
         String password = setNewUserPassword.getText().toString();
         String firsname = firstname.getText().toString();
-        String surname = surname.getText().toString();
+        String Surname = surname.getText().toString(); //Android studio refused to accept variable "surname"
         String phone = setPhone.getText().toString();
         String email = setEmail.getText().toString();
         int adminAccount = 0;
@@ -116,7 +116,8 @@ public class ManageUsersFragment extends Fragment {
         if (adminUser == true){
             adminAccount = 1;
         }
-        String[] userinfo = {"'"+username+"'", "'"+firsname+"'", "'"+surname+"'", "'"+phone+"'", "'"+email+"'", "'"+passwordhash+"'", adminAccount};
+        String adminAccountS = Integer.toString(adminAccount); //To String conversion for database
+        String[] userinfo = {"'"+username+"'", "'"+firsname+"'", "'"+Surname+"'", "'"+phone+"'", "'"+email+"'", "'"+passwordhash+"'", adminAccountS};
         if (compliant) {
             for (User user : ReservationManager.usersList) {
                 if (!username.equals(user.getUserName())) {

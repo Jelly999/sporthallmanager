@@ -15,7 +15,7 @@
         android:textSize="18sp" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/RemoveEnrollspinner_enrolled"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_alignParentBottom="true"
@@ -25,10 +25,11 @@
         android:id="@+id/bRemoveEnroll_enrolled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="56dp"
         android:layout_marginBottom="56dp"
-        android:layout_marginStart="96dp"
-        android:text="Button" />
+        android:text="@string/cancelEnroll" />
 
     <Button
         android:id="@+id/bCancel_enrolled"

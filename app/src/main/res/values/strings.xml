@@ -71,6 +71,8 @@
     <string name="setEmail">Set email address</string>
     <string name="firsname">Set Firstname</string>
     <string name="surname">Set Surname</string>
+    <string name="cancelEnroll">Cancel Enroll</string>
+
 
 
 </resources>
