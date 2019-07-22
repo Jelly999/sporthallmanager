@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -12,8 +13,11 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class EventEditFragment extends Fragment {
     private Spinner eventSpinner;
@@ -23,6 +27,7 @@ public class EventEditFragment extends Fragment {
     private EditText editMaxParticipants;
     private Button deleteReservationB;
     private Button saveEdits;
+    private ArrayList spinnerList;
     private String selectedEventID;
     private Calendar eventStart;
     private Calendar evenEnd;
@@ -53,6 +58,7 @@ public class EventEditFragment extends Fragment {
                 saveChanges();
             }
         });
+        updateEditeventSpinner();
     }
     private void deleteReservation(){
         //TODO Remove reservation from database
@@ -100,5 +106,28 @@ public class EventEditFragment extends Fragment {
         cal.setTime(new Date()); // sets calendar time/date
         cal.add(Calendar.HOUR_OF_DAY, hours); // adds one hour
         return cal.getTime(); // returns new date object, one hour in the future
+    }
+    private void updateEditeventSpinner() {
+        spinnerList = (ArrayList) getReservations();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getView().getContext(),R.layout.support_simple_spinner_dropdown_item,spinnerList);
+        eventSpinner.setAdapter(adapter);
+    }
+    public List<String> getReservations(){
+        //TODO get reservation and display them
+        List<String> reservations = new ArrayList<>();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
+        int user_uuid;
+        user_uuid = User.getCurrentUser().getUUID();
+        for (Sporthall sporthall : ReservationManager.sporthallsList) {
+            sporthall.updateReservationsFromSQL();
+            for (Reservation reservation : sporthall.getReservations()) {
+                if (reservation.getOwner().getUUID() == user_uuid) {
+                    reservations.add(reservation.getSporthall().getName() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport());
+                }
+            }
+        }
+        return reservations;
     }
 }
