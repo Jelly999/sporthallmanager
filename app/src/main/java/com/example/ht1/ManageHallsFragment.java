@@ -2,6 +2,7 @@ package com.example.ht1;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +79,7 @@ public class ManageHallsFragment extends Fragment {
         });
         HallSpinner = view.findViewById(R.id.Hallspinner_MHall);
         viewReservations = view.findViewById(R.id.tViewReservations_MHall);
+        viewReservations.setMovementMethod(new ScrollingMovementMethod());
         updateHallSpinner();
     }
 

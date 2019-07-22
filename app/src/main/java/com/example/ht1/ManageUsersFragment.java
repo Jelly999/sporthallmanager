@@ -2,6 +2,7 @@ package com.example.ht1;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class ManageUsersFragment extends Fragment {
         surname = view.findViewById(R.id.eNewUserSurname_MUser);
         displayReservations = view.findViewById(R.id.tSetEnrollsHere_MUser);
         setUserUni = view.findViewById(R.id.eUserUni_MUser);
+        displayReservations.setMovementMethod(new ScrollingMovementMethod());
         getReservations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
