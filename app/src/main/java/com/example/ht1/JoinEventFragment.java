@@ -115,6 +115,7 @@ public class JoinEventFragment extends Fragment {
         List<String> reservationStrings = new ArrayList<>();
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
             if (!sporthall.getDisabled()) {
+                sporthall.updateReservationsFromSQL();
                 for (Reservation reservation : sporthall.getReservations()) {
                     String text = reservation.getSport();
                     text += "  " + format.format(reservation.getStartDate().getTime());
@@ -129,6 +130,7 @@ public class JoinEventFragment extends Fragment {
 
     private void updateInfoBox(int i) {
         Reservation reservation = getReservationFromPosition(i);
+        reservation.getAttenderList(reservation);
         if (reservation != null) {
             String text = "";
             text += "Sport type: " + reservation.getSport() + "\n";

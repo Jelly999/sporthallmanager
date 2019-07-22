@@ -11,10 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class ManageUsersFragment extends Fragment {
     private EditText setEmail;
     private EditText firstname;
     private EditText surname;
+    private TextView displayReservations;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class ManageUsersFragment extends Fragment {
         setPhone = view.findViewById(R.id.eSetPhone_MUser);
         firstname = view.findViewById(R.id.eNewUserFirsname_MUser);
         surname = view.findViewById(R.id.eNewUserSurname_MUser);
+        displayReservations = view.findViewById(R.id.tSetEnrollsHere_MUser);
         getReservations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,6 +71,7 @@ public class ManageUsersFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 deleteUsersreservation();
+                updateUsersSpinner();
             }
         });
         createButton.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +85,7 @@ public class ManageUsersFragment extends Fragment {
         userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getReservations();
             }
 
             @Override
@@ -127,13 +133,36 @@ public class ManageUsersFragment extends Fragment {
         } else {toast("Password is not compliant");}
         updateUsersSpinner();
     }
+
+
     public void getReservations(){
         //TODO get reservation and display them
+        displayReservations.setText("");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
+        int user_uuid = 0;
+        for (User user : ReservationManager.usersList) {
+            if(user.getUserName().equals(userSpinner.getSelectedItem())){
+                user_uuid = user.getUUID();
+            }
+        }
+        for (Sporthall sporthall : ReservationManager.sporthallsList) {
+            sporthall.updateReservationsFromSQL();
+            for (Reservation reservation : sporthall.getReservations()) {
+                if (reservation.getOwner().getUUID() == user_uuid) {
+                    reservation.getAttenderList(reservation);
+                    displayReservations.append(reservation.getSporthall().getName() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport() + ", " + reservation.getAttenderAmount() + "\n");
+                }
+            }
+        }
     }
+
+
     public void deleteUser(){
         SqlManager.SQLuser.removeRow("'" + userSpinner.getSelectedItem().toString() + "'");
         updateUsersSpinner();
     }
+
+
     public void deleteUsersreservation(){
         int user_uuid = 0;
         for (User user : ReservationManager.usersList) {
@@ -142,6 +171,7 @@ public class ManageUsersFragment extends Fragment {
             }
         }
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
+            sporthall.updateReservationsFromSQL();
             for (Reservation reservation : sporthall.getReservations()) {
                 if (reservation.getOwner().getUUID() == user_uuid) {
                     SqlManager.SQLreservation.removeRow(Integer.toString(reservation.getUUID()));
@@ -149,6 +179,8 @@ public class ManageUsersFragment extends Fragment {
             }
         }
     }
+
+
     private void toast(String input) {
         Context context = getActivity();
         CharSequence text = input;
