@@ -150,7 +150,7 @@ public class ManageUsersFragment extends Fragment {
             for (Reservation reservation : sporthall.getReservations()) {
                 if (reservation.getOwner().getUUID() == user_uuid) {
                     reservation.getAttenderList(reservation);
-                    displayReservations.append(reservation.getSporthall().getName() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport() + ", " + reservation.getAttenderAmount() + "\n");
+                    displayReservations.append(reservation.getSporthall().getName() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport() + ", " + reservation.getAttenderAmount() + " attenders\n");
                 }
             }
         }
