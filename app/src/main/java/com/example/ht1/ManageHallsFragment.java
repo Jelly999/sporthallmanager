@@ -14,6 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,7 @@ public class ManageHallsFragment extends Fragment {
     private EditText setNewHallLocation;
     private EditText setNewHallType;
     private TextView viewReservations;
+    private Button toCSV;
     Spinner HallSpinner;
     ArrayList spinnerList;
 
@@ -82,6 +87,13 @@ public class ManageHallsFragment extends Fragment {
         });
         HallSpinner = view.findViewById(R.id.Hallspinner_MHall);
         viewReservations = view.findViewById(R.id.tViewReservations_MHall);
+        toCSV = view.findViewById(R.id.bCSVcall);
+        toCSV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveTOcsv();
+            }
+        });
         viewReservations.setMovementMethod(new ScrollingMovementMethod());
         updateHallSpinner();
     }
@@ -105,12 +117,12 @@ public class ManageHallsFragment extends Fragment {
         spinnerList = (ArrayList) SqlManager.getSporthallsFromDatabase();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getView().getContext(),R.layout.support_simple_spinner_dropdown_item,spinnerList);
+                getView().getContext(), R.layout.support_simple_spinner_dropdown_item, spinnerList);
         HallSpinner.setAdapter(adapter);
     }
 
 
-    public void viewReservations(){
+    public void viewReservations() {
         viewReservations.setText("");
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
         List<Sporthall> sporthalls = SqlManager.getSporthallsFromDatabase();
@@ -135,7 +147,7 @@ public class ManageHallsFragment extends Fragment {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
         if (hall_uuid.size() > 0) {
-            SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available","0");
+            SqlManager.SQLsporthall.updateRow(Integer.toString(hall_uuid.get(pos)), "not_available", "0");
             updateHallSpinner();
         }
     }
@@ -159,4 +171,40 @@ public class ManageHallsFragment extends Fragment {
         toast.show();
     }
 
+
+    public void saveTOcsv() {
+        //TODO TÄMÄ ON RIKKI PITÄÄ EHJÄTÄ tai polttaa ja tehdä uusi
+        /*List<Sporthall> sporthalls = SqlManager.getSporthallsFromDatabase();
+        List<Reservation> reservations = SqlManager.getReservationsFromDatabase(sporthalls.get(HallSpinner.getSelectedItemPosition()));
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
+        String FILE_HEADER = "reserveid,hallname,sport,owner,start_time,end_time";
+        FileOutputStream outputStream;
+
+
+            try {
+                outputStream = openFileOutput("reservation.csv", Context.MODE_PRIVATE);
+
+                String data = FILE_HEADER + "\n";
+                for (Reservation reserv : reservations) {
+                    data += reserv.getUUID() + ",";
+                    data += reserv.getSporthall().getName() + ",";
+                    data += reserv.getSport() + ",";
+                    data += reserv.getOwner().getUserName() + ",";
+                    data += format.format(reserv.getStartDate().getTime()) + ",";
+                    data += format.format(reserv.getEndDate().getTime()) + ",";
+
+                    String attenders = "";
+                    for (User user : reserv.getAttenderList(reserv)) {
+                        attenders += user.getUserName() + ",";
+                    }
+                    data += attenders + "\n";
+                }
+                outputStream.write(data.getBytes());
+                outputStream.close();
+                System.out.println("CSV file was created successfully !!!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }*/
+    }
 }
