@@ -73,6 +73,9 @@
     <string name="surname">Set Surname</string>
     <string name="cancelEnroll">Cancel Enroll</string>
     <string name="user_uni">Primary University</string>
+    <string name="csv">CSV</string>
+    <string name="json">JSON</string>
+    <string name="export">Export reservations</string>
 
 
 </resources>

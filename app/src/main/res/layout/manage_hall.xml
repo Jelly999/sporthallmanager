@@ -158,4 +158,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bDisableHall_MHalls" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:text="@string/export"
+        android:textColor="#F2F5F8"
+        app:layout_constraintBottom_toTopOf="@+id/bCSVcall"
+        app:layout_constraintStart_toEndOf="@+id/textStatic2_MHall" />
+
+    <Button
+        android:id="@+id/bCSVcall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="14dp"
+        android:onClick="CSVcall"
+        android:text="@string/csv"
+        app:layout_constraintBottom_toTopOf="@+id/eNewHallname_MHalls"
+        app:layout_constraintStart_toEndOf="@+id/textStatic2_MHall" />
+
+    <Button
+        android:id="@+id/bExportJson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="14dp"
+        android:onClick="JSONcall"
+        android:text="@string/json"
+        app:layout_constraintBottom_toTopOf="@+id/eNewHallname_MHalls"
+        app:layout_constraintStart_toEndOf="@+id/bCSVcall" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
