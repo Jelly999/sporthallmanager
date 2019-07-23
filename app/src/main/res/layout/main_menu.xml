@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/bJoinEvent"
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="60dp"
@@ -20,7 +20,7 @@
 
     <Button
         android:id="@+id/bCreateNew"
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="10dp"
@@ -33,7 +33,7 @@
 
     <Button
         android:id="@+id/bManageUsers"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
         android:layout_marginTop="12dp"
@@ -44,7 +44,7 @@
 
     <Button
         android:id="@+id/bManageHalls"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
         android:layout_marginTop="12dp"
@@ -83,7 +83,7 @@
 
     <Button
         android:id="@+id/bViewEvent"
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="12dp"
@@ -94,7 +94,7 @@
 
     <Button
         android:id="@+id/bEditEvent"
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="12dp"
@@ -129,7 +129,7 @@
 
     <Button
         android:id="@+id/bManageUni"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
         android:layout_marginTop="12dp"

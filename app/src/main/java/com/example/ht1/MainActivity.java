@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
         User.setCurrentUser(null);
         launchlogin();
     }
+    public void JSONcall(View v){
+        JSONManager jsonManager = new JSONManager(this);
+        jsonManager.JSONTEST();
+    }
 
     public void launchMainMenu() {
         MainMenuFragment joinevent = new MainMenuFragment();
