@@ -111,6 +111,7 @@ public class ManageHallsFragment extends Fragment {
 
 
     public void viewReservations(){
+        viewReservations.setText("");
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
         List<Sporthall> sporthalls = SqlManager.getSporthallsFromDatabase();
         for (Reservation reservation : SqlManager.getReservationsFromDatabase(sporthalls.get(HallSpinner.getSelectedItemPosition()))) {
