@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
         JSONManager jsonManager = new JSONManager(this);
         jsonManager.JSONTEST();
     }
+    public void CSVcall(View v){
+        //TODO csv
+    }
 
 
     public void launchMainMenu() {

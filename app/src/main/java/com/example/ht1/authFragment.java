@@ -7,17 +7,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
-
 import java.util.Random;
 
 public class authFragment extends Fragment {
-
     private EditText inputField;
     private TextView randomintText;
     private Button confirmButton;
-
     private String authCode;
 
 
@@ -34,9 +30,7 @@ public class authFragment extends Fragment {
         inputField = view.findViewById(R.id.edit_inputint_auth);
         randomintText = view.findViewById(R.id.text_randint_auth);
         confirmButton = view.findViewById(R.id.bConfirm_auth);
-
         setRandomIntegers();
-
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +59,6 @@ public class authFragment extends Fragment {
             authText += Integer.toString(rnd.nextInt(9));
         }
         authCode = authText;
-
         randomintText.setText(authCode);
     }
 
