@@ -36,12 +36,16 @@ public class ManageUsersFragment extends Fragment {
     private EditText surname;
     private EditText setUserUni;
     private TextView displayReservations;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.manage_users, container, false);
     }
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         getReservations = view.findViewById(R.id.bGetReservations_MUser);
@@ -71,6 +75,7 @@ public class ManageUsersFragment extends Fragment {
                 deleteUser();
             }
         });
+
         deleteUsersReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,15 +83,16 @@ public class ManageUsersFragment extends Fragment {
                 updateUsersSpinner();
             }
         });
+
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createUser();
             }
         });
-
         updateUsersSpinner();
         userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 getReservations();
@@ -98,6 +104,7 @@ public class ManageUsersFragment extends Fragment {
         });
     }
 
+
     private void updateUsersSpinner() {
         List<String> users = new ArrayList<>();
         for (User user : SqlManager.getUsersFromDatabase()) {
@@ -108,7 +115,6 @@ public class ManageUsersFragment extends Fragment {
                 getView().getContext(),R.layout.support_simple_spinner_dropdown_item,users);
         userSpinner.setAdapter(adapter);
     }
-
 
 
     public void createUser() {
@@ -123,11 +129,14 @@ public class ManageUsersFragment extends Fragment {
         boolean adminUser = isAdmin.isChecked();
         boolean compliant = PasswordManager.passwordIsCompliant(password);
         String passwordhash = PasswordManager.getHashedPassword(password, username);
+
         if (adminUser == true){
             adminAccount = 1;
         }
+
         String adminAccountS = Integer.toString(adminAccount); //To String conversion for database
         String[] userinfo = {"'"+username+"'", "'"+firsname+"'", "'"+Surname+"'", "'"+phone+"'", "'"+email+"'", "'"+passwordhash+"'", adminAccountS};
+
         if (compliant) {
             for (User user : ReservationManager.usersList) {
                 if (!username.equals(user.getUserName())) {
@@ -152,11 +161,13 @@ public class ManageUsersFragment extends Fragment {
         displayReservations.setText("");
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
         int user_uuid = 0;
+
         for (User user : ReservationManager.usersList) {
             if(user.getUserName().equals(userSpinner.getSelectedItem())){
                 user_uuid = user.getUUID();
             }
         }
+
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
             sporthall.updateReservationsFromSQL();
             for (Reservation reservation : sporthall.getReservations()) {
@@ -177,11 +188,13 @@ public class ManageUsersFragment extends Fragment {
 
     public void deleteUsersreservation(){
         int user_uuid = 0;
+
         for (User user : ReservationManager.usersList) {
             if(user.getUserName().equals(userSpinner.getSelectedItem())){
                 user_uuid = user.getUUID();
             }
         }
+
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
             sporthall.updateReservationsFromSQL();
             for (Reservation reservation : sporthall.getReservations()) {

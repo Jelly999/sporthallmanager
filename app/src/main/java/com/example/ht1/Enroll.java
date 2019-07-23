@@ -45,13 +45,16 @@ public class Enroll {
         return false;
     }
 
+
     public void logAllEnrolls(String TAG) {
         for (Enroll enroll : enrollsList) {
             Log.d(TAG, enroll.toString());
         }
     }
 
+
     // ======= PRIVATE METHODS =======
+
     private boolean doesEnrollExist(Enroll enroll) {
         for (Enroll enrl : enrollsList) {
             if (enrl.equals(enroll)) {

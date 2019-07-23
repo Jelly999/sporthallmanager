@@ -21,6 +21,7 @@ public class LoginFragment extends Fragment {
     private EditText passwordInput;
     private Button loginButton;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class LoginFragment extends Fragment {
         });
     }
 
+
     private void loginButtonClicked() {
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
@@ -64,6 +66,7 @@ public class LoginFragment extends Fragment {
 
         Log.d("LOGIN", userName + "-" + password);
     }
+
 
     private User isCredintialsOK(String userName, String passwordHash) {
 

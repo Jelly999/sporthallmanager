@@ -22,6 +22,7 @@ public final class SqlTablenames {
         public static final String COLUMN_NAME_ADMINISTRATOR = "administrator";
     }
 
+
     public static class sporthallTable implements BaseColumns {
         public static final String TABLE_NAME = "sporthall";
         public static final String COLUMN_NAME_HALLID = "hallid";
@@ -30,6 +31,7 @@ public final class SqlTablenames {
         public static final String COLUMN_NAME_HALLTYPE = "halltype";
         public static final String COLUMN_NAME_NOT_AVAILABLE = "not_available";
     }
+
 
     public static class reservationsTable implements BaseColumns {
         public static final String TABLE_NAME = "reservations";
@@ -43,12 +45,14 @@ public final class SqlTablenames {
         public static final String COLUMN_NAME_RECURRING_EVENT = "recurring_event";
     }
 
+
     public static class enrollsTable implements BaseColumns {
         public static final String TABLE_NAME = "enrolls";
         public static final String COLUMN_NAME_ENROLLID = "enrollid";
         public static final String COLUMN_NAME_USER_UUID = "user_uuid";
         public static final String COLUMN_NAME_RESERVEID = "reserveid";
     }
+
 
     public static class universitiesTable implements BaseColumns {
         public static final String TABLE_NAME = "universities";
@@ -57,6 +61,7 @@ public final class SqlTablenames {
         public static final String COLUMN_NAME_ADDRESS = "address";
     }
 
+
     public static class user_access_uni_Table implements BaseColumns {
         public static final String TABLE_NAME = "user_access_uni";
         public static final String COLUMN_NAME_ACCESS_UUID = "access_uuid";
@@ -64,10 +69,10 @@ public final class SqlTablenames {
         public static final String COLUMN_NAME_UNI_UUID = "uni_uuid";
     }
 
+
     public static class admin_accounts_Table implements BaseColumns {
         public static final String TABLE_NAME = "admin_accounts";
         public static final String COLUMN_NAME_ADMIN_USER_UUID = "admin_user_uuid";
         public static final String COLUMN_NAME_USER_UUID = "user_uuid";
     }
-
 }

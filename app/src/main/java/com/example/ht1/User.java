@@ -38,9 +38,6 @@ public class User {
     public String getUniName() {return uniName;}
 
 
-
-
-
     // ======= PUBLIC SETTERS =======
 
     public void setUUID(int newUUID) {UUID = newUUID;}
@@ -54,18 +51,10 @@ public class User {
     public void setUniName(String newUniName) {uniName = newUniName;}
 
 
-
-
     // ======= PUBLIC OTHER METHODS =======
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
         return (UUID + ", " + userName + ", " + firstName + " " + surName + ", " + email + ", " + admin + ", " + uniName);
     }
-
-
-
-
-    // ======= PRIVATE METHODS =======
-
 }

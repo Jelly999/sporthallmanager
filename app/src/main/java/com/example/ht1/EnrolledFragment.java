@@ -27,12 +27,15 @@ public class EnrolledFragment extends Fragment {
     Spinner EnrollsSpinner;
     Button cancelEnroll;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.enrolled, container, false);
     }
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         scrollableText = getView().findViewById(R.id.Scrollable);
@@ -51,12 +54,14 @@ public class EnrolledFragment extends Fragment {
         });
     }
 
+
     private void updateEnrolledSpinner() {
         List<String> spinnerList = getUsersEnrolls();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getView().getContext(),R.layout.support_simple_spinner_dropdown_item,spinnerList);
         EnrollsSpinner.setAdapter(adapter);
     }
+
 
     public List<Reservation> getAllReservation() {
         AllReservationsList = new ArrayList<>();
@@ -70,6 +75,7 @@ public class EnrolledFragment extends Fragment {
         }
         return AllReservationsList;
     }
+
 
     public List<String> getUsersEnrolls() {
         List<String> UsersEnrolls = new ArrayList<>();
@@ -90,12 +96,14 @@ public class EnrolledFragment extends Fragment {
         return UsersEnrolls;
     }
 
+
     public void printAllUsersEnrolls() {
         scrollableText.setText("");
         for (int i=0; i<getUsersEnrolls().size(); i++) {
             scrollableText.append(getUsersEnrolls().get(i) + "\n");
         }
     }
+
 
     public void cancelSelectedEnroll() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'kk:mm");

@@ -27,12 +27,16 @@ public class JoinEventFragment extends Fragment {
     private TextView joinSuccess;
     SimpleDateFormat format;
 //TODO update spinner when fragment is accessed
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.joinevent, container, false);
     }
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         sporteventInfoText = view.findViewById(R.id.tSporteventInfo_join);
@@ -48,9 +52,9 @@ public class JoinEventFragment extends Fragment {
             }
         });
 
-
         updateSporteventSpinner();
         sporteventsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 updateInfoBox(i);
@@ -63,6 +67,7 @@ public class JoinEventFragment extends Fragment {
         });
         sporteventInfoText.setText("Yehaw!");
     }
+
 
     public void JoinAnEvent() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd' 'kk:mm");
@@ -92,6 +97,8 @@ public class JoinEventFragment extends Fragment {
 
         updateSporteventSpinner();
     }
+
+
     private void toast(){
         Context context = getActivity();
         CharSequence text = "You are already in this event";
@@ -99,6 +106,7 @@ public class JoinEventFragment extends Fragment {
         Toast toast = Toast.makeText(context,text, duration);
         toast.show();
     }
+
 
     private List<Reservation> getEventFromList() {
         List<Reservation> reservations = new ArrayList<>();
@@ -111,6 +119,7 @@ public class JoinEventFragment extends Fragment {
         }
         return reservations;
     }
+
 
     private void updateSporteventSpinner() {
 
@@ -130,6 +139,7 @@ public class JoinEventFragment extends Fragment {
         sporteventsSpinner.setAdapter(adapter);
     }
 
+
     private void updateInfoBox(int i) {
         Reservation reservation = getReservationFromPosition(i);
         reservation.getAttenderList(reservation);
@@ -147,6 +157,7 @@ public class JoinEventFragment extends Fragment {
         }
     }
 
+
     private Reservation getReservationFromPosition(int i) {
         int j = 0;
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
@@ -162,5 +173,4 @@ public class JoinEventFragment extends Fragment {
         }
         return null;
     }
-
 }

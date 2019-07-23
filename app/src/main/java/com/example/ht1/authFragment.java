@@ -20,12 +20,15 @@ public class authFragment extends Fragment {
 
     private String authCode;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.authentication, container, false);
     }
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         inputField = view.findViewById(R.id.edit_inputint_auth);
@@ -42,6 +45,7 @@ public class authFragment extends Fragment {
         });
     }
 
+
     private void buttonClicked() {
         if (checkIfAuthMatch(inputField.getText().toString())) {
             System.out.println("Auth accepted");
@@ -51,6 +55,7 @@ public class authFragment extends Fragment {
             System.out.println("Auth denied");
         }
     }
+
 
     private void setRandomIntegers() {
         Random rnd = new Random();
@@ -63,6 +68,7 @@ public class authFragment extends Fragment {
 
         randomintText.setText(authCode);
     }
+
 
     private boolean checkIfAuthMatch(String input) {
         if (input.length() == 0) {

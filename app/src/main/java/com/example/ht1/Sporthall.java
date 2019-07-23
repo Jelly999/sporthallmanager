@@ -30,7 +30,6 @@ public class Sporthall {
     public boolean getDisabled() {return disabled;}
     public String getUniversityName() {return universityName;}
     public int getReservationAmount() {return reservationsList.size();}
-
     public List<Reservation> getReservations() {return reservationsList;}
 
 
@@ -44,7 +43,6 @@ public class Sporthall {
     public void setType(String newType) {type = newType;}
     public void setDisabled(boolean isDisabled) {disabled = isDisabled;}
     public void setUniversityName(String UNIname) {universityName = UNIname;}
-
     public void setReservationsList(ArrayList<Reservation> resevations) {reservationsList = resevations;}
 
 
@@ -55,6 +53,7 @@ public class Sporthall {
         reservationsList = SqlManager.getReservationsFromDatabase(this);
     }
 
+
     public boolean addReservation(Reservation reservation) {
         if (reservation != null) {
             reservationsList.add(reservation);
@@ -63,14 +62,6 @@ public class Sporthall {
         return false;
     }
 
-    public void removeAllUserReservations(User owner) { // Removes all reservations by owner iterating
-        Iterator iterator = reservationsList.iterator();
-        while (iterator.hasNext()) {
-            if (((Reservation)iterator.next()).getOwner().equals(owner)) {
-                iterator.remove();
-            }
-        }
-    } //TODO REMOVE ALL USERS SQL??
 
     public void logAllReservations(String TAG) {
         for (Reservation reservation : reservationsList) {
@@ -78,12 +69,11 @@ public class Sporthall {
         }
     }
 
+
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
         return (UUID + " " + name + " " + type + " " + universityName + " " + disabled);
     }
-
-
 
 
     // ======= PRIVATE METHODS =======
@@ -96,6 +86,4 @@ public class Sporthall {
         }
         return false;
     }
-
-
 }

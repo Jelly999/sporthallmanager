@@ -31,12 +31,14 @@ public class ManageHallsFragment extends Fragment {
     Spinner HallSpinner;
     ArrayList spinnerList;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.manage_hall, container, false);
     }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class ManageHallsFragment extends Fragment {
         updateHallSpinner();
     }
 
+
     public void saveNewHall() {
         String Hallname = setNewHallname.getText().toString();
         String HallLocation = setNewHallLocation.getText().toString();
@@ -96,6 +99,8 @@ public class ManageHallsFragment extends Fragment {
         }
         updateHallSpinner();
     }
+
+
     private void updateHallSpinner() {
         spinnerList = (ArrayList) SqlManager.getSporthallsFromDatabase();
 
@@ -103,6 +108,8 @@ public class ManageHallsFragment extends Fragment {
                 getView().getContext(),R.layout.support_simple_spinner_dropdown_item,spinnerList);
         HallSpinner.setAdapter(adapter);
     }
+
+
     public void viewReservations(){
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
         List<Sporthall> sporthalls = SqlManager.getSporthallsFromDatabase();
@@ -111,6 +118,7 @@ public class ManageHallsFragment extends Fragment {
             viewReservations.append(reservation.getSporthall() + ", " + format.format(reservation.getStartDate().getTime()) + ", " + reservation.getSport() + ", " + reservation.getAttenderAmount() + "\n\n");
         }
     }
+
 
     public void deleteHall() {
         int pos = HallSpinner.getSelectedItemPosition();
@@ -121,6 +129,7 @@ public class ManageHallsFragment extends Fragment {
         }
     }
 
+
     public void enableHall() {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
@@ -130,6 +139,7 @@ public class ManageHallsFragment extends Fragment {
         }
     }
 
+
     public void disableHall() {
         int pos = HallSpinner.getSelectedItemPosition();
         List<Integer> hall_uuid = SqlManager.getHallUUIDFromDatabase();
@@ -138,6 +148,7 @@ public class ManageHallsFragment extends Fragment {
             updateHallSpinner();
         }
     }
+
 
     private void toast(String input) {
         Context context = getActivity();

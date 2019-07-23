@@ -18,9 +18,9 @@ public class SqlManager {
 
 
     private static SqlManager uniqueInstance;
-
     private static SQLiteDatabase Wdb; // Tämä varmaan pitänee olla täällä?
     private static SQLiteDatabase Rdb; // Tätä varmaan TARVITAAN/KÄYTETÄÄN?
+
 
     SqlManager(Context context) {
         SqlDatabaseInitializer dbHelper = new SqlDatabaseInitializer(context);
@@ -43,6 +43,7 @@ public class SqlManager {
     public static class SQLuser {
 
         public static void insertRow(String[] userInfo) {
+
             String SQLquery = "INSERT INTO " + SqlTablenames.userTable.TABLE_NAME + "(" +
                     SqlTablenames.userTable.COLUMN_NAME_USERNAME + "," +
                     SqlTablenames.userTable.COLUMN_NAME_FIRSTNAME + "," +
@@ -52,6 +53,7 @@ public class SqlManager {
                     SqlTablenames.userTable.COLUMN_NAME_PWD_HASH + "," +
                     SqlTablenames.userTable.COLUMN_NAME_ADMINISTRATOR +
                     ") VALUES " + "(";
+
             for (int i = 0; i < userInfo.length; i++) {
                 SQLquery += userInfo[i];
                 if (i < (userInfo.length-1)) {
@@ -71,6 +73,7 @@ public class SqlManager {
             Wdb.execSQL(SQLquery);
         }
 
+
         public static void removeRow(String name) {
             String SQLquery = "DELETE FROM " + SqlTablenames.userTable.TABLE_NAME +
                     " WHERE " + SqlTablenames.userTable.COLUMN_NAME_USERNAME + " = " + name + ";";
@@ -88,6 +91,7 @@ public class SqlManager {
                     SqlTablenames.sporthallTable.COLUMN_NAME_HALLTYPE + "," +
                     SqlTablenames.sporthallTable.COLUMN_NAME_NOT_AVAILABLE +
                     ") VALUES " + "(";
+
             for (int i = 0; i < hallInfo.length; i++) {
                 SQLquery += hallInfo[i];
                 if (i < (hallInfo.length-1)) {
@@ -128,6 +132,7 @@ public class SqlManager {
                     SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + "," +
                     SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT +
                     ") VALUES " + "(";
+
             for (int i = 0; i < userInfo.length; i++) {
                 SQLquery += userInfo[i];
                 if (i < (userInfo.length-1)) {
@@ -243,6 +248,7 @@ public class SqlManager {
                 rawQuery,
                 null
         );
+
         if (cursor.moveToFirst()) {
             do {
 
@@ -267,6 +273,7 @@ public class SqlManager {
                 rawQuery,
                 null
         );
+
         if (cursor.moveToFirst()) {
             do {
                 int UUID = cursor.getInt(cursor.getColumnIndex(
@@ -280,6 +287,8 @@ public class SqlManager {
         cursor.close();
         return uni_uuid_List;
     }
+
+
     public static ArrayList<Integer> getHallUUIDFromDatabase() throws SQLException {
         ArrayList<Integer> hall_uuid_List = new ArrayList<>();
 
@@ -288,6 +297,7 @@ public class SqlManager {
                 rawQuery,
                 null
         );
+
         if (cursor.moveToFirst()) {
             do {
                 int UUID = cursor.getInt(cursor.getColumnIndex(
@@ -301,6 +311,7 @@ public class SqlManager {
         cursor.close();
         return hall_uuid_List;
     }
+
 
     public static String getUniAccessUniName(int userID) throws SQLException {
         String uniName = "default";
@@ -320,6 +331,7 @@ public class SqlManager {
         return uniName;
     }
 
+
     public static Integer getUniUUid(String name) throws SQLException {
         int uniID = 0;
         String rawQuery = "SELECT "+ SqlTablenames.universitiesTable.COLUMN_NAME_UNI_UUID + " FROM " + SqlTablenames.universitiesTable.TABLE_NAME
@@ -335,6 +347,7 @@ public class SqlManager {
         cursor.close();
         return uniID;
     }
+
 
     public static Integer getUserUUID(String name) throws SQLException {
         int userID = 0;
@@ -478,8 +491,6 @@ public class SqlManager {
     //get reservations from database
     public static List<Reservation> getReservationsFromDatabase(Sporthall sporthall) {
         List<Reservation> reservationList = new ArrayList<>();
-        // ajattelin että voisi hakea reservationit jokaiselle sporthall erikseen,
-        // säästäisi hieman prosessointiaikaa
 
         String[] sporthallID = {Integer.toString(sporthall.getUUID())}; // The id of the sporthall
         String whereClause = SqlTablenames.reservationsTable.COLUMN_NAME_HALLID + " = ?";
@@ -533,7 +544,6 @@ public class SqlManager {
                 reservation.setEndFromStartDur(startTime, duration);
                 reservation.setOwner(ownerID);
                 reservation.setMaxParticipants(maxPart);
-                // TODO UPDATE ATTENDANCES
                 // TODO RECURRING EVENT
 
                 reservationList.add(reservation);
@@ -645,6 +655,5 @@ public class SqlManager {
         SQLenrolls.insertRow("8", "2");
         SQLenrolls.insertRow("1", "2");
         SQLenrolls.insertRow("4", "2");
-
     }
 }

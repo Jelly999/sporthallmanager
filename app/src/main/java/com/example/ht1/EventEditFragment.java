@@ -27,12 +27,16 @@ public class EventEditFragment extends Fragment {
     private Button saveEdits;
     private ArrayList spinnerList;
     private ArrayList spinnerIDList;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.eventedit, container, false);
     }
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         eventSpinner = view.findViewById(R.id.Eventspinner_edit);
@@ -55,9 +59,13 @@ public class EventEditFragment extends Fragment {
         });
         updateEditeventSpinner();
     }
+
+
     private void deleteReservation(){
         //TODO Remove reservation from database
     }
+
+
     private void saveChanges() {
         int pos = eventSpinner.getSelectedItemPosition();
         pos =+ 1;
@@ -81,6 +89,8 @@ public class EventEditFragment extends Fragment {
         }
         updateEditeventSpinner();
     }
+
+
         private void toast(String msg){
         Context context = getActivity();
         CharSequence text = msg;
@@ -89,6 +99,7 @@ public class EventEditFragment extends Fragment {
         toast.show();
     }
 
+
     private void updateEditeventSpinner() {
         spinnerList = (ArrayList) getReservations();
         spinnerIDList = (ArrayList) getReservationsID();
@@ -96,6 +107,8 @@ public class EventEditFragment extends Fragment {
                 getView().getContext(),R.layout.support_simple_spinner_dropdown_item,spinnerList);
         eventSpinner.setAdapter(adapter);
     }
+
+
     public List<String> getReservations(){
         List<String> reservations = new ArrayList<>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
@@ -112,6 +125,8 @@ public class EventEditFragment extends Fragment {
         System.out.println(reservations);
         return reservations;
     }
+
+
     public List<String> getReservationsID(){
         List<String> reservations = new ArrayList<>();
         int user_uuid;

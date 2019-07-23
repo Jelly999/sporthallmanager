@@ -16,13 +16,6 @@ public class PasswordManager {
         //ASD
     }
 
-    /*public static void hashTest() {
-        String password = "admin";
-        String userName = "admin";
-        String hash = getHashedPassword(password, userName);
-        //Log.d("HASH", hash);
-    }*/
-
 
     public static String getHashedPassword(String password, String userName) {
         if (password != null && userName != null) {
@@ -31,11 +24,14 @@ public class PasswordManager {
         return null;
     }
 
+
     public static String authNumbers() { // It will generate 6 digit random Number.
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
         return String.format("%06d", number);
     }
+
+
     // Checks if authentication code is correct
     public boolean authenticated(View view){
         String randomintvalue = authNumbers();
@@ -49,15 +45,18 @@ public class PasswordManager {
         return false;
     }
 
+
     public static boolean passwordIsCompliant(String str) {
         char ch;
         boolean capitalFlag = false;
         boolean lowerCaseFlag = false;
         boolean numberFlag = false;
         boolean lengthFlag = false;
+
         if (str.length() > 12){
             lengthFlag = true;
         }
+
         for(int i=0;i < str.length();i++) {
             ch = str.charAt(i);
             if( Character.isDigit(ch)) {
@@ -73,6 +72,7 @@ public class PasswordManager {
         }
         return false;
     }
+
 
     private static String get_SHA_512_SecurePassword(String passwordToHash, String   salt){
         String generatedPassword = null;

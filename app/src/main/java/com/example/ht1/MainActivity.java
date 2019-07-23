@@ -18,11 +18,13 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
     private ReservationManager reservationManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // TODO tämä tässä vain testiä varten
+
         if (databaseExists()) {
             Log.d("FILE", "ON OLEMASSA!");
             new SqlManager(this);
@@ -41,10 +43,12 @@ public class MainActivity extends AppCompatActivity {
         jsonManager.JSONTEST();
     }
 
+
     @Override
     public void onBackPressed() {
         //System.out.println("Tryna go back.");
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
         if (f instanceof LoginFragment) {
             Log.d("ONBACK", "Login fragment it is");
             finish();
@@ -59,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStackImmediate();
         }
     }
+
+
     private void toast(){
         Context context = getApplicationContext();
         CharSequence text = "You do not have administrative permissions!";
@@ -67,18 +73,24 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
+
     public void popStacks() {
         Log.d("ONBACK", "popBackStack on command");
         getSupportFragmentManager().popBackStackImmediate();
     }
+
+
     public void logOut(View v){
         User.setCurrentUser(null);
         launchlogin();
     }
+
+
     public void JSONcall(View v){
         JSONManager jsonManager = new JSONManager(this);
         jsonManager.JSONTEST();
     }
+
 
     public void launchMainMenu() {
         MainMenuFragment joinevent = new MainMenuFragment();
@@ -87,18 +99,22 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+
     public void launchlogin() {
         LoginFragment login = new LoginFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, login);
         fragmentTransaction.commit();
     }
+
+
     public void launchAuth() {
         authFragment authentication = new authFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, authentication);
         fragmentTransaction.commit();
     }
+
 
     public boolean databaseExists() {
         String path = this.getFilesDir().getPath();
@@ -110,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         return file.exists();
     }
 
+
     public void objectInitalizationTest() { // TODO DELETE ONCE TEST OVER
         reservationManager = new ReservationManager();
         reservationManager.logAllUsers("OBJECT");
@@ -117,9 +134,11 @@ public class MainActivity extends AppCompatActivity {
         reservationManager.logAllReservations("OBJECT");
     }
 
+
     public void GotoMainMenu(View v) {
         popStacks();
     }
+
 
     public void account(View v){ //account fragment launch
         AccountFragment account = new AccountFragment();
@@ -128,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, account);
         fragmentTransaction.commit();
     }
+
+
     public void joinEvent(View v){//Join event fragment launch
         JoinEventFragment joinevent = new JoinEventFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -135,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, joinevent);
         fragmentTransaction.commit();
     }
+
+
     public void creteNewEvent(View v){//Create event fragment launch
         CreateEventFragment createevent = new CreateEventFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -142,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, createevent);
         fragmentTransaction.commit();
     }
+
+
     public void viewEnrolled(View v){ //View enrolled fragment launch
         EnrolledFragment enrolled = new EnrolledFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -149,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, enrolled);
         fragmentTransaction.commit();
     }
+
+
     public void editEvent(View v){ //Edit event fragment launch
         EventEditFragment eventedit = new EventEditFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -156,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, eventedit);
         fragmentTransaction.commit();
     }
+
+
     public void manageUsers(View v){ //Manage users fragment launch
         boolean value = User.getCurrentUser().isAdmin();
         if (value) {
@@ -166,6 +195,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
         }else{toast();}
     }
+
+
     public void manageHalls(View v){ //Manage halls fragment launch
         boolean value = User.getCurrentUser().isAdmin();
         if (value) {
@@ -176,6 +207,8 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }else{toast();}
     }
+
+
     public void manageUni(View v){ //Manage uni fragment launch
         boolean value = User.getCurrentUser().isAdmin();
         if (value) {

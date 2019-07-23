@@ -19,12 +19,15 @@ public class AccountFragment extends Fragment {
     private EditText phoneInput;
     private EditText emailInput;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.account, container, false);
     }
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         uniAccess = view.findViewById(R.id.tUniAccess_account);
@@ -40,6 +43,8 @@ public class AccountFragment extends Fragment {
         String hasAccess = SqlManager.getUniAccessUniName(User.getCurrentUser().getUUID());
         uniAccess.setText("You can use sporthalls in these Universities: "+hasAccess);
     }
+
+
     private void toast(){
         Context context = getActivity();
         CharSequence text = "Input data please.";
@@ -47,6 +52,8 @@ public class AccountFragment extends Fragment {
         Toast toast = Toast.makeText(context,text, duration);
         toast.show();
     }
+
+
     private void buttonClicked() {
         String phone = "'" + phoneInput.getText().toString() + "'";
         String email = "'" + emailInput.getText().toString() + "'";

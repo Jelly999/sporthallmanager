@@ -58,6 +58,7 @@ public class JSONManager {
         writeToFile(data, fileName);
     }
 
+
     // TODO Toistaiseksi vain testi-tilanteen tallennus
     private JSONObject JSONEndocing() throws JSONException {
         /*JSONObject user_1 = new JSONObject();
@@ -147,7 +148,6 @@ public class JSONManager {
     }
 
 
-
     // ======= PRIVATE METHODS OBJECTS =======
 
     private JSONObject attendersJSON(Reservation reservation) {
@@ -172,6 +172,7 @@ public class JSONManager {
 
         return main;
     }
+
 
     public JSONObject getReservationJSON(Reservation reservation, String fileName) {
         //SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
@@ -219,10 +220,12 @@ public class JSONManager {
         }
     }
 
+
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
     }
+
 
     private boolean isExternalStorageReadable() {
         String state = Environment.getExternalStorageState();

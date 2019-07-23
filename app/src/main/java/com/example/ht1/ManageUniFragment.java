@@ -28,6 +28,8 @@ public class ManageUniFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.manage_uni, container, false);
     }
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Button AddNewUniButton = view.findViewById(R.id.bAddNewUni_MUni);
@@ -63,6 +65,7 @@ public class ManageUniFragment extends Fragment {
 
     }
 
+
     public void DeleteOldUni() {
         int pos = UniversitiesSpinner.getSelectedItemPosition();
         List<Integer> uni_uuid = SqlManager.getUniUUIDFromDatabase();
@@ -71,6 +74,7 @@ public class ManageUniFragment extends Fragment {
             updateUniversitiesSpinner();
         }
     }
+
 
     private void updateUniversitiesSpinner() {
         spinnerList = SqlManager.getUniNameFromDatabase();

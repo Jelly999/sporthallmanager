@@ -14,39 +14,10 @@ public class ReservationManager {
 
     ReservationManager() {
         //TÄÄLLÄ ON USEREIDEN JA SPORTHALLIEN HAKU DATABASESTA!
-
         usersList = new ArrayList<>();
         usersList = SqlManager.getUsersFromDatabase();
-
         sporthallsList = new ArrayList<>();
         sporthallsList = SqlManager.getSporthallsFromDatabase();
-    }
-
-
-
-    // ======= PUBLIC GET METHODS =======
-
-    // Arrays received from getters should not be saved anywhere permanently
-
-    // Public method for getting all the reservations that the user has ownership of
-    public String[] getAllUserOwnedReservationsInfo(User user) {
-        ArrayList<Reservation> reservations = new ArrayList<>();
-
-        for (Sporthall hall : sporthallsList) { // Goes through all the sporthalls
-            // TODO Tähän jotain
-        }
-        return null;
-    }
-
-
-    // Public method for getting all the reservations the user is attending
-    public String[] getAllUserAttendancesInfo(User user) {
-        ArrayList<Reservation> reservations = new ArrayList<>();
-
-        for (Sporthall hall : sporthallsList) { // Goes through all the sporthalls
-            // TODO Tähän jotain
-        }
-        return null;
     }
 
 
@@ -60,18 +31,6 @@ public class ReservationManager {
         // end date is cloned from start date
         endDate.add(Calendar.HOUR_OF_DAY, duration);
         // hours of duration are added to the end date
-
-        /* THIS IS HOW THE RECEIVING END LOOKS LIKE
-        sqlTablenames.reservationsTable.COLUMN_NAME_HALLID + "," +
-        SqlTablenames.reservationsTable.COLUMN_NAME_SPORT + "," +
-        SqlTablenames.reservationsTable.COLUMN_NAME_START_TIME + "," +
-        SqlTablenames.reservationsTable.COLUMN_NAME_DURATION + "," +
-        SqlTablenames.reservationsTable.COLUMN_NAME_USER_UUID + "," +
-        SqlTablenames.reservationsTable.COLUMN_NAME_MAXPARTICIPANTS + "," +
-
-        SqlTablenames.reservationsTable.COLUMN_NAME_RECURRING_EVENT +
-         */
-
 
         if (isDateFaulty(startDate, endDate)) { // Is date faulty (ends before starts)
             String hallIDstr = Integer.toString(sporthall.getUUID());
@@ -94,10 +53,10 @@ public class ReservationManager {
         }
     }
 
+
     public static void addNewWeeklyReservation(User owner, Sporthall sporthall, String title, Calendar startDate, int duration, int durationInWeeks) {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm");
-
         Calendar endDate = (Calendar) startDate.clone();
         // end date is cloned from start date
         endDate.add(Calendar.HOUR_OF_DAY, duration);
@@ -128,11 +87,13 @@ public class ReservationManager {
         }
     }
 
+
     public void logAllSporthalls(String TAG) {
         for (Sporthall sporthall : sporthallsList) {
             Log.d(TAG, sporthall.toString());
         }
     }
+
 
     public void logAllReservations(String TAG) {
         for (Sporthall sporthall : sporthallsList) {
@@ -140,14 +101,6 @@ public class ReservationManager {
         }
     }
 
-
-    public void deleteUserOwnedReservations(User owner) {
-        // TODO HERE GOES THE METHOD CALL SQLMANAGER
-    }
-
-    public void deleteUserAttendances(User attender) {
-        // TODO HERE GOES THE METHOD CALL SQLMANAGER
-    }
 
     // ======= PUBLIC BOOLEAN METHODS =======
 
@@ -173,13 +126,13 @@ public class ReservationManager {
         return  true;
     }
 
+
     public static boolean isWeeklyReservationPossible(Sporthall sporthall, Calendar startDate, Calendar endDate, int DurationInWeeks) {
 
         for (int i = 0; i < DurationInWeeks; i++) {
             if(isTimeSlotReserved(sporthall, startDate, endDate)) { // For every week checks if reservation is possible
                 return false; // if the time slot is reserved returns false
             }
-
             addAWeekToDate(startDate);
             addAWeekToDate(endDate);
         }
@@ -188,11 +141,7 @@ public class ReservationManager {
     }
 
 
-
-
-
     // ======= PRIVATE OTHER METHODS =======
-
 
     // Checks if both dates are not null, and if the startDate is before or equal to endDate
     private static boolean isDateFaulty(Calendar startDate, Calendar endDate) {
@@ -202,22 +151,25 @@ public class ReservationManager {
         return false;
     }
 
+
     private static boolean isDateBefore(Calendar date, Calendar compareTo) {
         return date.before(compareTo);
     }
+
 
     // Return true if first date is after or equal the second
     private static boolean isDateBeforeEqual(Calendar date1, Calendar date2) {
         return ((date1.compareTo(date2)) <= 0); // is before or equal
     }
 
+
     // Return true if first date is before or equal the second
     private static boolean isDateAfterEqual(Calendar date1, Calendar date2) {
         return ((date1.compareTo(date2)) >= 0); // is after or equal
     }
 
+
     private static void addAWeekToDate(Calendar date) {
         date.add(Calendar.DAY_OF_YEAR, 7);
-        // TODO TÄMÄN PITÄISI kasvattaa viikkoa yhdellä!
     }
 }

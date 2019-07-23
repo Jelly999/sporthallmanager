@@ -153,8 +153,6 @@ public class CreateEventFragment extends Fragment {
             }
         });
 
-
-
         updateSporthallSpinner();
         updateAll();
         exportAllEventsCSVButton.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +164,7 @@ public class CreateEventFragment extends Fragment {
         });
     }
 
+
     private void updateAll() {
         // Method that updates texts whenever it is called
         setHoursToStartDate();
@@ -173,6 +172,7 @@ public class CreateEventFragment extends Fragment {
         setEndCalendar();
         checkReservationPossible(sporthallSpinner.getSelectedItemPosition());
     }
+
 
     // Checks if given time has no overlapping reservations
     // changes the color and content of the bottom text according to it
@@ -188,6 +188,7 @@ public class CreateEventFragment extends Fragment {
             //Log.d("CREATE", "Reservation NOT possible");
         }
     }
+
 
     // sets the hours and minutes to match the user inputfield
     private void setHoursToStartDate() {
@@ -208,6 +209,7 @@ public class CreateEventFragment extends Fragment {
             }
         }
     }
+
 
     // When the create event button is pressed
     private void createEventMethod() {
@@ -237,6 +239,7 @@ public class CreateEventFragment extends Fragment {
         Toast.makeText(getActivity(), "Fill all the fields!", Toast.LENGTH_SHORT).show();
     }
 
+
     private boolean isGivenDataCorrect() { // checks if all the necessary info is given and properly
         if (!sportNameEdit.getText().toString().isEmpty()) {
             if (!setMaxParticipantEdit.getText().toString().isEmpty()) {
@@ -249,6 +252,7 @@ public class CreateEventFragment extends Fragment {
         }
         return false;
     }
+
 
     private void updateSporthallSpinner() {
         spinnerList = new ArrayList<>();
@@ -263,6 +267,7 @@ public class CreateEventFragment extends Fragment {
         sporthallSpinner.setAdapter(adapter);
     }
 
+
     private Sporthall getSporthallFromSpinner(int index) {
 
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
@@ -275,9 +280,11 @@ public class CreateEventFragment extends Fragment {
         return null;
     }
 
+
     private void setStartCalendar() {
         completeStartCalText.setText(formatDMY.format(startCalendar.getTime()));
     }
+
 
     private void setEndCalendar() {
         endCalendar = (Calendar) startCalendar.clone();

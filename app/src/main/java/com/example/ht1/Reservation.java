@@ -19,6 +19,7 @@ public class Reservation {
     private Calendar endCalendar;               // Date at which the reservation starts
     private List<User> attenderList;   // List of users attending the reservation
 
+
     Reservation() {
 
         attenderList = new ArrayList<>();
@@ -26,8 +27,8 @@ public class Reservation {
         //TODO: Pitäisikö reservation ownerin olla samalla varauksensa attender??
     } // int uniqueID, User owner, Sporthall hall, String newTitle, Calendar reservStartDate, Calendar reservEndDate
 
-    // ======= PUBLIC GETTERS =======
 
+    // ======= PUBLIC GETTERS =======
     int getUUID() {return UUID;}
     //String getTitle() {return title;}
     String getSport() {return sport;}
@@ -61,10 +62,6 @@ public class Reservation {
     }
 
 
-
-
-
-
     // ======= PUBLIC SETTERS =======
 
     void setUUID(int newID) {UUID = newID;}
@@ -74,6 +71,7 @@ public class Reservation {
     //void setTitle(String text) {title = text;}
     void setSport(String text) {sport = text;}
     void setOwner(int ownerID) {
+
         for (User user : ReservationManager.usersList) {
             if (ownerID == user.getUUID()) {
                 owner = user;
@@ -86,9 +84,6 @@ public class Reservation {
     void setStartCalendar(Calendar calend) {startCalendar = calend;}
 
 
-
-
-
     // ======= PUBLIC OTHER METHODS =======
 
     public void setEndFromStartDur(Calendar startDate, int duration) {
@@ -97,23 +92,17 @@ public class Reservation {
         setEndDate(endDate);
     }
 
-    //TODO TÄMÄ TÄNNE??? kuinka tämä toimii?
-    /*public void updateEnrollssFromSQL() {
-        List<Enroll> enrollsList = SqlManager.getEnrollsFromDatabase(this);
-    }*/
 
     public boolean hasUserAsAttendant(User user) {
         return isUserAttender(user);
     }
+
 
     // USED ONLY FOR DEBUGGIN PURPOSES
     public String toString() {
         //TODO owner.getUserName() pitää lisätä kun toimii
         return (UUID + " " + sport + " " + getAttenderAmount());
     }
-
-
-
 
 
     // ======= PRIVATE METHODS =======
@@ -128,6 +117,7 @@ public class Reservation {
         attenderList.remove(user);
     }
 
+
     private boolean setStartDate(Calendar newStartDate) {
         if (newStartDate != null) {
             startCalendar = newStartDate;
@@ -136,6 +126,7 @@ public class Reservation {
         return false;
     }
 
+
     private boolean setEndDate(Calendar newEndDate) {
         if (newEndDate != null) {
             endCalendar = newEndDate;
@@ -143,6 +134,7 @@ public class Reservation {
         }
         return false;
     }
+
 
     // Checks the attenderList for given User
     private boolean isUserAttender(User testUser) {
