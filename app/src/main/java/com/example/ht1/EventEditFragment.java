@@ -15,8 +15,6 @@ import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class EventEditFragment extends Fragment {
@@ -69,14 +67,17 @@ public class EventEditFragment extends Fragment {
         String Uuid = (String) spinnerIDList.get(0*pos);
         if (sport.length() > 0 ){
             SqlManager.SQLreservation.updateRow(Uuid,"sport", sport);
+            toast("Updated!");
         }
         if (duration.length() > 0){
             //TODO collision check!
             SqlManager.SQLreservation.updateRow(Uuid,"duration", duration);
+            toast("Updated!");
         }
         if (maxparticipants.length() > 0){
             //TODO ammount check
             SqlManager.SQLreservation.updateRow(Uuid,"maxparticipants", maxparticipants);
+            toast("Updated!");
         }
         updateEditeventSpinner();
     }
