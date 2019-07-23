@@ -162,6 +162,7 @@ public class CreateEventFragment extends Fragment {
                 //TODO CSV.saveReservationsCSV();
             }
         });
+        updateSporthallSpinner();
     }
 
 
@@ -171,6 +172,7 @@ public class CreateEventFragment extends Fragment {
         setStartCalendar();
         setEndCalendar();
         checkReservationPossible(sporthallSpinner.getSelectedItemPosition());
+        updateSporthallSpinner();
     }
 
 
@@ -182,7 +184,11 @@ public class CreateEventFragment extends Fragment {
             isReservationPossibleText.setText("Time is available!");
             isReservationPossibleText.setTextColor(Color.parseColor("#45f542")); // GREEN
             //Log.d("CREATE", "Reservation possible");
-        } else {
+        }else if (selectedSporthall.getDisabled()){
+            isReservationPossibleText.setText("Hall is not available");
+            isReservationPossibleText.setTextColor(Color.parseColor("#f54242")); // RED
+        }
+        else {
             isReservationPossibleText.setText("Time is taken!");
             isReservationPossibleText.setTextColor(Color.parseColor("#f54242")); // RED
             //Log.d("CREATE", "Reservation NOT possible");
@@ -256,7 +262,6 @@ public class CreateEventFragment extends Fragment {
 
     private void updateSporthallSpinner() {
         spinnerList = new ArrayList<>();
-
         for (Sporthall sporthall : ReservationManager.sporthallsList) {
             if (!sporthall.getDisabled()) {
                 spinnerList.add(sporthall.getName());
