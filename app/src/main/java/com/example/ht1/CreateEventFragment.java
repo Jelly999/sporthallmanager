@@ -172,7 +172,7 @@ public class CreateEventFragment extends Fragment {
         setStartCalendar();
         setEndCalendar();
         checkReservationPossible(sporthallSpinner.getSelectedItemPosition());
-        updateSporthallSpinner();
+        //updateSporthallSpinner();
     }
 
 
