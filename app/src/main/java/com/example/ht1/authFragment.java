@@ -64,9 +64,9 @@ public class authFragment extends Fragment {
 
 
     private boolean checkIfAuthMatch(String input) {
-        if (input.length() == 0) {
+        /*if (input.length() == 0) {
             return true; //TODO REMOVE ONCE ALL IS GOOD
-        }
+        }*/
         return input.equals(authCode);
     }
 }

@@ -72,11 +72,13 @@ public class EventEditFragment extends Fragment {
 
     private void saveChanges() { //Saves any changes made to event attributes and updates spinner
         int pos = eventSpinner.getSelectedItemPosition();
-        String sport = "'" + setSport.getText().toString() + "'";
+        String sport = setSport.getText().toString();
         String duration = editDuration.getText().toString();
         String maxparticipants = editMaxParticipants.getText().toString();
         String Uuid = (String) spinnerIDList.get(pos);
+        System.out.println("############################"+sport.length());
         if (sport.length() > 0 ){
+            sport = "'" +sport+ "'";
             SqlManager.SQLreservation.updateRow(Uuid,"sport", sport);
             toast("Updated!");
         }
