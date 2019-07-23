@@ -20,7 +20,6 @@ import java.util.List;
 public class EventEditFragment extends Fragment {
     private Spinner eventSpinner;
     private EditText setSport;
-    private EditText changeSporthall;
     private EditText editDuration;
     private EditText editMaxParticipants;
     private Button deleteReservationB;
@@ -35,6 +34,7 @@ public class EventEditFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        //Assigning xml id's
         eventSpinner = view.findViewById(R.id.Eventspinner_edit);
         setSport = view.findViewById(R.id.eSetEventSport_edit);
         editDuration = view.findViewById(R.id.eEditEventDuration_edit);
@@ -55,16 +55,19 @@ public class EventEditFragment extends Fragment {
         });
         updateEditeventSpinner();
     }
-    private void deleteReservation(){
+    private void deleteReservation(){ // Deletes reservation from database
+        int pos = eventSpinner.getSelectedItemPosition();
+        String Uuid = (String) spinnerIDList.get(pos);
+        SqlManager.SQLreservation.removeRow(Uuid);
+        updateEditeventSpinner();
         //TODO Remove reservation from database
     }
-    private void saveChanges() {
+    private void saveChanges() { //Saves any changes made to event attributes and updates spinner
         int pos = eventSpinner.getSelectedItemPosition();
-        pos =+ 1;
         String sport = "'" + setSport.getText().toString() + "'";
         String duration = editDuration.getText().toString();
         String maxparticipants = editMaxParticipants.getText().toString();
-        String Uuid = (String) spinnerIDList.get(0*pos);
+        String Uuid = (String) spinnerIDList.get(pos);
         if (sport.length() > 0 ){
             SqlManager.SQLreservation.updateRow(Uuid,"sport", sport);
             toast("Updated!");
@@ -96,7 +99,7 @@ public class EventEditFragment extends Fragment {
                 getView().getContext(),R.layout.support_simple_spinner_dropdown_item,spinnerList);
         eventSpinner.setAdapter(adapter);
     }
-    public List<String> getReservations(){
+    public List<String> getReservations(){ //Gets events from database and puts them to list for spinner
         List<String> reservations = new ArrayList<>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
         int user_uuid;
@@ -112,7 +115,7 @@ public class EventEditFragment extends Fragment {
         System.out.println(reservations);
         return reservations;
     }
-    public List<String> getReservationsID(){
+    public List<String> getReservationsID(){ //Gets events from database and puts ID's to list. saveChanges method uses on ID's to alter values
         List<String> reservations = new ArrayList<>();
         int user_uuid;
         user_uuid = User.getCurrentUser().getUUID();
