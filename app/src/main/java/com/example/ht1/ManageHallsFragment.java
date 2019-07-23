@@ -174,6 +174,7 @@ public class ManageHallsFragment extends Fragment {
 
     public void saveTOcsv() {
         //TODO TÄMÄ ON RIKKI PITÄÄ EHJÄTÄ tai polttaa ja tehdä uusi
+
         /*List<Sporthall> sporthalls = SqlManager.getSporthallsFromDatabase();
         List<Reservation> reservations = SqlManager.getReservationsFromDatabase(sporthalls.get(HallSpinner.getSelectedItemPosition()));
         SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
