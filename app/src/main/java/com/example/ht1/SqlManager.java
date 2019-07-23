@@ -544,6 +544,7 @@ public class SqlManager {
                 reservation.setEndFromStartDur(startTime, duration);
                 reservation.setOwner(ownerID);
                 reservation.setMaxParticipants(maxPart);
+                // TODO UPDATE ATTENDANCES
                 // TODO RECURRING EVENT
 
                 reservationList.add(reservation);

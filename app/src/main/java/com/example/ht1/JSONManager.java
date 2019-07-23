@@ -10,6 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,8 +40,85 @@ public class JSONManager {
 
 
     public void saveReservationsCSV(Reservation[] reservations, String fileName) {
-        String data = "";
-        //SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
+
+        //public class CsvFileWriter {
+
+            /*//Delimiter used in CSV file
+            private static final String COMMA_DELIMITER = ",";
+            private static final String NEW_LINE_SEPARATOR = "\n";*/
+
+            //CSV file header
+            final String FILE_HEADER = "reserveid,hallname,sport,owner,start_time,end_time";
+
+            /*public static void writeCsvFile(String fileName) {
+
+                Student student1 = new Student(1, "Ahmed", "Mohamed", "M", 25);
+                Student student2 = new Student(2, "Sara", "Said", "F", 23);
+                Student student3 = new Student(3, "Ali", "Hassan", "M", 24);
+                Student student4 = new Student(4, "Sama", "Karim", "F", 20);
+                Student student5 = new Student(5, "Khaled", "Mohamed", "M", 22);
+                Student student6 = new Student(6, "Ghada", "Sarhan", "F", 21);
+
+                List students = new ArrayList();
+                students.add(student1);
+                students.add(student2);
+                students.add(student3);
+                students.add(student4);
+                students.add(student5);
+                students.add(student6);*/
+
+            FileWriter fileWriter = null;
+            try {
+                fileWriter = new FileWriter(fileName);
+
+                fileWriter.append(FILE_HEADER.toString());
+
+                fileWriter.append("\n");
+
+                String data = "";
+                SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
+
+                for (Reservation reserv : reservations) {
+                    data += reserv.getUUID() + ",";
+                    data += reserv.getSporthall().getName() + ",";
+                    data += reserv.getSport() + ",";
+                    data += reserv.getOwner().getUserName() + ",";
+                    data += format.format(reserv.getStartDate().getTime()) + ",";
+                    data += format.format(reserv.getEndDate().getTime()) + ",";
+
+                    String attenders = "";
+                    for (User user : reserv.getAttenderList(reserv)) {
+                        attenders += user.getUserName() + ",";
+                    }
+                    data += attenders + "\n";
+                }
+                    /*for (Student student : students) {
+                        fileWriter.append(String.valueOf(student.getId()));
+                        fileWriter.append(COMMA_DELIMITER);
+                        fileWriter.append(student.getFirstName());
+                        fileWriter.append(COMMA_DELIMITER);
+                        fileWriter.append(student.getLastName());
+                        fileWriter.append(COMMA_DELIMITER);
+                        fileWriter.append(student.getGender());
+                        fileWriter.append(COMMA_DELIMITER);
+                        fileWriter.append(String.valueOf(student.getAge()));
+                        fileWriter.append(NEW_LINE_SEPARATOR);
+                    }*/
+            } catch (Exception e) {
+                System.out.println("Error in CsvFileWriter !!!");
+                e.printStackTrace();
+            } finally {
+                try {
+                    fileWriter.flush();
+                    fileWriter.close();
+                } catch (IOException e) {
+                    System.out.println("Error while flushing/closing fileWriter !!!");
+                    e.printStackTrace();
+                }
+            }
+
+        /*String data = "";
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
 
         for (Reservation reserv : reservations) {
             data += reserv.getUUID() + ",";
@@ -52,10 +132,10 @@ public class JSONManager {
             for (User user : reserv.getAttenderList(reserv)) {
                 attenders += user.getUserName() + ",";
             }
-            data += attenders + ";";
+            data += attenders + "\n";
         }
 
-        writeToFile(data, fileName);
+        writeToFile(data, fileName);*/
     }
 
 
