@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Sporthall Manager</string>
     <string name="save_button">Save</string>
-    <string name="usertasks_text">User task</string>
+    <string name="usertasks_text">User tasks</string>
     <string name="create_new_event_button">Create new sport event</string>
     <string name="view_enrolled_button">View enrolled events</string>
     <string name="edit_event_button">Edit created event</string>

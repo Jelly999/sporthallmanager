@@ -38,7 +38,7 @@ public class AccountFragment extends Fragment {
             }
         });
         String hasAccess = SqlManager.getUniAccessUniName(User.getCurrentUser().getUUID());
-        uniAccess.setText("You have access to these University sporthalls: "+hasAccess);
+        uniAccess.setText("You can use sporthalls in these Universities: "+hasAccess);
     }
     private void toast(){
         Context context = getActivity();
