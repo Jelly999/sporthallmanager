@@ -43,6 +43,8 @@ public class AccountFragment extends Fragment {
         String hasAccess = SqlManager.getUniAccessUniName(User.getCurrentUser().getUUID());
         uniAccess.setText("You can use sporthalls in these Universities: "+hasAccess);
     }
+
+
     private void toast(String msg){
         Context context = getActivity();
         CharSequence text = msg;

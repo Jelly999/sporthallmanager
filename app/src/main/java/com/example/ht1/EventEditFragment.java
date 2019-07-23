@@ -59,6 +59,8 @@ public class EventEditFragment extends Fragment {
         });
         updateEditeventSpinner();
     }
+
+
     private void deleteReservation(){ // Deletes reservation from database
         int pos = eventSpinner.getSelectedItemPosition();
         String Uuid = (String) spinnerIDList.get(pos);
@@ -66,6 +68,8 @@ public class EventEditFragment extends Fragment {
         updateEditeventSpinner();
         //TODO Remove reservation from database
     }
+
+
     private void saveChanges() { //Saves any changes made to event attributes and updates spinner
         int pos = eventSpinner.getSelectedItemPosition();
         String sport = "'" + setSport.getText().toString() + "'";
@@ -106,6 +110,8 @@ public class EventEditFragment extends Fragment {
                 getView().getContext(),R.layout.support_simple_spinner_dropdown_item,spinnerList);
         eventSpinner.setAdapter(adapter);
     }
+
+
     public List<String> getReservations(){ //Gets events from database and puts them to list for spinner
         List<String> reservations = new ArrayList<>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd kk:mm");
@@ -122,6 +128,8 @@ public class EventEditFragment extends Fragment {
         System.out.println(reservations);
         return reservations;
     }
+
+
     public List<String> getReservationsID(){ //Gets events from database and puts ID's to list. saveChanges method uses on ID's to alter values
         List<String> reservations = new ArrayList<>();
         int user_uuid;
