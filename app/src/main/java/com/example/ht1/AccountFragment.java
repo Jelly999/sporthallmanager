@@ -40,9 +40,9 @@ public class AccountFragment extends Fragment {
         String hasAccess = SqlManager.getUniAccessUniName(User.getCurrentUser().getUUID());
         uniAccess.setText("You can use sporthalls in these Universities: "+hasAccess);
     }
-    private void toast(){
+    private void toast(String msg){
         Context context = getActivity();
-        CharSequence text = "Input data please.";
+        CharSequence text = msg;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context,text, duration);
         toast.show();
@@ -50,15 +50,15 @@ public class AccountFragment extends Fragment {
     private void buttonClicked() {
         String phone = "'" + phoneInput.getText().toString() + "'";
         String email = "'" + emailInput.getText().toString() + "'";
-        if (phone.length()>0){
-            //System.out.println(phone);
+        if (phone.length()>0){ // if field contains data, it is saved to database
             SqlManager.SQLuser.updateRow(Integer.toString(User.getCurrentUser().getUUID()), SqlTablenames.userTable.COLUMN_NAME_PHONE_NUMBER, phone);
+            toast("Updated!");
         }
-        if (email.length()>0 ){
-            //System.out.println(email);
+        if (email.length()>0 ){ // if field contains data, it is saved to database
             SqlManager.SQLuser.updateRow(Integer.toString(User.getCurrentUser().getUUID()), SqlTablenames.userTable.COLUMN_NAME_EMAIL, email);
+            toast("Updated!");
         }
-        if (phone.length() == 0 && email.length() == 0){toast();}
+        if (phone.length() == 0 && email.length() == 0){toast("Input data please.");}
     }
 
 }
