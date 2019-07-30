@@ -11,14 +11,10 @@ UPDATE
 DELETE FROM
 
 
-Following commands are inside methods in our android program and thus we indicate name of the table as table_name,
-name of the column as column_name, if multiple as column_1, ..., column_n and data what we want to use as Data,
-also if multiple as Data_1, ..., Data_n. When before we used data that we are inserting into database.
-
-INSERT INTO
-UPDATE
-DELETE FROM
-
+Three last commands (INSERT INTO, UPDATE, DELETE FROM) are inside methods in our android program and thus we indicate
+name of the table as table_name, name of the column as column_name, if multiple as column_1, ..., column_n
+and data what we want to use as Data, also if multiple as Data_1, ..., Data_n.
+When before we used data that we are inserting into database.
 
 
 
@@ -220,16 +216,31 @@ INSERT INTO admin_accounts(user_uuid) VALUES(
 
 
 
-SELECT * FROM user;
+SELECT user.username, user.firstname, user.surname, user.phone, user.email, user.pwd_hash,
+user.administrator, universities.name FROM ((
+user INNER JOIN user_access_uni ON user_access_uni.user_uuid = user.user_uuid)
+INNER JOIN universities ON universities.uni_uuid = user_access_uni.uni_uuid);
 
 SELECT hallid, hallname, name, halltype, not_available FROM sporthall
 INNER JOIN universities ON universities.uni_uuid = sporthall.uni_uuid;
 
-SELECT * FROM reservations;
+SELECT * FROM reservations WHERE hallid = (insert hallid here) ;
 
 SELECT * FROM enrolls;
 
 SELECT name FROM universities;
+
+SELECT uni_uuid FROM universities;
+
+SELECT hallid FROM sporthall;
+
+SELECT name FROM user_access_uni INNER JOIN universities
+ON universities.uni_uuid = user_access_uni.uni_uuid
+WHERE user_uuid = (insert userid here) ;
+
+SELECT uni_uuid FROM universities WHERE name = 'insert name here' ;
+
+SELECT user_uuid FROM user WHERE username = 'insert username here' ;
 
 
 
