@@ -35,7 +35,6 @@ public class Enroll {
 
 
     // ======= PUBLIC OTHER METHODS =======
-    // TODO mitä kaikkea täällä tarvitaan entäs update tänne vai reservationiin??
 
     public boolean addEnroll(Enroll enroll) {
         if (enroll != null) {

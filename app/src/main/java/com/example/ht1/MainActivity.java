@@ -92,11 +92,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void CSVcall(View v){
-        //TODO csv
-    }
-
-
     public void launchMainMenu() {
         MainMenuFragment joinevent = new MainMenuFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

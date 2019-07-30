@@ -26,7 +26,6 @@ public class JoinEventFragment extends Fragment {
     private Button cancelButton;
     private TextView joinSuccess;
     SimpleDateFormat format;
-//TODO update spinner when fragment is accessed
 
 
     @Override

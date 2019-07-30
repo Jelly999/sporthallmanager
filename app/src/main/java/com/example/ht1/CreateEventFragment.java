@@ -159,7 +159,6 @@ public class CreateEventFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 JSONManager CSV = new JSONManager(getActivity());
-                //TODO CSV.saveReservationsCSV();
             }
         });
         updateSporthallSpinner();
