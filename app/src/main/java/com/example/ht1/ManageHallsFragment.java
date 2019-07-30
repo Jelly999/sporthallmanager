@@ -3,6 +3,7 @@ package com.example.ht1;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class ManageHallsFragment extends Fragment {
     private EditText setNewHallType;
     private TextView viewReservations;
     private Button toCSV;
+    private Context context;
     Spinner HallSpinner;
     ArrayList spinnerList;
 
@@ -47,6 +50,7 @@ public class ManageHallsFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        context = getActivity().getApplicationContext();
         getReservations = view.findViewById(R.id.bGetReservations_MHalls);
         deleteHall = view.findViewById(R.id.bDeleteHall_MHalls);
         enableHall = view.findViewById(R.id.bEnableHall_MHalls);
@@ -173,39 +177,34 @@ public class ManageHallsFragment extends Fragment {
 
 
     public void saveTOcsv() {
-        //TODO TÄMÄ ON RIKKI PITÄÄ EHJÄTÄ tai polttaa ja tehdä uusi
-
-        /*List<Sporthall> sporthalls = SqlManager.getSporthallsFromDatabase();
+        List<Sporthall> sporthalls = SqlManager.getSporthallsFromDatabase();
         List<Reservation> reservations = SqlManager.getReservationsFromDatabase(sporthalls.get(HallSpinner.getSelectedItemPosition()));
         SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.mm.yyyy 'at' hh:mm");
         String FILE_HEADER = "reserveid,hallname,sport,owner,start_time,end_time";
-        FileOutputStream outputStream;
+        try {
+            OutputStreamWriter osw = new OutputStreamWriter(context.openFileOutput("reservation.csv", Context.MODE_PRIVATE));
+            String data = FILE_HEADER + "\n";
+            for (Reservation reserv : reservations) {
+                data += reserv.getUUID() + ",";
+                data += reserv.getSporthall().getName() + ",";
+                data += reserv.getSport() + ",";
+                data += reserv.getOwner().getUserName() + ",";
+                data += format.format(reserv.getStartDate().getTime()) + ",";
+                data += format.format(reserv.getEndDate().getTime()) + ",";
 
-
-            try {
-                outputStream = openFileOutput("reservation.csv", Context.MODE_PRIVATE);
-
-                String data = FILE_HEADER + "\n";
-                for (Reservation reserv : reservations) {
-                    data += reserv.getUUID() + ",";
-                    data += reserv.getSporthall().getName() + ",";
-                    data += reserv.getSport() + ",";
-                    data += reserv.getOwner().getUserName() + ",";
-                    data += format.format(reserv.getStartDate().getTime()) + ",";
-                    data += format.format(reserv.getEndDate().getTime()) + ",";
-
-                    String attenders = "";
-                    for (User user : reserv.getAttenderList(reserv)) {
-                        attenders += user.getUserName() + ",";
-                    }
-                    data += attenders + "\n";
+                String attenders = "";
+                for (User user : reserv.getAttenderList(reserv)) {
+                    attenders += user.getUserName() + ",";
                 }
-                outputStream.write(data.getBytes());
-                outputStream.close();
-                System.out.println("CSV file was created successfully !!!");
-            } catch (Exception e) {
-                e.printStackTrace();
+                data += attenders + "\n";
             }
-        }*/
+            osw.write(data);
+            osw.close();
+
+        } catch (IOException e) {
+            Log.e("IOException", "Virhe Syötteessä");
+        } finally {
+            System.out.println("Kirjoitettu");
+        }
     }
 }
